@@ -29,7 +29,8 @@ First thing you should always do is **search through the issues**. If an issue e
 All moderators have push access to the repo and are charged with ensuring that the questions here are well-maintained (tagged, closed when they're answered, etc.). They manage everything about this repository.
 
 1. [ndarville](https://github.com/ndarville)
-2. [jaybe-jekyll](https://github.com/jaybe-jekyll)
+1. [jaybe-jekyll](https://github.com/jaybe-jekyll)
 1. [oblakeerickson](https://github.com/oblakeerickson)
+1. [troyswanson](https://github.com/troyswanson)
 
 If you'd like to become a moderator, create an issue and mention @parkr! We'll talk about it there. If you have others in the community who are willing to support your bid, have them add their support (more than just a :+1:, hopefully!).
