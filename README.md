@@ -7,7 +7,7 @@ Welcome to the Help repo for Jekyll! This is our new central repository where yo
 First thing you should always do is **search through the issues**. If an issue exists for your question already, you're good to go! If you have a **follow-up question**, post a comment! If you **can't find a related issue**:
 
 1. Have some code that isn't working? Fork this repo, add your code to a feature branch, push up and create a pull request. Anyone who sees your PR can comment on your code: "Hey, you forgot a curly bracket here!"
-2. Wondering how others have tackled a particular problem? Simply [file an issue describing your problem](https://github.com/jekyll/help/issues/new) and another member of the community will answer it. Be patient; answers may take a while. Be sure to spread the link to your question throughout your social network in order to get the best possible chance of having it answered.
+2. Wondering how others have tackled a particular problem? Simply [file an issue describing your problem](https://github.com/jekyll/jekyll-help/issues/new) and another member of the community will answer it. Be patient; answers may take a while. Be sure to spread the link to your question throughout your social network in order to get the best possible chance of having it answered.
 
 ## Other Places
 
