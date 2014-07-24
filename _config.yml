@@ -1,0 +1,2 @@
+# http://jekyllrb.com/docs/configuration/
+exclude: [vendor]
