@@ -6,11 +6,15 @@
   padding: 0;
 }
 
-html, body { height: 100%; }
+html {
+  height: 100%;
+/*  font-size: 16pt;*/
+}
 
 body {
+  height: 100%;
+  font-size: 62.5%;
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 16px;
   line-height: 1.5;
   font-weight: 300;
   background-color: #fdfdfd;
@@ -41,9 +45,9 @@ a:visited { color: #205caa; }
 /* Site header */
 
 .site-header {
-  border-top: 5px solid #333;
-  border-bottom: 1px solid #e8e8e8;
-  min-height: 56px;
+  border-top: .5em solid #333;
+  border-bottom: .1em solid #e8e8e8;
+  min-height: 5.6em;
   background-color: white;
 }
 
@@ -52,23 +56,23 @@ a:visited { color: #205caa; }
 .site-title:visited {
   display: block;
   color: #333;
-  font-size: 26px;
+  font-size: 2.6em;
   letter-spacing: -1px;
   float: left;
-  line-height: 56px;
+  line-height: 5.6em;
   position: relative;
   z-index: 1;
 }
 
 .site-nav {
   float: right;
-  line-height: 56px;
+  line-height: 5.6em;
 }
 
 .site-nav .menu-icon { display: none; }
 
 .site-nav .page-link {
-  margin-left: 20px;
+  margin-left: 2em;
   color: #727272;
   letter-spacing: -.5px;
 }
@@ -77,58 +81,31 @@ a:visited { color: #205caa; }
 
 .site-footer {
   border-top: 1px solid #e8e8e8;
-  padding: 30px 0;
+  padding: 3em 0;
 }
 
 .footer-heading {
-  font-size: 18px;
+  font-size: 1.8em;
   font-weight: 300;
   letter-spacing: -.5px;
-  margin-bottom: 15px;
-}
-
-.site-footer .column { float: left; margin-bottom: 15px; }
-
-.footer-col-1 {
-  width: 270px; /*fallback*/
-  width: -webkit-calc(35% - 10px);
-  width: -moz-calc(35% - 10px);
-  width: -o-calc(35% - 10px);
-  width: calc(35% - 10px);
-  margin-right: 10px
-}
-.footer-col-2 {
-  width: 175px; /*fallback*/
-  width: -webkit-calc(23.125% - 10px);
-  width: -moz-calc(23.125% - 10px);
-  width: -o-calc(23.125% - 10px);
-  width: calc(23.125% - 10px);
-  margin-right: 10px
-}
-.footer-col-3 {
-  width: 335px; /*fallback*/
-  width: -webkit-calc(41.875%);
-  width: -moz-calc(41.875%);
-  width: -o-calc(41.875%);
-  width: calc(41.875%);
+  margin-bottom: 1.5em;
 }
 
 .site-footer ul { list-style: none; }
 
 .site-footer li,
 .site-footer p {
-  font-size: 15px;
+  font-size: 1.5em;
   letter-spacing: -.3px;
   color: #828282;
 }
 
-.github-icon-svg,
 .twitter-icon-svg {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 1.6em;
+  height: 1.6em;
   position: relative;
-  top: 3px;
+  top: .3em;
 }
 
 
@@ -136,7 +113,7 @@ a:visited { color: #205caa; }
 /* ----------------------------------------------------------*/
 
 .page-content {
-  padding: 30px 0;
+  padding: 3em 0;
   background-color: #fff;
 }
 
@@ -151,14 +128,13 @@ a:visited { color: #205caa; }
 .posts li { margin-bottom: 30px; }
 
 .posts .post-link {
-  font-size: 24px;
+  font-size: 2.4em;
   letter-spacing: -1px;
   line-height: 1;
 }
 
 .posts .post-date {
   display: block;
-  font-size: 15px;
   color: #818181;
 }
 
@@ -169,21 +145,24 @@ a:visited { color: #205caa; }
 .post-header { margin: 10px 0 30px; }
 
 .post-header h1 {
-  font-size: 42px;
-  letter-spacing: -1.75px;
+  font-size: 4.2em;
+  letter-spacing: -.02em;
   line-height: 1;
   font-weight: 300;
 }
 
 .post-header .meta {
-  font-size: 15px;
+  font-size: 1.5em;
   color: #818181;
-  margin-top: 5px;
+  margin-top: .5em;
 }
 
-.post-content { margin: 0 0 30px; }
+.post-content {
+  margin: 0 0 3em;
+  font-size: 1.5em;
+}
 
-.post-content > * { margin: 20px 0; }
+.post-content > * { margin: 2em 0; }
 
 
 .post-content h1,
@@ -194,32 +173,32 @@ a:visited { color: #205caa; }
 .post-content h6 {
   line-height: 1;
   font-weight: 300;
-  margin: 40px 0 20px;
+  margin: 4em 0 2em;
 }
 
 .post-content h2 {
-  font-size: 32px;
-  letter-spacing: -1.25px;
+  font-size: 3.2em;
+  letter-spacing: -.125em;
 }
 
 .post-content h3 {
-  font-size: 26px;
+  font-size: 2.6em;
   letter-spacing: -1px;
 }
 
 .post-content h4 {
-  font-size: 20px;
+  font-size: 2em;
   letter-spacing: -1px;
 }
 
 .post-content blockquote {
-  border-left: 4px solid #e8e8e8;
-  padding-left: 20px;
-  font-size: 18px;
+  border-left: .4em solid #e8e8e8;
+  padding-left: 2em;
+  font-size: 1.8em;
   opacity: .6;
   letter-spacing: -1px;
   font-style: italic;
-  margin: 30px 0;
+  margin: 3em 0;
 }
 
 .post-content ul,
@@ -229,11 +208,10 @@ a:visited { color: #205caa; }
 .post code {
   border: 1px solid #d5d5e9;
   background-color: #eef;
-  padding: 8px 12px;
+  padding: .8em 1.2em;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  font-size: 15px;
   overflow:scroll;
 }
 
@@ -260,104 +238,33 @@ a:visited { color: #205caa; }
 
 .post pre.terminal code { background-color: #333; }
 
-/* Syntax highlighting styles */
-/* ----------------------------------------------------------*/
-
-.highlight  { background: #ffffff; }
-.highlight .c { color: #999988; font-style: italic } /* Comment */
-.highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
-.highlight .k { font-weight: bold } /* Keyword */
-.highlight .o { font-weight: bold } /* Operator */
-.highlight .cm { color: #999988; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #999999; font-weight: bold } /* Comment.Preproc */
-.highlight .c1 { color: #999988; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #999999; font-weight: bold; font-style: italic } /* Comment.Special */
-.highlight .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
-.highlight .gd .x { color: #000000; background-color: #ffaaaa } /* Generic.Deleted.Specific */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #aa0000 } /* Generic.Error */
-.highlight .gh { color: #999999 } /* Generic.Heading */
-.highlight .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
-.highlight .gi .x { color: #000000; background-color: #aaffaa } /* Generic.Inserted.Specific */
-.highlight .go { color: #888888 } /* Generic.Output */
-.highlight .gp { color: #555555 } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #aaaaaa } /* Generic.Subheading */
-.highlight .gt { color: #aa0000 } /* Generic.Traceback */
-.highlight .kc { font-weight: bold } /* Keyword.Constant */
-.highlight .kd { font-weight: bold } /* Keyword.Declaration */
-.highlight .kp { font-weight: bold } /* Keyword.Pseudo */
-.highlight .kr { font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #445588; font-weight: bold } /* Keyword.Type */
-.highlight .m { color: #009999 } /* Literal.Number */
-.highlight .s { color: #d14 } /* Literal.String */
-.highlight .na { color: #008080 } /* Name.Attribute */
-.highlight .nb { color: #0086B3 } /* Name.Builtin */
-.highlight .nc { color: #445588; font-weight: bold } /* Name.Class */
-.highlight .no { color: #008080 } /* Name.Constant */
-.highlight .ni { color: #800080 } /* Name.Entity */
-.highlight .ne { color: #990000; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #990000; font-weight: bold } /* Name.Function */
-.highlight .nn { color: #555555 } /* Name.Namespace */
-.highlight .nt { color: #000080 } /* Name.Tag */
-.highlight .nv { color: #008080 } /* Name.Variable */
-.highlight .ow { font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mf { color: #009999 } /* Literal.Number.Float */
-.highlight .mh { color: #009999 } /* Literal.Number.Hex */
-.highlight .mi { color: #009999 } /* Literal.Number.Integer */
-.highlight .mo { color: #009999 } /* Literal.Number.Oct */
-.highlight .sb { color: #d14 } /* Literal.String.Backtick */
-.highlight .sc { color: #d14 } /* Literal.String.Char */
-.highlight .sd { color: #d14 } /* Literal.String.Doc */
-.highlight .s2 { color: #d14 } /* Literal.String.Double */
-.highlight .se { color: #d14 } /* Literal.String.Escape */
-.highlight .sh { color: #d14 } /* Literal.String.Heredoc */
-.highlight .si { color: #d14 } /* Literal.String.Interpol */
-.highlight .sx { color: #d14 } /* Literal.String.Other */
-.highlight .sr { color: #009926 } /* Literal.String.Regex */
-.highlight .s1 { color: #d14 } /* Literal.String.Single */
-.highlight .ss { color: #990073 } /* Literal.String.Symbol */
-.highlight .bp { color: #999999 } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #008080 } /* Name.Variable.Class */
-.highlight .vg { color: #008080 } /* Name.Variable.Global */
-.highlight .vi { color: #008080 } /* Name.Variable.Instance */
-.highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
-
-
 /* media queries */
 /* ----------------------------------------------------------*/
+/*
+ Skeleton base
+*/
 
 
-@media screen and (max-width: 750px) {
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {}
 
-  .footer-col-1 { width: 50%; }
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {}
 
-  .footer-col-2 {
-    width: 45%; /*fallback*/
-    width: -webkit-calc(50% - 10px);
-    width: -moz-calc(50% - 10px);
-    width: -o-calc(50% - 10px);
-    width: calc(50% - 10px);
-    margin-right: 0;
-  }
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {}
 
-  .site-footer .column.footer-col-3 {
-    width: auto;
-    float: none;
-    clear: both;
-  }
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
 
-}
-
-@media screen and (max-width: 600px) {
-
-  .wrap { padding: 0 12px; }
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {
+  .wrap { padding: 0 1.2em; }
 
   .site-nav {
     position: fixed;
     z-index: 10;
-    top: 14px; right: 8px;
+    top: 1.4em; right: .8em;
     background-color: white;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -365,17 +272,6 @@ a:visited { color: #205caa; }
     border: 1px solid #e8e8e8;
   }
 
-  .site-nav .menu-icon {
-    display: block;
-    font-size: 24px;
-    color: #505050;
-    float: right;
-    width: 36px;
-    text-align: center;
-    line-height: 36px;
-  }
-
-  .site-nav .menu-icon svg { width: 18px; height: 16px; }
 
   .site-nav .trigger {
     clear: both;
@@ -393,18 +289,50 @@ a:visited { color: #205caa; }
     margin: 0;
   }
 
-  .post-header h1 { font-size: 36px; }
-  .post-content h2 { font-size: 28px; }
-  .post-content h3 { font-size: 22px; }
-  .post-content h4 { font-size: 18px; }
-  .post-content blockquote { padding-left: 10px; }
+  .post-header h1 { font-size: 3.6em; }
+  .post-content h2 { font-size: 2.8em; }
+  .post-content h3 { font-size: 2.2em; }
+  .post-content h4 { font-size: 1.8em; }
+  .post-content blockquote { padding-left: 1em; }
   .post-content ul,
-  .post-content ol { padding-left: 10px; }
+  .post-content ol { padding-left: 1em; }
 
   .site-footer .column {
     float: none;
     clear: both;
     width: auto;
-    margin: 0 0 15px; }
+    margin: 0 0 1.em; }
+
+  .site-nav .menu-icon {
+    display: block;
+    color: #505050;
+    float: right;
+    width: 3.6em;
+    height: 3.6em;
+/*    line-height: 3.6em;
+*/    text-align: center;
+  }
+
+  .site-nav .menu-icon svg { width: 2em; height: 2em; }
 
 }
+
+
+/* #Font-Face
+================================================== */
+/*  This is the proper syntax for an @font-face file
+    Just create a "fonts" folder at the root,
+    copy your FontName into code below and remove
+    comment brackets */
+
+/*  @font-face {
+      font-family: 'FontName';
+      src: url('../fonts/FontName.eot');
+      src: url('../fonts/FontName.eot?iefix') format('eot'),
+           url('../fonts/FontName.woff') format('woff'),
+           url('../fonts/FontName.ttf') format('truetype'),
+           url('../fonts/FontName.svg#webfontZam02nTh') format('svg');
+      font-weight: normal;
+      font-style: normal; }
+*/
+
