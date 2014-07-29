@@ -1,20 +1,24 @@
 ---
 layout: default
 ---
-
 <div class="home">
-
   <h1>Posts</h1>
 
-  <ul class="posts">
+  <div class="posts">
     {% for post in site.posts %}
-      <li>
-        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-      </li>
+      <div class="card">
+        <div class = "card-header">
+          <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <img class="suit" src="images/cards/suits/card_color_0.png" alt="">
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+
+        </div>
+        <article>
+          {{ post.content }}
+        </article>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
+  <p class="rss-subscribe clearfix">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 </div>
