@@ -2,13 +2,15 @@
 /* ----------------------------------------------------------*/
 
 body {
-  font-size: 62.5%;
+  font-size: 62.5%; /*a font-size of 1em is now  = 10px*/
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 300;
-  background-color: #fdfdfd;
+  background-color: black;
 }
-
+article {
+  font-size: 1.6em;
+}
 a         { color: #2a7ae2; text-decoration: none; }
 a:hover   { color: #000; text-decoration: underline; }
 a:visited { color: #205caa; }
@@ -24,50 +26,88 @@ a:visited { color: #205caa; }
   margin: 0 auto;
   zoom: 1;
 }
+dt{
+  font-size: 1.2em;
+  padding: .5em 0;
+}
+li, dd{
+  margin-left: 1.5em;
+  /*display: list-item;*/
+}
+/*can easily switch to • by uncommenting line above and deleting the following stuff*/
 
-
-/* Layout Styles */
+li::first-line, dd::first-line{
+  margin-left: -1.5em;
+}
+li:nth-child(4n+1)::before, dd:nth-child(4n+1)::before{
+  content: "♥ ";
+  color: red;
+}
+li:nth-child(4n+2)::before, dd:nth-child(4n+2)::before{
+  content: "♦ ";
+  color: red;
+}
+li:nth-child(4n+3)::before, dd:nth-child(4n+3)::before{
+  content: "♣ ";
+}
+li:nth-child(4n+4)::before, dd:nth-child(4n+4)::before{
+  content: "♠ ";
+}
+/* Layout Styles
 /* ----------------------------------------------------------*/
 
 /* Site header */
 
 .site-header {
   border-top: .5em solid #333;
-  border-bottom: .1em solid #e8e8e8;
+  border-bottom: .5em solid #333;
   min-height: 5.6em;
-  background-color: white;
+  background-color: #191615;
+  color: white;
 }
 
 .site-title,
 .site-title:hover,
 .site-title:visited {
   display: block;
-  color: #333;
   font-size: 2.6em;
+  line-height: 2em;
   letter-spacing: -1px;
   float: left;
   position: relative;
   z-index: 1;
+  color: white;
 }
 
 .site-nav {
   float: right;
-  line-height: 5.6em;
+  line-height: 2.5em;
+  font-size: 2em;
 }
 
 .site-nav .menu-icon { display: none; }
 
 .site-nav .page-link {
-  margin-left: 2em;
+  margin-right: 1em;
   color: #727272;
-  letter-spacing: -.5px;
+}
+.site-nav .menu {
+  float: right;
 }
 
 /* Site footer */
 
 .site-footer {
-  border-top: 1px solid #e8e8e8;
+  background-color: #191615;
+  color: white;
   padding: 3em 0;
+  border-bottom: .5em solid #333;
+  background: -moz-linear-gradient(top, #000000 -1%, #45484d 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(-1%,#000000), color-stop(100%,#45484d)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #000000 -1%,#45484d 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #000000 -1%,#45484d 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #000000 -1%,#45484d 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #000000 -1%,#45484d 100%); /* W3C */
 }
 
 .footer-heading {
@@ -100,15 +140,38 @@ a:visited { color: #205caa; }
 
 .page-content {
   padding: 3em 0;
-  background-color: #fff;
+  color: black;
+  /*green gradient background*/
+  background: #07930a; /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #07930a 0%, #001a00 100%); /* FF3.6+ */
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#07930a), color-stop(100%,#001a00)); /* Chrome,Safari4+ */
+  background: -webkit-radial-gradient(center, ellipse cover, #07930a 0%,#001a00 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-radial-gradient(center, ellipse cover, #07930a 0%,#001a00 100%); /* Opera 12+ */
+  background: -ms-radial-gradient(center, ellipse cover, #07930a 0%,#001a00 100%); /* IE10+ */
+  background: radial-gradient(ellipse at center, #07930a 0%,#001a00 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#07930a', endColorstr='#001a00',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border: 30px solid #E0AC0D;
+  /*gradient gold border */
+  border-color: -moz-radial-gradient(center, ellipse cover, #f2ad00 0%, #fcdf05 51%, #f7a604 100%); /* FF3.6+ */
+  border-color: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#f2ad00), color-stop(51%,#fcdf05), color-stop(100%,#f7a604)); /* Chrome,Safari4+ */
+  border-color: -webkit-radial-gradient(center, ellipse cover, #f2ad00 0%,#fcdf05 51%,#f7a604 100%); /* Chrome10+,Safari5.1+ */
+  border-color: -o-radial-gradient(center, ellipse cover, #f2ad00 0%,#fcdf05 51%,#f7a604 100%); /* Opera 12+ */
+  border-color: -ms-radial-gradient(center, ellipse cover, #f2ad00 0%,#fcdf05 51%,#f7a604 100%); /* IE10+ */
+  border-color: radial-gradient(ellipse at center, #f2ad00 0%,#fcdf05 51%,#f7a604 100%); /* W3C */
+  border-top: none;
 }
 
 
-/* Home styles */
+/* Home (index.html) styles */
 /* ----------------------------------------------------------*/
 
-.home h1 { margin-bottom: 25px; }
-
+.home h1 { margin-bottom: 20px; padding-left: 5%;}
+.home {
+  padding: 0 1em;
+}
 .posts .post-link {
   font-size: 2.4em;
   letter-spacing: -1px;
@@ -119,7 +182,9 @@ a:visited { color: #205caa; }
   display: block;
   color: #818181;
 }
-
+article{
+  font-size: 1.4em;
+}
 
 /* Post styles */
 /* ----------------------------------------------------------*/
@@ -139,29 +204,119 @@ a:visited { color: #205caa; }
   margin-top: .5em;
 }
 
-.post-content {
-  margin: 0 0 3em;
-  font-size: 1.5em;
-}
+/* Card Styling */
+/* ----------------------------------------------------------*/
 
 .card{
   display: inline-block; /*switch to float if cant get this working*/
+  position: relative;
   width: 21em;
-  height: 28em;
-  border-radius: 20px;
+  height: 31em;
+  border-radius: 17px;
   border: 2px solid black;
-  padding: 3em;
+  padding: 2em;
   margin: 1em;
   box-shadow: 5px 5px 5px black;
   vertical-align: top;
+  background-color: white;
+  z-index: 0;
+  overflow: hidden;
 }
-.suit{
+
+.card-header{
+  width: 100%;
+  left: -5%;
   position: relative;
-  left: 10px; /*find out some other way to do this*/
-  top: -20px;
-  height: 6em;
-  float: right;
+  margin-bottom: 1em;
+  float: left;
 }
+
+.card-background { /*larger card for individual posts*/
+  display: block;
+  width: 75%;
+  padding: 4em;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Suit on corner of card */
+.card:nth-child(4n+1) .suit{
+  background: url(/images/cards/suits/card_color_1.png);
+}
+.card:nth-child(4n+2) .suit{
+  background: url(/images/cards/suits/card_color_2.png);
+}
+.card:nth-child(4n+3) .suit{
+  background: url(/images/cards/card_color_mid_3.png);
+}
+.card:nth-child(4n+4) .suit{
+  background: url(/images/cards/suits/card_color_0.png);
+}
+
+.suit{
+  height:6.5em;
+  width:6.5em;
+  content: "";
+  background-repeat: no-repeat;
+  float: left;
+  top: -5%;
+  left:0%;
+  position: relative;
+  display: inline-block;
+}
+
+/* Suit background on card */
+div.card:nth-child(4n+1)::after{
+  background: url(/images/cards/card_color_mid_1.png);
+}
+div.card:nth-child(4n+2)::after{
+  background: url(/images/cards/card_color_mid_2.png);
+}
+div.card:nth-child(4n+3)::after{
+  background: url(/images/cards/card_color_mid_3.png);
+}
+div.card:nth-child(4n+4)::after{
+  background: url(/images/cards/card_color_mid_0.png);
+}
+
+div.card:nth-child(n)::after {
+  content: "";
+  opacity: 0.5;
+  height: 50%;
+  width: 50%;
+  top: 30%;
+  left: 25%;
+  position: absolute;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/*This enlarged background image so it looks like in-game card*/
+/*div.card::after {
+  content: "";
+  opacity: 0.5;
+  height: 85%;
+  width: 110%;
+  top: 13%;
+  left: -10%;
+  position: absolute;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: cover;
+}*/
+
+/*This stops large title words from running off the cards*/
+.card article {
+  overflow: hidden;
+  height:100%;
+  width:100%;
+}
+
+p.home {
+  font-size: 1em;
+}
+
 /* media queries based on Skeleton */
 /* ----------------------------------------------------------*/
 
@@ -182,16 +337,20 @@ a:visited { color: #205caa; }
   .wrap { padding: 0 1.2em; }
 
   .site-nav {
-    position: fixed;
+    position: fixed; /*not supported in some browsers*/
     z-index: 10;
-    top: 1.4em; right: .8em;
+    right: .8em;
     background-color: white;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: 1px solid #e8e8e8;
+    float: right;
   }
-
+  .site-nav.ten.columns {
+    width: 72px;
+  }
+  .site-nav
   .site-nav .menu {
     clear: both;
     margin: 5px;
@@ -228,8 +387,11 @@ a:visited { color: #205caa; }
     width: 30em;
     height: 40em;
   }
+  .card-background { /*larger card for individual posts*/
+    padding: 4em 2em;
+  }
   .suit{
-  height: 8em;
+    zoom: 1.3;
   }
 
 }

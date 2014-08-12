@@ -5,7 +5,6 @@ description: "Beat the Banker! An addictive card game from New Game Town. Play i
 baseurl: ""
 url: "http://www.beat-the-banker.com"
 twitter_username: jekyllrb
-github_username:  jekyll
 
 # Build settings
 markdown: kramdown

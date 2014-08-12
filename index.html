@@ -8,10 +8,9 @@ layout: default
     {% for post in site.posts %}
       <div class="card">
         <div class = "card-header">
+          <div class="suit"></div>
           <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-          <img class="suit" src="images/cards/suits/card_color_0.png" alt="">
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-
         </div>
         <article>
           {{ post.content }}
@@ -20,5 +19,5 @@ layout: default
     {% endfor %}
   </div>
 
-  <p class="rss-subscribe clearfix">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+<!--   <p class="rss-subscribe clearfix">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> --> <!--RSS feed example if you want to use it -->
 </div>
