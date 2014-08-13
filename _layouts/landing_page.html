@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+    <body>
+
+    {% include header.html %}
+
+    <div id="banner">
+      <img class="hero-image" src="/images/devices-medium.jpg" alt="Available on Android and iOS devices">
+      <div id = "banner-text">
+        <h2>Beat the Banker!</h2>
+        <p>
+          An addicting card game from New Game Town.
+        </p>
+        <p>
+          Download and play it today.
+        </p>
+        <p>
+          Available on these platforms:
+        </p>
+        <img id="device-icons" src="/images/device-logos.png" alt="">
+      </div>
+
+    </div>
+
+    <div class="page-content">
+      {{ content }}
+    </div>
+
+    {% include footer.html %}
+
+    </body>
+</html>

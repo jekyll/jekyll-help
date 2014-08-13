@@ -1,20 +1,17 @@
 <footer class="site-footer">
 
-  <div class="wrap">
-
+  <div class="footer">
     <h2 class="footer-heading">{{ site.title }}</h2>
-
-    <div class="footer eight columns">
-      <ul>
-        <li>{{ site.title }}</li>
-        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-      </ul>
+    <ul class="footer-menu">
+      {% for page in site.pages %}
+        {% if page.title %}<li><a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>{% endif %}
+      {% endfor %}
+    </ul>
+    <div class="bottom-info">
+      <div id="developed-by" >{{ site.developed_by }}</div>
+      <div id="copyright">{{ site.copyright }}</div>
+      <a id="footer-email" href="mailto:{{ site.email }}">{{ site.email }}</a>
     </div>
-
-    <div class="footer sixteen columns">
-      <p class="text">{{ site.description }}</p>
-    </div>
-
   </div>
 
 </footer>

@@ -1,8 +1,7 @@
 ---
-layout: default
+layout: landing_page
 ---
 <div class="home">
-  <h1>Posts</h1>
 
   <div class="posts">
     {% for post in site.posts %}
@@ -19,5 +18,8 @@ layout: default
     {% endfor %}
   </div>
 
-<!--   <p class="rss-subscribe clearfix">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> --> <!--RSS feed example if you want to use it -->
+<!--RSS feed example if you want to use it -->
+
+<!--   <p class="rss-subscribe clearfix">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
+
 </div>
