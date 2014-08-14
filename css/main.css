@@ -64,8 +64,8 @@ li:nth-child(4n+4)::before, dd:nth-child(4n+4)::before{
 /* Site header */
 
 .site-header {
-  border-top: .5em solid #333;
-  border-bottom: .5em solid #333;
+  border-top: .5em solid #797979;
+  border-bottom: .5em solid #797979;
   min-height: 5.6em;
   background-color: #191615;
   color: white;
@@ -173,7 +173,13 @@ li:nth-child(4n+4)::before, dd:nth-child(4n+4)::before{
 .page-content {
   padding: 3em 0;
   color: black;
-  /*green gradient background*/
+
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border: 30px solid #E0AC0D;
+  border-top: none;
+
+  /* poker-table green gradient background*/
   background: #07930a; /* Old browsers */
   background: -moz-radial-gradient(center, ellipse cover, #07930a 0%, #001a00 100%); /* FF3.6+ */
   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#07930a), color-stop(100%,#001a00)); /* Chrome,Safari4+ */
@@ -182,18 +188,6 @@ li:nth-child(4n+4)::before, dd:nth-child(4n+4)::before{
   background: -ms-radial-gradient(center, ellipse cover, #07930a 0%,#001a00 100%); /* IE10+ */
   background: radial-gradient(ellipse at center, #07930a 0%,#001a00 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#07930a', endColorstr='#001a00',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  border: 30px solid #E0AC0D;
-  /*gradient gold border */
-  border-color: -moz-radial-gradient(center, ellipse cover, #f2ad00 0%, #fcdf05 51%, #f7a604 100%); /* FF3.6+ */
-  border-color: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#f2ad00), color-stop(51%,#fcdf05), color-stop(100%,#f7a604)); /* Chrome,Safari4+ */
-  border-color: -webkit-radial-gradient(center, ellipse cover, #f2ad00 0%,#fcdf05 51%,#f7a604 100%); /* Chrome10+,Safari5.1+ */
-  border-color: -o-radial-gradient(center, ellipse cover, #f2ad00 0%,#fcdf05 51%,#f7a604 100%); /* Opera 12+ */
-  border-color: -ms-radial-gradient(center, ellipse cover, #f2ad00 0%,#fcdf05 51%,#f7a604 100%); /* IE10+ */
-  border-color: radial-gradient(ellipse at center, #f2ad00 0%,#fcdf05 51%,#f7a604 100%); /* W3C */
-  border-top: none;
 }
 
 
@@ -215,8 +209,18 @@ p.home {
   font-size: 2em;
   background-color: rgb(0,0,0);
   color: white;
-  border-bottom: 5px solid #333;
+  border-bottom: 5px solid #797979;
+
+  background: rgb(0,0,0); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, #2F2B2B 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2F2B2B), color-stop(100%,rgba(69,72,77,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,#2F2B2B 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,#2F2B2B 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,#2F2B2B 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,#2F2B2B 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#2F2B2B',GradientType=0 ); /* IE6-9 */
 }
+
 #banner h2 {
   color: white;
 }
@@ -288,12 +292,18 @@ article{
   overflow: hidden;
 }
 
-/*This stops large title words from running off the cards*/
 .card article {
+  /*This stops large title words from running off the cards*/
   overflow: hidden;
   height:100%;
   width:100%;
+  /* This fades the text but only works in webkit browsers */
+  /* Note: work on cross-browser compatibility */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 /* Drop all headlines down one size, so h1 -> h2 */
 .card h1{ font-size: 35px; line-height: 40px; margin-bottom: 10px; }
 .card h2 { font-size: 28px; line-height: 34px; margin-bottom: 8px; }
