@@ -64,7 +64,6 @@ li:nth-child(4n+4)::before, dd:nth-child(4n+4)::before{
 /* Site header */
 
 .site-header {
-  border-top: .5em solid #797979;
   border-bottom: .5em solid #797979;
   min-height: 5.6em;
   background-color: #191615;
@@ -123,7 +122,7 @@ li:nth-child(4n+4)::before, dd:nth-child(4n+4)::before{
   float: right;
   position: relative;
   bottom: -.7em;
-  padding-left: 1em;
+  padding: 0 1em;
 }
 
 /* Site footer */
@@ -311,9 +310,9 @@ article{
   width:100%;
   /* This fades the text but only works in webkit browsers */
   /* Note: work on cross-browser compatibility */
-  background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 80%);
+/*  background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 80%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;*/
 }
 
 /* Drop all headlines down one size, so h1 -> h2 */
@@ -378,7 +377,7 @@ div.card:nth-child(4n+4)::after{
 
 div.card:nth-child(n)::after {
   content: "";
-  opacity: 0.5;
+  opacity: 0.15;
   height: 50%;
   width: 50%;
   top: 30%;
@@ -403,6 +402,51 @@ div.card:nth-child(n)::after {
   background-size: cover;
 }*/
 
+.card-overlay {
+  height:120%;
+  width:120%;
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  z-index: 100;
+  background: -moz-linear-gradient(top, rgba(255,255,255,0) 60%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(60%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(255,255,255,0) 60%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(255,255,255,0) 60%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(255,255,255,0) 60%,rgba(255,255,255,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 60%,rgba(255,255,255,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffffff',GradientType=0 ); /* IE6-9 */
+}
+
+.card-overlay:hover,
+.card-over:focus {
+  background-color: rgba(255,255,255,.7);
+}
+.card-overlay p {
+  text-align: center;
+  height: auto;
+  width: 100%;
+  top: 37%;
+  position: relative;
+  display: none;
+  font-size: 2em;
+  color: #333;
+}
+.card-overlay:hover p {
+  display: block;
+}
+/*.card-overlay:hover::after,
+.card-over:focus::after {
+  content: "read \a post";
+  white-space: pre;
+  font-size: 50px;
+  color: gray;
+  text-align: center;
+  position: relative;
+  top: 40%;
+  left: 40%;
+}
+*/
 /* Video elements styles */
 
 iframe {
@@ -494,11 +538,10 @@ iframe {
     display: block;
     color: #505050;
     float: right;
-    width: 3.6em;
-    height: 3.6em;
-    margin: auto;
-    line-height: 3.6em;
-    text-align: center;
+    padding: .3em;
+    height: 2em;
+    border: 2px solid rgba(156, 153, 153, 0.84);
+    border-radius: 5px;
   }
 
   .site-nav .menu-icon svg {

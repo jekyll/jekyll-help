@@ -6,6 +6,9 @@ layout: landing_page
   <div class="posts">
     {% for post in site.posts %}
       <div class="card">
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+          <div class = "card-overlay"><p>read<br>more</p></div>
+        </a>
         <div class = "card-header">
           <div class="suit"></div>
           <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
