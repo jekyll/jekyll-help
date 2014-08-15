@@ -69,6 +69,7 @@ li:nth-child(4n+4)::before, dd:nth-child(4n+4)::before{
   min-height: 5.6em;
   background-color: #191615;
   color: white;
+  padding: 2px 1em;
 }
 /*This makes the top header fixed */
 /*.site-header {
@@ -99,13 +100,19 @@ li:nth-child(4n+4)::before, dd:nth-child(4n+4)::before{
   z-index: 1;
   color: white;
 }
-
+#header-logo {
+  float: left;
+  margin: 5px;
+}
 .site-nav {
   float: right;
-  line-height: 2.5em;
   font-size: 2em;
+  height: 55px
 }
-
+.site-title {
+  display: block;
+  float: left;
+}
 .site-nav .menu-icon { display: none; }
 
 .site-nav .page-link {
@@ -114,6 +121,9 @@ li:nth-child(4n+4)::before, dd:nth-child(4n+4)::before{
 }
 .site-nav .menu {
   float: right;
+  position: relative;
+  bottom: -.7em;
+  padding-left: 1em;
 }
 
 /* Site footer */
@@ -237,6 +247,8 @@ p.home {
   position: absolute;
   right: 65%;
   top: 20%;
+  text-shadow: 5px 5px 3px black;
+
 }
 .posts .post-link {
   font-size: 2.4em;
