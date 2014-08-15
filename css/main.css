@@ -480,13 +480,14 @@ iframe {
     border: 0px solid #e8e8e8;
     float: right;
     background-color: rgba(0,0,0,0);
-  }
-
-  /* This overrides the skeleton width for eleven columns*/
-  /* Otherwise menu button takes up too much room */
-  .site-nav.eleven.columns {
     height: auto;
     width: auto;
+  }
+
+  /* Override alignment from big menu */
+  .site-nav .menu {
+    bottom: 0;
+    padding: 0;
   }
 
   .site-nav .menu-icon {
@@ -514,6 +515,8 @@ iframe {
     background-color: rgba(255,255,255,1);
   }
 
+/* Ideally this is done without display:none to allow screen readers */
+/* But it wasn't working well here */
   .menu {
     display: none;
     border-radius: 5px;
@@ -534,8 +537,8 @@ iframe {
   }
 
   .card{
-    width: 30em;
-    height: 40em;
+    width: 34em;
+    height: 46em;
   }
 
   .suit{
