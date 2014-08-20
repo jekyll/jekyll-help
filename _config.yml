@@ -9,8 +9,3 @@ twitter_username: ""
 developed_by: "Beat the Banker™ was developed in Kirkland, WA by New Game Town, LLC."
 copyright:  "&copy; New Game Town. All rights reserved."
 github: https://github.com/AndyCErnst/beat-the-banker-jekyll.git
-
-# Build settings
-markdown: kramdown
-permalink: pretty
-exclude:  [ Gemfile, Gemfile.lock, Procfile, vendor, gems]
