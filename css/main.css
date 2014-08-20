@@ -337,16 +337,16 @@ article{
 }
 /* Suit on corner of card */
 .card:nth-child(4n+1) .suit{
-  background: url(/images/cards/suits/card_color_2.png);
+  background: url(../images/cards/suits/card_color_2.png);
 }
 .card:nth-child(4n+2) .suit{
-  background: url(/images/cards/suits/card_color_1.png);
+  background: url(../images/cards/suits/card_color_1.png);
 }
 .card:nth-child(4n+3) .suit{
-  background: url(/images/cards/suits/card_color_0.png);
+  background: url(../images/cards/suits/card_color_0.png);
 }
 .card:nth-child(4n+4) .suit{
-  background: url(/images/cards/suits/card_color_3.png);
+  background: url(../images/cards/suits/card_color_3.png);
 }
 
 .suit{
@@ -363,16 +363,16 @@ article{
 
 /* Suit background on card */
 div.card:nth-child(4n+1)::after{
-  background: url(/images/cards/card_color_mid_2.png);
+  background: url(../images/cards/card_color_mid_2.png);
 }
 div.card:nth-child(4n+2)::after{
-  background: url(/images/cards/card_color_mid_1.png);
+  background: url(../images/cards/card_color_mid_1.png);
 }
 div.card:nth-child(4n+3)::after{
-  background: url(/images/cards/card_color_mid_0.png);
+  background: url(../images/cards/card_color_mid_0.png);
 }
 div.card:nth-child(4n+4)::after{
-  background: url(/images/cards/card_color_mid_3.png);
+  background: url(../images/cards/card_color_mid_3.png);
 }
 
 div.card:nth-child(n)::after {
