@@ -1,0 +1,28 @@
+---
+layout: landing_page
+---
+<div class="home">
+
+  <div class="posts">
+    {% for post in site.posts %}
+      <div class="card">
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+          <div class = "card-overlay"><p>read<br>more</p></div>
+        </a>
+        <div class = "card-header">
+          <div class="suit"></div>
+          <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </div>
+        <article>
+          {{ post.content }}
+        </article>
+      </div>
+    {% endfor %}
+  </div>
+
+<!--RSS feed example if you want to use it -->
+
+<!--   <p class="rss-subscribe clearfix">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p> -->
+
+</div>

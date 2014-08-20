@@ -1,0 +1,11 @@
+# Site settings
+# Arbitrary keys/values can be accessed via {{site.key}} on other pages
+title: Beat the Banker!
+email: support@beat-the-banker.com
+description: "Beat the Banker! An addicting card game from New Game Town. Play it on your phone today!"
+baseurl: "http://www.beat-the-banker.com"
+url: "http://www.beat-the-banker.com"
+twitter_username: ""
+developed_by: "Beat the Banker™ was developed in Kirkland, WA by New Game Town, LLC."
+copyright:  "&copy; New Game Town. All rights reserved."
+github: https://github.com/AndyCErnst/beat-the-banker-jekyll.git
