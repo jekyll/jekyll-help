@@ -13,3 +13,4 @@ github: https://github.com/AndyCErnst/beat-the-banker-jekyll.git
 # Build settings
 markdown: kramdown
 permalink: pretty
+exclude:  [ Gemfile, Gemfile.lock, Procfile, vendor, gems]
