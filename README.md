@@ -21,7 +21,7 @@ First thing you should always do is **search through the issues**. If an issue e
 ## How can I help?
 
 1. Watch this repository and respond to issues posted here!
-2. Become a [Moderator](#moderator)!
+2. Become a [Moderator](#moderators)!
 3. Find something great on StackOverflow or the web? Post it here!
 
 ## Moderators
