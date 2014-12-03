@@ -15,8 +15,7 @@ First thing you should always do is **search through the issues**. If an issue e
 2. [StackOverflow](http://stackoverflow.com/questions/tagged/jekyll)
 3. [#jekyll on IRC](http://irc.parkermoo.re/room/%23jekyll)
 4. Google
-5. [Twitter](https://twitter.com/search?q=jekyll) (just search for *jekyll* or *jekyllrb*)
-6. Your friends!
+5. Your friends!
 
 ## How can I help?
 
