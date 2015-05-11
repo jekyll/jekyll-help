@@ -1,38 +1,10 @@
 # Getting Help with Jekyll
 
-Welcome to the Help repo for Jekyll! This is our new central repository where you can ask questions about how to use Jekyll. It's mediated by passionate community members with extensive experience and kind hearts.
+This Help repo is deprecated and is no longer accepting new issues. Please use [talk.jekyllrb.org](https://talk.jekyllrb.com) (accepts GitHub login) for general questions and Jekyll troubleshooting.
 
-## How do I ask a question?
+## Other places to ask questions
 
-First thing you should always do is **search through the issues**. If an issue exists for your question already, you're good to go! If you have a **follow-up question**, post a comment! If you **can't find a related issue**:
-
-1. Have some code that isn't working? Fork this repo, add your code to a feature branch, push up and create a pull request. Anyone who sees your PR can comment on your code: "Hey, you forgot a curly bracket here!"
-2. Wondering how others have tackled a particular problem? Simply [file an issue describing your problem](https://github.com/jekyll/jekyll-help/issues/new) and another member of the community will answer it. Be patient; answers may take a while. Be sure to spread the link to your question throughout your social network in order to get the best possible chance of having it answered. 
-
-> PRO TIP: You can speed up the process by always **linking to your repository** along with your initial question.
-
-## Other Places
-
-1. The [issues on the `jekyll/jekyll` repository](https://github.com/jekyll/jekyll/issues)
-2. [StackOverflow](http://stackoverflow.com/questions/tagged/jekyll)
-3. [#jekyll on IRC](http://irc.parkermoo.re/room/%23jekyll)
-4. Google
-5. Your friends!
-
-## How can I help?
-
-1. Watch this repository and respond to issues posted here!
-2. Become a [Moderator](#moderators)!
-3. Find something great on StackOverflow or the web? Post it here!
-
-## Moderators
-
-All moderators have push access to the repo and are charged with ensuring that the questions here are well-maintained (tagged, closed when they're answered, etc.). They manage everything about this repository.
-
-1. [ndarville](https://github.com/ndarville)
-1. [jaybe-jekyll](https://github.com/jaybe-jekyll)
-1. [oblakeerickson](https://github.com/oblakeerickson)
-1. [troyswanson](https://github.com/troyswanson)
-1. [albertogg](https://github.com/albertogg)
-
-If you'd like to become a moderator, create an issue and mention @parkr! We'll talk about it there. If you have others in the community who are willing to support your bid, have them add their support (more than just a :+1:, hopefully!).
+1. [StackOverflow](http://stackoverflow.com/questions/tagged/jekyll)
+2. [#jekyll on IRC](http://irc.parkermoo.re/room/%23jekyll)
+3. Google
+4. Your friends!
