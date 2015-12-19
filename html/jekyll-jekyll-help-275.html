@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>&quot;undefined method &#x27;frontmatter_defaults&#x27;&quot; </title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#275</span>
+        </p>
+        <h1>&quot;undefined method &#x27;frontmatter_defaults&#x27;&quot; </h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">skagedal</a>
+            <time>Sunday, February 22, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi!</p>
+<p>I&#39;m trying to build the jekyll-based manual for a program called Ardour. <a href="https://github.com/Ardour/manual">Here is the github repo for the manual</a>. </p>
+<p>I&#39;m using jekyll 2.5.3 installed via gem on an Ubuntu 14.10 machine. However, I&#39;m running into various problems. First, it couldn&#39;t find the plugins even though they&#39;re in the suppost default directory &quot;_plugins&quot;; I had to set it explicitly. Then I ran into a problem &quot;undefined method `frontmatter_defaults&#39; for nil:NilClass&quot; - please see <a href="http://tracker.ardour.org/view.php?id=6167">this bug report</a> at the Ardour bug tracker for details. Any clues what&#39;s going on?  </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/willnorris">
+              willnorris
+            </a>
+            <time>Sunday, February 22, 2015</time>
+          </div>
+          <div class="body"><p>Regarding your first question... by default, jekyll expects to find your <code>_plugins</code> folder inside your <code>source</code> folder (alongside <code>_layouts</code>, <code>_posts</code>, etc).</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/skagedal">
+              skagedal
+            </a>
+            <time>Sunday, February 22, 2015</time>
+          </div>
+          <div class="body"><p>Allright, thanks! So that problem makes sense then. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/willnorris">
+              willnorris
+            </a>
+            <time>Sunday, February 22, 2015</time>
+          </div>
+          <div class="body"><p>So, as alluded to in the error message, <code>@site</code> is nil when called <a href="https://github.com/Ardour/manual/blob/0b6ad9326ccdaec578164df288c8ce6321ca67a0/_plugins/manual.rb#L72">here</a>, which is ultimately what&#39;s throwing the error.  This <code>manual.rb</code> plugin is really convoluted... it would probably be much better to set these up as standard jekyll pages and come up with a simpler approach to build the TOC (there are a number of TOC plugins out there)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/skagedal">
+              skagedal
+            </a>
+            <time>Monday, February 23, 2015</time>
+          </div>
+          <div class="body"><p>Thank you, Will! This helped me craft up a hack (see <a href="http://tracker.ardour.org/view.php?id=6167">Ardour bug report</a> in case you would be interested). Now of course the next problem surfaced... :) And yes, it seems to me as well there would be simpler ways of doing this closer to the standard jekyll scenario, thanks for confirming that. The TOC plugins I can find when googling however is for building a TOC of a single page, not for a hierarchy of pages.... But anyway, I guess I can close this issue. </p>
+<p>To think out loud, my choices at this point seem to be: 1. try to see if I can get the same old version of jekyll as the Ardour devs are using; 2. keeping trying with some ugly hacks; 3. actually learn Ruby. :) </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

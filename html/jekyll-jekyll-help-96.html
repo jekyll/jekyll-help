@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Disable the highlighter</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#96</span>
+        </p>
+        <h1>Disable the highlighter</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">penibelst</a>
+            <time>Sunday, July 13, 2014</time>
+          </div>
+          <div class="body">
+            <p>To disable the highlighter should I set</p>
+<pre><code class="lang-yaml">highlighter: null
+</code></pre>
+<p>in the config?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, July 13, 2014</time>
+          </div>
+          <div class="body"><p>The only source for <code>null</code> I found <a href="https://github.com/jekyll/jekyll/blob/master/lib/jekyll/configuration.rb#L231">is this</a>:</p>
+<p>```
+    if config.has_key? &#39;pygments&#39;
+        Jekyll.logger.warn &quot;Deprecation:&quot;, &quot;The &#39;pygments&#39; configuration option&quot; +
+        &quot; has been renamed to &#39;highlighter&#39;. Please update your&quot; +
+        &quot; config file accordingly. The allowed values are &#39;rouge&quot;+
+        &quot;&#39;pygments&#39; or null&quot;</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Sunday, July 13, 2014</time>
+          </div>
+          <div class="body"><p>The Yaml <a href="http://yaml.org/type/null.html">spec</a> says: </p>
+<blockquote>
+<p>A null value is used to indicate the lack of a value.</p>
+</blockquote>
+<p>I assume this is what the warning means. Thank you, @kleinfreund.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

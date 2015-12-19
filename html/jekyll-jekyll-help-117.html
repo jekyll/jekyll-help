@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Why does Jekyll regenerate when I save css or add an image?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#117</span>
+        </p>
+        <h1>Why does Jekyll regenerate when I save css or add an image?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">rdyar</a>
+            <time>Sunday, August 10, 2014</time>
+          </div>
+          <div class="body">
+            <p>My site is getting larger and the regeneration times are getting close to a minute whenever I edit something (locally). I only get annoyed when it does this after I save a css file or add an image. Couldn&#39;t there be a filter where if a non transformable file like css or jpg is changed, it just gets copied over by itself rather than regenerating the entire site?</p>
+<p>I suppose this could be a problem for sass or whatever (I still have a normal css file). Maybe there could be a config option to allow certain file types to be copied over and skip regeneration?</p>
+<p>So far I have about 300 posts. The posts themselves don&#39;t really slow it down, it is all the tag and category lists that I have I think.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>Jekyll isn&#39;t too smart in this regard. It just looks for changes in the source directory and regenerates the entire site when it sees them.</p>
+<p>@mattr- has been working on this in jekyll/jekyll#1761</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdyar">
+              rdyar
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>yes, that sounds like what I am looking for. Thanks for the info.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

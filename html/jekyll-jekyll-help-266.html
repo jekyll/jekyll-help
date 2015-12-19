@@ -1,0 +1,283 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>documenting a bit more the parsing of yaml with liquid</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#266</span>
+        </p>
+        <h1>documenting a bit more the parsing of yaml with liquid</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">baptistecalmes</a>
+            <time>Thursday, February 05, 2015</time>
+          </div>
+          <div class="body">
+            <p>First, I&#39;m new to jekyll, and I think it&#39;s great.</p>
+<p>I&#39;m struggling a bit with the parsing of yaml files using for loops.</p>
+<p>My understanding is that there are basically two types of objects that one might find in yaml files: lists and so-called &quot;associative arrays&quot; that are some kind of dictionaries. These two structures can be nested, and basically that is all there is to it. (See <a href="http://en.wikipedia.org/wiki/YAML">http://en.wikipedia.org/wiki/YAML</a>)</p>
+<p>I find it hard to guess the exact liquid syntax that can be used in jekyll as how to reach a particular element, and I find that the online documentation (which is great for most purposes) is a bit too scarce, unless I have missed some part of it.</p>
+<p>So, my suggestion would be to:</p>
+<ol>
+<li>add more examples of how to parse a yaml file using liquid.</li>
+<li>give references to some kind of place where the types used in liquid are explained more precisely.
+This could be done by expanding the section:
+<a href="http://jekyllrb.com/docs/datafiles/#the-data-folder">http://jekyllrb.com/docs/datafiles/#the-data-folder</a>
+or by adding a new section.</li>
+</ol>
+<p>I understand that this is borderline between liquid and jekyll, but it&#39;s such an important practical step to use the full power of jekyll that it definitely would help new users a lot if more details were given.</p>
+<p>To make things concrete, here is a problem for which I only have an ugly solution, and I still wonder if its the best. Say one want to use the following yaml content in a file mylist.yaml</p>
+<pre><code class="lang-yaml">-firstkey: firstvalue
+-secondkey: secondvalue
+</code></pre>
+<p>and you want to loop over the items of the list and access the keys and values. Then, the only solution I could find was to write</p>
+<pre><code class="lang-liquid">{% for thing in site.data.mylist %}
+  {% for hash in thing %}
+    {{hash[1]}}
+    {{hash[0]}}
+  {% endfor %}
+{% endfor %}
+</code></pre>
+<p>and it took me a while to figure it out (it doesn&#39;t seem obvious that one needs to nest two for&#39;s, especially since the second one only ever loops through one iteration).</p>
+<p>Another example: to actually use a variable in the description of the file name in the loop</p>
+<pre><code class="lang-liquid">{% for thing in site.data.myfile %}
+</code></pre>
+<p>one cas surround it in brackets, like:</p>
+<pre><code class="lang-liquid">{% for thing in site.data.[page.layout] %}
+</code></pre>
+<p>(which will loop in site.data.foo if page.layout is foo).
+Again, it took me a while to figure out this syntax.
+Etc.</p>
+<p>Maybe I am missing some documentation somewhere, but I did do a good search before posting this suggestion.</p>
+<p>Anyway, great job, keep up the good work ;-)</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Thursday, February 05, 2015</time>
+          </div>
+          <div class="body"><p>Yaml feels very natural to everybody who is familiar with object-oriented languages. It’s very similar to Json. Thats why it is not documented here.</p>
+<blockquote>
+<p>To make things concrete, here is a problem for which I only have an ugly solution</p>
+</blockquote>
+<p>You show a <em>solution</em>. What is the problem you are trying to solve?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/baptistecalmes">
+              baptistecalmes
+            </a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;m not trying to solve any problem.
+I&#39;m not complaining about documenting yaml.</p>
+<p>I&#39;m just saying that it would help new Jekyll users if the way <em>liquid</em> is used to parse yaml was more documented on the jekyll home page.</p>
+<p>(and then I gave two examples of things that are not so easy to guess at first sight, from the documentation available)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;m also looking for more information about looping through YML values. Suppose I have 30 pages in my site and want to loop through them in a specific order as described in the YML file? It would be great to have a code sample showing how to do that.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body"><p>The Liquid creators have an <a href="http://youtu.be/tZLTExLukSg">introduction video</a> on top of the <a href="http://docs.shopify.com/themes/liquid-documentation/basics">official documentation</a>.</p>
+<p>Try to put this in your <code>_config.yml</code>:</p>
+<pre><code class="lang-yaml">numbers:
+  - zero
+  - one
+  - two
+</code></pre>
+<p>Now you can loop over the <code>site.numbers</code> array:</p>
+<pre><code class="lang-twig">{% for number in site.numbers %}
+  {{ number | upcase }}
+{% endfor %}
+</code></pre>
+<p>The result is:</p>
+<pre><code>ZERO
+ONE
+TWO
+</code></pre><p>The array items are accessible over the index too.</p>
+<pre><code class="lang-twig">{{ site.numbers[1] | upcase }}
+
+#=&gt; ONE
+</code></pre>
+<hr>
+<p>For more useful examples checkout the <a href="https://github.com/mdo/jekyll-snippets">Jekyll Snippets</a>. You can find a heavier Liquid usage in my <a href="https://github.com/penibelst/jekyll-compress-html">Compress HTML layout</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/baptistecalmes">
+              baptistecalmes
+            </a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body"><p>The official documentation of liquid does not mention yaml at all, and the parsing of yaml files with liquid is a feature that is implemented by Jekyll (or maybe by some ruby package it relies upon). It does not come from the original liquid specs.</p>
+<p>Am I right, or am I missing something?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body"><p>You are right.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body"><p>@baptistecalmes Feel free to expand the documentation in the jekyll/jekyll repository. It&#39;s open.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/baptistecalmes">
+              baptistecalmes
+            </a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body"><p>I was afraid you&#39;d say that ;-).</p>
+<p>However, before offering some kind of contribution, I was hoping someone would point me to the right place that I had missed.</p>
+<p>If no one else reacts, I&#39;ll think about it.</p>
+<p>Thanks anyway for your time and suggestions.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body"><p>@penibelst Thanks for the concise examples and quality links. Made a note of the links to stay in tune with.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mvaneijgen">
+              mvaneijgen
+            </a>
+            <time>Friday, February 13, 2015</time>
+          </div>
+          <div class="body"><p>I have a problem like this, I am new and don&#39;t know where to get started or how to call what im looking for.</p>
+<p>I have a data set in YAML looking something like this (there is 100+ of these sets)</p>
+<pre><code>- name: 
+  image: 
+  website:   
+  dateadd: 
+  releasedate: true|false
+</code></pre><p>And I loop though them using </p>
+<p><code>{% for data in site.data.games %}</code></p>
+<p>But now I want to create a separate page where only the &#39;games&#39; that do have a release date, so </p>
+<p><code>releasedate: true</code></p>
+<p>But I don&#39;t know where to start or how to call what im doing to get a proper Google search term, anyone tips?</p>
+<p><a href="http://mvaneijgen.nl/upcoming-vita-games">here is the website btw if someone is interested</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdyar">
+              rdyar
+            </a>
+            <time>Wednesday, February 18, 2015</time>
+          </div>
+          <div class="body"><p>mvaneijgen - I think you just need a where clause:</p>
+<p>see <a href="http://jekyllrb.com/docs/templates/">http://jekyllrb.com/docs/templates/</a> for a little documentation. It should be easy to do.</p>
+<p>Also, it looks like you are putting the data set in the config.yml? you can also put it in a data file (<a href="http://jekyllrb.com/docs/datafiles/">http://jekyllrb.com/docs/datafiles/</a>) which I find very handy.</p>
+<p>I find StackOverflow to be the best source of examples, that and random blogs. I think their is an infinite number of things that seem obvious to the one trying to implement it, but that creates a bit of a documentation problem.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Thursday, February 19, 2015</time>
+          </div>
+          <div class="body"><p>@mvaneijgen </p>
+<p>```
+{% assign released_games = site.data.games | where: &quot;releasedate&quot;, true %}
+{% for game in released_games %}
+  {{ game.name }}
+{% endfor %}</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mvaneijgen">
+              mvaneijgen
+            </a>
+            <time>Thursday, February 19, 2015</time>
+          </div>
+          <div class="body"><p>Friendly user on Reddit had pointed me to the solution </p>
+<pre><code>{% for data in site.data.games %}
+   {% if games.releasedate == true %} Do stuff {% endif %}
+{% endfor %}
+</code></pre><p>This works for me </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Thursday, February 19, 2015</time>
+          </div>
+          <div class="body"><p>@mvaneijgen This can not work. The iteration variable is <code>data</code>, not <code>games</code>.</p>
+<pre><code>{% for data in site.data.games %}
+   {% if data.releasedate == true %} Do stuff {% endif %}
+{% endfor %}
+</code></pre><p>If you know about <a href="http://docs.shopify.com/themes/liquid-documentation/basics/true-and-false">truthy and falsy in Liquid</a>, you can simplify it.</p>
+<pre><code>{% for game in site.data.games %}
+   {% if game.releasedate %} Do stuff {% endif %}
+{% endfor %}
+</code></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

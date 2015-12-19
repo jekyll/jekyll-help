@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Github Pages sees required YAML frontmatter in .scss as syntax error</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#217</span>
+        </p>
+        <h1>Github Pages sees required YAML frontmatter in .scss as syntax error</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">egardner</a>
+            <time>Tuesday, December 23, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi there-</p>
+<p>I&#39;m trying to set up a personal Jekyll site with GH pages at <a href="egardner.github.io">egardner.github.io</a>. <a href="https://github.com/egardner/egardner.github.io">Source code here</a>.</p>
+<p>When building the site, I keep getting error messages from Github complaining of syntax errors in my <code>main.scss</code> file:</p>
+<pre><code>The file `assets/styles/main.scss` contains syntax errors. 
+For more information, see https://help.github.com/articles/page-build-failed-markdown-errors.
+</code></pre><p>As far as I can tell, the error is caused by the two lines of YAML front-matter (<code>---</code>) at the beginning of the file. When I remove those lines and commit the site builds successfully, but all my styles break because the stylesheet SCSS is no longer being converted or processed by Jekyll.</p>
+<p>Running <code>bundle exec jekyll serve</code> (the <code>jekyll serve</code> command won&#39;t work by itself for me, for some reason) works fine locally, all the styles and assets show up. Only my <code>main.scss</code> file contains the frontmatter, all other sass files live in the Sass directory that I&#39;ve specified in <code>config.yml</code>.</p>
+<p>It seems strange that GH Pages sees a syntax error where I&#39;m following Jekyll&#39;s guidelines exactly, as far as I can tell. Sass is supposed to be supported by the latest version of gh-pages.</p>
+<p>I imagine many people here are using GH pages for deployment – am I doing something wrong?</p>
+<p>Thanks,
+Eric</p>
+<p>For reference, here&#39;s my <code>main.scss</code> file:</p>
+<pre><code>---
+---
+/* Bourbon, Bitters, &amp; Neat
+ * ---------------------------------------------------------------------------*/
+@import &quot;lib/normalize&quot;;
+@import &quot;lib/bourbon/bourbon&quot;;
+@import &quot;base/grid-settings&quot;;
+@import &quot;lib/neat/neat&quot;;
+
+/* Fonts
+ * ---------------------------------------------------------------------------*/
+// Merriweather
+@include font-face(&quot;Merriweather&quot;, &#39;/assets/fonts/merriweather-light&#39;, normal);
+@include font-face(&quot;Merriweather&quot;, &#39;/assets/fonts/merriweather-lightitalic&#39;, normal, italic);
+@include font-face(&quot;Merriweather&quot;, &#39;/assets/fonts/merriweather-bold&#39;, bold);
+@include font-face(&quot;Merriweather&quot;, &#39;/assets/fonts/merriweather-bolditalic&#39;, bold, italic);
+// Lato
+@include font-face(&quot;Lato&quot;, &#39;/assets/fonts/lato-light&#39;, normal);
+@include font-face(&quot;Lato&quot;, &#39;/assets/fonts/lato-lightitalic&#39;, normal, italic);
+@include font-face(&quot;Lato&quot;, &#39;/assets/fonts/lato-black&#39;, bold);
+@include font-face(&quot;Lato&quot;, &#39;/assets/fonts/lato-blackitalic&#39;, bold, italic);
+// League Spartan
+@include font-face(&quot;League Spartan&quot;, &#39;/assets/fonts/leaguespartan-bold&#39;, bold);
+
+/* Globals
+ * ---------------------------------------------------------------------------*/
+@import &quot;base/base&quot;;
+
+
+/* Layouts
+ * ---------------------------------------------------------------------------*/
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/egardner">
+              egardner
+            </a>
+            <time>Tuesday, December 23, 2014</time>
+          </div>
+          <div class="body"><p>Okay, actually this was not the issue at all!
+Turns out I had added most of my vendor Sass libraries to my <code>.gitignore</code> on the assumption they would be installed locally. But of course GH pages doesn&#39;t work this way, all the dependencies need to be included. Somewhat misleading error message but otherwise everything works properly.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>:boom: Glad you got it sorted.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

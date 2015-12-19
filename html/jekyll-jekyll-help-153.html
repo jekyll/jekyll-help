@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How to create multi-lang article page? maybe i18n related...</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#153</span>
+        </p>
+        <h1>How to create multi-lang article page? maybe i18n related...</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">yarcowang</a>
+            <time>Thursday, September 18, 2014</time>
+          </div>
+          <div class="body">
+            <p>I want to create a page which may both includes english and chinese version, which may have in the following layout:</p>
+<p><strong>Title</strong>
+<strong>English Content On The Left</strong>  ------  <strong>Chinese Version on Right_</strong>
+<strong>Date</strong></p>
+<p>And the content should comes from:
+_posts/2014-09-18-test.en.md -- for english
+_posts/2014-09-18-test.cn.md -- for chinese</p>
+<p>And if post only have one version, it should also work:
+_posts/2014-09-18-test.md</p>
+<p>So, what is the best way to achieve this?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/joewils">
+              joewils
+            </a>
+            <time>Thursday, September 18, 2014</time>
+          </div>
+          <div class="body"><h2 id="_layouts-post-html">_layouts/post.html</h2>
+<pre><code class="lang-liquid">{% capture path %}{{page.path}}{% endcapture %}
+{% capture en_path %}{{ path | replace:&#39;.md&#39;,&#39;.en.md&#39; }}{% endcapture %}
+{% capture cn_path %}{{ path | replace:&#39;.md&#39;,&#39;.cn.md&#39; }}{% endcapture %}
+&lt;div class=&quot;en&quot;&gt;
+    &lt;h1&gt;{{en_path}}&lt;/h1&gt;
+    {% include {{en_path}} %}
+&lt;/div&gt;
+&lt;div class=&quot;cn&quot;&gt;
+    &lt;h1&gt;{{cn_path}}&lt;/h1&gt;
+    {% include {{cn_path}} %}
+&lt;/div&gt;
+&lt;div class=&quot;default&quot;&gt;
+{{content}}
+&lt;/div&gt;
+</code></pre>
+<h2 id="3-files-for-every-post">3 Files for every post</h2>
+<ul>
+<li>_posts/2014-09-18-test.md</li>
+<li>_posts/2014-09-18-test.en.md</li>
+<li>_posts/2014-09-18-test.cn.md</li>
+</ul>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/yarcowang">
+              yarcowang
+            </a>
+            <time>Thursday, September 18, 2014</time>
+          </div>
+          <div class="body"><p>Get it...Thank you...</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/yarcowang">
+              yarcowang
+            </a>
+            <time>Friday, September 19, 2014</time>
+          </div>
+          <div class="body"><p>Hi, sorry, but i got such error when running jekyll.</p>
+<pre><code> Liquid Exception: Included file &#39;/Users/yarco/Sites/_personal_/bbish/_includes/_posts/2014-09-18-test.en.md&#39; not found in _layouts/post.html
+error: Included file &#39;/Users/yarco/Sites/_personal_/bbish/_includes/_posts/2014-09-18-test.en.md&#39; not found. Use --trace to view backtrace
+</code></pre><p>Can i add some <em>if</em> statement there to check file exists?</p>
+<pre><code>{% if exists en_path %}
+{% include {{en_path}} %}
+{% endif %}
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/iamsebastian">
+              iamsebastian
+            </a>
+            <time>Monday, January 12, 2015</time>
+          </div>
+          <div class="body"><p>Maybe this would not work:
+<a href="http://ecommerce.shopify.com/c/ecommerce-design/t/testing-if-a-file-exists-29624">http://ecommerce.shopify.com/c/ecommerce-design/t/testing-if-a-file-exists-29624</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

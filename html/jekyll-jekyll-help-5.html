@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How do I create &quot;Edit this page&quot; links in Jekyll?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#5</span>
+        </p>
+        <h1>How do I create &quot;Edit this page&quot; links in Jekyll?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">erlend-sh</a>
+            <time>Sunday, March 30, 2014</time>
+          </div>
+          <div class="body">
+            <p>A few Jekyll docs pages I&#39;ve visited have a handy &quot;Edit&quot; link that takes me to that page&#39;s file on GitHub, so I can edit it directly or make a pull request.</p>
+<p>Example 1: Top right, &quot;Improve this doc&quot;
+<a href="http://ionicframework.com/docs/api/directive/ionTabs/">http://ionicframework.com/docs/api/directive/ionTabs/</a></p>
+<p>Example 2: Top right, &quot;Edit&quot;
+<a href="http://sendgrid.com/docs/API_Reference/index.html">http://sendgrid.com/docs/API_Reference/index.html</a></p>
+<p>Is there a default way of achieving this in Jekyll?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/akoeplinger">
+              akoeplinger
+            </a>
+            <time>Sunday, March 30, 2014</time>
+          </div>
+          <div class="body"><p>If you&#39;re hosting the site on GitHub Pages, they inject the source repository into a variable called site.github.repository_url which you can use in combination with page.path to wire up the URL on github.com.</p>
+<p>Example: <code>&lt;a href=&quot;{{site.github.repository_url}}/blob/gh-pages/{{page.path}}&quot;&gt;Edit this page&lt;/a&gt;</code></p>
+<p>(Note: on a collection document, you&#39;ll need to use <code>{{page.relative_path}}</code> instead of <code>{{page.path}}</code> to get the desired behavior, see <a href="http://jekyllrb.com/docs/collections/#documents">http://jekyllrb.com/docs/collections/#documents</a>)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/erlend-sh">
+              erlend-sh
+            </a>
+            <time>Sunday, March 30, 2014</time>
+          </div>
+          <div class="body"><p>Example and everything, thanks a lot!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Sunday, March 30, 2014</time>
+          </div>
+          <div class="body"><p>@erlend-sh if it fits your use-case you send the link directly to the <a href="https://github.com/prose/prose">prose</a> content editor. I put my repo info in my config file, so for me the link looks like this:</p>
+<pre><code>http://prose.io/#{{site.repo}}/edit/{{site.branch}}/{{ page.path }}
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/garethredfern">
+              garethredfern
+            </a>
+            <time>Sunday, November 23, 2014</time>
+          </div>
+          <div class="body"><p>Hi there I wonder if you can help me, I am trying to use @akoeplinger example but when using <code>{{ page.path }}</code> the word <code>repo</code> gets prepended to the path do I need to set the repo name in the config and then do something like:</p>
+<p><code>{{site.github.repository_url}}{{page.path}}</code></p>
+<p>Thanks in advance.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/akoeplinger">
+              akoeplinger
+            </a>
+            <time>Sunday, November 23, 2014</time>
+          </div>
+          <div class="body"><p>@garethredfern I had a look at your site, and it appears that collection pages (or documents as they are called in Jekyll docs) are handled a bit different than regular pages.</p>
+<p>E.g. <code>{{page.path}}</code> in a collection results in <code>&lt;a href=&quot;/home/alexander/dev/statamicthemes.github.io/_articles/2014-07-31-creating-a-simple-contact-form-with-raven.md&quot; ...</code> (-&gt; the full path to the file), while in a regular page it only results in the relative path from the site root.</p>
+<p>For a collection document, you&#39;ll need to use <code>{{page.relative_path}}</code> to get the desired behavior (see <a href="http://jekyllrb.com/docs/collections/#documents">http://jekyllrb.com/docs/collections/#documents</a>)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/garethredfern">
+              garethredfern
+            </a>
+            <time>Sunday, November 23, 2014</time>
+          </div>
+          <div class="body"><p>Ahh thank you @akoeplinger that worked perfect :+1: for anyone else that might want the full code I used here you go:</p>
+<p><code>&lt;a href=&quot;{{ site.github.repository_url }}/tree/master/{{ page.relative_path }}&quot;&gt;Edit&lt;/a&gt;</code></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

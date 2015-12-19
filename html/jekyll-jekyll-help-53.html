@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Documentation matching github pages</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#53</span>
+        </p>
+        <h1>Documentation matching github pages</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">avdd</a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body">
+            <p>Where will I find documentation that matches the version of Jekyll running on github pages?   Or otherwise how can I know what features are and are not supported?</p>
+<p>I tried setting the &quot;front matter defaults&quot; according to the documentation only to find after some digging that this feature became available in jekyll 2 but GHP is running 1.5.1.    Will I have to cross-reference every feature in the documentation with the changelog or can I see the docs for 1.5.1 somewhere?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body"><p>The easiest way is to match what your development jekyll with GitHub Pages jekyll is to use the <code>github-pages</code> gem. AFAIK the documentation is not versioned so searching only the 1.5.1 docs will not be posible, although I&#39;m not sure. You can take a look at the changelog <a href="http://jekyllrb.com/docs/history/#section-4">here</a> </p>
+<pre><code class="lang-sh">$ gem install github-pages
+</code></pre>
+<p>or add it to your <code>Gemfile</code>, the <a href="http://rubygems.org/gems/github-pages">latest version</a> is <code>19</code>.</p>
+<pre><code class="lang-sh">gem &#39;github-pages&#39;, &#39;~&gt; 19&#39;
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p><a href="https://pages.github.com/versions/">https://pages.github.com/versions/</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/avdd">
+              avdd
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>Neither of those comments address my issue which is that the gh-pages <em>docs</em> link to jekyll <em>docs</em> that don&#39;t match the production version.  Namely, that the docs are misleading.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>@avdd Don&#39;t be so quick to judge – @albertogg&#39;s comment was just about there. Run <code>jekyll docs</code> on the command line with the Jekyll version <code>github-pages</code> installs. This will launch a server (much the same as <code>jekyll serve</code> will for your local site) with the Jekyll documentation for that version on <code>http://localhost:4000</code>. This is the correct documentation for this version of Jekyll.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>Additionally, front-matter defaults are a Jekyll 2.0 feature, and by going to <a href="https://pages.github.com/versions/">https://pages.github.com/versions/</a>, you would see that GitHub Pages (and the <code>github-pages</code> gem) have not been updated to Jekyll 2.0. This means front-matter defaults are not available on GitHub Pages (yet).</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/avdd">
+              avdd
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>Thank you.  Perhaps mention <code>jekyll docs</code> <a href="https://help.github.com/articles/using-jekyll-with-pages">here</a> so it&#39;s clearer what features are supported.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

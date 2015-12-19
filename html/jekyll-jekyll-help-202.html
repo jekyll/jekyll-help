@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Using a partial in a markdown file - should I need to wrap it in HTML? </title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#202</span>
+        </p>
+        <h1>Using a partial in a markdown file - should I need to wrap it in HTML? </h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">barryclark</a>
+            <time>Monday, November 24, 2014</time>
+          </div>
+          <div class="body">
+            <p>When including an HTML partial in the middle of a markdown file it seems that I need to wrap it in a div. Am I doing something wrong?</p>
+<p>This doesn&#39;t work, but I&#39;d expect it to:</p>
+<p><code>{% include call-to-action.html %}</code></p>
+<p>This does work, but I need to wrap it up in some HTML:</p>
+<p><code>&lt;div&gt;{% include call-to-action.html %}&lt;/div&gt;</code></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, November 24, 2014</time>
+          </div>
+          <div class="body"><p>You don&#39;t have to. It really depends on what&#39;s in <code>call-to-action.html</code>. All the <code>{% include ... %}</code> tag does is literally include the contents of the file into the layout.</p>
+<p>Some more context would be helpful if you need some help.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/barryclark">
+              barryclark
+            </a>
+            <time>Tuesday, November 25, 2014</time>
+          </div>
+          <div class="body"><p>Thanks for the help @troyswanson -- I had an indent in my html file that was causing the markup to output incorrectly when pulled into the markdown file. Fixed! :smiley: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

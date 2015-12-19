@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>jekyll-3.0.0.pre.beta</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#265</span>
+        </p>
+        <h1>jekyll-3.0.0.pre.beta</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">frall8</a>
+            <time>Monday, February 02, 2015</time>
+          </div>
+          <div class="body">
+            <p>/Library/Ruby/Gems/2.0.0/gems/jekyll-3.0.0.pre.beta1/lib/jekyll.rb:33:in <code>&lt;top (required)&gt;&#39;: undefined method</code>error_mode=&#39; for Liquid::Template:Class (NoMethodError)
+    from /Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:69:in <code>require&#39;
+    from /Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:69:in</code>require&#39;
+    from /Library/Ruby/Gems/2.0.0/gems/jekyll-3.0.0.pre.beta1/bin/jekyll:6:in <code>&lt;top (required)&gt;&#39;
+    from /usr/bin/jekyll:23:in</code>load&#39;
+    from /usr/bin/jekyll:23:in `&lt;main&gt;&#39;</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, February 07, 2015</time>
+          </div>
+          <div class="body"><p>It&#39;s possible that Jekyll loaded Liquid 2 instead of Liquid 3. Make sure you&#39;ve uninstalled Liquid 3 from your system or are using Jekyll with Bundler.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/crearc">
+              crearc
+            </a>
+            <time>Tuesday, February 17, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;m receiving the same error. I use Bundler and I made sure all the packages were up to date. @parkr can you re-open?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/crearc">
+              crearc
+            </a>
+            <time>Tuesday, February 17, 2015</time>
+          </div>
+          <div class="body"><p>@frall8 did you find a solution?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, February 18, 2015</time>
+          </div>
+          <div class="body"><p>@crearc What liquid version is in your bundle?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/crearc">
+              crearc
+            </a>
+            <time>Thursday, February 19, 2015</time>
+          </div>
+          <div class="body"><p>liquid (3.0.1) straight from my Gemfile.lock</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, February 19, 2015</time>
+          </div>
+          <div class="body"><p>@crearc What did you run? <code>bundle exec jekyll build</code>?</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

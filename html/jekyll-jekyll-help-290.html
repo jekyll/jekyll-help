@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How can I capture the link of the current post?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#290</span>
+        </p>
+        <h1>How can I capture the link of the current post?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">zotherstupidguy</a>
+            <time>Monday, April 13, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi, I would like to add a link to the posts layout, so that it will contain a link to the markup page link of the post hosted on github.</p>
+<p>This provides easy access for editing. How can this be done? I checked page.date and page.title but coucln&#39;t parse them in a way that mimics the github url schema. </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/zotherstupidguy">
+              zotherstupidguy
+            </a>
+            <time>Monday, April 13, 2015</time>
+          </div>
+          <div class="body"><p>Also is it possible to use ruby&#39;s #{} in jekyll?</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

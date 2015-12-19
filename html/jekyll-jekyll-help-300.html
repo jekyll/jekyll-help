@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll Liquid interface</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#300</span>
+        </p>
+        <h1>Jekyll Liquid interface</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">knsam</a>
+            <time>Saturday, May 09, 2015</time>
+          </div>
+          <div class="body">
+            <p>Dear Jekyll-help: </p>
+<p>I have spent frustrating hours trying to do what I think is simple. I have a YFM variable called <code>navbar_links</code> which is a list of strings. Each of these strings is a key in a file in <code>_data</code> named <code>navbarlinks.yml</code>. I would like to retrieve the value of each of the key in the list <code>navbar_links</code>. </p>
+<p>Any help would be appreciated. </p>
+<p>Thanks.  </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>How is the front matter (your navbar links)  formatted? </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/knsam">
+              knsam
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>Do you mean the file <code>navbarlinks.yml</code>?</p>
+<pre><code>- name: &quot;Home&quot;
+  url: &quot;/&quot;
+
+- name: &quot;About&quot;
+  url: &quot;/about/&quot;
+</code></pre><p>and I include a <code>nav.html</code> which is a partial with the following code: </p>
+<pre><code>&lt;span id=&quot;nav&quot;&gt; 
+&lt;ul&gt;
+  {% for navbar_link in page.navbar_links %}
+      &lt;span&gt;&lt;a href={{ site.data.navbarlinks | where:&quot;name&quot;,&quot;navbar_link&quot; }}&gt;{{ navbar_link }}&lt;/a&gt;&lt;/span&gt;
+  {% endfor %}
+&lt;/ul&gt;
+&lt;/span&gt;
+</code></pre><p>I will just say that I have tried many variants that might make sense for the yml file and the above html file. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>So you have a <code>navbarlinks.yml</code> inside your <code>_data</code> directory?</p>
+<p>The procedure with that would look like this:</p>
+<pre><code class="lang-liquid">{% for navbar_link in site.data.navbarlinks %}
+    &lt;a href=&quot;{{ navbar_link.url }}&quot;&gt;{{ navbar_link.name }}&lt;/a&gt;
+{% endfor %}
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/knsam">
+              knsam
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>@kleinfreund But I don&#39;t want do that for all the entries in navbarlinks.yml, but only for those specified in the YFM variable <code>navbar_links</code>. This variable takes a list of strings at the moment. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>How is the front matter for this variable structured? It always helps to include a minimal example.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/knsam">
+              knsam
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>@kleinfreund I pointed out in my OP that it was a list of strings like so: </p>
+<pre><code>---
+navbar_links: [&quot;Home&quot;]
+---
+</code></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

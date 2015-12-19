@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll site in subdirectory on Pages – Working with site.url locally?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#105</span>
+        </p>
+        <h1>Jekyll site in subdirectory on Pages – Working with site.url locally?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">kleinfreund</a>
+            <time>Wednesday, July 30, 2014</time>
+          </div>
+          <div class="body">
+            <p>When powering a site with Jekyll from a subdirectory with GitHub Pages, one prepends <code>{{ site.url }}</code> (or something similar) to internal links/assets etc.</p>
+<p>Now when starting a server locally, all assets are pulled from the actual site specified in the _config.yml. How does one develop locally without always changing the configuration?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, July 30, 2014</time>
+          </div>
+          <div class="body"><p>I use a script/preview file which uses a custom dev config that is passed along with the main config file. i use that locally and pages runs like normal.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ivantsepp">
+              ivantsepp
+            </a>
+            <time>Wednesday, July 30, 2014</time>
+          </div>
+          <div class="body"><p>Would it be a good idea if we could set &quot;development&quot; configuration in the config file? One would set in <code>_config.yml</code>:</p>
+<pre><code class="lang-yaml">development:
+  url: &quot;localhost:4000&quot;
+</code></pre>
+<p>And that configuration would override if <code>Jekyll.env == &#39;development&#39;</code>?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, July 30, 2014</time>
+          </div>
+          <div class="body"><p>@ivantsepp That&#39;s a little more complicated than I&#39;d prefer... just worried about confusion. I&#39;d rather see a convention like for dotenv where <code>.env.development</code> is picked up if it exists, but in our case, it&#39;d be <code>_config.#{Jekyll.env}.yml</code>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, July 30, 2014</time>
+          </div>
+          <div class="body"><p>/cc @benbalter for his :thought_balloon: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, July 30, 2014</time>
+          </div>
+          <div class="body"><p>@parkr A _config.dev.yml would duplicate the contents of the _config.yml then? Or would it override settings from the _config.yml, such as url?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, July 30, 2014</time>
+          </div>
+          <div class="body"><p>It would override.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, September 09, 2014</time>
+          </div>
+          <div class="body"><p>In the meantime the solution is <code>baseurl: /repo</code> and prepending with <code>{{ site.baseurl }}/img/icon.png</code>, etc.? Any other suggestions?</p>
+<p>I&#39;d love to have build tools do some magic for me there, however I never found a way to get Grunt/Gulp to work reliably on Windows.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>@kleinfreund You might want to try using <a href="https://help.github.com/articles/repository-metadata-on-github-pages">GitHub Pages Metadata</a>, if you&#39;re using GitHub Pages, that is.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

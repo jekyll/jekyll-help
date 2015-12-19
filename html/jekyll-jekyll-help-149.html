@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll-Paginate generates no pages</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#149</span>
+        </p>
+        <h1>Jekyll-Paginate generates no pages</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">emeQee</a>
+            <time>Sunday, September 14, 2014</time>
+          </div>
+          <div class="body">
+            <p>I have a Jekyll instance with currently 4 blog posts. When I set paginate, the root gives me the number of posts per page (<code>paginate: 2</code>) but I always get the last 2 posts on index.html. The pagination link will show previous but the page files (<code>paginate_path</code>) are not generated. To test the pagination I have following settings.</p>
+<pre><code>paginate: 2
+paginate_path: &quot;seite-:num&quot;
+</code></pre><p>Even though I have a much more complex code with if statements to control pagination etc, the general idea of the template is as follows:</p>
+<pre><code>{% for post in paginator.posts %}
+{% include article.html %}
+{% endfor %}
+
+&lt;p class=&quot;hidden&quot;&gt;Seite: {{ paginator.page }} von {{ paginator.total_pages }}&lt;/p&gt;
+&lt;ul class=&quot;pager&quot;&gt;
+    {% if paginator.previous_page %}
+    &lt;li class=&quot;previous&quot;&gt;
+        &lt;a href=&quot;{{ paginator.previous_page_path | prepend: site.baseurl | replace: &#39;//&#39;, &#39;/&#39; }}&quot;&gt;&lt;i class=&quot;fa fa-chevron-left&quot;&gt;&lt;/i&gt; Neuer&lt;/a&gt;
+    &lt;/li&gt;
+    {% endif %}
+    {% if paginator.next_page %}
+    &lt;li class=&quot;next&quot;&gt;
+        &lt;a href=&quot;{{ paginator.next_page_path | prepend: site.baseurl | replace: &#39;//&#39;, &#39;/&#39; }}&quot;&gt;&lt;i class=&quot;fa fa-chevron-right&quot;&gt;&lt;/i&gt; &amp;Auml;lter&lt;/a&gt;
+    &lt;/li&gt;
+    {% endif %}
+&lt;/ul&gt;
+</code></pre><p>What do I do wrong?</p>
+<p>Here are the versions I have on my system:</p>
+<pre><code>$ gem list | grep jekyll
+jekyll (2.4.0, 2.3.0, 2.1.1, 2.0.3)
+jekyll-coffeescript (1.0.1, 1.0.0)
+jekyll-date-format (1.0.1, 1.0.0)
+jekyll-gist (1.1.0)
+jekyll-page-hooks (1.3.1, 1.2.0)
+jekyll-paginate (1.0.0)
+jekyll-sass-converter (1.2.1, 1.2.0, 1.0.0)
+jekyll-sitemap (0.6.0, 0.5.1, 0.4.1)
+jekyll-watch (1.1.1, 1.1.0, 1.0.0)
+</code></pre><p>My code is on <a href="https://bitbucket.org/emin/dokudo-blog-jekyll/">bitbucket</a>.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/emeQee">
+              emeQee
+            </a>
+            <time>Saturday, September 27, 2014</time>
+          </div>
+          <div class="body"><p>Any insights on this one? I can&#39;t make the pagination work with <code>relative_permalinks: false</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/corysimmons">
+              corysimmons
+            </a>
+            <time>Tuesday, March 03, 2015</time>
+          </div>
+          <div class="body"><p>bump?</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

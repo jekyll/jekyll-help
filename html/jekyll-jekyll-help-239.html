@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Custom liquid tags: what’s the preferred method of providing arguments containing quotes</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#239</span>
+        </p>
+        <h1>Custom liquid tags: what’s the preferred method of providing arguments containing quotes</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">paulrobertlloyd</a>
+            <time>Tuesday, January 13, 2015</time>
+          </div>
+          <div class="body">
+            <p>(Cross-posted from <a href="https://github.com/Shopify/liquid/issues/507">https://github.com/Shopify/liquid/issues/507</a> – as received no answers, hoping to find some help here!)</p>
+<hr>
+<p><strong>TL;DR: How should I provide/parse arguments that may contain a single or double quote(s) in a custom tag?</strong></p>
+<hr>
+<p>Not sure if this is the correct place to ask a question, but couldn&#39;t find documentation elsewhere…</p>
+<p>I’ve created a custom liquid tag block, to render a figure with optional caption. Here’s an example:</p>
+<pre><code class="lang-liquid">{% figure class:&#39;class1 class2&#39;, caption:&#39;&#39;Cloud Gate&#39; by Anish Kapoor&#39; %}
+![](/assets/images/cloudgate.jpg)
+{% endfigure %}
+</code></pre>
+<p>Firstly, is this the correct method of supplying arguments to a custom block? I see that pipe delimited arguments are for filters, the = symbol for assignments.</p>
+<p>I&#39;m using <code>Liquid::TagAttributes</code>, to parse each argument. I’m then having to remove (with <code>gsub</code>) the first and last <code>&#39;</code> or <code>&quot;</code> else these get output in the HTML. But the generated content is malformed if strings contain quotes. I’ve documented some examples here: </p>
+<p>  <a href="https://gist.github.com/paulrobertlloyd/dff85e8af0f039255760">https://gist.github.com/paulrobertlloyd/dff85e8af0f039255760</a></p>
+<p>This is the code for my custom tag:</p>
+<pre><code class="lang-ruby">module Jekyll
+  class FigureTag &lt; Liquid::Block
+    def initialize(tag_name, markup, tokens)
+      super
+      @attributes = {}
+
+      markup.scan(Liquid::TagAttributes) do |key, value|
+        @attributes[key] = value.gsub(/^&#39;|&quot;/, &#39;&#39;).gsub(/&#39;|&quot;$/, &#39;&#39;)
+      end
+    end
+
+    def render(context)
+      site = context.registers[:site]
+      converter = site.getConverterImpl(::Jekyll::Converters::Markdown)
+
+      figure_classes = @attributes[&#39;class&#39;].to_s
+      figure_main = converter.convert(super(context))
+      figure_caption = converter.convert(@attributes[&#39;caption&#39;].to_s)
+
+      # Render &lt;figure&gt;
+      if @attributes[&#39;class&#39;]
+        source = &quot;&lt;figure class=\&quot;figure #{figure_classes}\&quot;&gt;&quot;
+      else
+        source = &quot;&lt;figure class=\&quot;figure\&quot;&gt;&quot;
+      end
+
+      source += &quot;&lt;div class=\&quot;figure__main\&quot;&gt;#{figure_main}&lt;/div&gt;&quot;
+
+      if @attributes[&#39;caption&#39;]
+        source += &quot;&lt;figcaption class=\&quot;figure__caption\&quot;&gt;#{figure_caption}&lt;/figcaption&gt;&quot;
+        source += &quot;&lt;/figure&gt;&quot;
+      else
+        source += &quot;&lt;/figure&gt;&quot;
+      end
+    end
+  end
+end
+
+Liquid::Template.register_tag(&#39;figure&#39;, Jekyll::FigureTag)
+</code></pre>
+<p>Hope this makes sense!</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

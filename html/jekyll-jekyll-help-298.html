@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>TOC from GFM</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#298</span>
+        </p>
+        <h1>TOC from GFM</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tonysneed</a>
+            <time>Friday, May 08, 2015</time>
+          </div>
+          <div class="body">
+            <p>I would like to have Jekyll generate a table of contents based on headers in a markdown file. I&#39;ve tried several things based on some research, but no luck. Can anyone point me in the right direction? This is for GitHub Pages.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Friday, May 08, 2015</time>
+          </div>
+          <div class="body"><p>I show how to create a table of contents in this documentation-oriented theme: <a href="https://github.com/tomjohnson1492/documentation-theme-jekyll">https://github.com/tomjohnson1492/documentation-theme-jekyll</a></p>
+<p>You use a data file (YML format) with various levels. Then you use a for loop in your theme to iterate over the levels and get the right items in each level. </p>
+<p>I also incorporate the navgoco jquery plugin.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tonysneed">
+              tonysneed
+            </a>
+            <time>Saturday, May 09, 2015</time>
+          </div>
+          <div class="body"><p>Hi Tom,</p>
+<p>I took a look at your theme, and I very much like it.  My main question would be whether your approach would be compatible with GitHub Pages, as I&#39;m not sure they include the required plugins.  Would you happen to know?</p>
+<p>Cheers,
+Tony</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Saturday, May 09, 2015</time>
+          </div>
+          <div class="body"><p>The theme doesn&#39;t have any plugins. You just need to put one of the configuration files into the root and rename it _config.yml so github pages can build it. </p>
+<p>Sent from my iPhone</p>
+<blockquote>
+<p>On May 9, 2015, at 6:37 AM, Anthony Sneed <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#110;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#116;&#105;&#x6f;&#110;&#115;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#110;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#x61;&#116;&#105;&#x6f;&#110;&#115;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;</a> wrote:</p>
+<p>Hi Tom,</p>
+<p>I took a look at your theme, and I very much like it. My main question would be whether your approach would be compatible with GitHub Pages, as I&#39;m not sure they include the required plugins. Would you happen to know?</p>
+<p>Cheers,
+Tony</p>
+<p>—
+Reply to this email directly or view it on GitHub.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tonysneed">
+              tonysneed
+            </a>
+            <time>Saturday, May 09, 2015</time>
+          </div>
+          <div class="body"><p>Terrific, I&#39;ll give it a try!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Saturday, May 09, 2015</time>
+          </div>
+          <div class="body"><p>Just curious,  are you a technical writer of some kind? What is it about the theme that appeals to you?</p>
+<p>Sent from my iPhone</p>
+<blockquote>
+<p>On May 9, 2015, at 10:47 AM, Anthony Sneed <a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#58;&#110;&#x6f;&#x74;&#x69;&#x66;&#105;&#x63;&#97;&#116;&#105;&#x6f;&#110;&#x73;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#109;">&#110;&#x6f;&#x74;&#x69;&#x66;&#105;&#x63;&#97;&#116;&#105;&#x6f;&#110;&#x73;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#109;</a> wrote:</p>
+<p>Terrific, I&#39;ll give it a try!</p>
+<p>—
+Reply to this email directly or view it on GitHub.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tonysneed">
+              tonysneed
+            </a>
+            <time>Saturday, May 09, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;m writing documentation for one of my open source projects on GitHub, and I&#39;m dissatisfied with the suitability of the default themes for use with a programming reference.</p>
+<p>One shortcoming has been the outlining.  For example, I would like to have a numbered list with bulleted items for each number, as well as images and code sections.  But the numbering will restart when followed by bulleted items, and the indenting past the first level didn&#39;t look right.</p>
+<p>So my main question would be how to get your theme to work with GitHub Pages.  I read that you don&#39;t recommend it for multiple outputs.  But what I like about GitHub Pages, is that I can just push my changes to the repo, and GitHub will automatically build the doc site.  Would it be possible to just have a single level with all my md files in one place and a _config.yml file at the root?  My documentation does not include many pages.</p>
+<p>Otherwise, are there other hosting options available where GitHub hooks that can be used to trigger a build and deployment of the doc site after pushing changes to the GitHub repo?</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

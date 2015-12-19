@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How do you deal with excess newlines?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#193</span>
+        </p>
+        <h1>How do you deal with excess newlines?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ndarville</a>
+            <time>Friday, November 14, 2014</time>
+          </div>
+          <div class="body">
+            <p>Forloops, if-else conditionals and all that Liquid goodness leaves A LOT of trailer lines in my compiled code. Aside from running an HTML linter on top of the result, are there any good ways to deal with the cosmetic problem?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Friday, November 14, 2014</time>
+          </div>
+          <div class="body"><p>Are you concerned about the added whitespace, or the formatting? If it is the former, you could use a layout to minimise the html:</p>
+<p><a href="https://github.com/penibelst/jekyll-compress-html">https://github.com/penibelst/jekyll-compress-html</a></p>
+<p>If it is the latter then you can only really deal with that by formatting your pre-compiled code horribly, and I wouldn&#39;t advise that personally.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Friday, November 14, 2014</time>
+          </div>
+          <div class="body"><p>Post-processing (<code>minify</code>, etc.) is the simplest and most-straight-forward way to manage compiled/rendered source of course.</p>
+<p>However, in the past, I have created liquid &quot;functions&quot; with liquid filters that provide for stripping newlines, etc. which accomplish more or less the same thing.</p>
+<p>See the page, &quot;Liquid for Designers&quot;, and reference some of the stripping filters that remove the 
+offending newlines, returns, whitespace, etc.</p>
+<p>i.e. <code>strip_newlines - strip all newlines (\n) from string</code></p>
+<p><a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">https://github.com/Shopify/liquid/wiki/Liquid-for-Designers</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Friday, November 14, 2014</time>
+          </div>
+          <div class="body"><p>So the idea would be to <code>{% capture %}</code> the resulting output and apply <code>strip_newlines</code> to it?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Friday, November 14, 2014</time>
+          </div>
+          <div class="body"><p>Yes; something like that... in some form or fashion, depending on your end goal.</p>
+<p>I created routines/functions that handled doing that via an <code>include</code> I recall.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Friday, November 14, 2014</time>
+          </div>
+          <div class="body"><p>Cool beans, sounds doable, especially within the include itself!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

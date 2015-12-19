@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>&#x60;:title&#x60; in collections seems to parse punctuation differently</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#253</span>
+        </p>
+        <h1>&#x60;:title&#x60; in collections seems to parse punctuation differently</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">beep</a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body">
+            <p>I use a collection to manage “draft” entries, so I can print out a schedule of upcoming entries on my site. But when generating output files from that collection, it seems <code>:title</code> might be parsed differently in collections than it is elsewhere?</p>
+<p>Here’s what I’m working from:</p>
+<ul>
+<li>Post’s filename: <code>_collection/2015-01-26-laphams-quarterly.markdown</code></li>
+<li>Post’s title, in the front matter: `Lapham’s Quarterly”</li>
+<li>Permalink definition for the collection: <code>dir/:title:output_ext</code></li>
+<li>Default permalink setting: <code>dir/:title:output_ext</code></li>
+</ul>
+<p>When served, this results in:</p>
+<ul>
+<li><code>dir/lapham-s-quarterly.html</code> if the post is in the collection; and</li>
+<li><code>dir/laphams-quarterly.html</code> if the post is in <code>_posts</code>.</li>
+</ul>
+<p>(I am very likely doing something horribly wrong, but thought I’d log it here in case the issue’s relevant to anyone else.)</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/paulrobertlloyd">
+              paulrobertlloyd
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>I suspect this may be fixed when posts become a type of collection… looks like there are some under-the-hood differences in how URL slugs are handled for each type… but that’s just a guess. Am I right @parkr?</p>
+<p>By the way @beep, have you seen the built in handling for draft posts: <a href="http://jekyllrb.com/docs/drafts/">http://jekyllrb.com/docs/drafts/</a> ?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/beep">
+              beep
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>@paulrobertlloyd I have, thanks! (I opted for a collection because we <em>do</em> want to output files from the “drafts” collection, and to print out a list of the upcoming entries; near as I could tell, those things aren’t possible with <code>_drafts</code>.)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>Hey, @beep! Sorry you ran into this problemo. Turns out we <a href="https://github.com/jekyll/jekyll/blob/master/lib/jekyll/post.rb#L170">extract the slug (used by <code>:title</code>) from the post filename</a>, whereas collection documents&#39; slugs <a href="https://github.com/jekyll/jekyll/blob/master/lib/jekyll/document.rb#L135">are generated either from the <code>title</code> element in the YAML front matter or, if it doesn&#39;t exist, by the file basename</a>.</p>
+<p>It would make sense to me to call the slug the input file&#39;s basename in all cases (with date data stripped, of course). What say you?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/beep">
+              beep
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><blockquote>
+<p>It would make sense to me to call the slug the input file&#39;s basename in all cases (with date data stripped, of course). What say you?</p>
+</blockquote>
+<p>@parkr That’d be what I expect, and gets a big +1 from me! Thanks!</p>
+<p>(And thanks for weighing in!)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, January 27, 2015</time>
+          </div>
+          <div class="body"><p>Terrific! Would you mind filing a bug for this in jekyll/jekyll? We&#39;ll get it fixed as soon as we can. :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/beep">
+              beep
+            </a>
+            <time>Wednesday, January 28, 2015</time>
+          </div>
+          <div class="body"><p>@parkr Done and done—please let me know if <a href="https://github.com/jekyll/jekyll/issues/3372">the bug</a> should be worded differently. And thank you so much for weighing in!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, January 28, 2015</time>
+          </div>
+          <div class="body"><p>Tracking over in jekyll/jekyll. Thanks, all!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

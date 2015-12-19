@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>defaults permalink in config aren&#x27;t working</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#270</span>
+        </p>
+        <h1>defaults permalink in config aren&#x27;t working</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">w1n78</a>
+            <time>Tuesday, February 10, 2015</time>
+          </div>
+          <div class="body">
+            <p>hello,</p>
+<p>i tried to use the following defaults in my _config.yml</p>
+<pre><code>defaults:
+  -
+    scope:
+      path: &quot;&quot;
+      type: &quot;posts&quot;
+    values:
+      permalink: &quot;/blog/:year/:month/:day/:title&quot;
+</code></pre><p>but my links to the post become <a href="http://localhost:4000/blog/:year/:month/:month/:day/:title">http://localhost:4000/blog/:year/:month/:month/:day/:title</a>. i&#39;ve tried without the quotes as well. without the defaults, the custom permalink works but within defaults, that&#39;s the result i get. am i missing something? isn&#39;t the above suppose to be &quot;all posts shall use the following permalink&quot;? but it isn&#39;t working. i&#39;m running jekyll 2.4.0.</p>
+<p>thanks.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/w1n78">
+              w1n78
+            </a>
+            <time>Tuesday, February 10, 2015</time>
+          </div>
+          <div class="body"><p>sorry just realized, 2.4.0 isn&#39;t the latest version. i upgraded to 2.5.3 and it fixed it. thanks for an awesome tool.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

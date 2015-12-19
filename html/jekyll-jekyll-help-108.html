@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Troubleshooting on OS X 10.9</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#108</span>
+        </p>
+        <h1>Troubleshooting on OS X 10.9</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">iamrolandw</a>
+            <time>Friday, August 01, 2014</time>
+          </div>
+          <div class="body">
+            <p>There are a number of people who are having problems with installing Jekyll on OS X 10.9 based on the number of work-arounds posted elsewhere.</p>
+<p>A good example can be found here. <a href="http://stackoverflow.com/questions/22479246/how-to-install-jekyll-on-mac-osx-10-9-with-ruby-2-0-0">http://stackoverflow.com/questions/22479246/how-to-install-jekyll-on-mac-osx-10-9-with-ruby-2-0-0</a></p>
+<p>The troubleshooting guide should be updated to include directions to run in the terminal:</p>
+<ol>
+<li>ruby -e &quot;$(curl -fsSL <a href="https://raw.github.com/Homebrew/homebrew/go/install">https://raw.github.com/Homebrew/homebrew/go/install</a>)&quot;</li>
+<li>brew doctor</li>
+<li>(follow any hints that doctor might have come up with - adding yourself to group wheel with &quot;dscl . append /Groups/wheel GroupMembership &lt;your short username&gt;&quot; fixes most of them but you might still have to edit your $PATH in your ~/.profile)</li>
+<li>curl -L <a href="https://get.rvm.io">https://get.rvm.io</a> | bash -s stable --autolibs=enabled</li>
+<li>source ~/.rvm/scripts/rvm</li>
+<li>gem install jekyll</li>
+</ol>
+<p>Not that running gem as sudo isn&#39;t always such a good thing to do as it messes up permissions for later installations.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;d like to keep the issues here as specific as possible. If someone is having trouble getting Jekyll up and running on their machine, we shouldn&#39;t assume anything about what they&#39;ve done so far.</p>
+<p>That said, this is still valuable and we will probably reference it in the future. Thanks!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

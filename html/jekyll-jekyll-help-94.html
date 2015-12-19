@@ -1,0 +1,356 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Can’t update the gem</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#94</span>
+        </p>
+        <h1>Can’t update the gem</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">penibelst</a>
+            <time>Monday, July 07, 2014</time>
+          </div>
+          <div class="body">
+            <p>During my recent contribution to Jekyll I’ve installed the master branch version (2.0.3) with <code>bundle exec install</code>. This version is globally available on my system. Now I want to update it to the latest <em>stable</em>. I can’t figure out how. This is what I have tried:</p>
+<pre><code class="lang-bash">$ ruby -v
+ruby 2.0.0p384 (2014-01-12) [i386-linux-gnu]
+
+$ jekyll -v
+jekyll 2.0.3
+
+$ gem update jekyll
+Updating installed gems
+Nothing to update
+
+$ gem list jekyll
+
+*** LOCAL GEMS ***
+
+jekyll-coffeescript (1.0.0)
+jekyll-gist (1.1.0)
+jekyll-paginate (1.0.0)
+jekyll-sass-converter (1.0.0)
+jekyll_test_plugin (0.1.0)
+jekyll_test_plugin_malicious (0.1.0)
+
+$ ll /var/lib/gems/1.9.1/gems/jekyll-2.0.3/
+
+drwxr-xr-x  9 root root  4096 Jun 20 20:28 ./
+drwxr-xr-x 29 root root  4096 Jun 20 20:28 ../
+drwxr-xr-x  2 root root  4096 Jun 20 20:28 bin/
+-rw-r--r--  1 root root  3826 Jun 20 20:28 CONTRIBUTING.markdown
+-rw-r--r--  1 root root   123 Jun 20 20:28 cucumber.yml
+drwxr-xr-x  3 root root  4096 Jun 20 20:28 docs/
+drwxr-xr-x  4 root root  4096 Jun 20 20:28 features/
+-rw-r--r--  1 root root    38 Jun 20 20:28 Gemfile
+-rw-r--r--  1 root root   132 Jun 20 20:28 .gitignore
+-rw-r--r--  1 root root 51154 Jun 20 20:28 History.markdown
+-rw-r--r--  1 root root  2680 Jun 20 20:28 jekyll.gemspec
+drwxr-xr-x  4 root root  4096 Jun 20 20:28 lib/
+-rw-r--r--  1 root root  1086 Jun 20 20:28 LICENSE
+-rw-r--r--  1 root root  6899 Jun 20 20:28 Rakefile
+-rw-r--r--  1 root root  3328 Jun 20 20:28 README.markdown
+drwxr-xr-x  2 root root  4096 Jun 20 20:28 script/
+drwxr-xr-x 12 root root  4096 Jun 20 20:28 site/
+drwxr-xr-x  4 root root  4096 Jun 20 20:28 test/
+-rw-r--r--  1 root root   842 Jun 20 20:28 .travis.yml
+</code></pre>
+<p>Jekyll doesn’t exist in the <code>/var/lib/gems/2.0.0/gems</code> directory.</p>
+<p>:warning: After upgrading to Ubuntu 14.04 I did <a href="http://blog.costan.us/2014/04/restoring-ruby-20-on-ubuntu-1404.html">restored Ruby 2.0 like suggested in this blog post</a>. Maybe, I don’t remember, I did it <em>after</em> I installed Jekyll from the master branch. This may cause my issue.</p>
+<p>Any suggestions?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, July 08, 2014</time>
+          </div>
+          <div class="body"><p>Hey @penibelst did you tried updating the gem in the Gemfile definition and then <code>bundle update jekyll</code>?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, July 08, 2014</time>
+          </div>
+          <div class="body"><p>@albertogg This is the output:</p>
+<pre><code class="lang-bash">
+$ cd jekyll
+$ git pull upstream master
+# Jekyll::VERSION switches to 2.1.0
+
+$ bundle update jekyll
+…
+Using jekyll (2.1.0) from source at .
+…
+Your bundle is updated!
+
+$ jekyll -v
+jekyll 2.0.3
+</code></pre>
+<p>No luck.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, July 09, 2014</time>
+          </div>
+          <div class="body"><p>Try this?</p>
+<pre><code>$ cd jekyll
+$ git pull upstream master
+$ bundle
+$ bundle exec rake build
+$ gem install -l pkg/jekyll-2.1.0.gem
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, July 09, 2014</time>
+          </div>
+          <div class="body"><p>@penibelst and what if you <code>bundle exec jekyll -v</code> ? it should work. Also, if you <code>gem list --local | grep jekyll</code> do you see jekyll latest stable version installed along with the previous ones?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Wednesday, July 09, 2014</time>
+          </div>
+          <div class="body"><p>@parkr </p>
+<pre><code class="lang-bash">$ sudo gem install -l pkg/jekyll-2.1.0.gem
+ERROR:  Error installing pkg/jekyll-2.1.0.gem:
+    ERROR: Failed to build gem native extension.
+</code></pre>
+<p>@albertogg </p>
+<pre><code class="lang-bash">$ bundle exec jekyll -v
+jekyll 2.1.0
+
+$ jekyll -v
+jekyll 2.0.3
+
+$ gem list --local | grep jekyll
+jekyll-coffeescript (1.0.0)
+jekyll-gist (1.1.0)
+jekyll-paginate (1.0.0)
+jekyll-sass-converter (1.0.0)
+jekyll-watch (1.0.0)
+jekyll_test_plugin (0.1.0)
+jekyll_test_plugin_malicious (0.1.0)
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Wednesday, July 09, 2014</time>
+          </div>
+          <div class="body"><p>@pwnall, I think my issue is related to your <a href="http://blog.costan.us/2014/04/restoring-ruby-20-on-ubuntu-1404.html">post about restoring Ruby 2.0</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, July 09, 2014</time>
+          </div>
+          <div class="body"><p>Try <code>which jekyll</code>, <code>which jekyll-gist</code> and compare the output. Also related to the link you are showing is the symlink for the <code>/usr/bin/gem</code> working? what happens when you try to run <code>/usr/bin/gem2.0 list --local</code>? </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pwnall">
+              pwnall
+            </a>
+            <time>Wednesday, July 09, 2014</time>
+          </div>
+          <div class="body"><p>@parkr  Your comment above shows that when you do <code>sudo gem install -l pkg/jekyll-2.1.0.gem</code> it says <code>ERROR: Failed to build gem native extension.</code> I think that&#39;s what&#39;s causing your troubles.</p>
+<p>Rubygems usually gives you a link to an error log. If you gist it and post a link, I can try to take a look.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Wednesday, July 09, 2014</time>
+          </div>
+          <div class="body"><p>@albertogg </p>
+<pre><code class="lang-bash">$ which jekyll
+/usr/local/bin/jekyll
+
+$ which jekyll-gist
+# nothing
+
+$ ll /usr/bin/gem
+lrwxrwxrwx 1 root root 15 Jun 20 20:35 /usr/bin/gem -&gt; /usr/bin/gem2.0
+
+$ /usr/bin/gem2.0 list --local
+
+*** LOCAL GEMS ***
+
+# …
+i18n (0.6.9)
+io-console (0.4.2)
+jekyll-coffeescript (1.0.0)
+jekyll-gist (1.1.0)
+# …
+</code></pre>
+<p>@pwnall It’s not @parkr, but me who has the issue.</p>
+<blockquote>
+<p>Rubygems usually gives you a link to an error log.</p>
+</blockquote>
+<p>I can’t find the link.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, July 10, 2014</time>
+          </div>
+          <div class="body"><p>@penibelst have you tried removing jekyll and installing it again?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Thursday, July 10, 2014</time>
+          </div>
+          <div class="body"><p>@albertogg Removing <code>/var/lib/gems/1.9.1/gems/jekyll-2.0.3/</code> with <code>rm -r</code>? No.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, July 10, 2014</time>
+          </div>
+          <div class="body"><p>@penibelst no no, using <code>gem uninstall</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Thursday, July 10, 2014</time>
+          </div>
+          <div class="body"><p>@albertogg </p>
+<pre><code class="lang-bash">$ gem uninstall jekyll
+# nothing happens
+$ jekyll -v
+jekyll 2.0.3
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Friday, July 11, 2014</time>
+          </div>
+          <div class="body"><p>@penibelst can you track where is this jekyll gem installed? and then check if there are other gems too. If you install any other gem does the gem list command shows it? </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Saturday, July 12, 2014</time>
+          </div>
+          <div class="body"><p>@albertogg Turns out I can’t install gems anymore:</p>
+<pre><code class="lang-bash">$ sudo gem install html-proofer
+ERROR:  Error installing html-proofer:
+    ERROR: Failed to build gem native extension.
+
+    /usr/bin/ruby2.0 extconf.rb
+checking for ffi.h... no
+checking for ffi.h in /usr/local/include,/usr/include/ffi... no
+checking for rb_thread_blocking_region()... yes
+checking for rb_thread_call_with_gvl()... yes
+checking for rb_thread_call_without_gvl()... yes
+checking for ffi_prep_cif_var()... no
+creating extconf.h
+creating Makefile
+
+make &quot;DESTDIR=&quot; clean
+
+make &quot;DESTDIR=&quot;
+make -C &quot;/var/lib/gems/2.0.0/gems/ffi-1.9.3/ext/ffi_c/libffi-i386-linux-gnu&quot;
+
+# more errors
+
+make failed, exit code 2
+
+Gem files will remain installed in /var/lib/gems/2.0.0/gems/ffi-1.9.3 for inspection.
+Results logged to /var/lib/gems/2.0.0/extensions/x86-linux/2.0.0/ffi-1.9.3/gem_make.out
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Saturday, July 12, 2014</time>
+          </div>
+          <div class="body"><p>Can I delete <em>all</em> gems inside <code>/var/lib/gems/</code> and just start again?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Sunday, July 13, 2014</time>
+          </div>
+          <div class="body"><p>@pwnall You are right, native extensions were the problem. After reinstalling some gems with native extensions everything works as expected.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

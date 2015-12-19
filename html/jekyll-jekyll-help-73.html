@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Install Jekyll Error</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#73</span>
+        </p>
+        <h1>Install Jekyll Error</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">clayspencer</a>
+            <time>Saturday, June 14, 2014</time>
+          </div>
+          <div class="body">
+            <p>I am installing jekyll using &#39;sudo gem install jekyll&#39; on Yosemite 10.10 DP1. I get the following error.</p>
+<pre><code class="lang-text">ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb
+creating Makefile
+
+make &quot;DESTDIR=&quot; clean
+
+make &quot;DESTDIR=&quot;
+make: *** No rule to make target `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/universal-darwin14/ruby/config.h&#39;, needed by `autolink.o&#39;.  Stop.
+
+make failed, exit code 2
+
+Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/redcarpet-3.1.2 for inspection.
+Results logged to /Library/Ruby/Gems/2.0.0/extensions/universal-darwin-14/2.0.0/redcarpet-3.1.2/gem_make.out
+</code></pre>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, June 14, 2014</time>
+          </div>
+          <div class="body"><p>You don&#39;t have the ruby headers:</p>
+<pre><code class="lang-text">ruby/config.h&#39;, needed by `autolink.o&#39;
+</code></pre>
+<p>If you have homebrew installed, run <code>brew install ruby</code> and try again! @mattr- / @robin850 might have more knowledge of this particular area.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/robin850">
+              robin850
+            </a>
+            <time>Sunday, June 15, 2014</time>
+          </div>
+          <div class="body"><p>To be honest, I don&#39;t own a Mac so I don&#39;t know how you could install Ruby headers but this seems to be <a href="http://stackoverflow.com/a/19532316/2663959">the answer</a>. You may also encounter vmg/redcarpet#357. I hope it helps!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Sunday, June 15, 2014</time>
+          </div>
+          <div class="body"><p>I feel compelled to point out and remind that executing <code>sudo gem install anything</code> on a *nix-based-derived machine is asking for and creating trouble, and is a poor approach to managing gems.</p>
+<p>This link is python-based but described the general, consistent scenario, concerns, and pitfalls:</p>
+<p><a href="https://workaround.org/easy-install-debian">https://workaround.org/easy-install-debian</a></p>
+<p>One would be better off, safer, and the system (especially the tinker-hostile OSX) positively intact by leveraging something such as <code>homebrew</code>, <code>rbenv</code>, <code>rvm</code>, <code>chruby</code>, etc. and or using <code>gem</code> with its native switches such as <code>--user-install</code>, etc.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/clayspencer">
+              clayspencer
+            </a>
+            <time>Sunday, June 15, 2014</time>
+          </div>
+          <div class="body"><p>parkr&#39;s suggestiion is ultimately what fixed the problem. Fyi jaybe-jekyll I installed several gems without any issues, though in some cases I did seem to have to re-update. As for robin850, that method is deprecated on Xcode 5.1.1 as Command Line Tools are now built in. Thanks all for the recommendations. Actually, I was trying to figure out an issue I am having with Opera malfunctioning in Yosemite 10.10 DP1 and began compile dev.opera not realizing Opera is not open source! dev.opera is their discussion forum for Opera development. That looks like it may be a kernel issue (unrelated to this discussion however). Thanks. Also, sorry for getting back so late, I ended up rashly deleting my ruby.framework and had to reinstall DP1. Yosemite 10.10 has been a challenge for software compatibility so far. </p>
+<p>So, in conclusion in order to fix the error above just brew install ruby. </p>
+<p>-Clay Spencer</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tannerjt">
+              tannerjt
+            </a>
+            <time>Sunday, October 26, 2014</time>
+          </div>
+          <div class="body"><p>Parkr&#39;s suggestion worked for me as well.  Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Hasset">
+              Hasset
+            </a>
+            <time>Wednesday, December 31, 2014</time>
+          </div>
+          <div class="body"><p>same issue here.
+MAC OS X 10.9.5
+ruby already installed by brew:</p>
+<pre><code>$ brew install ruby
+Warning: ruby-2.2.0 already installed
+$ sudo gem install jekyll
+Password:
+Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb
+creating Makefile
+
+make &quot;DESTDIR=&quot;
+make: *** No rule to make target `/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/universal-darwin13/ruby/config.h&#39;, needed by `yajl.o&#39;.  Stop.
+
+
+Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/yajl-ruby-1.1.0 for inspection.
+Results logged to /Library/Ruby/Gems/2.0.0/gems/yajl-ruby-1.1.0/ext/yajl/gem_make.out
+</code></pre><p>update: problem soved by <a href="http://hasset.github.io/it/2015/01/01/issue-of-ruby-while-installing-jekyll/">adding ruby&#39;s path to the env</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Friday, January 02, 2015</time>
+          </div>
+          <div class="body"><p>Yep. It&#39;s asking for the ruby header files. In this case, <code>ruby/config.h</code>.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

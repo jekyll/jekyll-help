@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Changing class of div created by Pygments?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#87</span>
+        </p>
+        <h1>Changing class of div created by Pygments?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">winghouchan</a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body">
+            <p>Howdy all!</p>
+<p>As you know Pygments creates a <code>&lt;div&gt;</code> and assigns a class called <code>highlight</code> to it.</p>
+<p>Is it possible to change that class to a custom defined class?</p>
+<p>I&#39;ve looked at Pygments&#39; documentation and it is possible to pass in an option on the command line, called <code>cssclass</code>, to change the class of the <code>&lt;div&gt;</code>. Jekyll documentation doesn&#39;t have mention of this, so I was wondering if anyone knows how to do it with Jekyll?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>You could <em>try</em>:</p>
+<pre><code class="lang-text">{% highlight ruby cssclass=&quot;myclass&quot; %}
+my_ruby.call()
+{% endhighlight %}
+</code></pre>
+<p>Let me know if that works.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>I actually tried that. Nope, didn&#39;t work. :frowning: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>Tbh, I don&#39;t think there is an option for this. The error message returns a valid syntax example and it does not suggest what I&#39;m trying to do is possible:</p>
+<pre><code>Valid syntax: highlight &lt;lang&gt; [linenos]
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>Maybe this could be a feature request?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>It looks like it should be working with Jekyll 2.1.0: <a href="https://github.com/jekyll/jekyll/pull/2532/files#diff-4ef4410ae4c188981d2f90c33c569487R82">https://github.com/jekyll/jekyll/pull/2532/files#diff-4ef4410ae4c188981d2f90c33c569487R82</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>Hmmm, indeed.</p>
+<p>I need to upgrade.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>Updated to 2.1.0 and it still doesn&#39;t work. Same error message.</p>
+<p>Removing the invalid syntax returns a message saying Pygments 0.6.0 needs to be installed.</p>
+<p>But upgrading Pygments past v0.5.0 will cause problems on Windows. :frowning: However you&#39;re already aware of this in <a href="https://github.com/jekyll/jekyll/issues/2556">https://github.com/jekyll/jekyll/issues/2556</a></p>
+<p>Seems like I have to wait for a fix or change OS :laughing: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>@winghouchan &lt;s&gt;Is pygments 0.6.0 still causing issues? Oh. :(&lt;/s&gt; Looks like @parkr is ahead of time: <a href="https://github.com/tmm1/pygments.rb/issues/129">https://github.com/tmm1/pygments.rb/issues/129</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>@kleinfreund thanks for chiming in again! Ya, Pygments 0.6.0 doesn&#39;t work on Windows. I&#39;m still on Pygments 0.5.0. However I needed Pygments 0.6.0 so Jekyll 2.1.0 would work. I need Jekyll 2.1.0 as there is some new functionality where you can change the class assigned to the <code>&lt;div&gt;</code> wrapping the highlighted code.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>@parkr and @kleinfreund</p>
+<p>Thanks for your help with this again!</p>
+<p>I think there is no way for me to change the class of the <code>&lt;div&gt;</code> until I change OS (which I don&#39;t think I will) or until there is a fix.</p>
+<p>So I think I&#39;ll have to wait for a fix. In the meantime, the inability to change the class isn&#39;t really a big problem. I could just use some dirty JS to change it client-side :laughing: or not change it all.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>This should be solved by the new release of posix-spawn! In the meantime, you can bundle the master branch of rtomayko/posix-spawn to get it working now. Let me know if you run into more problems!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Monday, June 30, 2014</time>
+          </div>
+          <div class="body"><p>@parkr Okey dokey, thanks!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

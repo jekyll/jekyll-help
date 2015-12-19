@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Paginator items not displaying properly</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#261</span>
+        </p>
+        <h1>Paginator items not displaying properly</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">sr-murthy</a>
+            <time>Friday, January 30, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi</p>
+<p>At the moment the paginator items on <code>index.html</code> does not display properly, it looks like this</p>
+<p><img src="https://cloud.githubusercontent.com/assets/9358070/5983082/caec6ec0-a8c1-11e4-99cb-b4017aee0221.png" alt="hyde-paginator"></p>
+<p>I don&#39;t know why it is stacking them vertically, the paginator code is unchanged from the hyde source <a href="https://github.com/poole/hyde">https://github.com/poole/hyde</a> (and so is the relevant CSS code in poole.css):</p>
+<pre><code>&lt;div class=&quot;pagination&quot;&gt;
+{% if paginator.next_page %}
+&lt;a class=&quot;pagination-item older&quot; href=&quot;{{ site.baseurl }}page{{paginator.next_page}}&quot;&gt;Older&lt;/a&gt;
+{% else %}
+&lt;span class=&quot;pagination-item older&quot;&gt;Older&lt;/span&gt;
+{% endif %}
+{% if paginator.previous_page %}
+  {% if paginator.page == 2 %}
+    &lt;a class=&quot;pagination-item newer&quot; href=&quot;{{ site.baseurl }}&quot;&gt;Newer&lt;/a&gt;
+  {% else %}
+    &lt;a class=&quot;pagination-item newer&quot; href=&quot;{{ site.baseurl }}page{{paginator.previous_page}}&quot;&gt;Newer&lt;/a&gt;
+  {% endif %}
+{% else %}
+  &lt;span class=&quot;pagination-item newer&quot;&gt;Newer&lt;/span&gt;
+{% endif %}
+&lt;/div&gt;
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Monday, February 02, 2015</time>
+          </div>
+          <div class="body"><p>This is clearly a question for the Hyde author, as neither that paginator code nor the associated css exists in Jekyll&#39;s default template, and I see you&#39;ve already created an issue there: <a href="https://github.com/poole/hyde/issues/80">https://github.com/poole/hyde/issues/80</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

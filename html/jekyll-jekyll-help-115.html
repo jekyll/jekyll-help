@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Use &#x27;Where&#x27; filter with &#x27;or&#x27; </title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#115</span>
+        </p>
+        <h1>Use &#x27;Where&#x27; filter with &#x27;or&#x27; </h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">rdyar</a>
+            <time>Saturday, August 09, 2014</time>
+          </div>
+          <div class="body">
+            <p>is it possible to use the &#39;where&#39; filter with more than one comparison? with &#39;or&#39; or &#39;and&#39;?
+I would like to do:</p>
+<p><code>{% assign mylist = tag[1] | sort | where: &quot;type&quot;, &quot;Videos&quot; or &quot;type&quot;,&quot;Articles&quot; %}</code></p>
+<p>But I can&#39;t figure it out.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, August 09, 2014</time>
+          </div>
+          <div class="body"><p>This is not available. You&#39;ll have to use the <code>where</code> filter to extract each set and merge the two resulting arrays. I can&#39;t think of a good way to support this in our native <code>where</code> filter.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

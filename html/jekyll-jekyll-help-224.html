@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>push to github</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#224</span>
+        </p>
+        <h1>push to github</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ragwing</a>
+            <time>Saturday, January 03, 2015</time>
+          </div>
+          <div class="body">
+            <p>I have my ragwing.github.io working, but I cannot push the new changes.
+I had it in the wrong repo, so copied it to the one above and it worked. 
+Just cannot push now.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, January 03, 2015</time>
+          </div>
+          <div class="body"><p>That doesn&#39;t sound like a Jekyll issue at all. What are you typing into the command line after changing some of your files?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ragwing">
+              ragwing
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>I did a git add remote ragwing ragwing.github.io
+then did push ragwing</p>
+<p>On Sat, Jan 3, 2015 at 3:52 PM, Philipp Rudloff <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x6e;&#111;&#x74;&#x69;&#102;&#105;&#99;&#x61;&#116;&#x69;&#111;&#110;&#x73;&#64;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x6e;&#111;&#x74;&#x69;&#102;&#105;&#99;&#x61;&#116;&#x69;&#111;&#110;&#x73;&#64;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>
+wrote:</p>
+<blockquote>
+<p>That doesn&#39;t sound like a Jekyll issue at all. What are you typing into
+the command line after changing some of your files?</p>
+<p>—
+Reply to this email directly or view it on GitHub.</p>
+</blockquote>
+<p>-- 
+Rex Guinn
+Pictures <a href="http://picasaweb.google.com/ragwing">http://picasaweb.google.com/ragwing</a>
+My SIte http:// <a href="http://rexguinn.bluegrassareawoodturners.org">http://rexguinn.bluegrassareawoodturners.org</a>rexguinn.net
+BAW <a href="http://bluegrassareawoodturners.org">http://bluegrassareawoodturners.org</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>Do <code>git fetch</code> and then <code>git status</code> to see how many commits ahead your clone of the repo is.</p>
+<p>Also, what kind of error is it giving you?Just saying you can&#39;t do something doesn&#39;t help us.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ragwing">
+              ragwing
+            </a>
+            <time>Monday, January 05, 2015</time>
+          </div>
+          <div class="body"><p>git fetch  ragwing
+fatal: Couldn&#39;t find remote ref ragwing
+fatal: The remote end hung up unexpectedly
+guinn@laptop:~/ragwing-master$ git push . ragwing
+error: src refspec ragwing does not match any.
+error: failed to push some refs to &#39;.&#39;
+guinn@laptop:~/ragwing-master$ git push all ragwing
+error: src refspec ragwing does not match any.
+error: failed to push some refs to &#39;all&#39;
+guinn@laptop:~/ragwing-master$ git fetch ragwing
+fatal: &#39;ragwing.github.io&#39; does not appear to be a git repository
+fatal: Could not read from remote repository.</p>
+<p>Please make sure you have the correct access rights
+and the repository exists.</p>
+<p>git status
+On branch gh-pages</p>
+<p>Initial commit</p>
+<p>Changes to be committed:
+  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</p>
+<p>new file:   README.markdown
+new file:   _deploy/README.markdown
+new file:   _deploy/about.html
+new file:   _deploy/blog.html
+new file:   _deploy/custom.css
+new file:   _deploy/images/VLA.jpg
+new file:   _deploy/images/almo.jpg
+new file:   _deploy/images/ferry_powell.jpg
+new file:   _deploy/images/flowers_tx_roadside.jpg
+new file:   _deploy/images/fredericksburg.jpg
+new file:   _deploy/images/hwy-78.jpg
+new file:   _deploy/images/jaraffes.jpg
+new file:   _deploy/images/leaving_lex.jpg
+new file:   _deploy/images/lebanon.jpg
+new file:   _deploy/images/logo.gif
+new file:   _deploy/images/lukenbach.jpg
+new file:   _deploy/images/n-of-abq.jpg
+new file:   _deploy/images/nation_military_park.jpg
+new file:   _deploy/images/ok_city.jpg
+new file:   _deploy/images/padre.jpg
+new file:   _deploy/images/rex.jpg
+new file:   _deploy/images/sadeona.jpg
+new file:   _deploy/images/st_pet_fl.jpg
+new file:   _deploy/images/subscribe-icon.gif
+new file:   _deploy/images/subscribe.png
+new file:   _deploy/images/tucson.jpg
+new file:   _deploy/images/usa.gif
+new file:   _deploy/index.html
+new file:   _deploy/javascripts/jquery.github.js
+new file:   _deploy/javascripts/jquery.js
+new file:   _deploy/open-source.html
+new file:   _deploy/posts/Leaving-Lexington/index.html
+new file:   _deploy/posts/Welcome-to-My-Cool-Site/index.html
+new file:   _deploy/posts/after-keywest/index.html
+new file:   _deploy/posts/to-california/index.html
+new file:   _deploy/posts/vicksburg-to-padre/index.html
+new file:   _deploy/railsgit/index.html
+new file:   _deploy/resetvcheckout.html
+new file:   _deploy/stylesheets/master.css
+new file:   _layouts/master.html
+new file:   _layouts/post.html
+new file:   _posts/2002-03-07-Leaving-Lexington.md
+new file:   _posts/2002-03-20-after-keywest.md
+new file:   _posts/2002-5-20-to-california.md
+new file:   _posts/links.md
+new file:   _site/README.markdown
+new file:   _site/about.html
+new file:   _site/blog.html
+new file:   _site/custom.css
+new file:   _site/images/VLA.jpg
+new file:   _site/images/almo.jpg
+new file:   _site/images/ferry_powell.jpg
+new file:   _site/images/flowers_tx_roadside.jpg
+new file:   _site/images/fredericksburg.jpg
+new file:   _site/images/hwy-78.jpg
+new file:   _site/images/jaraffes.jpg
+new file:   _site/images/leaving_lex.jpg
+new file:   _site/images/lebanon.jpg
+new file:   _site/images/logo.gif
+new file:   _site/images/lukenbach.jpg
+new file:   _site/images/n-of-abq.jpg
+new file:   _site/images/nation_military_park.jpg
+new file:   _site/images/ok_city.jpg
+new file:   _site/images/padre.jpg
+new file:   _site/images/rex.jpg
+new file:   _site/images/sadeona.jpg
+new file:   _site/images/st_pet_fl.jpg
+new file:   _site/images/subscribe-icon.gif
+new file:   _site/images/subscribe.png
+new file:   _site/images/tucson.jpg
+new file:   _site/images/usa.gif
+new file:   _site/index.html
+new file:   _site/javascripts/jquery.github.js
+new file:   _site/javascripts/jquery.js
+new file:   _site/open-source.html
+new file:   _site/resetvcheckout.html
+new file:   _site/stylesheets/master.css
+new file:   about.textile
+new file:   blog.html
+new file:   custom.css
+new file:   images/VLA.jpg
+new file:   images/almo.jpg
+new file:   images/ferry_powell.jpg
+new file:   images/flowers_tx_roadside.jpg
+new file:   images/fredericksburg.jpg
+new file:   images/hwy-78.jpg
+new file:   images/jaraffes.jpg
+new file:   images/leaving_lex.jpg
+new file:   images/lebanon.jpg
+new file:   images/logo.gif
+new file:   images/lukenbach.jpg
+new file:   images/n-of-abq.jpg
+new file:   images/nation_military_park.jpg
+new file:   images/ok_city.jpg
+new file:   images/padre.jpg
+new file:   images/rex.jpg
+new file:   images/sadeona.jpg
+new file:   images/st_pet_fl.jpg
+new file:   images/subscribe-icon.gif
+new file:   images/subscribe.png
+new file:   images/tucson.jpg
+new file:   images/usa.gif
+new file:   index.html
+new file:   index1.html
+new file:   javascripts/jquery.github.js
+new file:   javascripts/jquery.js
+new file:   open-source.html
+new file:   resetvcheckout.html
+new file:   rex-blog
+new file:   stylesheets/master.css</p>
+<p>On Sun, Jan 4, 2015 at 8:45 PM, Troy Swanson <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x6e;&#x6f;&#x74;&#105;&#102;&#x69;&#99;&#97;&#x74;&#x69;&#111;&#110;&#x73;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;">&#x6e;&#x6f;&#x74;&#105;&#102;&#x69;&#99;&#97;&#x74;&#x69;&#111;&#110;&#x73;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#x2e;&#x63;&#x6f;&#109;</a>
+wrote:</p>
+<blockquote>
+<p>Do git fetch and then git status to see how many commits ahead your clone
+of the repo is.</p>
+<p>Also, what kind of error is it giving you?Just saying you can&#39;t do
+something doesn&#39;t help us.</p>
+<p>—
+Reply to this email directly or view it on GitHub
+<a href="https://github.com/jekyll/jekyll-help/issues/224#issuecomment-68659769">https://github.com/jekyll/jekyll-help/issues/224#issuecomment-68659769</a>.</p>
+</blockquote>
+<p>-- 
+Rex Guinn
+Pictures <a href="http://picasaweb.google.com/ragwing">http://picasaweb.google.com/ragwing</a>
+My SIte http:// <a href="http://rexguinn.bluegrassareawoodturners.org">http://rexguinn.bluegrassareawoodturners.org</a>rexguinn.net
+BAW <a href="http://bluegrassareawoodturners.org">http://bluegrassareawoodturners.org</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, January 06, 2015</time>
+          </div>
+          <div class="body"><p>If I were you, I would archive the folder that has your changes in it and re-clone the repo. Then, check out the <code>gh-pages</code> branch and copy the files from the archived folder into the new clone.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>problem installing jekyll</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#194</span>
+        </p>
+        <h1>problem installing jekyll</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">stephens999</a>
+            <time>Sunday, November 16, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m on a MAC OSX 10.9.5
+I successfully executed sudo gem update --system
+but then on executing
+sudo gem install jekyll</p>
+<p>I got the following error. Any advice appreciated.
+(It seems from the error that it might have something to do with my system being 10.9.5 
+and not 10.10, but I am reluctant to update to 10.10 yet)</p>
+<p>$sudo gem install jekyll
+Fetching: fast-stemmer-1.0.2.gem (100%)
+Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.</p>
+<pre><code>/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby -r ./siteconf20141116-21190-1elw968.rb extconf.rb
+</code></pre><p>creating Makefile</p>
+<p>make &quot;DESTDIR=&quot; clean</p>
+<p>make &quot;DESTDIR=&quot;
+make: <em>*</em> No rule to make target <code>/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/universal-darwin13/ruby/config.h&#39;, needed by</code>porter.o&#39;.  Stop.</p>
+<p>make failed, exit code 2</p>
+<p>Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/fast-stemmer-1.0.2 for inspection.
+Results logged to /Library/Ruby/Gems/2.0.0/extensions/universal-darwin-13/2.0.0/fast-stemmer-1.0.2/gem_make.out</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Sunday, November 16, 2014</time>
+          </div>
+          <div class="body"><p>Hi, @stephens999 this is a known problem with the OSX ruby. Take a look at issue #167 and #19 and see if any of those work. I recommend that you install Ruby through a version manager like rbenv, chruby or rvm and avoid using the system Ruby. If you plan using rbenv <a href="http://albertogrespan.com/blog/installing-ruby-the-right-way-on-os-x-using-rbenv/">I wrote a blog post</a>. Hope it helps.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/stephens999">
+              stephens999
+            </a>
+            <time>Sunday, November 16, 2014</time>
+          </div>
+          <div class="body"><p>thanks for the pointers - I got this working now by following instructions in issue #19  </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

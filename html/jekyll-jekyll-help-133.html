@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>generating global variable on build that is available to all Liquid::Tags</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#133</span>
+        </p>
+        <h1>generating global variable on build that is available to all Liquid::Tags</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">Daniel0524</a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m writing a liquid tag that needs to check for a file&#39;s existence in an AWS S3 bucket. Right now I have it making a request to S3 every time the tag occurs. Looks something like:</p>
+<pre><code class="lang-ruby">   class RenderTag &lt; Liquid::Tag
+   ...
+    def render(context)
+      s3_API.find(filename) #makes a call to S3 API
+    end
+</code></pre>
+<p>This works, but it&#39;s slow.</p>
+<p>It&#39;d be a lot easier for me to generate a globally accessible object one time and with a single call to S3&#39;s API prior to site generation containing a list of the files in the s3 bucket. This way, instead of each occurrence of my tag making its own call to S3, it could simply check the already generated directory object. </p>
+<pre><code class="lang-ruby">   class RenderTag &lt; Liquid::Tag
+   ...
+    def render(context)
+      #doesn&#39;t make a call to API just checks the object generated at the beginning of build
+      globalDirObject.find(filename) 
+    end
+</code></pre>
+<p>I don&#39;t know if something like this is even close to possible, but if it is I&#39;d love some advice. Thanks!</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

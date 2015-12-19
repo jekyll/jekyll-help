@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Custom Liquid Plugin for custom Syntax Highlighting - embedded code confuses Kramdown</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#302</span>
+        </p>
+        <h1>Custom Liquid Plugin for custom Syntax Highlighting - embedded code confuses Kramdown</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">scorcher24</a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body">
+            <p>I have written this plugin:</p>
+<pre><code class="lang-ruby">module Jekyll
+    module Tags
+        class Prism &lt; Liquid::Block
+            def initialize(tag_name, text, tokens)
+                @arg = text.strip
+                super
+            end
+
+            def render(context)
+                output = super(context)
+                &quot;&lt;pre&gt;&lt;code class=\&quot;language-#{@arg}\&quot;&gt;#{output}&lt;/code&gt;&lt;/pre&gt;&quot;
+            end
+        end
+    end
+end 
+
+Liquid::Template.register_tag(&#39;prism&#39;, Jekyll::Tags::Prism)
+</code></pre>
+<p>This is how I use it:</p>
+<pre><code class="lang-c++">{% prism cpp %}
+#include &lt;iostream&gt;
+
+// Hello World
+int main()
+{
+    cout &lt;&lt; &quot;hello world&quot; &lt;&lt; endl;
+    int a = 10;
+}
+{% endprism %}
+</code></pre>
+<p>Now, the problem is, that I mostly use C++ Code on my website. When I now generate this markdown with Jekyll, then all text after <code>{% endprism %}</code> would still be included within the <code>&lt;pre&gt;</code> Tag, because Kramdown is getting confused by <code>&lt;iostream&gt;</code> If I escape it (<code>\&lt;iostream\&gt;</code>), then my plugin works as expected, but my Javascript Highlighter is getting confused.</p>
+<p>How can I solve this situation without enabling Jekyll&#39;s highlighter because this one does not work properly for me. I am on Windows and barely got Jekyll working after lots of certificate problems with gem. I am also porting an existing website which used prism.js for highlighting before and I find it kind of neat.</p>
+<p>Another good help would be if someone can tell me how if there is a Ruby function that I can use to convert all <code>&lt;&gt;</code> to html special characters within my plugin. Is there something like htmlspecialchars from PHP? So I can have the original code in my markdown file. I am sorry for asking, I am really new to ruby and jekyll.</p>
+<p>edit: I solved it by using CGI.escapeHTML(), but I still would like to know if there is a Jekyll way to solve it, just for learning.</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

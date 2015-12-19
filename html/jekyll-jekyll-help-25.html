@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Better Objective-C syntax highlighting?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#25</span>
+        </p>
+        <h1>Better Objective-C syntax highlighting?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">forgot</a>
+            <time>Monday, April 28, 2014</time>
+          </div>
+          <div class="body">
+            <p>I know Jekyll supports Objective-C syntax highlighting now, but the Pygments implementation very bland. Is there a better way to do it? I&#39;ve searched for hours, and short of writing my own (which I have absolutely no idea how to do), I&#39;m beginning to believe this is the only option. Beggars can&#39;t be choosers, so if there&#39;s nothing else I&#39;ll be fine, but it never hurts to check.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, April 28, 2014</time>
+          </div>
+          <div class="body"><p>Are you looking for a CSS document which will make your Obj-C look better? Or for a better processor?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/forgot">
+              forgot
+            </a>
+            <time>Monday, April 28, 2014</time>
+          </div>
+          <div class="body"><p>A CSS document. Sorry for the lack of clarification...</p>
+<p>(The &quot;writing my own&quot; comment was in reference to a Pygments lexer. I have no problem with Pygments.)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Monday, April 28, 2014</time>
+          </div>
+          <div class="body"><p>What are you using already? I know I changed mine up a little in the name of getting it to fit in with Solarized, but I can&#39;t remember how much. Either way, my copy of the syntax stylesheet is pretty well commented as a starting point:</p>
+<p><a href="https://bitbucket.org/matthew-scharley/matt.scharley.me/src/d5531861bf9054537dd2fecacd873227ec1142c9/src/_sass/?at=master">https://bitbucket.org/matthew-scharley/matt.scharley.me/src/d5531861bf9054537dd2fecacd873227ec1142c9/src/_sass/?at=master</a></p>
+<p>You&#39;re looking at <code>_solarized.scss</code> for the colour definitions and <code>_syntax.scss</code> for the actual highlighting code.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Combine/uglify javascript? No plugins …</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#162</span>
+        </p>
+        <h1>Combine/uglify javascript? No plugins …</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">mhulse</a>
+            <time>Friday, October 03, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi,</p>
+<p>I&#39;m using the <code>gh-pages</code> gem.</p>
+<p>I&#39;m finally exploring the SCSS and Cofeescript capabilities of Jekyll (been using Grunt for this up until now).</p>
+<p>SCSS workflow is great, as I can use Sass to combine/minify my CSS (without plugins).</p>
+<p>I&#39;ve not used Coffeescript much, but it&#39;s looking like it doesn&#39;t have a feature to combine/uglify multiple JS files into one, no?</p>
+<p>The best solution I&#39;ve seen is to put my JS files in the <code>_includes</code> folder and use <code>{% include reset.css %}</code> (for example) to combine JS files into one (no uglification though).</p>
+<h3 id="questions-">Questions:</h3>
+<ol>
+<li>What&#39;s the best workflow to combine and uglify JS files use Jekyll without plugins (i.e., <code>gh-pages</code> gem compatible solution)?</li>
+<li>Are there future plans to allow Jekyll to combine and uglify JS files like Sass does with CSS?</li>
+</ol>
+<p>Thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Friday, October 03, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>What&#39;s the best workflow to combine and uglify JS files use Jekyll without plugins (i.e., <code>gh-pages</code> gem compatible solution)?</p>
+</blockquote>
+<p>Ah, this comment sounds promising:</p>
+<p><a href="https://github.com/jekyll/jekyll/pull/2870#issuecomment-54758772">Support a new <code>relative_include</code> tag #2870</a></p>
+<p>I guess I wouldn&#39;t mind using the <code>include</code> technique if I could relatively include JS files from my assets folder (vs. having to call JS files from <code>_includes</code>).</p>
+<p>Now I just have to wait several months until GitHub updates Jekyll! :laughing: </p>
+<p>I&#39;d still like to see uglification of JS though. Anyone know if JS uglification is on the roadmap for <code>gh-pages</code> non-plugin workflow?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Saturday, October 04, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Now I just have to wait several months until GitHub updates Jekyll! :laughing:</p>
+</blockquote>
+<p>Looks like relative includes already are supported in the <code>gh-pages</code> gem (thanks again @gjtorikian).</p>
+<p>It works via <code>gh-pages</code> v28. :+1: </p>
+<p>For example, here&#39;s <code>site.coffee</code>:</p>
+<pre><code class="lang-coffee">---
+---
+
+{% include_relative _partials/foo.js %}
+{% include_relative _partials/bar.js %}
+
+number = 42
+</code></pre>
+<p>And here&#39;s <code>foo.js</code>:</p>
+<pre><code class="lang-coffee">console.log &#39;foo&#39;
+</code></pre>
+<p>… and <code>bar.js</code>:</p>
+<pre><code class="lang-coffee">console.log &#39;bar&#39;
+</code></pre>
+<p>Here&#39;s the combined and preprocessed <code>site.js</code>:</p>
+<pre><code class="lang-js">(function() {
+  var number;
+
+  console.log(&#39;foo&#39;);
+
+  console.log(&#39;bar&#39;);
+
+  number = 42;
+
+}).call(this);
+</code></pre>
+<p>Cool!!!!</p>
+<p>Now, if only there was a non-plugin way to uglify JS code … Perhaps liquid has something I can utilize?</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>SCSS compiles but SASS does not (v2.0.2)</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#34</span>
+        </p>
+        <h1>SCSS compiles but SASS does not (v2.0.2)</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ajkochanowicz</a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body">
+            <p>In a new project, I removed main.css and replaced it with main.sass.</p>
+<p>I included the two lines of &quot;---&quot; and just wrote</p>
+<pre><code>body
+  background-color: red
+</code></pre><p>This was copied as main.sass in _site/css when building.</p>
+<p>Changing this to main.scss and</p>
+<pre><code>body {
+  background-color: red;
+}
+</code></pre><p>It compiles to main.css in _site/css as you would expect.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ajkochanowicz">
+              ajkochanowicz
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><p>Moving to main Jekyll issues.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>For Loops seem to break</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#100</span>
+        </p>
+        <h1>For Loops seem to break</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">jcm2226</a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body">
+            <p>I upgraded Jekyll and Ruby, and my for loops seem to have broken.</p>
+<p>Liquid Exception: Syntax Error in &#39;for loop&#39; - Valid syntax: for [item] in [collection] in blog.html</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body"><p>Would you please post your code or a not working example? The error is reported as a <strong>syntax</strong> error.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jcm2226">
+              jcm2226
+            </a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body"><p>This is the only for loop in the layout, and it still throws an error.</p>
+<p>&lt;pre&gt;&lt;code&gt;{% for post in site.posts limit:4 %}
+
+{{ post.title }}
+
+{{ post.date | date: &#39;%B&#39; }} {{ post.date | date: &#39;%e&#39; }}, {{ post.date | date: &#39;%Y&#39; }}
+
+{{ post.excerpt }}
+
+{% endfor %}&lt;/code&gt;&lt;/pre&gt;</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body"><p>Strange. Can you post some surrounding code? Because from what we have here this should work.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jcm2226">
+              jcm2226
+            </a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body"><p>This is the entire body element:</p>
+<pre><code>&lt;body&gt;
+  &lt;div class=&quot;row-fluid&quot;&gt;
+    &lt;div class=&quot;span1 visible-desktop&quot;&gt;&lt;/div&gt;
+ { % include menu.html % }
+
+      &lt;div class=&quot;span12&quot; style=&quot;margin:0px;margin-top:10px&quot;&gt;
+
+      &lt;div class=&quot;span3 well&quot; height=&quot;100%&quot;&gt;&lt;p class=&quot;lead&quot;&gt;Posts&lt;/p&gt;
+{% for post in site.posts limit:4 %}
+&lt;h2&gt;
+    &lt;a href=&quot;/&quot; rel=&quot;bookmark&quot; title=&quot;Permanent link to &quot;&gt;{{ post.title }}&lt;/a&gt;
+&lt;/h2&gt;
+&lt;span&gt;{{ post.date | date: &#39;%B&#39; }} {{ post.date | date: &#39;%e&#39; }}, {{ post.date | date: &#39;%Y&#39; }}&lt;/span&gt;
+&lt;p&gt;
+    {{ post.excerpt }}
+&lt;/p&gt;
+{% endfor %}
+
+        &lt;div class=&quot;span9&quot;&gt;
+         &lt;p class=&quot;lead&quot;&gt; The Blog&lt;/p&gt;
+         &lt;div class=&quot;hero-unit&quot;&gt; {{content}} &lt;/div&gt;
+         &lt;div class=&quot;hero-unit&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+    &lt;div class=&quot;span1 visible-desktop&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;span12 navabar navbar-inner navbar-fixed-bottom&quot; style=&quot;margin:0px; padding-bottom:length;&quot;70px&quot;&gt;
+     &lt;h6 class=&quot;pull-left&quot;&gt;&lt;a href=&quot;picturecredit.html&quot;&gt;Picture credits&lt;/a&gt;&lt;/h6&gt;
+
+       &lt;h6 class=&quot;pull-right&quot; style=&quot;color: white&quot;&gt;Site &amp;copy; 2013&lt;/h6&gt;
+    &lt;/div&gt;
+
+&lt;/body&gt;
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jcm2226">
+              jcm2226
+            </a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body"><p>Wait a second. How do I turn HTML rendering off?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body"><p>Putting it in a code block with three back ticks: <a href="https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks">https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jcm2226">
+              jcm2226
+            </a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body"><p>Ah much better thanks.</p>
+<p>On Tue, Jul 22, 2014 at 1:34 PM, Philipp Rudloff <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x6e;&#111;&#x74;&#x69;&#x66;&#105;&#x63;&#97;&#x74;&#105;&#x6f;&#x6e;&#x73;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#x6e;&#111;&#x74;&#x69;&#x66;&#105;&#x63;&#97;&#x74;&#105;&#x6f;&#x6e;&#x73;&#x40;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>
+wrote:</p>
+<blockquote>
+<p>Putting it in a code block with three back ticks:
+<a href="https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks">https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks</a></p>
+<p>—
+Reply to this email directly or view it on GitHub
+<a href="https://github.com/jekyll/jekyll-help/issues/100#issuecomment-49781251">https://github.com/jekyll/jekyll-help/issues/100#issuecomment-49781251</a>.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jcm2226">
+              jcm2226
+            </a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body"><p>It worked before I upgraded Jekyll. I updated my Ruby environment to 2.1.1. I read the changelog for the latest release of jekyll. I checked my post markdown files, and they seem ok. I read the liquid bug reports. I&#39;m just stumped. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, July 23, 2014</time>
+          </div>
+          <div class="body"><p>I don&#39;t have time to test it myself, but I&#39;d be willing to bet it is breaking on the <code>limit:4</code> business. I&#39;d recommend checking out <a href="http://jekyllrb.com/docs/pagination/">Jekyll&#39;s Pagination docs</a> and use that instead of trying to drop a filter into your <code>for</code> loop.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, July 23, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m using <code>post in site.posts</code> to generate my blog posts as well. <code>limit:n</code> should not be the problem: <a href="https://github.com/kleinfreund/kleinfreund.github.io/blob/dev/index.html#L7-L36">https://github.com/kleinfreund/kleinfreund.github.io/blob/dev/index.html#L7-L36</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Thursday, July 24, 2014</time>
+          </div>
+          <div class="body"><p>@jcm2226 Your include syntax is broken:</p>
+<pre><code>{ % include menu.html % }
+</code></pre><p>It must be:</p>
+<pre><code>{% include menu.html %}
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>@jcm2226 What&#39;s the status of this? A lot of us have given some solutions, and I know at least I am curious to know if you got it working. I&#39;m going to close this issue for now, but if you&#39;re still having trouble, feel free to re-open it and let us know.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

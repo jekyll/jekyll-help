@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Installing Jekyll is out-dated</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#286</span>
+        </p>
+        <h1>Installing Jekyll is out-dated</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">starius</a>
+            <time>Saturday, March 28, 2015</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m trying to follow <a href="https://help.github.com/articles/using-jekyll-with-pages/#installing-jekyll">instructions</a> to install Jekyll.
+I&#39;m using ruby 1.9.1
+I got the following error:</p>
+<pre><code>ERROR:  Error installing github-pages:
+        public_suffix requires Ruby version &gt;= 2.0.
+</code></pre><p>This error happens if I run <code>bundler install</code> or <code>gem install github-pages</code>.</p>
+<p>I think, it is a result of new version of public_suffix, released Mar. 25, 2015.
+I&#39;ve found the following workaround: <code>gem install public_suffix -v 1.4.6</code></p>
+<p>After this, command <code>gem install github-pages</code> succeeded.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, April 02, 2015</time>
+          </div>
+          <div class="body"><p>Hi @starius, I believe Jekyll will install with no issues under Ruby &gt;= 2.0... that said it seems that you did a work around and worked. Remember to update your Ruby to 2.0+ if you still have any issues. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/starius">
+              starius
+            </a>
+            <time>Friday, April 03, 2015</time>
+          </div>
+          <div class="body"><p>I believe that the issue is not fixed. <a href="https://help.github.com/articles/using-jekyll-with-pages/#installing-jekyll">The instruction</a> says the following:</p>
+<blockquote>
+<p>Your Ruby version should begin with 1.9.3 or 2.0.0.</p>
+</blockquote>
+<p>This part is invalid, because the instruction doesn&#39;t  work with Ruby 1.9.3, if you don&#39;t apply the workaround, which isn&#39;t mentioned in the instruction.</p>
+<blockquote>
+<p>Remember to update your Ruby to 2.0+</p>
+</blockquote>
+<p>Easier said than done. This would require me to upgrade gcc to 4.9, which means upgrading almost all packages from Debian Wheezy to Debian Testing. I use my workaround and want to share it with other users of Ruby 1.9.</p>
+<p>Could you change the instruction, please? I think, it worth to mention about the problem with Ruby 1.9 and the workaround. Or you can remove <code>should begin with 1.9.3</code> part from the instruction.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Friday, April 03, 2015</time>
+          </div>
+          <div class="body"><p>@starius, current stable jekyll (version 2.5.x) does work under Ruby 1.9.3... but this <a href="https://www.ruby-lang.org/en/news/2015/02/23/support-for-ruby-1-9-3-has-ended/">ruby has reached the end of life</a> and I will not advice installing a not supported ruby... That said, documentation for this version is correct. Remember that if you find any issues with the documentation you can submit a pull request to fix this. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/KurtPfeifle">
+              KurtPfeifle
+            </a>
+            <time>Monday, May 04, 2015</time>
+          </div>
+          <div class="body"><p>I currently have the same issue on OS X with...</p>
+<ol>
+<li>...first a Ruby v1.9.3 (installed via MacPorts)</li>
+<li>...second the system-provided Ruby v2.0.0 (installed by Apple)</li>
+<li>...third, a Ruby v2.0.0 (installed via MacPorts)</li>
+<li>...fourth, a Ruby v2.2.2 (installed via MacPorts)</li>
+</ol>
+<p>I&#39;ll now try the workaround...</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/KurtPfeifle">
+              KurtPfeifle
+            </a>
+            <time>Monday, May 04, 2015</time>
+          </div>
+          <div class="body"><p>Nope -- the workaround proposed by @starius doesn&#39;t work here. For neither version of Ruby.</p>
+<p>Because meanwhile I also tested said &quot;workaround&quot; in combination with a (reverted back to) Ruby v1.9 and an additionally installed Ruby v2.1.</p>
+<pre><code>kp@mbp:&gt;  sudo gem install public_suffix -v 1.4.6
+  Fetching: public_suffix-1.4.6.gem (100%)
+  Successfully installed public_suffix-1.4.6
+  1 gem installed
+  Installing ri documentation for public_suffix-1.4.6...
+  Building YARD (yri) index for public_suffix-1.4.6...
+  [warn]: Could not find readme file: README.rdoc
+  Installing RDoc documentation for public_suffix-1.4.6...
+
+kp@mbp:&gt;  ruby --version
+  ruby 2.0.0p645 (2015-04-13 revision 50299) [x86_64-darwin13]
+
+kp@mbp:&gt;  gem list public_suffix
+  *** LOCAL GEMS ***
+  public_suffix (1.4.6)
+
+kp@mbp:&gt;  sudo gem install github-pages
+  Fetching: github-pages-health-check-0.3.0.gem (100%)
+  Fetching: terminal-table-1.4.5.gem (100%)
+  Fetching: github-pages-34.gem (100%)
+  ERROR:  Error installing github-pages:
+          github-pages requires Ruby version &gt;= 2.0.0.
+
+kp@mbp:&gt;  sudo port -pf install ruby21
+kp@mbp:&gt;  sudo rm -rf /opt/local/bin/ruby
+kp@mbp:&gt;  sudo ln -s /opt/local/bin/ruby2.1 /opt/local/bin/ruby
+
+kp@mbp:&gt;  ruby --version
+  ruby 2.1.6p336 (2015-04-13 revision 50298) [x86_64-darwin13]
+
+kp@mbp:&gt;  gem list public_suffix
+  *** LOCAL GEMS ***
+  public_suffix (1.4.6)
+
+kp@mbp:&gt;  sudo gem install github-pages
+  ERROR:  Error installing github-pages:
+          github-pages requires Ruby version &gt;= 2.0.0.
+
+kp@mbp:&gt;  sudo rm -rf /opt/local/bin/ruby
+kp@mbp:&gt;  sudo ln -s /opt/local/bin/ruby1.9 /opt/local/bin/ruby
+
+kp@mbp:&gt;  ruby --version
+  ruby 1.9.3p551 (2014-11-13 revision 48407) [x86_64-darwin13]
+
+kp@mbp:&gt;  gem list public_suffix
+  *** LOCAL GEMS ***
+  public_suffix (1.4.6)
+
+kp@mbp:&gt;  sudo gem install github-pages
+  ERROR:  Error installing github-pages:
+          github-pages requires Ruby version &gt;= 2.0.0.
+
+kp@mbp:&gt;  port installed ruby*
+  The following ports are currently installed:
+    ruby @1.8.7-p374_0+dtrace+tk (active)
+    ruby19 @1.9.3-p551_0+c_api_docs+doc+tk (active)
+    ruby20 @2.0.0-p645_0+doc (active)
+    ruby21 @2.1.6_0+doc (active)
+    ruby22 @2.2.2_0+doc (active)
+    ruby_select @1.0_0 (active)
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/starius">
+              starius
+            </a>
+            <time>Monday, May 04, 2015</time>
+          </div>
+          <div class="body"><p>Hi @KurtPfeifle,</p>
+<blockquote>
+<p>  ERROR:  Error installing github-pages:
+         github-pages requires Ruby version &gt;= 2.0.0.</p>
+</blockquote>
+<p>This requirement changed in <a href="https://rubygems.org/gems/github-pages/versions/34">github-pages version 34</a>, released April 8, 2015, after my comments were written (March 28, 2015 and April 3, 2015).</p>
+<p>Try to set github-pages&#39;s <a href="https://rubygems.org/gems/github-pages/versions/33">version 33</a>:</p>
+<pre><code class="lang-bash">$ sudo gem install github-pages -v 33
+</code></pre>
+<p>By the way make sure that <code>gem</code> tool is also updated, when you update <code>ruby</code>. As I remember, they can be of different versions... I don&#39;t have Mac to check it though. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/snarkmaster">
+              snarkmaster
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>Ubuntu 14.04.1 LTS packages Ruby 1.9.3, so this problem will continue well into 2019 (<a href="https://wiki.ubuntu.com/LTS">https://wiki.ubuntu.com/LTS</a>). So much for &quot;end of life&quot;, huh?</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

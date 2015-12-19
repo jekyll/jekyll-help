@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>when running jekyll serve ,error occurred,hitimes/hitimes (LoadError)</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#192</span>
+        </p>
+        <h1>when running jekyll serve ,error occurred,hitimes/hitimes (LoadError)</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">supercafe2013</a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi ,
+I&#39;m the greener to jekyll,after I installed Jekyll and run for it,error happened...
+According to the clues, I installed hittimes,but the problems still exists.</p>
+<pre><code>/Users/supercafe/my-awsome-site
+supercafes-MacBook-Pro:my-awsome-site supercafe$ jekyll serve
+Configuration file: /Users/supercafe/my-awsome-site/_config.yml
+            Source: /Users/supercafe/my-awsome-site
+       Destination: /Users/supercafe/my-awsome-site/_site
+      Generating...
+                    done.
+/usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;: cannot load such file -- hitimes/hitimes (LoadError)
+    from /usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/gems/2.0.0/gems/hitimes-1.2.2/lib/hitimes.rb:37:in `rescue in &lt;top (required)&gt;&#39;
+    from /usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/gems/2.0.0/gems/hitimes-1.2.2/lib/hitimes.rb:32:in `&lt;top (required)&gt;&#39;
+    from /usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/gems/2.0.0/gems/timers-4.0.1/lib/timers/group.rb:4:in `&lt;top (required)&gt;&#39;
+    from /usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /usr/local/Cellar/ruby/2.0.0-p0/lib/ruby/gems/2.0.0/gems/timers-4.0.1/lib/timers.rb:4:in `&lt;top (required)&gt;&#39;
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AlejandroCruz">
+              AlejandroCruz
+            </a>
+            <time>Saturday, January 17, 2015</time>
+          </div>
+          <div class="body"><p>I read that you were successful in resolving this issue in <a href="https://github.com/jekyll/jekyll/issues/3092">https://github.com/jekyll/jekyll/issues/3092</a> , how did you do it. Did you uninstall and reinstall hitimes and timers specifying versions? I tried the uninstall of both gems and then installing them and it did not resolve my issue. I was wondering if I missed a step or something.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Saturday, January 17, 2015</time>
+          </div>
+          <div class="body"><p>It seems like, I&#39;ll close the issue! thanks.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Please document how to invoke liquid filters from plugins</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#97</span>
+        </p>
+        <h1>Please document how to invoke liquid filters from plugins</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">randomphrase</a>
+            <time>Wednesday, July 16, 2014</time>
+          </div>
+          <div class="body">
+            <p>There is a general issue here regarding documentation which would (I think) resolve my specific issue.</p>
+<p>Basically it is not obvious as to how to invoke liquid filters from jekyll plugins. In some cases you can look through the source code to find the specific filter. Some live in liquid itself, in <code>standardfilters.rb</code>. There are others which live in jekyll, in <code>filters.rb</code>.</p>
+<p>Looking in the source code is apparently required, in order to identify the ruby module for the relevant function, and of course the function name itself. The <a href="http://docs.shopify.com/themes/liquid-documentation/filters">documentation</a> does not contain this information.</p>
+<p>However, apparently grepping the installed gems for the filter name is not sufficient to locate the source for some filters. Specifically, I can&#39;t locate the source for the <code>handleize</code> filter, and hence cannot invoke it from a plugin. Maybe it&#39;s just me, or some weird quirk of my install.</p>
+<p>I think all that would be required is to add module::function declaration for each filter in the documentation. This would help me at least. Thanks.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, July 16, 2014</time>
+          </div>
+          <div class="body"><p>This is a very interesting issue. I don&#39;t think filters were meant to be called from plug-ins which is why the documentation does not exist. What is your usecase?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/randomphrase">
+              randomphrase
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><p>OK, so I have to ask why this would be the case? I&#39;m going to take a guess and say that filters are intended to be simple wrappers around ruby library calls, and hence if you need to call the filter from a plugin you should in fact be calling the underlying ruby library instead. This sounds reasonable, but again kind of exposes a bit of a documentation problem... (What is the underlying ruby call in each case?)</p>
+<p>Anyway my specific use case is as follows. I&#39;m creating a per-category archive page. I&#39;m copying the sample plugin exactly, but I found that my category names need to be converted into something that can be put into a URL (and ideally match that of my original wordpress blog). For example &quot;foo bar baz&quot; category needs to be converted to &quot;foo-bar-baz&quot;. This needs to be done from within liquid (so that each blog post can link to the relevant category archive) and from the plugin (so that the category archive page can be created).</p>
+<p>So <code>handleize</code> does what I want, at least on the liquid side of things, and that&#39;s what I&#39;m using. On the plugin side it&#39;s not so easy. Now I could easily re-implement the <code>handleize</code> functionality in ruby, at least to the extent that it works for my categories, but this seems wrong. &quot;It should be easy to call the handleize function directly!&quot; I thought, apparently incorrectly. I guess I can do this if there&#39;s no better solution, but again it seems a bit hacky.</p>
+<p>Appreciate any further assistance, thanks.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>I have to ask why this would be the case?</p>
+</blockquote>
+<p>Liquid Filters (which is what these are) are for use in Liquid templates. That&#39;s why they exist – they aren&#39;t meant to be used in any Ruby code other than Liquid&#39;s internals. Why wouldn&#39;t you just do <code>{{ categories | handleize }}</code> from your category archive page liquid template?</p>
+<p>At any rate, it&#39;s luckily quite straightforward to use these filters in your ruby code. They&#39;re all modules, so you can include them:</p>
+<pre><code class="lang-ruby">class CategoryArchivePage
+  include Filters # this will change depending upon the module `handleize` belongs to
+  def handle
+    handleize(categories)
+  end
+end
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/randomphrase">
+              randomphrase
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><p>OK so looking into it a bit closer, looks like <code>handleize</code> doesn&#39;t work at all on my system. It just silently passes through whatever was passed to it. The example given in the documentation <code>{{ &#39;100% M &amp; Ms!!!&#39; | handleize }}</code> outputs &quot;100% M &amp; Ms!!!&quot; not the expected &quot;100-m-ms&quot;. How can I resolve this?</p>
+<p>Is it possible I am missing some gem or other? Again: where in the code is this <code>handleize</code> function actually defined, because I can&#39;t see it. Is this some kind of shopify-specific function?</p>
+<p>Thanks for the example code, but knowing the exact module name to include is exactly the problem I raised this ticket for. How am I to determine this other than asking, or just knowing it?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><p>@randomphrase Sorry for the confusion. If you can&#39;t find the code for it in either the Liquid or Jekyll source, it isn&#39;t available to Liquid.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><p>One option is to use <code>stringex</code> package and write your own handleize filter. Where are you seeing this handleize filter, anyway?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/randomphrase">
+              randomphrase
+            </a>
+            <time>Friday, July 18, 2014</time>
+          </div>
+          <div class="body"><p>I think this is most likely a documentation issue. The <a href="http://jekyllrb.com/docs/templates/">Jekyll documentation</a> says that &quot;all of the standard Liquid filters are available&quot; and provides a link to the shopify wiki, which in turn <a href="http://docs.shopify.com/themes/liquid-documentation/filters/string-filters#handle">describes the handelize filter</a></p>
+<p>So I guess one solution would be to remove the link to the shopify wiki, and add a description of (only) the standard liquid filters which are supported. Alternatively the shopify wiki could be updated to describe which were standard liquid filters and which were extensions.</p>
+<p>Is it a bug that using an unknown filter doesn&#39;t seem to generate an error, or even a warning?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Friday, July 18, 2014</time>
+          </div>
+          <div class="body"><p>@randomphrase Yeah, we should remove the shopify wiki link. It has proprietary filters, because it&#39;s for shopify.com templates (recently expanded beyond core liquid). Ultimately, we should point to docs for Liquid core, which are currently sparse as ever: <a href="http://shopify.github.io/liquid/">http://shopify.github.io/liquid/</a></p>
+<p>@fw42, do you have a designer I can work with to rewrite the shopify.github.io/liquid/ docs? We could version them alongside the liquid code so you can get docs &amp; new code all in one PR.</p>
+<blockquote>
+<p>Is it a bug that using an unknown filter doesn&#39;t seem to generate an error, or even a warning?</p>
+</blockquote>
+<p>I&#39;d certainly prefer Liquid to error out, but it&#39;s the Liquid core team&#39;s decision there. We should use the strict parser if there is one.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/fw42">
+              fw42
+            </a>
+            <time>Friday, July 18, 2014</time>
+          </div>
+          <div class="body"><p>@Tetsuro is one of the maintainers of the Shopify Documentation for Liquid. I talked with him and we will try to come up with something. We know that the Liquid core docs are terribly bad :-(</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Tetsuro">
+              Tetsuro
+            </a>
+            <time>Friday, July 18, 2014</time>
+          </div>
+          <div class="body"><p>Hey guys! Tets here, designer at Shopify. I recently re-did the <a href="http://docs.shopify.com/themes">Liquid Documentation for Shopify</a>. </p>
+<p>I totally understand where you guys are coming from. I don&#39;t have an immediate solution for this, but @fw42 and I will start brainstorming some solutions.  </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Friday, July 18, 2014</time>
+          </div>
+          <div class="body"><p>@Tetsuro @fw42 Thanks, guys! I am more than happy to help where I can. Just ping me in an issue/pr and I will jump in!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/randomphrase">
+              randomphrase
+            </a>
+            <time>Friday, July 18, 2014</time>
+          </div>
+          <div class="body"><p>Thanks a lot guys - I really appreciate the help</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Is it possible to iterate through site.posts and site.myCollection in dated order simultaneously?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#68</span>
+        </p>
+        <h1>Is it possible to iterate through site.posts and site.myCollection in dated order simultaneously?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">Daniel0524</a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body">
+            <p>Is there a good way to merge site.posts with a collection and iterate through them in dated order?</p>
+<p>For example if my site.posts has:</p>
+<ul>
+<li>Post A    24 May</li>
+<li>Post B    30 May</li>
+</ul>
+<p>And my site.myPhotoCollection</p>
+<ul>
+<li>Photo A    1 June</li>
+<li>Photo B    27 May</li>
+</ul>
+<p>I&#39;ve like to be able to create a listing page eg:</p>
+<pre><code>{% for each in merge(site.posts, site.myPhotoCollection) %}
+    {{each.title}}
+{% endfor %}
+`
+</code></pre><p>and have the output be:</p>
+<ul>
+<li>Photo A</li>
+<li>Post B</li>
+<li>Photo B</li>
+<li>Post A</li>
+</ul>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Daniel0524">
+              Daniel0524
+            </a>
+            <time>Thursday, June 05, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;ve tried doing it with crazy sorting logic using liquid, but it&#39;s such an enormous pain to do any sort of business logic with liquid tags. Any help would be great appreciated. Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, June 10, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m not sure about this and don&#39;t know if it&#39;s possible. Have you tried assign? something like <code>{% assign omg = site.posts %}</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>@Daniel0524 Any luck with this? The only thing I can think of trying is what @albertogg suggested.</p>
+<p>This looks interesting, and I will try to hack something together on my own to see what can be done.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Daniel0524">
+              Daniel0524
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>@troyswanson I just ended up using categories in lieu of a collections. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Ah, sounds good! Glad you figured it out :smile: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

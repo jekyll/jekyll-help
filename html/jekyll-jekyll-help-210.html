@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>error</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#210</span>
+        </p>
+        <h1>error</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">swtlovewtt</a>
+            <time>Friday, December 12, 2014</time>
+          </div>
+          <div class="body">
+            <p>run
+ gem install jekyll
+error
+While executing gem ... (Gem::FilePermissionError)
+    You don&#39;t have write permissions for the /Library/Ruby/Gems/2.0.0 directory.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Sunday, December 14, 2014</time>
+          </div>
+          <div class="body"><p>As the error states you don&#39;t have write permissions to where the gems are installed, you probably have to run the command as <code>sudo</code> although I would advice you to setup Ruby in a way where that won&#39;t happen :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/swtlovewtt">
+              swtlovewtt
+            </a>
+            <time>Sunday, December 14, 2014</time>
+          </div>
+          <div class="body"><p>thank you.
+sudo ,done</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

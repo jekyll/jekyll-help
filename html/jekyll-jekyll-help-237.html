@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Front matter defaults for collection&#x27;s documents in subfolders</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#237</span>
+        </p>
+        <h1>Front matter defaults for collection&#x27;s documents in subfolders</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">iloveip</a>
+            <time>Monday, January 12, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi there,</p>
+<p>I would like to organize collection&#39;s documents in subfolders and assign them different categories through front matter defaults. I have the following structure:</p>
+<pre><code>_kb
+    - category1
+        - article1.md
+    - category2
+        - article2.md
+</code></pre><p> In my <code>_config.yml</code> file I have:</p>
+<pre><code># Collections
+collections:
+  kb:
+    output: true
+    permalink: /kb/:name/
+
+# Defaults
+defaults:
+  -
+    scope:
+      path: &quot;_kb/category1/&quot;
+      type: &quot;kb&quot;
+    values:
+      category: &quot;category1&quot;
+  -
+    scope:
+      path: &quot;_kb/category2/&quot;
+      type: &quot;kb&quot;
+    values:
+      category: &quot;category2&quot;
+</code></pre><p>But this doesn&#39;t work. Any idea how I can assign different categories to documents in different subfolders through front-matter defaults?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pearsonca">
+              pearsonca
+            </a>
+            <time>Thursday, April 23, 2015</time>
+          </div>
+          <div class="body"><p>I have a similar problem.</p>
+<p>I&#39;ve tried <code>path: &quot;category&quot;</code> (with <code>type: &quot;collection&quot;</code>), <code>collection/category</code>, <code>_collection/category</code>, and assorted other combinations.  No luck yet!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Gist Inclusion</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#32</span>
+        </p>
+        <h1>Gist Inclusion</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">iamgabeortiz</a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body">
+            <p>Is it me or did something change?</p>
+<p>This doesn&#39;t work <code>{% gist 8d38d89e7cba8dbaad61 %}</code> <a href="http://gabeortiz.com/posts/jekyll-gist-issue-test">@example</a></p>
+<p>But this does <code>{% gist iamgabeortiz/8d38d89e7cba8dbaad61 %}</code> <a href="http://gabeortiz.com/posts/open-external-links-new-tab-via-jquery">@example</a></p>
+<p>Eventhough all my gists are Public.  According to <a href="http://jekyllrb.com/docs/templates/">Jekyll Templates</a> that should not be the case.  Of course I could be a newb. :stuck_out_tongue:</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>Looks like that script isn&#39;t legit anymore. Looking into it...</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>Hmm. I don&#39;t know much about the gist feature, but you&#39;re right, you have to include your username in the string. I&#39;ll make a quick pull request to update the docs. Thanks for the report!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>And just like that, docs have been updated! That&#39;s how we roll here. :rabbit: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>Move fast and make things better.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

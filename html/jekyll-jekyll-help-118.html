@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>liquid templating not evaluated in collection when parsing all collection items together on one page</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#118</span>
+        </p>
+        <h1>liquid templating not evaluated in collection when parsing all collection items together on one page</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">MartijnR</a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body">
+            <p>I have added a collection called &quot;sections&quot; to my jekyll site. When I try to display all the sections (markdown pages) on the index.html page, the liquid template directives are not evaluated. </p>
+<p>E.g. in 01-test.md:  <code>{{ site.url }}</code> is displayed as {{ site.url }}</p>
+<p>When I slightly change the site and use _posts instead of _sections, the liquid tags are correctly evaluated. </p>
+<p>Example: <a href="https://github.com/enketo/odk-xform-spec">https://github.com/enketo/odk-xform-spec</a> (which is live <a href="http://enketo.github.io/odk-xform-spec/">here</a>)</p>
+<p>Is there a way to get liquid tags of pages inside collections to be evaluated?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/MartijnR">
+              MartijnR
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>Just noticed markdown is also not rendered. Hmmm, I must be missing something elementary here.</p>
+<p>update:
+Using this inside the site.sections loop solves the markdown issue but not the liquid issue:</p>
+<pre><code>{% capture content %}{{ section.content }}{% endcapture %}
+{{ content | markdownify }}
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>Can you double check that you&#39;re running a version of Jekyll that supports collections?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/MartijnR">
+              MartijnR
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>Confirmed. I&#39;m using version 2.2.0</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ivantsepp">
+              ivantsepp
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>You need to set <code>output: true</code> to render your collection files (<a href="http://jekyllrb.com/docs/collections/#step-3-optionally-render-your-collections-documents-into-independent-files">doc</a>).</p>
+<p>So, in your repo:</p>
+<pre><code class="lang-yaml">collections:
+  sections:
+    output: true
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/MartijnR">
+              MartijnR
+            </a>
+            <time>Thursday, August 21, 2014</time>
+          </div>
+          <div class="body"><p>Thanks @ivantsepp. I have tried this (and now also updated that in the repo linked above), but it does not resolve the issue.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ivantsepp">
+              ivantsepp
+            </a>
+            <time>Thursday, August 21, 2014</time>
+          </div>
+          <div class="body"><p><a href="http://enketo.github.io/odk-xform-spec/sections/01-test.html">http://enketo.github.io/odk-xform-spec/sections/01-test.html</a>, does that look right to you?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/MartijnR">
+              MartijnR
+            </a>
+            <time>Thursday, August 21, 2014</time>
+          </div>
+          <div class="body"><p>Yes, it does.  Sorry, I should rewrite that the issue I&#39;m experiencing occurs when trying to parse all the sections together on the home page: <a href="https://github.com/enketo/odk-xform-spec/blob/gh-pages/index.html">https://github.com/enketo/odk-xform-spec/blob/gh-pages/index.html</a>. </p>
+<p>I&#39;ll change the description. </p>
+<p>I won&#39;t actually require each section to be published on a separate html page.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/MartijnR">
+              MartijnR
+            </a>
+            <time>Thursday, August 21, 2014</time>
+          </div>
+          <div class="body"><p>This is where I feel I&#39;m missing something to get liquid tags to be processed properly when iterating through a collection: <a href="https://github.com/enketo/odk-xform-spec/blob/gh-pages/index.html#L18">https://github.com/enketo/odk-xform-spec/blob/gh-pages/index.html#L18</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ivantsepp">
+              ivantsepp
+            </a>
+            <time>Thursday, August 21, 2014</time>
+          </div>
+          <div class="body"><p>Ah, sorry for misunderstanding your issue in the first place. In that case, <code>output: true</code> isn&#39;t needed. Can you try using <code>{{section.output}}</code> instead?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/MartijnR">
+              MartijnR
+            </a>
+            <time>Thursday, August 21, 2014</time>
+          </div>
+          <div class="body"><p>Ouch, I missed that in the documentation!</p>
+<p>Thanks so much! Works like a charm now!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

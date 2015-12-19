@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Extra Empty Nav Elements being created?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#63</span>
+        </p>
+        <h1>Extra Empty Nav Elements being created?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">jbishop228</a>
+            <time>Monday, June 02, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,</p>
+<p>I&#39;m developing my first Jekyll site, a design portfolio. I&#39;ve got the basic setup going, by following the installation guide on the Jekyll site, and I&#39;ve made a few sample pages duplicating the about.md example, and posts duplicating the example in the _post directory.</p>
+<p>It&#39;s great that it automatically adds the nav when a new markdown page is created, but one thing I&#39;ve noticed is that there&#39;s an extra nav element being created. It appears it goes to the feed.xml page when collapsed to the hamburger menu, and one is completely empty when fully expanded. I can&#39;t figure out what or why these extra spaces are being added into the main nav. </p>
+<p>Any ideas as to what could this be and how can I avoid it? </p>
+<p>Thanks in advance for any help,
+Jason</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jbishop228">
+              jbishop228
+            </a>
+            <time>Monday, June 02, 2014</time>
+          </div>
+          <div class="body"><p>Here&#39;s my Jekyll directory structure:</p>
+<p>_archive
+_config.yml
+_includes
+_layouts
+_plugins
+_posts
+_site
+.git
+.gitignore
+about.md
+contact.md
+css
+index.html
+portfolio.md
+README.md</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>I&#39;ve noticed is that there&#39;s an extra nav element being created</p>
+</blockquote>
+<p>The page with the extra nav contains a layout name:</p>
+<pre><code class="lang-html">---
+layout: foo
+---
+&lt;!-- content --&gt;
+</code></pre>
+<p>Go to <code>_layouts/foo.html</code>, the nav must be there. If not, look in the parent layout. It’s the layout, that may be referenced in the <code>foo.html</code>:</p>
+<pre><code class="lang-html">---
+layout: bar
+---
+&lt;!-- content --&gt;
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/RussEby">
+              RussEby
+            </a>
+            <time>Saturday, June 14, 2014</time>
+          </div>
+          <div class="body"><p>I noticed the same thing. I looked at the default site that Jekyll creates when you just type in new. The extra elements were there as well.</p>
+<p>What I&#39;m doing:
+I&#39;m using the &#39;for page in site.pages&#39; to create a li element for the nav section.  </p>
+<p>What it&#39;s doing:
+It&#39;s creating a li element for every file including the files without a page.title, thus causing an empty li element.</p>
+<p>How I solved it:
+I did a test and it only made the li element if there was a page.title.</p>
+<pre><code>{% for page in site.pages %}
+{% if page.title %}
+&lt;li&gt;
+ &lt;a href=&quot;{{ page.url | prepend: site.baseurl }}&quot;&gt;{{ page.title }}&lt;/a&gt;
+&lt;/li&gt;
+{% endif %}
+{% endfor %}
+</code></pre><p>Hope this helps.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, July 06, 2014</time>
+          </div>
+          <div class="body"><p>@RussEby :metal: </p>
+<p><img src="http://i.imgur.com/fypAmty.gif" alt="That&#39;s a bingo!"></p>
+<p>You could also add something into the front-matter of the files that you want to show up in the nav, like <code>nav: yes</code> or something like that. Be aware of YAML boolean values, though - they can be a little tricky. Check out <a href="https://github.com/jekyll/jekyll/issues/2508#issuecomment-45940721">https://github.com/jekyll/jekyll/issues/2508#issuecomment-45940721</a> for some more detail.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

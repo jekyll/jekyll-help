@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Installation </title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#207</span>
+        </p>
+        <h1>Installation </h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">FabianCernota</a>
+            <time>Saturday, December 06, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hey, 
+i get the following error while install  jekyll via gem:</p>
+<p>ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.</p>
+<pre><code>    /usr/bin/ruby1.9.1 extconf.rb
+</code></pre><p>/usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in <code>require&#39;: cannot load such file -- mkmf (LoadError)
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in</code>require&#39;
+    from extconf.rb:1:in `&lt;main&gt;&#39;</p>
+<p>Thanks
+Fabian</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/redknitin">
+              redknitin
+            </a>
+            <time>Saturday, December 06, 2014</time>
+          </div>
+          <div class="body"><p>@FabianCernota You are probably just missing the Ruby Dev package. You can install it on Ubuntu or other Debian-based Linux by typing in a terminal window: <code>sudo apt-get install ruby-dev</code> . On a Fedora/RedHat-based Linux, it would be a <code>sudo yum install ruby-devel</code></p>
+<p>After installing Ruby Dev, attempt to install the Jekyll gem again.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bradhowes">
+              bradhowes
+            </a>
+            <time>Tuesday, December 16, 2014</time>
+          </div>
+          <div class="body"><p>You will also need &#39;make&#39; and &#39;gcc&#39;.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/KitN">
+              KitN
+            </a>
+            <time>Thursday, January 29, 2015</time>
+          </div>
+          <div class="body"><p>Thanks, bradhowes. I had trouble with <code>gem install jekyll</code> but <code>apt-get install make</code> worked for me on Debian.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

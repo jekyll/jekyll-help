@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Cannot configure jekyll with github-pages</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#158</span>
+        </p>
+        <h1>Cannot configure jekyll with github-pages</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">bdgrider</a>
+            <time>Wednesday, September 24, 2014</time>
+          </div>
+          <div class="body">
+            <p>I installed github-pages, and attempted to run Jekyll with Bundler in a way that matches the github pages build server, but I keep getting this error.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/6391122/4397892/7a3f3452-444a-11e4-8175-793d82b4d322.jpg" alt="jekyllerror"></p>
+<p>I&#39;ve seen a few issues that appear related, but nothing I&#39;ve tried works. Ideas anyone?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bdgrider">
+              bdgrider
+            </a>
+            <time>Wednesday, September 24, 2014</time>
+          </div>
+          <div class="body"><p>The full output:</p>
+<pre><code>$ bundle exec jekyll serve
+Configuration file: /cygdrive/c/jekyllTest/_config.yml
+            Source: /cygdrive/c/jekyllTest
+       Destination: /cygdrive/c/jekyllTest/_site
+      Generating...
+  Liquid Exception: cannot load such file -- rouge in _posts/2014-09-23-Random-photo-script.md/#excerpt
+/usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/tags/highlight.rb:102:in `require&#39;: cannot load such file -- rouge (LoadError)
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/tags/highlight.rb:102:in `render_rouge&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/tags/highlight.rb:53:in `render&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/liquid-2.6.1/lib/liquid/block.rb:109:in `block in render_all&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/liquid-2.6.1/lib/liquid/block.rb:96:in `each&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/liquid-2.6.1/lib/liquid/block.rb:96:in `render_all&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/liquid-2.6.1/lib/liquid/block.rb:82:in `render&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/liquid-2.6.1/lib/liquid/template.rb:128:in `render&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/liquid-2.6.1/lib/liquid/template.rb:138:in `render!&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/convertible.rb:105:in `render_liquid&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/convertible.rb:234:in `do_layout&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/post.rb:258:in `render&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/site.rb:263:in `block in render&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/site.rb:262:in `each&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/site.rb:262:in `render&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/site.rb:45:in `process&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/command.rb:28:in `process_site&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/commands/build.rb:55:in `build&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/commands/build.rb:33:in `process&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/lib/jekyll/commands/serve.rb:24:in `block (2 levels) in init_with_program&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `call&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `block in execute&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `each&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `execute&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/mercenary-0.3.4/lib/mercenary/program.rb:35:in `go&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/mercenary-0.3.4/lib/mercenary.rb:22:in `program&#39;
+        from /usr/lib/ruby/gems/1.9.1/gems/jekyll-2.3.0/bin/jekyll:18:in `&lt;top (required)&gt;&#39;
+        from /usr/bin/jekyll:23:in `load&#39;
+        from /usr/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/fabianrbz">
+              fabianrbz
+            </a>
+            <time>Sunday, September 28, 2014</time>
+          </div>
+          <div class="body"><p>@bdgrider do you have rouge installed?
+try <code>gem install rouge</code> and re-run jekyll</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bdgrider">
+              bdgrider
+            </a>
+            <time>Sunday, September 28, 2014</time>
+          </div>
+          <div class="body"><p>I had it installed. Ended up using pygments instead and got it to work. Thanks though.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

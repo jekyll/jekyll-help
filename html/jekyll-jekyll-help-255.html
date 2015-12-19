@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Simple way to do case-insensitive sort?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#255</span>
+        </p>
+        <h1>Simple way to do case-insensitive sort?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">egardner</a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hello-</p>
+<p>I&#39;m trying to figure out if there is a straightforward way to sort a list of tags in <strong>case-insensitive</strong> order.</p>
+<p>Right now my tags post looks like this:</p>
+<pre><code>&lt;ul&gt;
+  {% assign sorted_tags = site.tags | sort %}
+  {% for tag in sorted_tags %}
+    &lt;h4 id=&quot;{{tag[0]}}&quot; class=&quot;meta&quot;&gt;{{tag[0] | upcase}}&lt;/h4&gt;
+    &lt;br&gt;
+    {% for tagged_post in tag[1] %}
+      &lt;a href=&quot;{{site.baseurl}}{{tagged_post.url}}&quot;&gt;{{tagged_post.title}}&lt;/a&gt;
+      &lt;br&gt;
+    {% endfor %}
+    &lt;hr&gt;
+  {% endfor %}
+&lt;/ul&gt;
+</code></pre><p>This returns the capitalized Tag names first, followed by lowercase names, in alphabetical order. I&#39;d rather just upcase/downcase everything before sorting so the capitalization of the tag name doesn&#39;t matter.</p>
+<p>Is this a place to use the <code>map</code> filter? There is not very much documentation on how to use this on either the Jekyll or Shopify docs, so I&#39;m sort of at a loss there.</p>
+<p>Thanks for reading!</p>
+<p>Edit: the repo in question is <a href="https://github.com/gettypubs/beyond-the-printed-page">here</a> for reference.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tkrotoff">
+              tkrotoff
+            </a>
+            <time>Wednesday, February 25, 2015</time>
+          </div>
+          <div class="body"><p>I have the same problem. I&#39;ve opened an issue at <a href="https://github.com/Shopify/liquid/issues/529">https://github.com/Shopify/liquid/issues/529</a> asking for adding case-insensitive sort.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tkrotoff">
+              tkrotoff
+            </a>
+            <time>Tuesday, March 03, 2015</time>
+          </div>
+          <div class="body"><p>@egardner I&#39;ve created a filter sort_casecmp that does what you want: <a href="https://github.com/tkrotoff/osteo15.com/commit/c7a25082b5d4c83c4d6c75db3ede3395c0277b80">https://github.com/tkrotoff/osteo15.com/commit/c7a25082b5d4c83c4d6c75db3ede3395c0277b80</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

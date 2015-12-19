@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Any idea of how get Jekyll work under c9.io?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#170</span>
+        </p>
+        <h1>Any idea of how get Jekyll work under c9.io?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">isorna</a>
+            <time>Monday, October 13, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi there, I&#39;m a big fan of c9.io ide, as I&#39;m working with a Chromebook, but there seems I&#39;m not doing something well, as I can&#39;t get Jekyll (or Poole) working under my c9 project.</p>
+<p>It&#39;s there anyone who managed to achieve it?</p>
+<p>Regards</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Monday, October 13, 2014</time>
+          </div>
+          <div class="body"><p>Hi!
+I just set up a custom workspace on c9, and managed to get Jekyll working from there:</p>
+<ol>
+<li>In Terminal, install Jekyll with <code>gem install jekyll</code></li>
+<li><code>cd</code> to the directory that contains your Jekyll site</li>
+<li>Run <code>jekyll serve --port $PORT</code></li>
+<li>Visit your site at <code>http://&lt;workspacename&gt;-c9-&lt;username&gt;.c9.io</code></li>
+</ol>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/isorna">
+              isorna
+            </a>
+            <time>Wednesday, October 15, 2014</time>
+          </div>
+          <div class="body"><p>Thank you very much Alfred!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

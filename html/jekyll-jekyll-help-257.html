@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Liquid assign tag and filters</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#257</span>
+        </p>
+        <h1>Liquid assign tag and filters</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">mdotasia</a>
+            <time>Wednesday, January 28, 2015</time>
+          </div>
+          <div class="body">
+            <p>I have a collection <strong>classification</strong>. In a template I want to read one item from the collection based on a front matter <code>id</code> value.</p>
+<p>I thought this is straightforward. But then I noticed (using the Octopress debugger) that after executing</p>
+<pre><code>{% assign item = site.classification | where:&quot;id&quot;,&quot;xyz&quot; %}
+{% debug %}
+</code></pre><p><strong>item</strong> contains a flattened String representation of the collection item and not the collection item itself (as I would have expected). I noticed the same for the <strong>group_by</strong> filter. It seems that the assign tag in conjunction with these filter flattens the result to a String. It does not seem to be the filter itself. Jekyll&#39;s where filter seems fine when I look at the source code.</p>
+<p>When I do</p>
+<pre><code>{% assign item = site.classification %}
+{% debug %}
+</code></pre><p><strong>without filter</strong>, the debugger shows me that <strong>item</strong> contains the actual collection as it should. </p>
+<p>What is the expected behavior when applying the filters mentioned here: <a href="http://jekyllrb.com/docs/templates/?">http://jekyllrb.com/docs/templates/?</a></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mdotasia">
+              mdotasia
+            </a>
+            <time>Wednesday, January 28, 2015</time>
+          </div>
+          <div class="body"><p>Just read in Liquid docs that filters can be applied only to output tags <code>{{ }}</code>. Is there any way to select a subset from a collection other than iterating through the collection with a for loop?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Thursday, February 05, 2015</time>
+          </div>
+          <div class="body"><p>Try the <code>where</code> filter.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

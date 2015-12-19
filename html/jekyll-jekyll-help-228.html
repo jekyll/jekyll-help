@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Build problem - _config.yml format</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#228</span>
+        </p>
+        <h1>Build problem - _config.yml format</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">sr-murthy</a>
+            <time>Monday, January 05, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi</p>
+<p>I&#39;m starting my blog site from scratch (I cloned <code>poole/hyde</code>) and I&#39;m am trying to test the site locally using <code>bundle exec jekyll build</code> (I have added a Gemfile to the root of the source folder).  Now I&#39;m getting the following error:</p>
+<p>I am trying to build and test the site locally, using <code>bundle exec jekyll build</code>
+(I’ve added a Gemfile to the root of the source folder) but I’m now getting
+the following error:</p>
+<pre><code>$bundle exec jekyll build --watch
+jekyll 2.4.0 | Error:  (/Users/srm/Documents/sandeep/cst/content/sites/sr-murthy.github.io/_config.yml): did not find expected key while parsing a block mapping at line 3 column 1
+</code></pre><p>The first three lines of <code>_config.yml</code> are</p>
+<pre><code>--- 
+# Site setup, content, dependencies and global properties
+title: &#39;free to code&#39;
+</code></pre><p>Please help.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, January 06, 2015</time>
+          </div>
+          <div class="body"><p>Remove the first line <code>---</code> and try again.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sr-murthy">
+              sr-murthy
+            </a>
+            <time>Tuesday, January 06, 2015</time>
+          </div>
+          <div class="body"><p>Thanks, I had fixed it yesterday.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

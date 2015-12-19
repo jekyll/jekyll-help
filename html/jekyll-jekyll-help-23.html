@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Make a theme installable and upgradeable</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#23</span>
+        </p>
+        <h1>Make a theme installable and upgradeable</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">penibelst</a>
+            <time>Friday, April 25, 2014</time>
+          </div>
+          <div class="body">
+            <p>Let me first explain, how I define a <em>theme</em>. It’s a bunch of files and configurations, that a user can try out inside an existing installation <em>without</em> affecting the previous theme.</p>
+<p>I end up in the following namespace scenario for the theme Mytheme:</p>
+<ul>
+<li><p>Layouts live in the directory <code>_mytheme</code>. The <code>_config.yml</code> must be changed to:</p>
+<pre><code class="lang-yml">layouts: ./_mytheme
+</code></pre>
+</li>
+<li><p>Includes live in the directory <code>_includes/mytheme</code>.</p>
+</li>
+<li>External libraries live in the directory <code>mytheme</code>.</li>
+<li>Settings live in the variable <code>mytheme</code> inside of <code>_config.yml</code>.</li>
+</ul>
+<p>I provide three scattered directories. The user should never modify them by hand. She should only set the options in the config. The installation should be foolproof. The upgrade should be <em>one action</em> only. </p>
+<p>My ideas:</p>
+<ol>
+<li><p>Maintain one theme repository. Provide a bash script that clones (git) my theme repository in a temporary directory. Then the directories get copied to the right places inside of user’s source. Existing <code>mytheme</code> files get overridden. The user executes the same script if she wants to upgrade the theme.</p>
+</li>
+<li><p>Maintain three theme repositories, one for every directory. Provide a bash script that creates three git submodules inside of user’s source. Provide a second script for the upgrade procedure.</p>
+</li>
+<li><p>Maintain three theme repositories. Use a package manager like Bower to handle installation and upgrade procedures.</p>
+</li>
+</ol>
+<p>What is the easiest way to install such a theme composed of three directories? How do you create installable and upgradeable themes?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Friday, April 25, 2014</time>
+          </div>
+          <div class="body"><p>We&#39;re going to solve this with Octopress Ink, by @imathis. I&#39;m hoping to integrate Octopress Ink into Jekyll proper once the kinks have been worked out and with @imathis&#39;s support/permission. Please take a look at this: <a href="https://github.com/octopress/ink">https://github.com/octopress/ink</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Saturday, April 26, 2014</time>
+          </div>
+          <div class="body"><p>@parkr Thank you for the hint! As I see in the <a href="https://github.com/octopress/ink/commits/master">commit history</a>, it will take a while until theme authors can try Octopress Ink out. I will wait 3&nbsp;months and ask again.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

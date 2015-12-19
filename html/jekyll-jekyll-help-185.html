@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Page build failure</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#185</span>
+        </p>
+        <h1>Page build failure</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tjmapes</a>
+            <time>Tuesday, November 04, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m sorry if this is a duplicate but I&#39;m new to SCSS and keep getting emailed with this when trying to commit any changes:</p>
+<blockquote>
+<p>The page build failed with the following error:
+The file <code>blog/css/main.scss</code> contains syntax errors. For more information, see 
+<a href="https://help.github.com/articles/page-build-failed-markdown-errors">https://help.github.com/articles/page-build-failed-markdown-errors</a>.
+If you have any questions please contact us at <a href="https://github.com/contact">https://github.com/contact</a>.</p>
+</blockquote>
+<p>My compiler is telling me the following:</p>
+<blockquote>
+<p>Invalid CSS after &quot;-&quot;: expected number or function, was &quot;--&quot;</p>
+</blockquote>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tjmapes">
+              tjmapes
+            </a>
+            <time>Tuesday, November 04, 2014</time>
+          </div>
+          <div class="body"><p>Note, I&#39;m brand new to Jekyll and am just trying to wrap my head around it.  A bit obsessed ATM and really want to get things working smoothly to learn as much as possible about Jekyll.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, November 05, 2014</time>
+          </div>
+          <div class="body"><p>Would be helpful to see that SCSS. Can you link to it in that repo?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tjmapes">
+              tjmapes
+            </a>
+            <time>Wednesday, November 05, 2014</time>
+          </div>
+          <div class="body"><p>Sure thing @kleinfreund thank you.
+<a href="https://github.com/tjmapes/tjmapes.github.io/blob/946691f7460831727975baf829e4ebe379039e5b/blog/css/main.scss">https://github.com/tjmapes/tjmapes.github.io/blob/946691f7460831727975baf829e4ebe379039e5b/blog/css/main.scss</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Wednesday, November 05, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m not entirely sure about this, but I think you (now) need to add <code>layout: null</code> in your front matter</p>
+<p>so, instead of </p>
+<pre><code>---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+</code></pre><p>try this:</p>
+<pre><code>---
+layout: null
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tjmapes">
+              tjmapes
+            </a>
+            <time>Wednesday, November 05, 2014</time>
+          </div>
+          <div class="body"><p>Thanks @budparr.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

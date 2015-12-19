@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>SASS won’t compile with jekyll build</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#132</span>
+        </p>
+        <h1>SASS won’t compile with jekyll build</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ndarville</a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body">
+            <p>On <a href="https://github.com/ndarville/jekyll-boilerplate/blob/699840d35521e01c79a4c2d4a9e13887ede120f2/static/css/style.scss">this</a> project (YAML header included in local version), I get the error below, when running <code>jekyll build --trace</code>.</p>
+<p>I have tried appending <code>.scss</code> to the imports, but I get the same error.</p>
+<pre><code class="lang-sh">$ jekyll build --trace
+Notice: for 10x faster LSI support, please install http://rb-gsl.rubyforge.org/
+Configuration file: none
+            Source: /jekyll-boilerplate/static/css
+       Destination: /jekyll-boilerplate/static/css/_site
+      Generating... 
+  Conversion error: There was an error converting &#39;style.scss&#39;.
+(sass):1: File to import not found or unreadable: _reset. (Sass::SyntaxError)
+</code></pre>
+<pre><code class="lang-sh">Load path: /jekyll-boilerplate/static/css/_sass
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/import_node.rb:66:in `rescue in import&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/import_node.rb:45:in `import&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/import_node.rb:28:in `imported_file&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/import_node.rb:37:in `css_import?&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/perform.rb:283:in `visit_import&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/base.rb:36:in `visit&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/perform.rb:152:in `block in visit&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/stack.rb:79:in `block in with_base&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/stack.rb:121:in `with_frame&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/stack.rb:79:in `with_base&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/perform.rb:152:in `visit&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/base.rb:52:in `block in visit_children&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/base.rb:52:in `map&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/base.rb:52:in `visit_children&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/perform.rb:161:in `block in visit_children&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/perform.rb:173:in `with_environment&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/perform.rb:160:in `visit_children&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/base.rb:36:in `block in visit&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/perform.rb:180:in `visit_root&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/base.rb:36:in `visit&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/perform.rb:151:in `visit&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/visitors/perform.rb:8:in `visit&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/root_node.rb:36:in `css_tree&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/tree/root_node.rb:20:in `render&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass/engine.rb:274:in `render&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/sass-3.3.14/lib/sass.rb:62:in `compile&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-sass-converter-1.2.0/lib/jekyll/converters/scss.rb:93:in `convert&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/convertible.rb:65:in `transform&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/convertible.rb:212:in `do_layout&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/page.rb:122:in `render&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/site.rb:261:in `block in render&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/site.rb:260:in `each&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/site.rb:260:in `render&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/site.rb:43:in `process&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/command.rb:53:in `process_site&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/commands/build.rb:50:in `build&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/commands/build.rb:33:in `process&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/lib/jekyll/commands/build.rb:17:in `block (2 levels) in init_with_program&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `call&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `block in execute&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `each&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `execute&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.4/lib/mercenary/program.rb:35:in `go&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.4/lib/mercenary.rb:22:in `program&#39;
+    from /.rvm/gems/ruby-2.1.0/gems/jekyll-2.2.0/bin/jekyll:18:in `&lt;top (required)&gt;&#39;
+    from /.rvm/gems/ruby-2.1.0/bin/jekyll:23:in `load&#39;
+    from /.rvm/gems/ruby-2.1.0/bin/jekyll:23:in `&lt;main&gt;&#39;
+    from /.rvm/gems/ruby-2.1.0/bin/ruby_executable_hooks:15:in `eval&#39;
+    from /.rvm/gems/ruby-2.1.0/bin/ruby_executable_hooks:15:in `&lt;main&gt;&#39;
+</code></pre>
+<p>The relevant part of <code>_config.yml</code>:</p>
+<pre><code class="lang-yaml">sass:
+    sass_dir: static/css/
+    style: :nested
+</code></pre>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>Maybe it’s because the partials have an underscore. Gonna check it out.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>Ah, I see; the config is looking in <code>_sass</code>. Maybe we can add a config for a <code>sass_partial_dir</code>?</p>
+<p>Using <code>_sass</code> as a dir for partial SASS, when you have your main SASS in the parent folder, doesn’t makes a lot of semantic sense to me.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>So, I got it working with these steps:</p>
+<ul>
+<li>[x] Inserted YAML header in main SCSS files</li>
+<li>[x] Moved partials to <code>_sass</code></li>
+<li>[x] Renamed <code>@import</code> statements to from <code>foo</code> to <code>_sass/foo</code></li>
+</ul>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><ul>
+<li>[x] Deleted legacy <code>.css</code> and <code>_site/*/.scss</code> files</li>
+</ul>
+<p>(And added a YAML header that was missing for <code>style.scss</code> for some reason.)</p>
+<p>ndarville/jekyll-boilerplate@0f2332c5de6b0d82fab578a93a4b8f3acd2f31ad</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/vivek2014">
+              vivek2014
+            </a>
+            <time>Monday, September 01, 2014</time>
+          </div>
+          <div class="body"><p>C:\Users\coder\Desktop\Vivek&gt;Jekyll serve
+Configuration file: C:/Users/coder/Desktop/Vivek/_config.yml
+            Source: C:/Users/coder/Desktop/Vivek
+       Destination: C:/Users/coder/Desktop/Vivek/_site
+      Generating...
+  Conversion error: Jekyll::Converters::Sass encountered an error converting &#39;as
+sets/css/main.sass&#39;.
+jekyll 2.3.0 | Error:  The line was indented 2 levels deeper than the previous l
+ine.</p>
+<p>Some 1 Please Help What To Do?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, September 01, 2014</time>
+          </div>
+          <div class="body"><p>@vivek2014 can you post the code? It seems to have a wrong indentation.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Non-post content image in RSS feed</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#150</span>
+        </p>
+        <h1>Non-post content image in RSS feed</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">benoliver999</a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body">
+            <p>I have a &#39;feature&#39; image on my site that isn&#39;t part of the &#39;main&#39; post. That is to say, if you put <code>{{ post.content }}</code>, the feature image doesn&#39;t come up. It&#39;s called <code>{{ post.image.feature }}</code></p>
+<p>On my home page I have it come up like so:</p>
+<pre><code>{% if post.image.feature %}
+&lt;a href=&quot;{{site.url}}{{post.url}}&quot;&gt; &lt;img src=&quot;{{site.url}}/images/{{ post.image.feature }}&quot;&gt;&lt;/a&gt;
+{% endif %}
+</code></pre><p>This works great. It&#39;s in an <code>if</code> statement because not every post has such an image.</p>
+<p>I&#39;m trying to get this to work in my <code>feed.xml</code> but a simple copy/paste isn&#39;t doing the job - it just seems to break the feed to the point where it no longer renders posts.</p>
+<p>This is my <code>feed.xml</code>:</p>
+<pre><code>---
+layout: none
+---
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot; xml:lang=&quot;en&quot;&gt;
+&lt;title type=&quot;text&quot;&gt;{{ site.title }}&lt;/title&gt;
+&lt;subtitle type=&quot;text&quot;&gt;{{ site.tagline }}&lt;/subtitle&gt;
+&lt;generator uri=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll&lt;/generator&gt;
+&lt;link rel=&quot;self&quot; type=&quot;application/atom+xml&quot; href=&quot;{{ site.url }}/feed.xml&quot; /&gt;
+&lt;link rel=&quot;alternate&quot; type=&quot;text/html&quot; href=&quot;{{ site.url }}&quot; /&gt;
+&lt;updated&gt;{{ site.time | date_to_xmlschema }}&lt;/updated&gt;
+&lt;id&gt;{{ site.url }}/&lt;/id&gt;
+&lt;author&gt;
+&lt;name&gt;{{ site.owner.name }}&lt;/name&gt;
+&lt;uri&gt;{{ site.url }}/&lt;/uri&gt;
+&lt;email&gt;{{ site.owner.email }}&lt;/email&gt;
+&lt;/author&gt;
+{% for post in site.posts limit:20 %}
+
+&lt;entry&gt;
+&lt;title type=&quot;html&quot;&gt;&lt;![CDATA[{{ post.title | cdata_escape }}]]&gt;&lt;/title&gt;
+&lt;link rel=&quot;alternate&quot; type=&quot;text/html&quot; href=&quot;{{ site.url }}{{ post.url }}&quot; /&gt;
+&lt;id&gt;{{ site.url }}{{ post.id }}&lt;/id&gt;
+{% if post.modified %}&lt;updated&gt;{{ post.modified | to_xmlschema }}T00:00:00-00:00&lt;/updated&gt;
+&lt;published&gt;{{ post.date | date_to_xmlschema }}&lt;/published&gt;
+{% else %}&lt;published&gt;{{ post.date | date_to_xmlschema }}&lt;/published&gt;
+&lt;updated&gt;{{ post.date | date_to_xmlschema }}&lt;/updated&gt;{% endif %}
+&lt;author&gt;
+&lt;name&gt;{{ site.owner.name }}&lt;/name&gt;
+&lt;uri&gt;{{ site.url }}&lt;/uri&gt;
+&lt;email&gt;{{ site.owner.email }}&lt;/email&gt;
+&lt;/author&gt;
+&lt;content type=&quot;html&quot;&gt;{{ post.content | xml_escape }}
+&amp;lt;p&amp;gt;&amp;lt;a href=&amp;quot;{{ site.url }}{{ post.url }}&amp;quot;&amp;gt;{{ post.title }}&amp;lt;/a&amp;gt; was originally published by {{ site.owner.name }} at &amp;lt;a href=&amp;quot;{{ site.url }}&amp;quot;&amp;gt;{{ site.title }}&amp;lt;/a&amp;gt; on  {{ post.date | date: &quot;%B %d, %Y&quot; }}.&amp;lt;/p&amp;gt;&lt;/content&gt;
+&lt;/entry&gt;
+{% endfor %}
+ &lt;/feed&gt;
+</code></pre><p>I want the image below the title and date, but just above the contents. What do I need to do to make this happen and where do I need to put the code?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>First of all, I&#39;d recommend using <a href="http://www.w3schools.com/xml/xml_cdata.asp">CDATA</a> in your <code>content</code> tag so that you don&#39;t have to escape all of your <code>&lt;&gt;&quot;</code> characters.</p>
+<p>Secondly, inside the CDATA area, you should be fine to add an <code>img</code> tag right above the <code>{{ post.content }}</code> stuff. You shouldn&#39;t have to use the <code>xml_escape</code> filter on that either, as long as you&#39;re using the CDATA enclosure.</p>
+<p>PS: You might want to look at the <code>updated</code> tag, also. It doesn&#39;t look like it will work properly if you have <code>modified</code> in your front-matter.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/benoliver999">
+              benoliver999
+            </a>
+            <time>Tuesday, September 16, 2014</time>
+          </div>
+          <div class="body"><p>Troy, this is exactly it. Thanks for your help.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

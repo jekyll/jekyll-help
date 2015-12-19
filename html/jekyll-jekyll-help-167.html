@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Problem installing jekyll</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#167</span>
+        </p>
+        <h1>Problem installing jekyll</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">dbmumford</a>
+            <time>Saturday, October 11, 2014</time>
+          </div>
+          <div class="body">
+            <p>On my macbook air OSX, 10.9.4, I ran
+sudo gem install jekyll
+and got the following:</p>
+<p>Successfully installed kramdown-1.4.2
+Fetching: mercenary-0.3.4.gem (100%)
+Successfully installed mercenary-0.3.4
+Fetching: safe_yaml-1.0.4.gem (100%)
+Successfully installed safe_yaml-1.0.4
+Fetching: colorator-0.1.gem (100%)
+Successfully installed colorator-0.1
+Fetching: yajl-ruby-1.1.0.gem (100%)
+Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.</p>
+<pre><code>/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb
+</code></pre><p>mkmf.rb can&#39;t find header files for ruby at /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/include/ruby.h</p>
+<p>Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/yajl-ruby-1.1.0 for inspection.
+Results logged to /Library/Ruby/Gems/2.0.0/gems/yajl-ruby-1.1.0/ext/yajl/gem_make.out</p>
+<p>I followed your advice and ran successfully: 
+sudo gem update --system
+but this did not affect the error. The second time it gave the same error:</p>
+<p>Fetching: fast-stemmer-1.0.2.gem (100%)
+Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.</p>
+<pre><code>/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby -r ./siteconf20141011-1666-1at401u.rb extconf.rb
+</code></pre><p>mkmf.rb can&#39;t find header files for ruby at /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/include/ruby.h</p>
+<p>extconf failed, exit code 1</p>
+<p>Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/fast-stemmer-1.0.2 for inspection.
+Results logged to /Library/Ruby/Gems/2.0.0/extensions/universal-darwin-13/2.0.0/fast-stemmer-1.0.2/gem_make.out</p>
+<p>Can you help??</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Saturday, October 11, 2014</time>
+          </div>
+          <div class="body"><p>It seems like you have to install the Xcode Command Line Tools first (run <code>xcode-select --install</code> in your terminal).</p>
+<p>Hope that helps!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, October 11, 2014</time>
+          </div>
+          <div class="body"><p>Also running <code>gem install jekyll</code> with sudo should not be necessary and may lead to problems later on.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/dbmumford">
+              dbmumford
+            </a>
+            <time>Sunday, October 12, 2014</time>
+          </div>
+          <div class="body"><p>On Oct 11, 2014, at 6:22 PM, Alfred Xing <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#58;&#x6e;&#x6f;&#x74;&#105;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#110;&#115;&#64;&#103;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x6e;&#x6f;&#x74;&#105;&#x66;&#x69;&#x63;&#x61;&#x74;&#x69;&#x6f;&#110;&#115;&#64;&#103;&#105;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;</a> wrote:</p>
+<blockquote>
+<p>It seems like you have to install the Xcode Command Line Tools first (run xcode-select --install in your terminal).</p>
+<p>Hope that helps!</p>
+</blockquote>
+<p>On Oct 12, 2014, at 2:59 AM, Philipp Rudloff <a href="&#109;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#x6e;&#111;&#x74;&#x69;&#x66;&#x69;&#x63;&#97;&#116;&#x69;&#x6f;&#x6e;&#x73;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;">&#x6e;&#111;&#x74;&#x69;&#x66;&#x69;&#x63;&#97;&#116;&#x69;&#x6f;&#x6e;&#x73;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a> wrote:</p>
+<blockquote>
+<p>Also running gem install jekyll with sudo should not be necessary and may lead to problems later on.</p>
+<p>—</p>
+<p>Thanks. I believe it installed fully this time. </p>
+</blockquote>
+<p>But if I don&#39;t do it as superuser, I have to change permissions on dozens of folders one at a time (at least, I&#39;m not sure of the command to do it wholesale on a tree of subfolders so was doing it with command-I, then unlocking each folder). I&#39;m not sure what problems this may lead to. I&#39;m working on my own macbook air and am my own admin so I&#39;m hoping there are no security issues.</p>
+<p>David Mumford </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

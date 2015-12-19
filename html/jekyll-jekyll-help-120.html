@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Error installing Jekyll - Ubuntu</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#120</span>
+        </p>
+        <h1>Error installing Jekyll - Ubuntu</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">jdguy17</a>
+            <time>Tuesday, August 12, 2014</time>
+          </div>
+          <div class="body">
+            <p>When I try to install Jekyll I get this error:</p>
+<pre><code> sudo gem install jekyll
+Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+        /usr/bin/ruby1.9.1 extconf.rb
+/usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require&#39;: cannot load such file -- mkmf (LoadError)
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require&#39;
+    from extconf.rb:1:in `&lt;main&gt;&#39;
+
+
+Gem files will remain installed in /var/lib/gems/1.9.1/gems/fast-stemmer-1.0.2 for inspection.
+Results logged to /var/lib/gems/1.9.1/gems/fast-stemmer-1.0.2/ext/gem_make.out
+</code></pre><p>And here is a copy of the file that it links to:</p>
+<pre><code>/usr/bin/ruby1.9.1 extconf.rb
+/usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require&#39;: cannot load such file -- mkmf (LoadError)
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in `require&#39;
+    from extconf.rb:1:in `&lt;main&gt;&#39;
+</code></pre><p>Thanks in advance!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Sunday, August 17, 2014</time>
+          </div>
+          <div class="body"><p>Try this before:</p>
+<pre><code>apt-get install ruby1.9.1-dev
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Closing this since I&#39;m pretty sure that should have fixed it. @jdguy17, if you need more help, feel free to re-open this issue and let us know what&#39;s wrong!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/thawn">
+              thawn
+            </a>
+            <time>Friday, April 10, 2015</time>
+          </div>
+          <div class="body"><p>I had the same error and can confirm that the suggestion from penibelst helped.
+However, I did run apt-get build-dep jekyll before. Should this not have taken care of installing ruby1.9.1-dev? </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

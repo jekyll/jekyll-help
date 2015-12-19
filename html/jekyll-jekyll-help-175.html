@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Final site problems</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#175</span>
+        </p>
+        <h1>Final site problems</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">sarvagnan</a>
+            <time>Wednesday, October 22, 2014</time>
+          </div>
+          <div class="body">
+            <p>After running jekyll new in a directory, jekyll builds an example site. This site displays completely differently when using jekyll serve and when opening the html files on their own. This is a problem as the instructions say the the content of the _site folder is the final product but this does not appear to be so. 
+When using jekyll serve, the site is properly formatted and styled. When opening the html files, there is no styling and the icons are very large. The CSS files have been generated though.
+Is there any way to fix this?
+Thanks in advance!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, October 22, 2014</time>
+          </div>
+          <div class="body"><p>This is most likely an issue of how the CSS file is referenced from the default.html layout.</p>
+<p>Inside <code>_includes/head.html</code> this line is causing you troubles: <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ &quot;/css/main.css&quot; | prepend: site.baseurl }}&quot;&gt;</code>.</p>
+<p>Without the first slash, it would also work locally, e.g. <code>css/main.css</code>. However if you set <code>baseurl</code> in your config, you end up with referencing <code>site.tld/blogcss/main.css</code>.</p>
+<p>By the way, when I run <code>jekyll new</code> I get <code>jekyll 2.4.0 | Error:  You must specify a path.</code>. Do I need to <code>mkdir test &amp;&amp; jekyll new test</code> or something? Seems so.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sarvagnan">
+              sarvagnan
+            </a>
+            <time>Wednesday, October 22, 2014</time>
+          </div>
+          <div class="body"><p>That worked!! Thank you!!</p>
+<p>You have to give jekyll new a location to run in. &quot;jekyll new test&quot; will create a folder called test and put all its stuff in there, so &quot;mkdir test&quot; isn&#39;t necessary.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

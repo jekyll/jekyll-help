@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Multiple config files overriden or merged?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#74</span>
+        </p>
+        <h1>Multiple config files overriden or merged?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">penibelst</a>
+            <time>Sunday, June 15, 2014</time>
+          </div>
+          <div class="body">
+            <p>If I run</p>
+<pre><code>jekyll build --config _config_one.yml,_config_two.yml
+</code></pre><p>does the second config fully override the first or are both merged? If merged, are they deep merged?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Sunday, June 15, 2014</time>
+          </div>
+          <div class="body"><p>They are deep merged: <a href="https://github.com/jekyll/jekyll/blob/master/lib/jekyll/configuration.rb#L168">https://github.com/jekyll/jekyll/blob/master/lib/jekyll/configuration.rb#L168</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

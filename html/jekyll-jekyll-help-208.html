@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>jekyll 2.5.2 | Error:  undefined method &#x60;in_dest_dir&#x27; for nil:NilClass</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#208</span>
+        </p>
+        <h1>jekyll 2.5.2 | Error:  undefined method &#x60;in_dest_dir&#x27; for nil:NilClass</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">joethephish</a>
+            <time>Monday, December 08, 2014</time>
+          </div>
+          <div class="body">
+            <p>Our website is built on Jekyll, originally version 1.x.</p>
+<p>I just got a new laptop (MacBook Pro with Yosemite), so installed Jekyll from fresh. Unfortunately when attempting to build our site, I get the following error:</p>
+<pre><code>jekyll 2.5.2 | Error:  undefined method `in_dest_dir&#39; for nil:NilClass
+</code></pre><p>Any suggestions? Is there something I need to do to migrate, or something I can do to diagnose the problem?</p>
+<p>Many thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Monday, December 08, 2014</time>
+          </div>
+          <div class="body"><p>What does it spit out when you run Jekyll with the <code>--trace</code> command?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/joethephish">
+              joethephish
+            </a>
+            <time>Tuesday, December 09, 2014</time>
+          </div>
+          <div class="body"><pre><code>  Generating... 
+/Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/static_file.rb:40:in `destination&#39;: undefined method `in_dest_dir&#39; for nil:NilClass (NoMethodError)
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/cleaner.rb:43:in `block in new_files&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/site.rb:477:in `block (2 levels) in each_site_file&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/site.rb:476:in `each&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/site.rb:476:in `block in each_site_file&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/site.rb:475:in `each&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/site.rb:475:in `each_site_file&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/cleaner.rb:43:in `new_files&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/cleaner.rb:24:in `obsolete_files&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/cleaner.rb:15:in `cleanup!&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/site.rb:308:in `cleanup&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/site.rb:52:in `process&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/command.rb:28:in `process_site&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/commands/build.rb:56:in `build&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/commands/build.rb:34:in `process&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/lib/jekyll/commands/serve.rb:26:in `block (2 levels) in init_with_program&#39;
+from /Library/Ruby/Gems/2.0.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `call&#39;
+from /Library/Ruby/Gems/2.0.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `block in execute&#39;
+from /Library/Ruby/Gems/2.0.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `each&#39;
+from /Library/Ruby/Gems/2.0.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `execute&#39;
+from /Library/Ruby/Gems/2.0.0/gems/mercenary-0.3.5/lib/mercenary/program.rb:42:in `go&#39;
+from /Library/Ruby/Gems/2.0.0/gems/mercenary-0.3.5/lib/mercenary.rb:19:in `program&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.2/bin/jekyll:20:in `&lt;top (required)&gt;&#39;
+from /usr/bin/jekyll:23:in `load&#39;
+from /usr/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/joethephish">
+              joethephish
+            </a>
+            <time>Tuesday, December 09, 2014</time>
+          </div>
+          <div class="body"><p>Ah, I think I may know what it is. I forgot that I had hacked together a plugin (warning, it was basically my first foray into Ruby). Here is the plugin... perhaps it&#39;s now incompatible with Jekyll 2.x, or perhaps I didn&#39;t write it well in the first place? :)</p>
+<p><a href="https://gist.github.com/joethephish/09d12d80bd0a98c16670">https://gist.github.com/joethephish/09d12d80bd0a98c16670</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Tuesday, December 09, 2014</time>
+          </div>
+          <div class="body"><p>Huh, yeah, I&#39;m a bit of a loss as to what gives this error. Did you try without your plugin? Since 2.x is a breaking change from 1.x it might be. How did you upgrade Jekyll by the way/do you have the source available anywhere so that I could take a look myself?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/joethephish">
+              joethephish
+            </a>
+            <time>Wednesday, December 10, 2014</time>
+          </div>
+          <div class="body"><p>Thanks for your help! Yeah, it was definitely my plugin. Looks like it was something to do with the fact that StaticFile objects now require the <code>site</code> property to be set in their constructor? So, when creating my StaticFile subclass, I passed it the site, and it was happy again.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/johnpflyer74">
+              johnpflyer74
+            </a>
+            <time>Wednesday, January 28, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;m new to <strong>GitHub</strong> and <strong>jekyll</strong>, so please forgive any rookie behavior on my part. </p>
+<p>I am testing out a plugin ( <a href="https://github.com/10io/jekyll-thumbnailify"><code>jekyll-thumbnailify</code></a> ) and I am receiving the exact same error as <strong>joethephish</strong>. The only difference is that I have slightly newer versions of <strong>gems</strong> and <strong>jekyll</strong>:</p>
+<pre><code>Generating...
+/usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/static_file.rb:40:in `destination&#39;: undefined method `in_dest_dir&#39; for nil:NilClass (NoMethodError)
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/cleaner.rb:43:in `block in new_files&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/site.rb:477:in `block (2 levels) in each_site_file&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/site.rb:476:in `each&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/site.rb:476:in `block in each_site_file&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/site.rb:475:in `each&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/site.rb:475:in `each_site_file&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/cleaner.rb:43:in `new_files&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/cleaner.rb:24:in `obsolete_files&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/cleaner.rb:15:in `cleanup!&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/site.rb:308:in `cleanup&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/site.rb:52:in `process&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/command.rb:28:in `process_site&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/commands/build.rb:56:in `build&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/commands/build.rb:34:in `process&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/lib/jekyll/commands/serve.rb:26:in `block (2 levels) in init_with_program&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `call&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `block in execute&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `each&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `execute&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/program.rb:42:in `go&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary.rb:19:in `program&#39;
+    from /usr/local/lib/ruby/gems/2.2.0/gems/jekyll-2.5.3/bin/jekyll:20:in `&lt;top (required)&gt;&#39;
+    from /usr/local/bin/jekyll:23:in `load&#39;
+    from /usr/local/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre><p>I see that <strong>joethefish</strong> came to the conclusion that &quot;...  it was something to do with the fact that StaticFile objects now require the <code>site</code> property to be set in their constructor.&quot; I poked around to try and figure out how to do that, but I haven&#39;t had any luck.</p>
+<p>Could one of you guys help me understand how to pass the <code>site</code> to the StaticFile subclass of the plugin?</p>
+<p>I&#39;m not even sure if my team is going to use <code>jekyll-thumbnailify</code>, but I&#39;ve spent so much time trying to figure out how to fix the issue that I need to see it through to the end.</p>
+<p>Oh, and I don&#39;t know if this is relevant, but I used <strong>Home Brew</strong> to install <code>imagemagick</code> today, so I believe I have the latest version.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/joethephish">
+              joethephish
+            </a>
+            <time>Thursday, January 29, 2015</time>
+          </div>
+          <div class="body"><p>Here&#39;s what I did (albeit in my own hacked plugin that is now a bit different from <code>jekyll-thumbnailify</code>):</p>
+<p>Line 65: Add site as first parameter:</p>
+<pre><code>static_file = ImageStaticFile.new(site, thumbnail, image_folder, thumbnail_name)
+</code></pre><p>Line 122: Take this new parameter to the <code>ImageStaticFile</code> subclass (and also <code>@base</code>, not sure what that&#39;s for):</p>
+<pre><code>def initialize(site, image_src, image_dest_dir, image_dest_name)
+    @site = site
+    @base = image_src
+</code></pre><p><strong>Warning: I have near-zero experience with Ruby, and I do not understand much of the way Jekyll works, so this may be a terrible awful hack, and I wouldn&#39;t be surprised if it didn&#39;t work ;-) Use at your own risk!</strong></p>
+<p>That said, I hope it helps you!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/johnpflyer74">
+              johnpflyer74
+            </a>
+            <time>Thursday, January 29, 2015</time>
+          </div>
+          <div class="body"><p>That worked! Thanks for the help.</p>
+<p>Hack or not, it did the trick. What I&#39;m learning is that it is more important to understand the principals of coding and less so to understand the language. </p>
+<p>Cheers.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

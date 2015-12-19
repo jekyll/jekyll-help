@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll Removing Changes To Edited Files</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#219</span>
+        </p>
+        <h1>Jekyll Removing Changes To Edited Files</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">szier1</a>
+            <time>Thursday, December 25, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,</p>
+<p>So far Jekyll has been fun to use and I am starting to get more into it rather than creating basic posts. However, I have made various changes to files such as the main.scss or the index.html in the &quot;_site&quot; folder and find these edited files to display correctly while my server is running, but automatically return to there original state when I restart/regenerate Jekyll. In other words, I completely lose all of my changes. This is very frustrating as I intend to make many UI/functional changes on my site. Has anyone experienced similar problems? I appreciate any advice you can give! </p>
+<p>Thank you!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Thursday, December 25, 2014</time>
+          </div>
+          <div class="body"><p>When I am developing, I usually run Jekyll in serve &amp; watch mode with <code>jekyll serve -w</code>. This way, I can edit the source files and preview changes immediately (similar to editing the files in <code>_site</code>), while still keeping my changes permanent (i.e. not editing the <code>_site</code> files themselves).</p>
+<p>Hope that helps!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>@szier1 You should consider the <code>_site</code> folder untouchable. The code in Jekyll specifically removes everything in the <code>_site</code> folder every time it is regenerated. Depending on the platform you are using, there are ways to have your web browser reload once Jekyll is done regenerating the site.</p>
+<p>I personally use <a href="https://incident57.com/codekit/">CodeKit</a> and point it to the <code>_site</code> folder in my project. It watches for changes on those files and automatically refreshes Chrome. Once incremental regeneration is finished, it will work even better.</p>
+<blockquote>
+<p>When I am developing, I usually run Jekyll in serve &amp; watch mode with <code>jekyll serve -w</code></p>
+</blockquote>
+<p>@alfredxing I don&#39;t remember which version of Jekyll made the change, but the <code>serve</code> command enables auto-regeneration by default.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

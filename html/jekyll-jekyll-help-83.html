@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Confused by YAML Matter Defaults</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#83</span>
+        </p>
+        <h1>Confused by YAML Matter Defaults</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">trans</a>
+            <time>Monday, June 23, 2014</time>
+          </div>
+          <div class="body">
+            <p>I don&#39;t understand how one is supposed to use YAML matter defaults. In the example given (reproduced below), the scope is listed as <code>path: &quot;about/blog&quot;</code> and <code>type: &quot;post&quot;</code>. But all posts are stored in one place <code>_posts</code>. So is <code>about/blog</code> the <em>destination</em> somehow? But how would a blog post end up in <code>about/blog</code> when they almost certainly end up in <code>:year/:month/:day/...</code> ?</p>
+<pre><code>defaults:
+  -
+    scope:
+      path: &quot;&quot; # empty string for all files
+    values:
+      layout: &quot;my-site&quot;
+  -
+    scope:
+      path: &quot;about/blog&quot;
+      type: &quot;post&quot;
+    values:
+      layout: &quot;meta-blog&quot; # overrides previous default layout
+      author: &quot;Dr. Hyde&quot;
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Monday, June 23, 2014</time>
+          </div>
+          <div class="body"><p>Posts can be located in other locations, such as within subdirectories.</p>
+<p>For example:</p>
+<blockquote>
+<p><code>./about/blog/_posts/</code></p>
+</blockquote>
+<p>Another, likely-more-appropriate example:</p>
+<blockquote>
+<p><code>./technology/electronics/_posts/</code></p>
+</blockquote>
+<p>Defaults specified with respect to the examples would apply to each example.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/trans">
+              trans
+            </a>
+            <time>Monday, June 23, 2014</time>
+          </div>
+          <div class="body"><p>I see. Okay thanks.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

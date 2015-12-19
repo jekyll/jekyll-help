@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Linked tag and linked category pages</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#179</span>
+        </p>
+        <h1>Linked tag and linked category pages</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">greg-raven</a>
+            <time>Tuesday, October 28, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m trying to transition from a simple WordPress install to Jekyll. I get how to do the individual posts, and I sorta have the landing index.html page, but so far I haven&#39;t found any working methods (for me) to generate a page with linked tags, or a page with linked categories.</p>
+<p>My goal is to have these pages generate automatically, one with authors and one with topics (this is a site for interesting quotes), so that if you want to see all quotes by Thomas Jefferson, you can go to authors.html and click on Jefferson. If you want to see all quotes that I&#39;ve categorized as dealing with taxes (for example), you go to categories.html and click on Taxes.</p>
+<p>I find myself wishing that the documentation had a simple Jekyll site available for download, so neophytes such as myself can grasp what goes where.</p>
+<p>Any help is appreciated. Thanks in advance.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Tuesday, October 28, 2014</time>
+          </div>
+          <div class="body"><p>The source for jekyllrb.com is available within the ./site/ folder of the Jekyll source repository. It has examples of categorization (News) and parsing.</p>
+<p>To <em>automatically</em> build category and tag pages, etc. you could leverage a plugin to perform the task.</p>
+<p>To [better] understand how templates, Jekyll, and Liquid work together... you could fairly easily create your own simple template that would show all posts within a particular category/categories:</p>
+<pre><code class="lang-html+jinja">&lt;ul&gt;
+  {% for post in site.categories.taxes %}
+    &lt;li&gt;
+      &lt;a href=&quot;{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;
+    &lt;/li&gt;
+  {% endfor%}
+&lt;/ul&gt;
+</code></pre>
+<p>There are other ways to accomplish this pragmatically as well, but that is a simple, straight-forward starter to understanding the logic.</p>
+<p><a href="https://github.com/shopify/liquid/wiki/liquid-for-designers">https://github.com/shopify/liquid/wiki/liquid-for-designers</a></p>
+<p><a href="https://github.com/jekyll/jekyll/tree/master/site">https://github.com/jekyll/jekyll/tree/master/site</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, October 28, 2014</time>
+          </div>
+          <div class="body"><p>Please note that pages like for category <em>xyz</em> are not automatically available like you know from Wordpress. Also having pagination for filtered content (categories, tags, ...) is not possible without plugins.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Tuesday, October 28, 2014</time>
+          </div>
+          <div class="body"><p>Good points, @kleinfreund.</p>
+<p>I would like to see pagination available more than once and amongst categories, tags, collections, etc. @parkr, comment on such support within 3x roadmap?</p>
+<p>Additional idea/thought-- native support in Jekyll to optionally specify providing a category/tag index. i.e.:</p>
+<blockquote>
+<p>_config.yml or _data/example.yml or _collection/...</p>
+</blockquote>
+<p>category:
+  - taxes:
+    pagination: true
+  - llamas:
+    pagination: true  # default: [undefined]<br>    layout: fancyindex</p>
+<p>Results in category index being created for URI /taxes/[index.html] and /llamas/[index.html]. # Note actual paths would be <code>permalink:</code>-driven.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, October 28, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>I would like to see pagination available more than once and amongst categories, tags, collections, etc. @parkr, comment on such support within 3x roadmap?</p>
+</blockquote>
+<p>I&#39;m not able to devote time to it. We could add it tomorrow if we had people who wanted to work on the code here: <a href="https://github.com/jekyll/jekyll-paginate">https://github.com/jekyll/jekyll-paginate</a> Just need pull requests and excitement.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

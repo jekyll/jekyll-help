@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll and Compass</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#98</span>
+        </p>
+        <h1>Jekyll and Compass</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">SimonWpt</a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body">
+            <p>I installed jekyll on Windows and everything works fine...</p>
+<p>... until I tried to include compass. </p>
+<pre><code class="lang-SASS">@import &quot;compass&quot;
+</code></pre>
+<p>I get the error message <code>File to import not found or unreadable: compass. (Sass::SyntaxError)</code> But compass is installed!</p>
+<p>Any ideas, why jekyll doesn&#39;t find compass?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><p>You have to add the Compass stylesheets path to your import path in order for this to work</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/SimonWpt">
+              SimonWpt
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><p>Something like this doesnt work:</p>
+<pre><code class="lang-sass">@import &quot;C:/develop/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/_compass.scss&quot;
+</code></pre>
+<p>I got the error message:</p>
+<pre><code>Conversion error: There was an error converting &#39;css/screen.sass&#39;.
+jekyll 2.1.1 | Error:  File to import not found or unreadable: compass/reset/utilities.
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><p>I meant in your config. It looks like <a href="https://github.com/jekyll/jekyll-sass-converter/blob/adb4bed65a6cee499fe57a692382aab88b68810c/lib/jekyll/converters/scss.rb#L54">we&#39;ve locked down import paths</a>. We chose to go with Sass rather than Compass&#39;s ruby libraries for Sass&#39;s simplicity. I think we can open up import paths when not in safe mode. This would allow you to do:</p>
+<pre><code class="lang-yaml">sass:
+  sass_dir: _sass
+  load_paths:
+    - &quot;C:/develop/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/&quot;
+</code></pre>
+<p>But it&#39;s not currently available.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><p>We&#39;ll track this over in <a href="https://github.com/jekyll/jekyll-sass-converter/issues/13">https://github.com/jekyll/jekyll-sass-converter/issues/13</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, July 17, 2014</time>
+          </div>
+          <div class="body"><p>For now you can probably copy the relevant files to your <code>_sass</code> dir.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ajkochanowicz">
+              ajkochanowicz
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><p>Where did this end up? Can one add muiltiple sass load_paths in Jekyll&#39;s current state?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Can one add muiltiple sass load_paths</p>
+</blockquote>
+<p>Yes!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ajkochanowicz">
+              ajkochanowicz
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><p>That&#39;s good!</p>
+<p>Is this documented somewhere? I&#39;ve tried a few times but it&#39;s not working for me.</p>
+<p>I&#39;ve also looked at PRs. They seem to indicate you just add a YAML array to <code>load_paths</code> in _config.yml. Is there more to it than that?</p>
+<p>Thanks</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ajkochanowicz">
+              ajkochanowicz
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><p>Ah, I think I got it.</p>
+<pre><code>sass:
+  load_paths:
+   - &quot;_sass&quot;
+   - &quot;path1&quot;
+   - &quot;path2&quot;
+</code></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

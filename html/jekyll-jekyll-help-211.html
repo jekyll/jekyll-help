@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Viewing Jekyll Locally From Vagrant VM</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#211</span>
+        </p>
+        <h1>Viewing Jekyll Locally From Vagrant VM</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">juicymark</a>
+            <time>Saturday, December 13, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi</p>
+<p>I have installed jekyll on a vagrant vm instance and all is good from within side the vagrant box</p>
+<p>I can create a new jekyll site and serve it</p>
+<p>Configuration file: /var/www/awesome/demo/_config.yml
+            Source: /var/www/awesome/demo
+       Destination: /var/www/awesome/demo/_site
+      Generating...
+                    done.
+ Auto-regeneration: enabled for &#39;/var/www/awesome/demo&#39;
+Configuration file: /var/www/awesome/demo/_config.yml
+    Server address: <a href="http://127.0.0.1:4000/">http://127.0.0.1:4000/</a>
+  Server running... press ctrl-c to stop.</p>
+<p>However when i try to view this on my local browser i just get </p>
+<p>The connection was reset</p>
+<p>i have the ports forwarded in the vm </p>
+<p>config.vm.network :forwarded_port, host: 4000, guest: 4000</p>
+<p>So do not understand why i cannot view the site locally</p>
+<p>please can someone advise.</p>
+<p>Regards</p>
+<p>Mark</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

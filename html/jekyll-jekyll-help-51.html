@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Creating static pages from markdown and evaluating liquid tags.</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#51</span>
+        </p>
+        <h1>Creating static pages from markdown and evaluating liquid tags.</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">Daniel0524</a>
+            <time>Wednesday, May 21, 2014</time>
+          </div>
+          <div class="body">
+            <p>So I&#39;d like to be able to create static pages from a markdown file in the same way I&#39;d make a blog post from a markdown file, but I can&#39;t figure out a way to get jekyll to render liquid content in any markdown file that isn&#39;t in  _posts/</p>
+<p>Is this even possible? I mean I suppose I could put my page in posts and handle the case with something hacky, but I&#39;d really like to be able to generate my site/about page from liquid tags laden markdown.</p>
+<p>So far I&#39;ve got this. It evaluates the markdown content but totally ignores the liquid tags.</p>
+<p>_includes/about.md</p>
+<pre><code>---
+title: about
+---
+La La La
+{%some liquid tag%}
+</code></pre><p>and in about.html</p>
+<pre><code>---
+layout: layout
+---
+
+{% capture about %}{% include about.md %}{% endcapture %}
+{{ about  | markdownify }}
+</code></pre><p>My output in the site/about page is just:</p>
+<p>La La La</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, May 21, 2014</time>
+          </div>
+          <div class="body"><p>Make sure you include <code>{{ content }}</code> in your layout. That will output the converted and rendered version of any page which specifies it as its layout.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Daniel0524">
+              Daniel0524
+            </a>
+            <time>Wednesday, May 21, 2014</time>
+          </div>
+          <div class="body"><p>Well, that&#39;s the issue, right?</p>
+<p>I have an about.html file sitting in jekyll&#39;s root directory which itself has a layout _layouts/about_layout </p>
+<p>I can include my about.md file in about.html but then when the layout evaluates it the liquid tags have been removed. I guess I don&#39;t understand how I should be structuring this to achieve my goal. </p>
+<p>Right now I&#39;ve got:
+_includes/about.md being included in about.html (a page) whose layout is _layouts/about layout </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Wednesday, May 21, 2014</time>
+          </div>
+          <div class="body"><p>Front matter, in this case- &quot;layout: &quot;, in an included file, will not be parsed as you are supposing.</p>
+<p>The main index file should possess the &quot;layout: &quot; specification, i.e.:</p>
+<blockquote>
+<p>./about/index.html</p>
+</blockquote>
+<pre><code class="lang-bash">---
+title: About
+layout: about
+---
+
+## How about this?
+
+{% include some-about-include.include %}
+</code></pre>
+<blockquote>
+<p> ./_layouts/about.html</p>
+</blockquote>
+<pre><code class="lang-bash">---
+layout: sub-layout-if-desired
+---
+
+&lt;div class=&quot;about-class&quot;&gt;
+... {{ content }}
+&lt;/div&gt;
+</code></pre>
+<blockquote>
+<p>./_includes/some-about-include.include</p>
+</blockquote>
+<pre><code class="lang-bash">{% for bout in site.about %}
+  {{ bout.title }}
+{% endfor %}
+
+## Some Markdown will work
+
+- But you will need to filter through `mardownify`
+  - (of course)
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Daniel0524">
+              Daniel0524
+            </a>
+            <time>Wednesday, May 21, 2014</time>
+          </div>
+          <div class="body"><p>But that&#39;s not the issue I&#39;m having. My current setup works for evaluating markdown in the include but it does not evaluate any of the liquid tags in the markdown which is what I want.</p>
+<p>The markdownify filter just throws away all my liquid tags.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Wednesday, May 21, 2014</time>
+          </div>
+          <div class="body"><p>Do you wish for for the liquid code to be evaluated and produce output based on the evaluation?</p>
+<p>Or, are you wishing for the liquid <code>code</code> itself to be (re)produced and output/shown?</p>
+<p>Perhaps restate your goal, from the top, succinctly.</p>
+<p>Liquid within included files can be, and is, evaluated and produces evaluated output, as expected.</p>
+<p>Example:</p>
+<blockquote>
+<p>./_includes/posts.include</p>
+</blockquote>
+<pre><code class="lang-bash">{% for post in site.posts %}
+  {{ post.title }}
+{% endfor %}
+</code></pre>
+<blockquote>
+<p>./_layouts/default.html</p>
+</blockquote>
+<pre><code class="lang-bash">&lt;html&gt;
+  &lt;head&gt;...&lt;/head&gt;
+  &lt;body&gt;
+    {{ content }}
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<blockquote>
+<p>./about/index.html</p>
+</blockquote>
+<pre><code class="lang-bash">---
+title: &quot;My About Page&quot;
+layout: default
+---
+
+## This is my About Page
+
+- Here is a list of posts:
+
+{% include posts.include %}
+
+### Have a nice day
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, May 21, 2014</time>
+          </div>
+          <div class="body"><p>An example repository would also be very helpful.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Daniel0524">
+              Daniel0524
+            </a>
+            <time>Wednesday, May 21, 2014</time>
+          </div>
+          <div class="body"><p>Sorry for the lack of clarity.</p>
+<p>I think I figured out what was going on. Thanks for the help and great examples!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/duanefields">
+              duanefields
+            </a>
+            <time>Friday, February 27, 2015</time>
+          </div>
+          <div class="body"><p>Can you explain what the resolution was? I have having the same question....</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/greenify">
+              greenify
+            </a>
+            <time>Saturday, February 28, 2015</time>
+          </div>
+          <div class="body"><p>Hi @duanefields,</p>
+<p>I recently encountered a similar problem when I wanted to include projects which are independent jekyll pages on <a href="http://biojs.net/gsoc/2015/">a summary page</a>.</p>
+<p>My ideas were</p>
+<ul>
+<li><code>include_relative</code> (problem: one <a href="https://github.com/jekyll/jekyll/issues/3476">can&#39;t include pages with a YAML front matter</a>)</li>
+<li>picking the page from all pages (problem: liquid tags are not evaluated)</li>
+</ul>
+<p>As I needed to get this working for github pages (=<code>without plugins</code>), my workaround is a combination of both and looks horrible - I would be very happy if this gets fixed in a future release and there is an easier way to include a jekyll page in another jekyll page :)</p>
+<p>Basically it loops over all pages, picks the one I want to include, uses their filePath to call <code>include_relative</code> and then strips the YAML front matter.</p>
+<pre><code>{% for p in include.pages %}
+ {% if p.gsoc == include.gsocYear %}
+
+ {% capture inpath %}{{page.gsocYear}}/projects/{{ p.name }}{% endcapture %}
+
+ {% capture content %}{% include_relative {{inpath}} %}{% endcapture %}
+
+&lt;!-- probably the ugliest way to remove the YAML front matter --&gt;
+{% assign lines = content | newline_to_br | split: &quot;&lt;br /&gt;&quot; %}
+
+{% assign newContent = &quot;&quot; %}
+{% for l in lines %}
+    {% if forloop.index &gt;= 6 %}
+        {% assign newContent  = newContent | append: l %}
+    {% endif %}
+{% endfor %}
+{{ newContent | markdownify }}
+</code></pre><p>source: <a href="https://github.com/biojs/biojs.net/blob/gh-pages/gsoc/includes/ideas.md">https://github.com/biojs/biojs.net/blob/gh-pages/gsoc/includes/ideas.md</a>
+page: <a href="http://biojs.net/gsoc/2015/">http://biojs.net/gsoc/2015/</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

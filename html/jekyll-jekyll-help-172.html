@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Linkedin icon for footer</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#172</span>
+        </p>
+        <h1>Linkedin icon for footer</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">nikos-daniilidis</a>
+            <time>Tuesday, October 14, 2014</time>
+          </div>
+          <div class="body">
+            <p>I am formatting the footer to my blog and would like to include an icon next to my linkedin link (similar to the icons for twitter and github links which come in the default jekyll profile). Does any one happen to have the html fill pattern for linkedin?  (something like <code>&lt;path fill=&quot;#828282&quot; d=&quot;...&quot;/&gt;</code>  in <code>footer.html</code>), but one that generates the linkedin logo?</p>
+<p>Thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Thursday, October 16, 2014</time>
+          </div>
+          <div class="body"><p>What you&#39;re loving for is a <strong>SVG icon for LinkedIn</strong>. I&#39;m sure you can find on on the interwebz and use it there.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nikos-daniilidis">
+              nikos-daniilidis
+            </a>
+            <time>Thursday, October 16, 2014</time>
+          </div>
+          <div class="body"><p>Awesome, thanks!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

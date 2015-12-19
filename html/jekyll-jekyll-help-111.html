@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>posts name in Hebrew</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#111</span>
+        </p>
+        <h1>posts name in Hebrew</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ghost</a>
+            <time>Saturday, August 02, 2014</time>
+          </div>
+          <div class="body">
+            <p>i made a bunch of dummy posts named in Hebrew for testing purposes, and Jekyll got stuck regenerating the site without stopping. is there a fix or should i give up on jekyll? </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, August 02, 2014</time>
+          </div>
+          <div class="body"><p>Well, you could provide some more information (i.e. example posts) so we can try on our own. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ghost">
+              ghost
+            </a>
+            <time>Saturday, August 02, 2014</time>
+          </div>
+          <div class="body"><p>hi i&#39;m pretty new at this so please bear with me - </p>
+<p>i&#39;m attaching screenshots of the console and the posts list, thank you</p>
+<p><img src="https://cloud.githubusercontent.com/assets/8005415/3788443/385cb5ea-1a66-11e4-8fdc-a27df84b095a.JPG" alt="posts">
+<img src="https://cloud.githubusercontent.com/assets/8005415/3788444/3df04cb0-1a66-11e4-8dc5-ed0cc401f74b.JPG" alt="screenshot"></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Sunday, August 17, 2014</time>
+          </div>
+          <div class="body"><p>@isaacfeldman The file names should contain ascii only. Put the Hebrew title in the front matter. Example:</p>
+<ol>
+<li>Create file <code>_posts/2014-08-17-hebrew.md</code>.</li>
+<li><p>Open it and set the title.</p>
+<p> ```</p>
+</li>
+</ol>
+<hr>
+<h2 id="title-">title: &quot;הגלגול הזה הכתיב במידה&quot;</h2>
+<p>```</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ghost">
+              ghost
+            </a>
+            <time>Sunday, August 17, 2014</time>
+          </div>
+          <div class="body"><p>oh that&#39;s great, thank you! i&#39;ll let you know if it works</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>@isaacfeldman Any update you can give us on this? I&#39;m going to close out this issue for now, but feel free to re-open it if you still need help!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

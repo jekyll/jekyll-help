@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Error while trying to install pre-release</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#9</span>
+        </p>
+        <h1>Error while trying to install pre-release</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">justinmusgrove</a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body">
+            <p>While running <code>sudo gem install jekyll --pre</code> on mac, I get the following:</p>
+<pre><code>Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb
+checking for rb_thread_blocking_region()... yes
+checking for sys/select.h... yes
+checking for poll.h... yes
+checking for sys/epoll.h... no
+checking for sys/event.h... yes
+checking for sys/queue.h... yes
+checking for port.h... no
+checking for sys/resource.h... yes
+creating Makefile
+
+make &quot;DESTDIR=&quot;
+compiling monitor.c
+In file included from monitor.c:6:
+In file included from ./nio4r.h:10:
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/include/ruby-2.0.0/ruby/backward/rubyio.h:2:2: warning: use &quot;ruby/io.h&quot; instead of &quot;rubyio.h&quot; [-W#warnings]
+#warning use &quot;ruby/io.h&quot; instead of &quot;rubyio.h&quot;
+</code></pre><p>Here is the full output <a href="https://gist.github.com/justinmusgrove/9946007">https://gist.github.com/justinmusgrove/9946007</a>. I am pretty new to ruby so if you need more details or want me to try something, let me know. Thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>It&#39;s highly encouraged to use a Ruby version manager like <a href="https://github.com/sstephenson/rbenv">rbenv</a> to run Ruby projects on your machine in lieu of &quot;System&quot; Ruby (the one that comes with your Mac). See if you can get rbenv set up and try installing Jekyll again. If you need any more help, feel free to let us know!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/justinmusgrove">
+              justinmusgrove
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>Thanks @troyswanson </p>
+<p>K was able to install rbenv, running jekyll 1.5 worked but after installing jekyll-2.0.0.alpha.2 received the following:</p>
+<pre><code>jekyll serve
+/Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;: cannot load such file -- rouge (LoadError)
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll/converters/markdown/redcarpet_parser.rb:42:in `&lt;module:WithRouge&gt;&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll/converters/markdown/redcarpet_parser.rb:41:in `&lt;class:RedcarpetParser&gt;&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll/converters/markdown/redcarpet_parser.rb:4:in `&lt;class:Markdown&gt;&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll/converters/markdown/redcarpet_parser.rb:3:in `&lt;module:Converters&gt;&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll/converters/markdown/redcarpet_parser.rb:2:in `&lt;module:Jekyll&gt;&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll/converters/markdown/redcarpet_parser.rb:1:in `&lt;top (required)&gt;&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll.rb:11:in `block in require_all&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll.rb:10:in `each&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll.rb:10:in `require_all&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/lib/jekyll.rb:61:in `&lt;top (required)&gt;&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:45:in `require&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/gems/jekyll-2.0.0.alpha.2/bin/jekyll:6:in `&lt;top (required)&gt;&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/bin/jekyll:23:in `load&#39;
+    from /Users/justinm/.rbenv/versions/2.0.0-p247/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre><p>Thoughts?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>@justinmusgrove it seems like <code>rouge</code> is missing. try installing it <code>gem install rouge</code>, or add it to your Gemfile.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/justinmusgrove">
+              justinmusgrove
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>That worked, rookie mistake - thanks for your help...</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m glad! we are here to help!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>Hey man, there&#39;s nothing rookie about that mistake. jekyll/jekyll#2055 :wink:</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>PS: This issue should be resolved with the release of alpha 3.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>Yep, fixed with the merge of <a href="https://github.com/jekyll/jekyll/pull/2189">https://github.com/jekyll/jekyll/pull/2189</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How can I allow people to read my Jekyll site offline?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#241</span>
+        </p>
+        <h1>How can I allow people to read my Jekyll site offline?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Monday, January 19, 2015</time>
+          </div>
+          <div class="body">
+            <p>To avoid having to give offline readers a PDF, I want to simply deliver the _site files to readers. They would simply open the index.html file and load the content in a browser. However, right now it doesn&#39;t work. I have this in my _config.yml file:</p>
+<pre><code>baseurl: &quot;/acme&quot;
+</code></pre><p>What would I need to change in the baseurl or elsewhere in order for people to be able to simply open index.html from _site without having jekyll installed and be able to view the site?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, January 19, 2015</time>
+          </div>
+          <div class="body"><p>You need to make sure, that all your links (everything inside <code>href=&quot;&quot;</code> and <code>src=&quot;&quot;</code>) are <strong>relative to the file</strong>. That means they must never start with a <code>/</code> or a protocol <code>http://</code>, etc. You need to reference ressources like this: <code>src=&quot;../img/image.pnG&quot;</code>. Than, if your site is static, it should work out of the box.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Monday, January 19, 2015</time>
+          </div>
+          <div class="body"><p>Great. Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, January 19, 2015</time>
+          </div>
+          <div class="body"><p>Of course if another file is in the same directory, you just need <code>href=&quot;about.html&quot;</code>, etc.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Monday, January 19, 2015</time>
+          </div>
+          <div class="body"><p>for me the trick will be figuring out how to create a toggle in my config file that says whether to create an offline site or not. the main audience will read the content online, but a small percentage will need it offline. if online, then the baseurl needs to be appended; if offline, it doesn&#39;t -- that kind of thing.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, January 19, 2015</time>
+          </div>
+          <div class="body"><p>The tradeoff with what I suggested above is maintainability. Writing out links relatively to files is a <em>harder</em> task than using the root (with <code>/</code>). However, the above works both online and offline. That&#39;s the whole point of it.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;m still having trouble getting this to work. I installed a vanilla jekyll site. I added a page called cats.html. On my index page, I linked to it like this: <code>&lt;a href=&quot;/cats.html&quot;&gt;cats&lt;/a&gt;</code>. The link works fine. However, if I launch the index file in the _site root directory, instead of using the server mode, I see this: <a href="http://www.screencast.com/t/eCD9yNjyP">http://www.screencast.com/t/eCD9yNjyP</a></p>
+<p>I tried commenting out baseurl and url in the _config.yml file, but I still get the same result when I launch the index.html file.</p>
+<p>I know it may seem an odd request, but basically I&#39;m using Jekyll for documentation. Sometimes people request PDFs due to lack of access to the site. I want to send them a zip file containing the static site, and tell them to just click index.html to open it. </p>
+<p>What am I doing wrong here? Thanks,</p>
+<p>Tom</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

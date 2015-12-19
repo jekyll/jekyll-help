@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll/GitHub workflow with hidden drafts?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#27</span>
+        </p>
+        <h1>Jekyll/GitHub workflow with hidden drafts?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ndarville</a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body">
+            <p>I am thinking about doing a blog/site with multiple authors, and while I would like for the site to be open source (at least the majority of it), I would prefer the drafts remained hidden, and that, when published as posts, their edit history would be erased from before they were published.</p>
+<pre><code>private repo:
+  - _drafts/ (w/ edit history)
+
+public repo:
+  - _posts/ (w/ edit history)
+  - (...)
+</code></pre><p>Assuming everything is hosted on GitHub, but deployed to S3 (to support custom domains), what would be the best way to do this?</p>
+<p>And which publication hook would fit the best for automating this process as much as possible?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>gitignore the drafts folder? Will more than one person be working on the
+same draft? Also, for what it&#39;s worth, GitHub Pages supports custom domains
+via a CNAME file in the repo. See
+<a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages">https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages</a></p>
+<p>On 4 May 2014 18:56, ndarville <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#x3a;&#110;&#111;&#x74;&#x69;&#x66;&#x69;&#x63;&#97;&#x74;&#105;&#x6f;&#x6e;&#x73;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;">&#110;&#111;&#x74;&#x69;&#x66;&#x69;&#x63;&#97;&#x74;&#105;&#x6f;&#x6e;&#x73;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>I am thinking about doing a blog/site with multiple authors, and while I
+would like for the site to be open source (at least the majority of it), I
+would prefer the drafts remained hidden, and that, when published as posts,
+their edit history would be erased from before they were published.</p>
+<p>private repo:</p>
+<ul>
+<li>_drafts/</li>
+</ul>
+<p>public repo:</p>
+<ul>
+<li>_posts</li>
+<li>(...)</li>
+</ul>
+<p>Assuming everything is hosted on GitHub, but deployed to S3 (to support
+custom domains), what would be the best way to do this?</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/27">https://github.com/jekyll/jekyll-help/issues/27</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>One person will mainly focus on the draft, but I still want it to be a collaborative process where people comment using the Issues system and helps out in other ways—not to mention if the process involves editors, graphic department, fact-checking, proofing, and so on.</p>
+<p>So syncing the draft centrally is still important.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>In that case, if you&#39;re using git, it will always see a removal from
+_drafts and inclusion in _posts in the same commit as a &#39;move&#39; operation as
+git doesn&#39;t actually have a move/copy command it uses a heuristic to detect
+when a file is copied/moved in the same commit based on the contents of the
+files. Your best bet is probably to have one commit remove the file in
+_drafts and another add it back into _posts if you <em>really</em> want to make
+sure there&#39;s no history attached. My question would be why you want this
+though.</p>
+<p>On 4 May 2014 19:34, ndarville <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x6e;&#111;&#x74;&#x69;&#x66;&#105;&#99;&#x61;&#116;&#105;&#x6f;&#110;&#115;&#64;&#x67;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;">&#x6e;&#111;&#x74;&#x69;&#x66;&#105;&#99;&#x61;&#116;&#105;&#x6f;&#110;&#115;&#64;&#x67;&#x69;&#x74;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;</a> wrote:</p>
+<blockquote>
+<p>One person will mainly focus on the draft, but I still want it to be a
+collaborative process where people comment using the Issues system and
+helps out in other ways—not to mention if the process involves editors,
+fact-checking, and proofing. So syncing the draft is still important.</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/27#issuecomment-42128632">https://github.com/jekyll/jekyll-help/issues/27#issuecomment-42128632</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>I wonder if you could put the drafts in a private repo (I think free accounts are allowed one private free of charge) and the use a symlink to pull drafts into the jekyll repo whilst using a<code>.gitignore</code> to keep <code>_drafts</code> from showing in commit history?</p>
+<p>A more dumbed down approach could be something simular to above but use Dropbox to share the drafts with collaborators?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>Yeah, if the <code>.gitignore</code> thing works with importing the private repo as a submodule or some such, that’d probably work pretty well.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>You could maybe use a git submodule but I&#39;ve found that symlinks are pretty handy in terms of instantaneous updates. Not sure, though, how Jekyll will handle symlink to outside repo/files?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>On the other hand, if you don&#39;t need to <strong>instantaneously</strong> preview the drafts on the local site, a submodule might be best (like you&#39;re already saying). :smile:</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>True, it does mess with the ease of viewing the editing history. A submodule probably isn’t the way to go.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>@ndarville Read this one <a href="https://github.com/jekyll/jekyll/issues/1469#issuecomment-23831358">https://github.com/jekyll/jekyll/issues/1469#issuecomment-23831358</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Going to close this as it seems to be pretty well solved.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

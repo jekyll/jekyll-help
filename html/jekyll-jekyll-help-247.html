@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How can I limit results to one match when two conditions match?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#247</span>
+        </p>
+        <h1>How can I limit results to one match when two conditions match?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body">
+            <p>I want to cycle through my pages and get all pages that have either a tag called &quot;release_notes&quot; or a tag called &quot;news.&quot; Here&#39;s my code:</p>
+<pre><code>{% for page in site.pages limit: 5 %}
+{% for tag in page.tags %}
+{% if tag == &quot;release_notes&quot; or tag == &quot;news&quot; %}
+&lt;li&gt;&lt;a href=&quot;{{ page.permalink | prepend: site.baseurl }}&quot;&gt;{{page.title}}&lt;/a&gt;&lt;/li&gt;
+&lt;div class=&quot;summary&quot;&gt;{{page.summary}}&lt;/div&gt;
+{% endif %}
+{% endfor %}
+{% endfor %}
+</code></pre><p>One of my pages has front matter as follows:</p>
+<pre><code>---
+layout: page
+title: 2.0 Release Notes
+permalink: /release_notes_2_0/
+tags: 
+- release_notes
+- news
+---
+</code></pre><p>This page appears twice in the <code>for</code> loop. How can I make it so that the page only appears once? </p>
+<p>(I realize the simple solution would be to restrict the tags to one per page, or restrict the for loop to one tag per loop, but maybe it&#39;s easier to do this than I thought.) </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Saturday, January 24, 2015</time>
+          </div>
+          <div class="body"><p>Hello @tomjohnson1492, could you try something like:</p>
+<pre><code class="lang-html">    {% assign pages = site.pages limit:5 %}
+    {% for p in pages  %}{% unless p.tags == release_notes || news %}
+      &lt;li&gt;&lt;a href=&quot;{{ page.permalink | prepend: site.baseurl }}&quot;&gt;{{page.title}}&lt;/a&gt;&lt;/li&gt;
+      &lt;div class=&quot;summary&quot;&gt;{{page.summary}}&lt;/div&gt;
+    {% endunless %}{% endfor %}
+</code></pre>
+<p>and see if it works? I&#39;m not sure, tho.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, January 25, 2015</time>
+          </div>
+          <div class="body"><p>Thanks for responding. I tried your suggestion but it didn&#39;t work. I got a long list of bullet items, without any content (text) with each bullet.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

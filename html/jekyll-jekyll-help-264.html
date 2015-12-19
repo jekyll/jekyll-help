@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Invalid CSS when you include a page inside a page</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#264</span>
+        </p>
+        <h1>Invalid CSS when you include a page inside a page</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Sunday, February 01, 2015</time>
+          </div>
+          <div class="body">
+            <p>When you include a page inside another page, the frontmatter gets included. This frontmatter is usually contained inside p tags, except when you have a tags or layout parameter in the frontmatter. In that case, this is what the HTML looks like: </p>
+<pre><code>&lt;p&gt;layout: page
+title: Endpoints
+permalink: /sampleendpoint/&lt;/p&gt;
+
+&lt;h2 id=&quot;tags:-implementation&quot;&gt;tags: Implementation&lt;/h2&gt;
+</code></pre><p>In trying to hide this from the output, it&#39;s not possible because the id <code>tags:-implementation</code> isn&#39;t valid CSS. Colons aren&#39;t allowed in CSS selectors. As a result, I can&#39;t hide it programmatically from the page by using display none for that CSS element. (Right?)</p>
+<p>Why am I including a page inside a page? I need a way to get my site to people offline. I&#39;m using Jekyll for a user guide, and some people prefer PDFs. My approach is to create a page that includes all other pages, push this master compilation into a print layout, and then use a print stylesheet (and maybe Prince XML) to render it to PDF. But I&#39;m getting hung-up with the h2 headings that contain information from the frontmatter about tags and layout. </p>
+<p>How can I work around this to hide the frontmatter?</p>
+<p>As a side note, I don&#39;t understand why Jekyll&#39;s site output requires a server to view the files. If they&#39;re all static files, why can&#39;t you just zip the site file to someone so they can view it? I read through the techniques listed in this <a href="http://stackoverflow.com/questions/26778329/running-jekyll-generated-files-without-jekyll-local-server">StackOverflow thread</a>, and it confuses me why Jekyll was architected this way.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, February 01, 2015</time>
+          </div>
+          <div class="body"><p>On this:</p>
+<blockquote>
+<p>As a side note, I don&#39;t understand why Jekyll&#39;s site output requires a server to view the files.</p>
+</blockquote>
+<p>Technically, every HTML site is static on usable offline and online without links or ressource being not available. The culprit here is how you&#39;re setting links (<code>href</code> or <code>src</code>). If you set absolute links or file relative links, you won&#39;t have problems. It gets a bit more tricky when you introduce the principle of <strong>root directory</strong>. Links to <code>/index.html</code> are relative to the root, not the file itself. This usually leads to problems when try to view local files in a browser. It looks for its ressources at the wrong places, because it has no way to determine the correct root directoy (the project root that is in most cases).</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, February 01, 2015</time>
+          </div>
+          <div class="body"><p>Thanks Kleinfreund. I appreciate your response. I tried creating a jekyll site using relative links (no baseurl), but it didn&#39;t work when viewed outside a local server. If it&#39;s possible, would you mind creating a sample jekyll site that demonstrates how it can be viewed without a local server?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, February 01, 2015</time>
+          </div>
+          <div class="body"><p>I gave up on the includes and found a better approach for consolidating pages. I&#39;m using a for loop to loop through pages, like this:</p>
+<pre><code>---
+title: Printed manual
+permalink: /print/
+layout: none
+---
+
+{% for p in site.pages %}
+{% if p.permalink == &quot;/troubleshooting_hmac/&quot; %}
+&lt;h1&gt;{{p.title}}&lt;/h1&gt;
+{{p.content}}
+{% endif %}
+{% endfor %}
+
+{% for p in site.pages %}
+{% if p.permalink == &quot;/release_notes/&quot; %}
+&lt;h1&gt;{{p.title}}&lt;/h1&gt;
+{{p.content}}
+{% endif %}
+{% endfor %}
+
+{% for p in site.pages %}
+{% if p.permalink == &quot;/overview/&quot; %}
+&lt;h1&gt;{{p.title}}&lt;/h1&gt;
+{{p.content}}
+{% endif %}
+{% endfor %}
+</code></pre><p>The layout for this page is set to none, but in my config file, the default layout for pages is set to a print layout. If you include a page layout for this consolidation page, you end up with two instances of the content -- one as the content gets pushed into an existing layout, and another as it gets pushed into the layout specified by the configuration file.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, February 01, 2015</time>
+          </div>
+          <div class="body"><p>I just realized something really simple. The whole reason I was exploring this thread is because I needed a way to deliver a Jekyll site to users who aren&#39;t online. After figuring out a workflow to PDF, I realized I could just download the site using a utility called Sitesucker (there are others similar) to get all the resources offline. Then I can send a user the zip file. Duh!!!!! So much easier than trying to run loops to get posts and create a PDF out of them, etc. </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

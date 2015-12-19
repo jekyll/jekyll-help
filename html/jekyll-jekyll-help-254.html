@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How can I modify slugify utility so that I can use underscores in URLs, not hyphens.</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#254</span>
+        </p>
+        <h1>How can I modify slugify utility so that I can use underscores in URLs, not hyphens.</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">paulrobertlloyd</a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body">
+            <p>I’m moving my old site (with legacy URLs) over to Jekyll, and that site generated URLs with underscores (which I actually prefer). I&#39;ve subclassed slugify (<code>Jekyll::Utils</code>) to achieve this on my new Jekyll-powered site, but I&#39;d like to release this as a plugin with a configurable value. This is what I’ve got so far:</p>
+<pre><code class="lang-ruby">module Jekyll
+
+  class SlugifyCharacterGenerator &lt; Jekyll::Generator
+    def generate(site)
+      @site = site
+      @slugify_character = @site.config[&#39;slugify_character&#39;]
+
+      if @slugify_character.nil?
+        @slugify_character = &#39;-&#39;
+      else
+        @slugify_character = @slugify_character
+      end
+    end
+  end
+
+  module Utils
+    # Slugify a filename or title.
+    #
+    # string - the filename or title to slugify
+    # mode - how string is slugified
+    #
+    # When mode is &quot;none&quot;, return the given string in lowercase.
+    #
+    # When mode is &quot;raw&quot;, return the given string in lowercase,
+    # with every sequence of spaces characters replaced with a hyphen.
+    #
+    # When mode is &quot;default&quot; or nil, non-alphabetic characters are
+    # replaced with a hyphen too.
+    #
+    # When mode is &quot;pretty&quot;, some non-alphabetic characters (._~!$&amp;&#39;()+,;=@)
+    # are not replaced with hyphen.
+    #
+    # Examples:
+    #   slugify(&quot;The _config.yml file&quot;)
+    #   # =&gt; &quot;the-config-yml-file&quot;
+    #
+    #   slugify(&quot;The _config.yml file&quot;, &quot;pretty&quot;)
+    #   # =&gt; &quot;the-_config.yml-file&quot;
+    #
+    # Returns the slugified string.
+    def slugify(string, mode=nil)
+      mode ||= &#39;default&#39;
+      return nil if string.nil?
+      return string.downcase unless SLUGIFY_MODES.include?(mode)
+
+      # Replace each character sequence with a hyphen
+      re = case mode
+      when &#39;raw&#39;
+        SLUGIFY_RAW_REGEXP
+      when &#39;default&#39;
+        SLUGIFY_DEFAULT_REGEXP
+      when &#39;pretty&#39;
+        # &quot;._~!$&amp;&#39;()+,;=@&quot; is human readable (not URI-escaped) in URL
+        # and is allowed in both extN and NTFS.
+        SLUGIFY_PRETTY_REGEXP
+      end
+
+      string.
+        # Strip according to the mode
+        gsub(re, @slugify_character).
+        # Remove leading/trailing hyphen
+        gsub(/^\-|\-$/i, &#39;&#39;).
+        # Downcase
+        downcase
+    end
+
+  end
+end
+</code></pre>
+<p>@slugify_character isn&#39;t output when placed inside the subclassed slugify. I am a total Ruby n00b — how can I make this work? Secondly, do I need to replicate the entirety of this class, or is there a simpler means of achieving the same… I bet there is!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>I don&#39;t know Ruby very well myself, but hopefully someone will be able to help out.</p>
+<p>However, I would be remiss if I didn&#39;t point out that you really should use hyphens instead of underscores in your URL, though. Google specifically recommends this in a <a href="https://support.google.com/webmasters/answer/76329?hl=en">support article</a>:</p>
+<blockquote>
+<p>We recommend that you use hyphens (-) instead of underscores (_) in your URLs.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/paulrobertlloyd">
+              paulrobertlloyd
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>Google recommending hyphens is actually one of the reasons I prefer to use underscores ;-)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Google recommending hyphens is actually one of the reasons I prefer to use underscores ;-)</p>
+</blockquote>
+<p>Why?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/paulrobertlloyd">
+              paulrobertlloyd
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>@kleinfreund:</p>
+<blockquote>
+<p>Make pages primarily for users, not for search engines.
+— <a href="https://support.google.com/webmasters/answer/35769?hl=en">https://support.google.com/webmasters/answer/35769?hl=en</a></p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>@paulrobertlloyd @kleinfreund :disappointed: Let&#39;s not get into this here, please.</p>
+<p>If anyone wants to help out with @paulrobertlloyd&#39;s plugin, feel free to chime in.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

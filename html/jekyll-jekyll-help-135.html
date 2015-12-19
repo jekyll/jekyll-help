@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Deploying to Heroku</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#135</span>
+        </p>
+        <h1>Deploying to Heroku</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">AndyCErnst</a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,
+I&#39;ve had a hell of a time trying to get Jekyll to run on Heroku. I followed the link for getting it to run with Rack 
+<a href="http://blog.crowdint.com/2010/08/02/instant-blog-using-jekyll-and-heroku.html">http://blog.crowdint.com/2010/08/02/instant-blog-using-jekyll-and-heroku.html</a> but it didn&#39;t work and the article is over four years old. Right now I&#39;m getting &quot;Push rejected, no Cedar-supported app detected&quot; but at one point I could push to it but the logs said it crashed without giving a useful reason.</p>
+<p>I don&#39;t know Rack or Ruby so this has been a very frustrating experience. I&#39;ve tried several different tutorials on getting Jekyll to run on heroku but nothing has worked. Eventually I need to get this running on EC2 as well.</p>
+<p>Even the static site files by themselves would be fine really.</p>
+<p>My Procfile:</p>
+<pre><code>web: jekyll serve -p $PORT
+</code></pre><p>My config.ru</p>
+<pre><code>require &quot;rack/jekyll&quot;
+
+run Rack::Jekyll.new
+</code></pre><p>My .gems</p>
+<pre><code>rack-jekyll
+</code></pre><p>Full repo is here <a href="https://github.com/AndyCErnst/beat-the-banker-jekyll">https://github.com/AndyCErnst/beat-the-banker-jekyll</a></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AndyCErnst">
+              AndyCErnst
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>Okay, more info. Adding a Gemfile allowed it to deploy to Heroku (but it doesn&#39;t run). They really shouldn&#39;t assume there is a Gemfile in Jekyll because it doesn&#39;t need one to run locally. According to the heroku logs the problem now is: &quot;Error reading file /app/vendor/bundle/ruby/2.1.0/gems/jenkyll-1.5.1/test/fixtures/broken_front_matter3.erb: (&lt;unknown&gt;): did not find expected node content while parsing a flow node at line 3 column 1.&quot; </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AndyCErnst">
+              AndyCErnst
+            </a>
+            <time>Saturday, August 23, 2014</time>
+          </div>
+          <div class="body"><p>Ah, finally figured it out. The parts I feel should really be mentioned on the site/article are:
+_config.yml file must have:</p>
+<pre><code>excludes: [&quot;vendor&quot;]
+</code></pre><p>The Procfile must have:</p>
+<pre><code>web: jekyll serve -P $PORT
+</code></pre><p>There has to be a Gemfile with at least:</p>
+<pre><code>source &quot;https://rubygems.org&quot;
+ruby &quot;2.1.1&quot;
+gem &quot;rack-jekyll&quot;, &quot;~&gt; 0.4.1&quot;
+</code></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

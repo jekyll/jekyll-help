@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Access markup-free post and page content from Jekyll plugins</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#277</span>
+        </p>
+        <h1>Access markup-free post and page content from Jekyll plugins</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tohuw</a>
+            <time>Monday, February 23, 2015</time>
+          </div>
+          <div class="body">
+            <p><a href="https://github.com/tohuw/tohuw.net/blob/f6ff38247fb88f171ed2053631602427baac9ce9/_plugins/generate_searchcontent.rb">I’m working on a plugin to parse all posts and gather them into a JSON file to be consumed by a search mechanism.</a> <strong>How can I access just the text of the post from my plugin, with no markup applied?</strong> I’m currently accessing <code>site.posts</code>, then e.g. <code>page.content</code> in loops. This returns the content of the post, but includes newline markers (<code>\n</code>) and Markdown syntax.</p>
+<p>I saw another question in which someone wanted to <a href="https://stackoverflow.com/questions/19169849/how-to-get-markdown-processed-content-in-jekyll-tag-plugin">get Markdown processed content in a Jekyll tag plugin</a>, but my case is different: I don&#39;t want any markup at all, just the plain text of the post, with no formatting applied.</p>
+<p>Below is the key <code>def</code> from my current implementation.</p>
+<pre><code>def generate(site)
+  target = File.open(&#39;js/searchcontent.js&#39;, &#39;w&#39;)
+  target.truncate(target.size)
+  target.puts(&#39;var tipuesearch = {&quot;pages&quot;: [&#39;)
+
+  all_but_last, last = site.posts[0..-2], site.posts.last
+
+  # Process all posts but the last one
+  all_but_last.each do |page|
+    tp_page = TipuePage.new(
+      page.data[&#39;title&#39;],
+      &quot;#{page.data[&#39;tags&#39;]} #{page.data[&#39;categories&#39;]}&quot;,
+      page.url,
+      page.content
+    )
+    target.puts(tp_page.to_json + &#39;,&#39;)
+  end
+
+  # Do the last post
+  tp_page = TipuePage.new(
+    last.data[&#39;title&#39;],
+    &quot;#{last.data[&#39;tags&#39;]} #{last.data[&#39;categories&#39;]}&quot;,
+    last.url,
+    last.content
+  )
+  target.puts(tp_page.to_json)
+
+  target.puts(&#39;]};&#39;)
+  target.close
+end
+</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Need CRLF preservation on Windows</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#196</span>
+        </p>
+        <h1>Need CRLF preservation on Windows</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">camkego</a>
+            <time>Monday, November 17, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hopefully the bad W word doesn&#39;t leave me without feedback.</p>
+<p>Jekyll 2.5.1 and Kramdown currently turn CRLF line endings in LF,
+this would be fantastic, except I am using features of IE that require CRLF line endings.
+[Specifically &#39;Mark of the web&#39;]</p>
+<p>You would be correct to say, &#39;gross&#39;, but I am required to find a solution anyway]</p>
+<p>Is there a suggested, or &#39;best-way&#39; to do this?</p>
+<p>I need to make sure my Jekyll output on Windows either preserves CRLF [not currently],
+or converts line-endings to CRLF.</p>
+<p>Thanks in advance</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/camkego">
+              camkego
+            </a>
+            <time>Monday, November 17, 2014</time>
+          </div>
+          <div class="body"><p>writing a plugin overwriting Jekyll::Convertible#write would be a solution, but I am using Collections, which are not affected by Convertible#write, as a result I wrote issue #197 </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, November 18, 2014</time>
+          </div>
+          <div class="body"><p>Use <code>Document#write</code> for collections, or patch the <code>Renderer#transform</code> method.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

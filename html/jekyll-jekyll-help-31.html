@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Full story pages: How to skip posts that are of a certain category?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#31</span>
+        </p>
+        <h1>Full story pages: How to skip posts that are of a certain category?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">mhulse</a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi,</p>
+<h3 id="tl-dr-">TL;DR:</h3>
+<p>On my full story pages (permalink pages), I&#39;d like to setup the previous/next pagination so that it skips any posts that have a category of X.</p>
+<h3 id="long-version-">Long version:</h3>
+<p>Specifically, I have some posts that are categorized as &quot;external&quot;, and when these posts are clicked, the end user is taken to that external link.</p>
+<p>Using the previous/next post pagination, I&#39;d like to ignore all external posts and just paginate between actual posts.</p>
+<p>I build my Jekyll site locally, so plugins aren&#39;t an issue, but I was mostly curious if there&#39;s built-in way to &quot;filter&quot; the pagination object based on post frontmatter (like category)?</p>
+<p>Does any of that make sense?</p>
+<p>Again, this is the pagination for the post pages … The permalink pages. Not the index page pagination.</p>
+<p>For now, I don&#39;t use the prev/next pagination on permalink pages because I couldn&#39;t figure out how to ignore my &quot;external&quot; posts.</p>
+<p>Thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body"><p>Hi @mhulse, you could do something like:</p>
+<pre><code class="lang-html">{% for post in site.posts %}
+    {% unless post.categories contains &#39;external&#39; %}
+        &lt;li&gt;&lt;a href=&quot;{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;
+    {% endif %}
+{% endfor %}
+</code></pre>
+<p>I don&#39;t know if this helps</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body"><p>Ooh, unless is available to use now? Nice!!! I&#39;ll give that a whirl and let you know how it goes. Thanks much @albertogg, I really appreciate it!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body"><p>Wait, <code>unless</code> has been available forever. What was I thinking. Lol. I must be thinking of some other filter. Anyway, I&#39;ll be back shortly with results. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body"><p>No problem!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body"><p>So, I think the problem is that I need to grab the next non-external post in order to make the permalink-page to permalink-page navigation smooth.</p>
+<p>Let me clarify my question:</p>
+<hr>
+<p>On my Jekyll permalink pages (the post detail view) I have previous and next buttons:</p>
+<pre><code class="lang-html">{% if page.previous.url %} ... link to previous post ... {% endif %}
+{% if page.next.url %} ... link to next post ... {% endif %}
+</code></pre>
+<p>That works great.</p>
+<h3 id="my-problem-">My problem:</h3>
+<p>How do I skip a next/previous post if it&#39;s of a certain type?</p>
+<p>Specifically, I have some posts that are &quot;external&quot; links. They have a font matter value of &quot;layout: external&quot; (and a category of &quot;external&quot;).</p>
+<h3 id="goal-">Goal:</h3>
+<p>I&#39;d like to skip next/previous posts that are marked as external; in other words, if the next two posts were marked as &quot;external&quot;, my &quot;next&quot; button would skip to the third post.</p>
+<p>I can&#39;t think of an easy way to do this using liquid.</p>
+<hr>
+<p>Maybe something like this (pseudo logic):</p>
+<ol>
+<li>On permalink page …</li>
+<li>… Get all posts as an object/array …</li>
+<li>… Filter out posts marked as &quot;external&quot; (maybe this can be done in step above) …</li>
+<li>… In object/array, find the current post …</li>
+<li>… Assign &quot;prev&quot; and &quot;next&quot; variables to previous and next post in object/array (i.e. the next and previous post from current post position).</li>
+</ol>
+<p>I hope that makes more sense.</p>
+<hr>
+<p>@albertogg …</p>
+<blockquote>
+<pre><code>{% for post in site.posts %}
+    {% unless post.categories contains &#39;external&#39; %}
+        &lt;li&gt;&lt;a href=&quot;{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/li&gt;
+    {% endif %}
+{% endfor %}
+</code></pre></blockquote>
+<p>After having thought about this, the above will spit out all posts not marked &quot;external&quot;. While that&#39;s a good technique to filter posts, I don&#39;t think it&#39;s going to work like I need it to on the permalink pagination. :frowning: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body"><p>I still don&#39;t understand quite well what you want to do. Do you have any existing code/repo I can check?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>Hi @albertogg, thanks again for the help! :+1: </p>
+<p>I&#39;m not at a machine where I can slap together demo code, but when I am, I&#39;ll put together a simple demo to show you the problem I&#39;m trying to solve.</p>
+<p>The most simple way I can describe it:</p>
+<p>On a post detail page (aka, permalink page) I have the Jekyll tags to get previous and next posts:</p>
+<pre><code class="lang-html">{% if page.previous.url %} ... link to previous post ... {% endif %}
+{% if page.next.url %} ... link to next post ... {% endif %}
+</code></pre>
+<p>When clicking on the above links, I want to ignore next or previous pages that are &quot;external&quot; (i.e., isn&#39;t meant to have a permalink page as it takes the user to the external website).</p>
+<p>Optimally, I&#39;d like to have my next/previous page navigation to skip &quot;external&quot; links and just page through pages/posts that are not marked external.</p>
+<p>I hope that helps to explain things better, though, I&#39;m sure an example will make things clearer. :laughing: </p>
+<p>With that said, this is kinda like what I want:</p>
+<p><a href="http://ajclarkson.co.uk/blog/jekyll-category-post-navigation/">http://ajclarkson.co.uk/blog/jekyll-category-post-navigation/</a>
+<a href="https://gist.github.com/stravid/4078840">https://gist.github.com/stravid/4078840</a></p>
+<p>Except, I want to ignore a category (or, custom frontmatter key/value).</p>
+<p>I probably should spend some more time coding up a plugin … I started this code:</p>
+<p><a href="https://github.com/mhulse/mhulse.github.io/issues/31#issuecomment-35181904">https://github.com/mhulse/mhulse.github.io/issues/31#issuecomment-35181904</a></p>
+<p>… but I don&#39;t remember if I ever got it working. I kinda gave up on the issue.</p>
+<p>Since this repo was created, I thought I&#39;d try again; I&#39;m mostly curious if there&#39;s a way to do this using Liquid only. With Jekyll 2.0 coming out, maybe there&#39;s some new code that could make this happen using only template tags?</p>
+<p>Anyway, I&#39;ll setup a demo site with minimal code as an example.</p>
+<p>Thanks for listening to me ramble. :octocat: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>Oooh, the 2.0 <code>where</code> and <code>group_by</code> filters might be of some help here:</p>
+<p><a href="http://jekyllrb.com/docs/templates/#filters">http://jekyllrb.com/docs/templates/#filters</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><p>Oh, I&#39;m sorry I haven&#39;t been very helpful... hope jekyll 2.0 will make it easier.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Oh, I&#39;m sorry I haven&#39;t been very helpful... hope jekyll 2.0 will make it easier.</p>
+</blockquote>
+<p>@albertogg Oh, no, you&#39;ve been very helpful! I&#39;m sorry that I have not been describing my problem very well.</p>
+<p>I&#39;m not sure if the <code>where</code> or <code>group_by</code> will really help; I have yet to do any experimentation with Jekyll 2.0 … There might be some new liquid bits that may be of some help … I&#39;m really not sure though.</p>
+<p>I plan on setting up a simple demo this weekend if you are still interested in seeing a working example. I think once you see a demo of my problem then all will be clear. :+1: </p>
+<p>Thanks for all of your help on this! Again, I apologize if I&#39;ve been too wordy and/or not clear in my exact problem.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><p>Yes, I&#39;m interested on a demo to see if we can solve this. Don&#39;t worry about it, I know it&#39;s hard to explain and also english is not my first language.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Yes, I&#39;m interested on a demo to see if we can solve this.</p>
+</blockquote>
+<p>Sounds good! I&#39;ll have a demo up this weekend. Whether or not it&#39;s solvable is one thing though … I may be trying to do something that&#39;s just not possible. :laughing: </p>
+<blockquote>
+<p>Don&#39;t worry about it, I know it&#39;s hard to explain and also english is not my first language.</p>
+</blockquote>
+<p>Wow, your English is very good! I would have never guessed. English is my only language, and as you can see, I&#39;m not very good at it. Hehe.</p>
+<p>I&#39;ll post a link as soon as I have a demo up. Thanks again Alberto!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>There is currently no way to filter the posts in <code>paginator.posts</code>. Thus, you only can build a pagination based on all of your posts, not just a couple of them.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>Ok, thanks for the help folks, I really appreciate it. I&#39;m going to live without pagination on permalink pages. Also, I was afk all weekend, so I did not have a chance to create a demo. Oh well, looks like the demo would be moot anyway. Thanks again all!!!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

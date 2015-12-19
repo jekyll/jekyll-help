@@ -1,0 +1,307 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Output different on GH-Pages vs local build</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#10</span>
+        </p>
+        <h1>Output different on GH-Pages vs local build</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">budparr</a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body">
+            <p>Wondering if any of you have seen this sort of thing?</p>
+<p>I&#39;m running jekyll (1.5.1), liquid (2.5.5), which are the same version GH Pages is running (<a href="https://pages.github.com/versions/">https://pages.github.com/versions/</a>), yet, I&#39;m getting an odd difference between what I&#39;m seeing on my local build and the Pages version. </p>
+<p>Specifically, the order of items in my navigation is different locally than it is on Pages. This appears to be the only difference.</p>
+<p>Jekyll  sorts pages by the filename, so I&#39;ve given my pages files name beginning with numbers, e.g. &#39;01-home&#39;, &#39;02-about&#39;. This order is respected on my local build, but not on the Pages build. In fact, there doesn&#39;t appear to be a specific order at all on the Pages build. Hopefully I&#39;m just overlooking something!</p>
+<p>Here&#39;s the site: <a href="http://linnullmann.pubspringdev1.com/">http://linnullmann.pubspringdev1.com/</a>
+<a href="https://github.com/sonnetmedia/linnullmann">https://github.com/sonnetmedia/linnullmann</a></p>
+<p>Here&#39;s my code (it&#39;s a bi-lingual site):</p>
+<pre><code> {% if page.url contains &#39;/en/&#39; %}
+      &lt;a href=&quot;/en/&quot;&gt;&lt;li class=&quot;sidebar-nav-item&quot;&gt;home&lt;/li&gt;&lt;/a&gt;
+      {% for page in site.pages %}
+        {% if page.permalink contains &#39;/en/&#39;  %}
+          {% if page.show_in_menu == true  %}
+            &lt;a href=&quot;{{page.url}}&quot;&gt;
+              &lt;li id=&quot;{{page.url}}&quot; class=&quot;sidebar-nav-item{% if page.url contains /page.url/  %} active{% endif %}&quot;&gt;{{page.title}}&lt;/li&gt;
+            &lt;/a&gt;  
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% else %}{% comment %}If EN isn&#39;t in URL serve up the &#39;unless&#39; case{% endcomment %}
+      &lt;a href=&quot;/&quot;&gt;&lt;li class=&quot;sidebar-nav-item&quot;&gt;hjem&lt;/li&gt;&lt;/a&gt;
+      {% for page in site.pages %}
+        {% unless page.permalink contains &#39;/en/&#39;  %}
+          {% if page.show_in_menu == true  %}
+            &lt;a href=&quot;{{page.url}}&quot;&gt;
+              &lt;li id=&quot;{{page.url}}&quot; class=&quot;sidebar-nav-item{% if page.url contains /page.url/  %} active{% endif %}&quot;&gt;{{page.title}}&lt;/li&gt;
+            &lt;/a&gt;  
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
+    {% endif %}
+</code></pre><p>LOCAL
+<img src="https://cloud.githubusercontent.com/assets/115347/2603706/54932c3c-bb32-11e3-8d17-74c367a2770a.jpg" alt="screen shot 2014-04-03 at 9 16 49 am"></p>
+<p>PAGES
+<img src="https://cloud.githubusercontent.com/assets/115347/2603721/7bc4e0b6-bb32-11e3-8097-9b4e1cb6ad09.jpg" alt="screen shot 2014-04-03 at 9 18 23 am"></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>Very odd. I&#39;m seeing a different order myself!</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1420926/2604870/cb992a14-bb3e-11e3-9103-096ed31fc907.png" alt="screen shot 2014-04-03 at 9 46 15 am"> 
+<img src="https://cloud.githubusercontent.com/assets/1420926/2604937/77bb5d9e-bb3f-11e3-8126-3a7d3e47dac2.png" alt="screen shot 2014-04-03 at 9 50 43 am"></p>
+<p>For the record, the order should be:</p>
+<ol>
+<li>home / hjem</li>
+<li>about / om forfatteren</li>
+<li>contact / kontact</li>
+<li>books / bøker</li>
+<li>interviews / intervjuer</li>
+</ol>
+<p>I don&#39;t know what could be causing this weird sorting issue. @benbalter, maybe something with GitHub&#39;s flavor of Ruby?</p>
+<p>In the meantime, there are a couple of things I noticed that you should probably take a look at:</p>
+<p>Your <code>&lt;li&gt;</code> tags are living inside your <code>&lt;a&gt;</code> tags. <code>li</code>s are block elements, whereas <code>a</code>s are span elements. The rules of HTML say the <code>a</code> tag should live inside the <code>li</code>s.</p>
+<p>Also, you are creating a loop and using <code>page</code> as the iterating variable. I believe this would overwrite the <code>page</code> variable set by Jekyll (which contains all of the data for the page like <code>url</code>, <code>permalink</code>, <code>title</code>, etc). Not sure if it&#39;s actually causing a problem, just something to be aware of.</p>
+<p>Finally, all of your nav elements are showing up with a class <code>active</code>.</p>
+<p>It looks like you&#39;ve got some good stuff set up in the <code>_data</code>, maybe set up another data file for nav and include permalinks for English and Norwegian within each element of the nav? This would probably alleviate the sorting issue, too, since you won&#39;t be relying on file system traversal to do your sorting.</p>
+<p>Just some thoughts. Let me know what you think.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>Thanks, Troy. Much appreciated.</p>
+<p>In HTML5 you can indeed wrap links around block level elements and it makes it easier to add padding for fat-finger on devices.</p>
+<p>Good point about using page as the iterating variable. I&#39;ve used that in other places so that I could easily reuse partials, and hadn&#39;t noticed a problem, but will keep a close eye on it. </p>
+<p>I think I will resort to using a data file for the nav. Will at least keep things cleaner. So, with that—from the perspective of overcoming the issue—I&#39;m good, but it sure is an odd one. Should I close the issue?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>Negative, we should keep it open. It still seems like a weird thing that should be investigated.</p>
+<p>Not to side track but I&#39;d still nest the <code>&lt;a&gt;</code> tag inside the <code>&lt;li&gt;</code>. According to the <a href="http://validator.w3.org/check?uri=http%3A%2F%2Flinnullmann.pubspringdev1.com%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline&amp;group=0">validator</a>, it isn&#39;t quite kosher. You might be right that you can wrap <code>&lt;a&gt;</code> tags around block level elements, but in this context, an <code>&lt;a&gt;</code> tag cannot be the direct child of a <code>&lt;ul&gt;</code> tag.</p>
+<p>Use <code>display:block;</code> on the <code>&lt;a&gt;</code> to give it the full width and to retain the touch target that you&#39;re after. The reason I&#39;m bringing it up is because when you inspect the element with developer tools (in Chrome), it&#39;s not drawing the box around <code>&lt;a&gt;</code> element properly. This might cause an actual usability problem in other browsers.</p>
+<p>Here&#39;s a screenshot of what I mean:
+<img src="https://cloud.githubusercontent.com/assets/1420926/2605473/b400692a-bb44-11e3-8229-35ed5c90aa39.png" alt="screen shot 2014-04-03 at 10 27 10 am"></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>You mean you&#39;d have to wrap it around the entire block (the UL) to be effective. Good point. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><pre><code class="lang-html">&lt;ul class=&quot;nav&quot;&gt;
+  &lt;li class=&quot;sidebar-nav-item&quot;&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;!-- more li elements here --&gt;
+&lt;/ul&gt;
+</code></pre>
+<pre><code class="lang-css">ul.nav li {
+  text-align: center;
+  text-transform: lowercase;
+  padding: 0.35em 0;
+}
+ul.nav li a {
+  display: block;
+}
+</code></pre>
+<p>Something like this oughta handle everything just fine. :beers: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>I switched out to using a data file to feed my navigation, but let me know if there&#39;s something I can help to troubleshoot the original issue. Thanks @troyswanson !</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>Any time, @budparr.</p>
+<p>@parkr - Any thoughts on what might be causing the original issue?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>Do we explicitly call <code>sort</code> on that list? If not, then it&#39;s up the FS and the way <code>Dir.glob</code> works on each system.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>Isn&#39;t the default to sort by file name? These are pages and I didn&#39;t know there was, practically speaking, any other way to sort them. But to answer your question, no.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>As you all know, I&#39;m no Ruby developer. I think I found the <a href="https://github.com/jekyll/jekyll/blob/df8458275de4dc3d0f9b92c5247ff20832d1cc8e/lib/jekyll/site.rb#L131-L161">code</a> that grabs the files and converts them to entries (pages or posts), though.</p>
+<p>It looks like there is a <code>sort_by</code> method happening on the <code>pages</code> variable at the very end.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>That&#39;s funny because there&#39;s no date object or anything else pages could sort by*. I&#39;ve seen some tricks out there, but I&#39;ve not had any luck with anything other than filename. But maybe tonight I&#39;ll fork that repo and see if using sort_by changes anything.</p>
+<p>*Collections, I&#39;m hoping, will fix that - I&#39;m looking forward to the alpha release.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>I’ve previously <a href="https://github.com/ndarville/ndarville.github.io/issues/7">experienced a mismatch</a>, because my installed gems differed between development and production. Is there a way for you to create an isolated Ruby environment to see whether that would change the output?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>ProTip :tm: Always be using the <code>github-pages</code> gem when developing locally for Pages.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>@ndarville I do believe that there is something. I can&#39;t remember if @parkr did that.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>Oh, there it you go! <code>github-pages</code> gem :tada: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, April 03, 2014</time>
+          </div>
+          <div class="body"><p>I am using the <code>github-pages</code> gem, so that wouldn&#39;t explain this problem.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Friday, April 04, 2014</time>
+          </div>
+          <div class="body"><p>@budparr Add an <code>order</code> integer variable to the front-matter of the pages you want to sort. Then sort them by <code>order</code>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Friday, April 04, 2014</time>
+          </div>
+          <div class="body"><p>Thanks @penibelst - for some reason I thought that wouldn&#39;t work, but I&#39;ll try it today. Much appreciated.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>This issue seems to be throughly discussed and resolved. Closing.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

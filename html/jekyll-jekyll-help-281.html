@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll server running, html showing, CSS won&#x27;t render.</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#281</span>
+        </p>
+        <h1>Jekyll server running, html showing, CSS won&#x27;t render.</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">Elemshalit</a>
+            <time>Friday, March 06, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hello,</p>
+<p>I have been trying to get sass working with jekyll for a long time. I have tried about every solution
+shown on google. From uninstalling gems, updating/changing yaml files, --- ---, reinstalling related gems, uninstalling reinstalling many different versions of jekyll, but still sass won&#39;t show. 
+Occasionally, changing css properties in _whatever.sass or changing text in index.html will regenerate
+css on the localhost. But no sooner had I kept on working than sass freezes in the application not showing styles anymore.
+I can provide code examples but rather ask if this is a known issue by now (march 2015) that I can look into and therefore fix the problem.  This leads me into despair and I really don&#39;t want to give up on Jekyll.  Thanks for any help, and I apologize for bringing this issue up again.  </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Friday, March 06, 2015</time>
+          </div>
+          <div class="body"><p>What do you mean by “sass won&#39;t show”?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Elemshalit">
+              Elemshalit
+            </a>
+            <time>Friday, March 06, 2015</time>
+          </div>
+          <div class="body"><p>&quot;sass won&#39;t show&quot; meaning jekyll won&#39;t spit out css styles into the index.html. I am using sass and bourbon, and trying to get jekyll to compile  sass to css.  Maybe I should try grunt for the task.  When I revert the project to an earlier version where css clearly is showing,I try to understand what triggers the problem. and sometimes, if I change a value or a text in either _includes, index.html, or 3-modules I get jekyll to show css styles. I don&#39;t know if its either a build,listen,generate,compile, or a watch issue or something else. but I can&#39;t get css to work properly. This issue has been documented a lot in this forum. And I have spent like 15 hours trying every avenue in sight. I even tried reinstalling rvm and all of its dependencies as that proved to be effective in other posts. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/willnorris">
+              willnorris
+            </a>
+            <time>Friday, March 06, 2015</time>
+          </div>
+          <div class="body"><p>This certainly isn&#39;t a known issue, at least in the sense that lots of people generate sass without any issue.  An example of a non-working site would be helpful... it sounds like you&#39;re looking in the right places, but without knowing exactly what it is you&#39;re changing, it&#39;s impossible to know what the problem is.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, March 07, 2015</time>
+          </div>
+          <div class="body"><p>I still don’t know what your problem is.</p>
+<blockquote>
+<p>jekyll won&#39;t spit out css styles into the index.html</p>
+</blockquote>
+<p>You have a Sass file somewhere that starts with the triple dashes (i.e. has front matter) that imports other Sass partials, right? For example, I have a file inside <code>/css</code> called <code>kleinfreund.scss</code> that starts like this:</p>
+<pre><code class="lang-sass">---
+---
+@charset &quot;utf-8&quot;;
+@import
+        &quot;base&quot;,
+        &quot;typography&quot;,
+        // ...
+;
+</code></pre>
+<p>This will spit out a CSS file called <code>kleinfreund.css</code> in the same directory on building the site.</p>
+<p>This file is usually referenced in the <code>default.html</code> layout with a <code>link</code> tag. Do you have all this?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Elemshalit">
+              Elemshalit
+            </a>
+            <time>Sunday, March 08, 2015</time>
+          </div>
+          <div class="body"><p><a href="https://github.com/Elemshalit/JekyllTest001">https://github.com/Elemshalit/JekyllTest001</a> Here it is..</p>
+<p>I am still trying to figure out why css styles are not rendering in the browser.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/willnorris">
+              willnorris
+            </a>
+            <time>Sunday, March 08, 2015</time>
+          </div>
+          <div class="body"><p>okay, so you&#39;ve got a few problems...</p>
+<p>First, remove <a href="https://github.com/Elemshalit/JekyllTest001/blob/master/assets/css/main.css"><code>assets/css/main.css</code></a>.  Because this static file exists, this is what is always getting loaded instead of your sass file being converted into CSS.  I&#39;m not sure if main.css is a compiled version of main.sass?  If so, you don&#39;t need to check it in at all, just let Jekyll build it when needed.  If it&#39;s something different, then you should rename it so that it doesn&#39;t conflict.</p>
+<p>You also have a trailing space in the first line of <a href="https://github.com/Elemshalit/JekyllTest001/blob/master/assets/css/main.sass">main.sass</a> which is preventing it from getting processed by jekyll.  Remove that trailing space character.</p>
+<p>Once you do that, when you run jekyll you should get the error:</p>
+<pre><code>Conversion error: Jekyll::Converters::Sass encountered an error while converting &#39;assets/css/main.sass&#39;:
+Invalid CSS after &quot;&quot;: expected selector, was &quot;---&quot; on line 1
+</code></pre><p>This is because <a href="https://github.com/Elemshalit/JekyllTest001/blob/master/assets/css/1-tools/_-tools-index.sass">1-tools/_-tools-index.sass</a>, <a href="https://github.com/Elemshalit/JekyllTest001/blob/master/assets/css/2-base/_-base-index.sass">2-base/_-base-index.sass</a>, and <a href="https://github.com/Elemshalit/JekyllTest001/blob/master/assets/css/3-modules/_-modules-index.sass">3-modules/_-modules-index.sass</a> all have front-matter defined.  They shouldn&#39;t.  Included sass files shouldn&#39;t have front matter, only the main file that does all of the importing (in your case, <code>main.sass</code>).  So remove the <code>--- ---</code> from the top of those files.</p>
+<p>Once you do that, you should get the error:</p>
+<pre><code>Conversion error: Jekyll::Converters::Sass encountered an error while converting &#39;assets/css/main.sass&#39;:
+Invalid CSS after &quot;padding:&quot;: expected pseudoclass or pseudoelement, was &quot;30px&quot; on line 6
+</code></pre><p>This is because you are missing a space after the &quot;:&quot; in <a href="https://github.com/Elemshalit/JekyllTest001/blob/master/assets/css/3-modules/_footer.sass#L6">3-modules/_footer.sass</a>.  Add a space after the colon.  (I honestly had no idea sass was so sensitive to whitespace in this regard... one of the reasons I much prefer the scss dialect I guess)</p>
+<p>After that, your sass file should build fine.  I&#39;ll send a pull request on your test repo with all of these changes, but I wanted to explain them here as well so you understand what went wrong.  Let me know if you have trouble applying these fixes.</p>
+<p>You should probably also add <code>.sass-cache</code> and <code>.jekyll-metadata</code> to your <code>.gitignore</code> file... neither of those should really be checked in to version control.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/willnorris">
+              willnorris
+            </a>
+            <time>Sunday, March 08, 2015</time>
+          </div>
+          <div class="body"><p>And just to show that these changes are working:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1112/6545460/e62bb3da-c545-11e4-8dee-9b736575cfcb.png" alt="screen shot 2015-03-08 at 3 47 16 am"></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Elemshalit">
+              Elemshalit
+            </a>
+            <time>Sunday, March 08, 2015</time>
+          </div>
+          <div class="body"><p>Perfect! Thank you so much for getting me up and running!To both of you. @kleinfreund @willnorris 
+Everything is MUCH clearer now. I&#39;ll update more if I may throughout the development stage if any other issues arise. I will look into your fix more closely tomorrow, but as of now, I can attest to your assumption that sass is indeed sensitive in this instance. Don&#39;t use spaces sparingly when you indent that&#39;s for sure. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, March 23, 2015</time>
+          </div>
+          <div class="body"><p>:metal: Thanks guys for the assist!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

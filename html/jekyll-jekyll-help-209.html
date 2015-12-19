@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Installing Jekyll: ERROR: Failed to build gem native extension.</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#209</span>
+        </p>
+        <h1>Installing Jekyll: ERROR: Failed to build gem native extension.</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">alexwoolley</a>
+            <time>Wednesday, December 10, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,</p>
+<p>Completely new to Jekyll, so apologies if this is a stupid question. After running </p>
+<p><code>gem install jekyll</code></p>
+<p>I get the following error message:</p>
+<p><code>Building native extensions.  This could take a while...</code>
+<code>ERROR:  Error installing jekyll:</code>
+    <code>ERROR: Failed to build gem native extension.</code></p>
+<pre><code>``/usr/bin/ruby2.1 -r ./siteconf20141210-5038-1u40f3s.rb extconf.rb``
+</code></pre><p><code>mkmf.rb can&#39;t find header files for ruby at /usr/lib/ruby/include/ruby.h</code></p>
+<p><code>extconf failed, exit code 1</code></p>
+<p><code>Gem files will remain installed in /var/lib/gems/2.1.0/gems/fast-stemmer-1.0.2 for inspection.</code>
+<code>Results logged to /var/lib/gems/2.1.0/extensions/x86_64-linux/2.1.0/fast-stemmer-1.0.2/gem_make.out</code></p>
+<p>Seems like the commonest solution to this is to run</p>
+<p><code>sudo apt-get install ruby1.9.1-dev</code></p>
+<p>But this ain&#39;t solving the problem for me -- anyone got any tips..?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alexwoolley">
+              alexwoolley
+            </a>
+            <time>Wednesday, December 10, 2014</time>
+          </div>
+          <div class="body"><p>PS this is on Ubuntu </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Wednesday, December 10, 2014</time>
+          </div>
+          <div class="body"><p>Sounds like you are missing the <code>ruby-dev</code> package, try installing it with <code>sudo apt-get install ruby-dev</code> and see if it works then with the newest version of Ruby.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/redknitin">
+              redknitin
+            </a>
+            <time>Thursday, December 11, 2014</time>
+          </div>
+          <div class="body"><p>@alexwoolley , as @sondr3 mentioned, the issue is most definitely because you are missing the ruby-dev package. You may also have to install other dependencies (Javascript and Python).</p>
+<p>There is a jekyll package available for Ubuntu (look it up on Synaptic Package Manager) though I&#39;m not sure of what version of jekyll it is. The package version is 0.11.2-1, which could possibly refer to Jekyll version 2.1 - that&#39;s just a guess from the package version and I could be wrong.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Friday, December 12, 2014</time>
+          </div>
+          <div class="body"><p>Don&#39;t use the Jekyll package on Ubuntu, it is incredibly old and not supported at all, people have previously been burnt by it, stay with the version you get from the gem.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alexwoolley">
+              alexwoolley
+            </a>
+            <time>Sunday, December 14, 2014</time>
+          </div>
+          <div class="body"><p>Thanks so much guys -- so sorry I&#39;ve taken a while to reply!</p>
+<p>All&#39;s working now</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/dhanvi">
+              dhanvi
+            </a>
+            <time>Sunday, May 03, 2015</time>
+          </div>
+          <div class="body"><p>:+1: for the issue this saved my day too :smile: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

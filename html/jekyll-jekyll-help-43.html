@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Problems with installing</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#43</span>
+        </p>
+        <h1>Problems with installing</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">magnusmetz</a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body">
+            <p>Tried to install jekyll today on Ubuntu 12.04 LTS.
+Installed ruby1.9.1 and rubygems using<br><code>sudo apt-get install ruby1.9.1 rubygems</code><br>After problems installing jekyll via termina also installed ruby1.9.1-dev using<br><code>sudo apt-get install ruby1.9.1-dev</code><br>But I still couldn&#39;t install jekyll using<br><code>gem install jekyll</code><br>Output was<br><code>ERROR:  While executing gem ... (Errno::EACCES)
+    Permission denied - /var/lib/gems</code><br>Used<br><code>sudo gem install jekyll</code> instead.
+The result was following<br><code>Fetching: liquid-2.5.5.gem (100%)
+Fetching: fast-stemmer-1.0.2.gem (100%)
+Building native extensions.  This could take a while...
+Fetching: classifier-1.3.4.gem (100%)
+Fetching: timers-1.1.0.gem (100%)
+Fetching: celluloid-0.15.2.gem (100%)
+ERROR:  Error installing jekyll:
+    celluloid requires Ruby version &gt;= 1.9.2.</code><br>Installed ruby1.9.3 using<br><code>sudo apt-get install ruby1.9.3</code>.</p>
+<p>After that I tried again<br><code>sudo gem install jekyll</code>.
+Result was again<br><code>ERROR:  Error installing jekyll:
+    celluloid requires Ruby version &gt;= 1.9.2.</code></p>
+<p>What&#39;s wrong? Installation experience could be better.</p>
+<p>Thanks in advance for reply.</p>
+<p>Magnus</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>@magnusmetz Remove all Ruby versions previous to 1.9.3. You should see:</p>
+<pre><code class="lang-bash">$ ruby -v
+ruby 1.9.3p0 (2011-10-30 revision 33570) [i686-linux]
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/magnusmetz">
+              magnusmetz
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>thanks. followed your instructions resulting in following output:</p>
+<pre><code>$ ruby -v
+ruby 1.9.3p0 (2011-10-30 revision 33570) [x86_64-linux]
+</code></pre><p>Tried to install jekyll again with</p>
+<pre><code>gem install jekyll
+</code></pre><p>but resulted in following error message:</p>
+<pre><code>Fetching: liquid-2.5.5.gem (100%)
+ERROR:  While executing gem ... (Errno::EACCES)
+    Permission denied - /var/lib/gems/1.9.1
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p><code>sudo gem install</code> if you&#39;re using system ruby.</p>
+<p>On 12 May 2014 03:23, Magnus Metz <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#105;&#99;&#97;&#116;&#x69;&#x6f;&#110;&#115;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#x6e;&#x6f;&#x74;&#x69;&#x66;&#105;&#99;&#97;&#116;&#x69;&#x6f;&#110;&#115;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>thanks. followed your instructions resulting in following output:</p>
+<p>$ ruby -v
+ruby 1.9.3p0 (2011-10-30 revision 33570) [x86_64-linux]</p>
+<p>Tried to install jekyll again with</p>
+<p>gem install jekyll</p>
+<p>but resulted in following error message:</p>
+<p>Fetching: liquid-2.5.5.gem (100%)
+ERROR:  While executing gem ... (Errno::EACCES)
+    Permission denied - /var/lib/gems/1.9.1</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/43#issuecomment-42776922">https://github.com/jekyll/jekyll-help/issues/43#issuecomment-42776922</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/magnusmetz">
+              magnusmetz
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>thanks. now I was able to install it and I can continue with my first steps in jekyll.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>Quickest way to fix it is to <code>gem install therubyracer</code>, but the part of
+jekyll causing this issue is being pulled out into it&#39;s own gem &quot;Soon&quot;[TM]</p>
+<p>On 12 May 2014 03:58, Magnus Metz <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#58;&#110;&#x6f;&#116;&#x69;&#x66;&#105;&#99;&#97;&#116;&#105;&#111;&#x6e;&#x73;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#x63;&#111;&#109;">&#110;&#x6f;&#116;&#x69;&#x66;&#105;&#99;&#97;&#116;&#105;&#111;&#x6e;&#x73;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#x63;&#111;&#109;</a> wrote:</p>
+<blockquote>
+<p>Now I have a new problem while trying:</p>
+<p>jekyll new Dynamic Documents</p>
+<p>I get following output:</p>
+<p>/var/lib/gems/1.9.1/gems/execjs-2.0.2/lib/execjs/runtimes.rb:51:in <code>autodetect&#39;: Could not find a JavaScript runtime. See https://github.com/sstephenson/execjs for a list of available runtimes. (ExecJS::RuntimeUnavailable)
+    from /var/lib/gems/1.9.1/gems/execjs-2.0.2/lib/execjs.rb:5:in</code>&lt;module:ExecJS&gt;&#39;
+    from /var/lib/gems/1.9.1/gems/execjs-2.0.2/lib/execjs.rb:4:in <code>&lt;top (required)&gt;&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in</code>require&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in <code>require&#39;
+    from /var/lib/gems/1.9.1/gems/coffee-script-2.2.0/lib/coffee_script.rb:1:in</code>&lt;top (required)&gt;&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in <code>require&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in</code>require&#39;
+    from /var/lib/gems/1.9.1/gems/coffee-script-2.2.0/lib/coffee-script.rb:1:in <code>&lt;top (required)&gt;&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in</code>require&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in <code>require&#39;
+    from /var/lib/gems/1.9.1/gems/jekyll-coffeescript-1.0.0/lib/jekyll-coffeescript.rb:2:in</code>&lt;top (required)&gt;&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in <code>require&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in</code>require&#39;
+    from /var/lib/gems/1.9.1/gems/jekyll-2.0.3/lib/jekyll.rb:73:in <code>&lt;top (required)&gt;&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in</code>require&#39;
+    from /usr/lib/ruby/1.9.1/rubygems/custom_require.rb:36:in <code>require&#39;
+    from /var/lib/gems/1.9.1/gems/jekyll-2.0.3/bin/jekyll:6:in</code>&lt;top (required)&gt;&#39;
+    from /usr/local/bin/jekyll:19:in <code>load&#39;
+    from /usr/local/bin/jekyll:19:in</code>&lt;main&gt;&#39;</p>
+<p>I already tried</p>
+<p>sudo gem install execjs</p>
+<p>but didn&#39;t solve anything.</p>
+<p>What&#39;s to do? Thanks for further help...</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/43#issuecomment-42777872">https://github.com/jekyll/jekyll-help/issues/43#issuecomment-42777872</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>@magnusmetz Can you please close the dupe <a href="https://github.com/jekyll/jekyll/issues/2392?">https://github.com/jekyll/jekyll/issues/2392?</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

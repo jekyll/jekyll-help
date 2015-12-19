@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Format for FAQ</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#1</span>
+        </p>
+        <h1>Format for FAQ</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ndarville</a>
+            <time>Thursday, March 27, 2014</time>
+          </div>
+          <div class="body">
+            <p>Assuming we get a large amount of issue, we should run into some frequently asked questions. Which way do you prefer we provide this: in the <code>README</code>, in <code>faq.md</code>, etc.?</p>
+<p>The FAQ can also then be used in our <code>CONTRIBUTING</code> file.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, March 27, 2014</time>
+          </div>
+          <div class="body"><p>Creating an FAQ is a terrific idea! How do you think it should be structured? GitHub Code Search will help with discovery so we needn&#39;t worry too much about that.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Friday, March 28, 2014</time>
+          </div>
+          <div class="body"><p>Maybe we should add it as a separate file, so you can add the repo as a submodule and use <code>faq.md</code> on the Jekyll website—or at least so that option’s available to you?</p>
+<p>In other words:</p>
+<pre><code>- README.md
+- faq.md
+- CONTRIBUTING.md =&gt; faq.md
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/benbalter">
+              benbalter
+            </a>
+            <time>Friday, March 28, 2014</time>
+          </div>
+          <div class="body"><p>Sounds like a great case for collections.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, March 31, 2014</time>
+          </div>
+          <div class="body"><p>A part of me would love to see a site created specifically for help/support, kind of like a Knowledge Center. However, that would put the tally for discrete websites for the Jekyll project up to three: Jekyll proper, Jekyll Import, and now Jekyll Help. Thoughts?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, March 31, 2014</time>
+          </div>
+          <div class="body"><p>TL;DR Let&#39;s hold off on a site/FAQ until we have lots of issues from which we can distill principles of working with Jekyll.</p>
+<p>I think this repo should be more about use of the Issues – if and when we can distill principles or how-to&#39;s into something worthy of a website, then we should set something up. Luckily, GitHub Code/Issue Search is quite powerful so as long as the questions are detailed enough, we&#39;ll have a wonderful collection of Q&amp;A&#39;s in this repo without even needing a site!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, March 31, 2014</time>
+          </div>
+          <div class="body"><p>Agreed, especially for now. Once we get a bunch of stuff in here, we can begin boiling it down and looking for patterns. At which point we should be able to come up with original content for proactively helping folks, e.g. jekyll/screencast#1. Closing this for now until we get enough content to start thinking more about it.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/erlend-sh">
+              erlend-sh
+            </a>
+            <time>Tuesday, April 01, 2014</time>
+          </div>
+          <div class="body"><p>Frankly I&#39;m surprised Jekyll hasn&#39;t gone the way of Atom.io and set up a Discourse forum for itself. You could even <a href="http://eviltrout.com/2014/01/22/embedding-discourse.html">attach threads</a> to discuss the docs pages ;)</p>
+<p>That being said, no rush! As long as there are clever people willing to answer the occasional question about Jekyll I&#39;m happy as can be.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Tuesday, April 01, 2014</time>
+          </div>
+          <div class="body"><p>Set up a Discourse forum? <a href="http://pony-forum.com">Pfft</a>. :)</p>
+<p>I think GitHub is better for discussing—and sharing—code for the time being, but it’s also a nice experiment to find out what GitHub Issues is capable of—and isn’t. You also get a certain demographic as a result of placing the discussion here.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, April 01, 2014</time>
+          </div>
+          <div class="body"><p>@ndarville :+1: to everything you said.</p>
+<p>PS: dat pony-forum doe.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

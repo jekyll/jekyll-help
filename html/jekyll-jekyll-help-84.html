@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll Serve crashing?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#84</span>
+        </p>
+        <h1>Jekyll Serve crashing?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">andysanchez</a>
+            <time>Tuesday, June 24, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello, I was playing around with Jekyll and got it installed and functioning properly; however, after I run the command &#39;jekyll serve&#39; and the site is accessible, when I close my laptop the site goes down because the IDE loses connection.</p>
+<p>I&#39;m using Nitrous.io</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Tuesday, June 24, 2014</time>
+          </div>
+          <div class="body"><p>I am going to assume you do not expect the computer/site to continue to be accessible when the laptop is closed, sleeping, or turned off.</p>
+<p>Are you suggesting/asking, upon reopening/awaking/starting your laptop, that the site is no longer continuing to be served as it was prior to sleep/shutdown?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/andysanchez">
+              andysanchez
+            </a>
+            <time>Tuesday, June 24, 2014</time>
+          </div>
+          <div class="body"><p>It&#39;s installed fully on Nitrous.io - here&#39;s the address and it is currently working (address below). Since nitrous has a built in Web command line it should be running when I close out of it; however, it&#39;s not- it stops the process completely and the site is kicked off line.</p>
+<p>In regards to my laptop being closed or asleep, the site isn&#39;t being hosted from it, it&#39;s a remote server.</p>
+<p><a href="http://blogsanchez-124746.use1.nitrousbox.com:4000/">http://blogsanchez-124746.use1.nitrousbox.com:4000/</a></p>
+<p><img src="https://cloud.githubusercontent.com/assets/7904813/3372993/d3199308-fbaf-11e3-8f97-3aba594b6de1.jpg" alt="nitrous io 2014-06-24 10-53-37 2014-06-24 10-54-25"></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Tuesday, June 24, 2014</time>
+          </div>
+          <div class="body"><p>Thanks for the additional information.</p>
+<p>I am not familiar with the service you refer to. However, I can conclude that if you are hosting remotely within a shell or shell-like environment, you likely simply need to focus on executing long-running commands within the appropriate context.</p>
+<p>For example, within <em>nix and </em>nix-like environments, there is <code>screen</code> and <code>nohup</code>, etc. that put commands into the background while continuing to run... <em>even after disconnection</em>.</p>
+<p>Short of that, I would get with the third party service that is providing your hosting platform and request more information about how to accomplish what you desire.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/andysanchez">
+              andysanchez
+            </a>
+            <time>Tuesday, June 24, 2014</time>
+          </div>
+          <div class="body"><p>Ahhh... I just noticed something in another thread based off your response and just figured it out, woohoo thank you!! Nitrous is a newer platform that there wasn&#39;t any documentation really. </p>
+<p>To fix this and keep your jekyll server running, switch to the directory of your app and instead of just booting the server you have to tell it to run in the background by doing this:</p>
+<pre><code>jekyll serve --detach
+</code></pre><p>And you&#39;ll be up and running instantly. You will need to kill all to stop it, or just make note of the process id.</p>
+<p>Thanks for the help!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Tuesday, June 24, 2014</time>
+          </div>
+          <div class="body"><p>Absolutely; you&#39;re welcome. Glad you got things figured.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

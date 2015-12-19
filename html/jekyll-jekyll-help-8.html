@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Problems installing Jekyll on Ubuntu</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#8</span>
+        </p>
+        <h1>Problems installing Jekyll on Ubuntu</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">rowoflo</a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body">
+            <p>When I run</p>
+<pre><code>&gt;&gt; sudo gem install jekyll
+</code></pre><p>I get the error</p>
+<pre><code>ERROR:  While generating documentation for jekyll-1.5.1
+... MESSAGE:   Unhandled special: Special: type=17, text=&quot;&lt;!-- more --&gt;&quot;
+... RDOC args: --ri --op /var/lib/gems/1.8/doc/jekyll-1.5.1/ri --charset=UTF-8 lib README.markdown LICENSE --title jekyll-1.5.1 Documentation --quiet
+</code></pre><p>Any ideas?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>Hello, In what platform (windows, mac, Linux) are you installing Jekyll? Also I&#39;m  not sure if Jekyll supports ruby 1.8.x any more, and it seems you are using that version. Can you confirm that?—
+Alberto Grespan</p>
+<p>On Wed, Apr 2, 2014 at 6:02 PM, rowoflo <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#x6e;&#x6f;&#x74;&#x69;&#x66;&#105;&#x63;&#97;&#116;&#105;&#111;&#110;&#115;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;">&#x6e;&#x6f;&#x74;&#x69;&#x66;&#105;&#x63;&#97;&#116;&#105;&#111;&#110;&#115;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;</a> wrote:</p>
+<blockquote>
+<p>When I run</p>
+<pre><code>&gt;&gt; sudo gem install jekyll
+</code></pre><p>I get the error</p>
+<pre><code>ERROR:  While generating documentation for jekyll-1.5.1
+... MESSAGE:   Unhandled special: Special: type=17, text=&quot;&lt;!-- more --&gt;&quot;
+... RDOC args: --ri --op /var/lib/gems/1.8/doc/jekyll-1.5.1/ri --charset=UTF-8 lib README.markdown LICENSE --title jekyll-1.5.1 Documentation --quiet
+</code></pre><h2 id="any-ideas-">Any ideas?</h2>
+<p>Reply to this email directly or view it on GitHub:
+<a href="https://github.com/jekyll/help/issues/8">https://github.com/jekyll/help/issues/8</a></p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rowoflo">
+              rowoflo
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>I am using Ubuntu 12.04 in a virtual machine. I am using ruby 1.87 and I installed gem with</p>
+<pre><code>sudo apt-get install rubygems
+</code></pre><p>Sorry, I accidentally hit the close button before. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>Ok, I just tried that on a VM as well, and I&#39;m getting the same error while generating the <code>ri-documentation</code> for jekyll. If you don&#39;t care about the local gem documentation and just want to install the gem try this, <code>sudo gem install jekyll --no-ri --no-rdoc</code>. We will check for this error.</p>
+<p>Hope this helps.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rowoflo">
+              rowoflo
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>That allowed me to install jekyll with no errors, but when I try <code>jekyll new my-site</code> I get this error</p>
+<pre><code>$ jekyll new my-site
+/var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:385:in `require_program&#39;: program version required (Commander::Runner::CommandError)
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:384:in `each&#39;
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:384:in `require_program&#39;
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:52:in `run!&#39;
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/delegates.rb:8:in `run!&#39;
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/import.rb:10
+    from /usr/local/bin/jekyll:19
+/usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&#39;: no such file to load -- json (LoadError)
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;
+    from /var/lib/gems/1.8/gems/jekyll-1.5.1/bin/../lib/jekyll/filters.rb:2
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&#39;
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;
+    from /var/lib/gems/1.8/gems/jekyll-1.5.1/bin/../lib/jekyll.rb:44
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&#39;
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;
+    from /var/lib/gems/1.8/gems/jekyll-1.5.1/bin/jekyll:7
+    from /usr/local/bin/jekyll:19:in `load&#39;
+    from /usr/local/bin/jekyll:19
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>Yes, I&#39;m getting this error too. Are you forced to use Ruby 1.8.7?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rowoflo">
+              rowoflo
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>Not at all. Like I said before I just did <code>sudo apt-get install rubygems</code>.</p>
+<p>What is the best way to install Ruby on Ubuntu? I usually work on a Mac, so not quite up to speed on the best way to do stuff on the Linux side things.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/fabianrbz">
+              fabianrbz
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>the support for ruby 1.8.7 was removed in <a href="https://github.com/jekyll/jekyll/pull/1780/">this</a> pull request, and it&#39;s not part of v1.5.1.</p>
+<p>@rowoflo in that pull request there are some comments explaining how to install different versions of ruby in ubuntu</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rowoflo">
+              rowoflo
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>Ok, got it working! Just for the record...</p>
+<p>I followed the steps as stated <a href="http://leonard.io/blog/2011/12/installing-ruby-1-9-2-on-ubuntu-11-10-oneric-ocelot-without-using-rvm/">here</a> to remove Ruby 1.8. However, my gem version was not updating even though my ruby version was updating.</p>
+<pre><code>$ ruby --version
+ruby 1.9.3p0 (2011-10-30 revision 33570) [x86_64-linux]
+$ gem --version
+1.8.11
+</code></pre><p>But gem 1.9.1 was installed in /usr/bin. So, I just installed Jekyll using gem 1.9.1 using</p>
+<pre><code>sudo /usr/bin/gem1.9.1 install jekyll
+</code></pre><p>After that I could run Jekyll commands as usual</p>
+<pre><code>jekyll new website
+cd website
+jekyll build
+jekyll serve
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>The <code>gem --version</code> will not necessarily be the same version as the package version (1.9.1). <code>sudo update-alternatives --config gem</code> should have done the symlink, check if <code>/usr/bin/gem</code> is symlinked or hardlinked to <code>/usr/bin/gem1.9.1</code> or <code>/etc/alternatives/gem</code>. You can use this command <code>ls -la /usr/bin | grep gem</code>. If that&#39;s the case you are fine and can use the gem command normally.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rowoflo">
+              rowoflo
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>Yep, you are correct. I checked that gem is actually symlinked to <code>/usr/bin/gem1.9.1</code>. Just to make sure, I uninstalled Jekyll and reinstall with just the gem command everything still worked fine.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m glad! Let&#39;s close this issue!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>:+1: Good job all!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/yourmoonlight">
+              yourmoonlight
+            </a>
+            <time>Friday, April 11, 2014</time>
+          </div>
+          <div class="body"><p>many thanks!!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rowoflo">
+              rowoflo
+            </a>
+            <time>Friday, April 11, 2014</time>
+          </div>
+          <div class="body"><p>Thank you for all the help!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/doriel">
+              doriel
+            </a>
+            <time>Wednesday, June 18, 2014</time>
+          </div>
+          <div class="body"><p>@rowoflo and @albertogg  Thanks this info really helped me a lot :+1:  </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, June 18, 2014</time>
+          </div>
+          <div class="body"><p>@doriel glad it did!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

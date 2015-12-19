@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Access front matter with where filter</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#95</span>
+        </p>
+        <h1>Access front matter with where filter</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">kleinfreund</a>
+            <time>Saturday, July 12, 2014</time>
+          </div>
+          <div class="body">
+            <p>I want to list all posts with a certain value for a front matter key. Does the where filter allow the use of custom front matter key value pairs? If so, how do I get this to work?</p>
+<pre><code class="lang-html">{% for post in site.posts | where:&quot;lang&quot;,&quot;de&quot; %}
+     {% capture post_count %} {{ post_count | plus: 1 }} {% endcapture %}
+{% endfor %}
+
+&lt;!-- Currently, `post_count` matches all posts --&gt;
+{{ post_count }}
+</code></pre>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Saturday, July 12, 2014</time>
+          </div>
+          <div class="body"><p>Filters don’t work on <code>for</code> loops. Try this:</p>
+<pre><code>{{ site.posts | where:&quot;lang&quot;,&quot;de&quot; | size }}
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Saturday, July 12, 2014</time>
+          </div>
+          <div class="body"><p>To get all de-posts, use <code>assign</code></p>
+<pre><code>{% assign posts_de = site.posts | where:&quot;lang&quot;,&quot;de&quot; %}
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, July 12, 2014</time>
+          </div>
+          <div class="body"><p>Thank you,</p>
+<p>Changing the way my blog pages work:</p>
+<pre><code>{% assign posts_en = site.posts | where:&quot;lang&quot;,&quot;en&quot; %}
+&lt;ul&gt;
+{% for post in posts_en limit:10 %}
+     &lt;li&gt;Post&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+
+{% if posts_en.size &gt; 10 %}
+&lt;a href=&quot;/en/archive&quot; class=&quot;island&quot;&gt;Read more posts in the archive&lt;/a&gt;
+{% endif %}
+</code></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

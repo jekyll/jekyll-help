@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll&#x27;s installation process shenanigans.</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#245</span>
+        </p>
+        <h1>Jekyll&#x27;s installation process shenanigans.</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">Ysag</a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body">
+            <p>Greetings fellas,</p>
+<p>Been struggilng with the installation process for windows(i can&#39;t afford a mac), following some very precise tutorials i got myself around installing ruby and a devkit(both are compatible with each other).</p>
+<p>But when i try to run the jekyll cmd on the console(not windows&#39;s) i get an error message as if there was an error while fetching data from jekyll&#39;s server.</p>
+<p>Any thought/recommendations are welcome, thanks for your time in advance and have a great day!.</p>
+<ul>
+<li>Ysag</li>
+</ul>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body"><p>That error message you were talking about, where is it? That&#39;d be super helpful to help you out.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Ysag">
+              Ysag
+            </a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body"><p>ERROR: Could not find a valid gem &#39;jekyll&#39; &lt;&gt;=0&gt;, here is why:
+    Unable to download data from <a href="https://rubygems.org/">https://rubygems.org/</a> - SSL_connect returned=1
+    errno=0 state=SSLv3 read server certificate B: certificate verify failed <a href="https://api.rubygems.org/latest_specs.4.8.gz">https://api.rubygems.org/latest_specs.4.8.gz</a></p>
+<p>Here&#39;s the exact same message i am getting. Thanks for your help btw.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body"><p>Check out this <a href="http://stackoverflow.com/a/27641786">SO answer</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Ysag">
+              Ysag
+            </a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body"><p>Thanks for the info Travis!. Though it tells me to run the setup.rb, I assumed to run it with ruby but it is not picking it up. Do i have to have these files on the same dir as for ruby?.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body"><p>I don&#39;t know 100% but I wouldn&#39;t expect so. You should just be able to unzip the file into some folder somewhere, and then run <code>ruby setup.rb</code> while you&#39;re in that folder.</p>
+<p>PS: I&#39;m Troy. :smile: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Ysag">
+              Ysag
+            </a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body"><p>Sorry for that namechange all of a sudden!. The thing is that it&#39;s not letting me run it, it&#39;s not picking the file type(extension) and i tried going to the folder and running it but it won&#39;t. </p>
+<p>Sorry for taking all of your time people!, but i just of now got started with ruby and jekyll. I&#39;ve only used ST for offline Front-end designing.</p>
+<p>-Ysag</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body"><p>Oh, try being inside a <code>cmd</code> window, <code>cd</code> into that folder, and try running <code>ruby setup.rb</code> there.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

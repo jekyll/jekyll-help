@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How to generate particular file or folder ?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#123</span>
+        </p>
+        <h1>How to generate particular file or folder ?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">flaviomicheletti</a>
+            <time>Thursday, August 14, 2014</time>
+          </div>
+          <div class="body">
+            <p>When I build a page, I need to see results quickly in the browser.
+How do I generate only particular page or folder?</p>
+<p>Example <code># jekyll server -w  &quot;other/folder/&quot;</code></p>
+<p>Thanks!
+<a href="https://github.com/devfuria/www.devfuria.com.br">My site </a></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, August 14, 2014</time>
+          </div>
+          <div class="body"><p>In terminal, <code>cd</code> into your source directory, and use <code>jekyll serve -w</code>. This will build your site and start a web server on your machine that you can use to test with.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/flaviomicheletti">
+              flaviomicheletti
+            </a>
+            <time>Thursday, August 14, 2014</time>
+          </div>
+          <div class="body"><p>But this will generate the entire site.
+Only a folder, a subfolder or file can not I?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, August 14, 2014</time>
+          </div>
+          <div class="body"><p>No, you can only generate the entire site.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/flaviomicheletti">
+              flaviomicheletti
+            </a>
+            <time>Thursday, August 14, 2014</time>
+          </div>
+          <div class="body"><p>Ok, thanks!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

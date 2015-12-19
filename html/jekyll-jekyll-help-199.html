@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>What does {% ___ %} mean?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#199</span>
+        </p>
+        <h1>What does {% ___ %} mean?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">Plenglin</a>
+            <time>Tuesday, November 18, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;ve seen it in many markdown files. They all seem to contain code inside. What does it mean? I know, it&#39;s a very noobish question.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Tuesday, November 18, 2014</time>
+          </div>
+          <div class="body"><p>It&#39;s Liquid markup (more documentation <a href="http://docs.shopify.com/themes/liquid-documentation/basics">here</a>). It basically allows for logic, tags, and filters within a Markdown (or Textile or HTML) file.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

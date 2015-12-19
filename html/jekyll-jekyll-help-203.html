@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Build error after upgrading to Yosemite</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#203</span>
+        </p>
+        <h1>Build error after upgrading to Yosemite</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">milesgrimshaw</a>
+            <time>Monday, November 24, 2014</time>
+          </div>
+          <div class="body">
+            <p>I get the following error on <code>jekyll build</code> and have tried reinstalling Ruby, Rails, gems etc. </p>
+<p>WARN: Unresolved specs during Gem::Specification.reset:
+      posix-spawn (~&gt; 0.3.6)
+      ffi (&gt;= 0.5.0)
+WARN: Clearing out unresolved specs.
+Please report a bug if this causes problems.
+/Users/milesgrimshaw/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/jekyll-2.5.2/bin/jekyll:21:in <code>block in &lt;top (required)&gt;&#39;: cannot load such file -- jekyll/version (LoadError)
+    from /Users/milesgrimshaw/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/mercenary-0.3.5/lib/mercenary.rb:18:in</code>program&#39;
+    from /Users/milesgrimshaw/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/jekyll-2.5.2/bin/jekyll:20:in <code>&lt;top (required)&gt;&#39;
+    from /usr/bin/jekyll:23:in</code>load&#39;
+    from /usr/bin/jekyll:23:in `&lt;main&gt;&#39;</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Monday, November 24, 2014</time>
+          </div>
+          <div class="body"><p>Note Yosemite has new command line tools/Xcode and related cruft.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/milesgrimshaw">
+              milesgrimshaw
+            </a>
+            <time>Monday, November 24, 2014</time>
+          </div>
+          <div class="body"><p>I think I updated all the Xcode stuff and GCC etc. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/milesgrimshaw">
+              milesgrimshaw
+            </a>
+            <time>Monday, November 24, 2014</time>
+          </div>
+          <div class="body"><p><code>bundle exec serve</code> seems to work though</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

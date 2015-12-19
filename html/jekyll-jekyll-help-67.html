@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Redcarpet not found on linux</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#67</span>
+        </p>
+        <h1>Redcarpet not found on linux</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">FernandoBasso</a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body">
+            <p><code>redcarpet</code> is installed and in the path.</p>
+<pre><code>$ redcarpet --version
+Redcarpet 3.1.2
+
+$ ruby --version
+ruby 2.1.2p95 (2014-05-08 revision 45877) [i686-linux]
+
+$ jekyll --version
+jekyll 2.0.3
+</code></pre><p>But when I try to build the site, I get:</p>
+<pre><code>$ jekyll build --trace
+Configuration file: /home/fernando/develop/projs/fernandobasso.github.io/_config.yml
+            Source: /home/fernando/develop/projs/fernandobasso.github.io
+       Destination: /home/fernando/develop/projs/fernandobasso.github.io/_site
+      Generating... 
+You are missing a library required for Markdown. Please run:
+  $ [sudo] gem install redcarpet
+  Conversion error: There was an error converting &#39;_posts/2014-03-10-welcome-to-jekyll.markdown/#excerpt&#39;.
+             ERROR: YOUR SITE COULD NOT BE BUILT:
+                    ------------------------------------
+                    Missing dependency: redcarpet
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>Are you using a Ruby version manager?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>No. I am not. Anyway. I tried creating a new fresh site, and it worked. I saw that the new <code>_config.yml</code> had some more stuff than the old one. I added <code>_markdown: kramdown</code> to the config file on the &quot;old&quot; site and it worked.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>There&#39;s also a bug presently where if you are using the rouge interpreter but the gem isn&#39;t installed, Jekyll will tell you it&#39;s because Redcarpet isn&#39;t installed, when it&#39;s actually just that rouge isn&#39;t installed.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>Yeah, installing rouge solved. Thanks.</p>
+<p>On Wed, Jun 4, 2014 at 3:58 PM, Parker Moore <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x6e;&#x6f;&#116;&#x69;&#x66;&#105;&#x63;&#x61;&#116;&#x69;&#x6f;&#110;&#115;&#64;&#103;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x6e;&#x6f;&#116;&#x69;&#x66;&#105;&#x63;&#x61;&#116;&#x69;&#x6f;&#110;&#115;&#64;&#103;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;</a>
+wrote:</p>
+<blockquote>
+<p>There&#39;s also a bug presently where if you are using the rouge interpreter
+but the gem isn&#39;t installed, Jekyll will tell you it&#39;s because Redcarpet
+isn&#39;t installed, when it&#39;s actually just that rouge isn&#39;t installed.</p>
+<p>—
+Reply to this email directly or view it on GitHub
+<a href="https://github.com/jekyll/jekyll-help/issues/67#issuecomment-45135880">https://github.com/jekyll/jekyll-help/issues/67#issuecomment-45135880</a>.</p>
+</blockquote>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

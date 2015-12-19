@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>css/main.scss contains syntax errors when I push to gh-pages</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#221</span>
+        </p>
+        <h1>css/main.scss contains syntax errors when I push to gh-pages</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">lucachaco</a>
+            <time>Monday, December 29, 2014</time>
+          </div>
+          <div class="body">
+            <p>I keep getting this error but i works fine with i run it with -&gt; bundle exec jekyll serve</p>
+<p>This is the file -&gt; <a href="https://github.com/lucachaco/sourcequarter-lander/blob/gh-pages/project/website/css/main.scss">https://github.com/lucachaco/sourcequarter-lander/blob/gh-pages/project/website/css/main.scss</a></p>
+<p>It is the same that came with the default theme.</p>
+<p>I already tried this workaround but it didnt work -&gt; <a href="https://github.com/jekyll/jekyll-help/issues/185">https://github.com/jekyll/jekyll-help/issues/185</a></p>
+<p>Any help would be appreciate it. </p>
+<p>Thanks.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/lucachaco">
+              lucachaco
+            </a>
+            <time>Tuesday, December 30, 2014</time>
+          </div>
+          <div class="body"><p>I realised I had to move the project to the root dir to make it work.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>I think you could have worked around this by adding a <code>_config.yml</code> file in the root of the repo and adding a <code>source</code> property that points to the relative position of the root of the Jekyll source... Not entirely sure if that would work though.</p>
+<p>Glad you got it working, either way.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/lucachaco">
+              lucachaco
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>Thank you troyswanson for your comment.
+I was going to try that but I saw github overwrites that settings: <a href="https://help.github.com/articles/using-jekyll-with-pages/#configuring-jekyll">https://help.github.com/articles/using-jekyll-with-pages/#configuring-jekyll</a></p>
+<p>So, moving the files to the root I think was my only option a the moment.</p>
+<p>Thanks.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

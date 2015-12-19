@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How do I use variables with Liquid in Jekyll?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#283</span>
+        </p>
+        <h1>How do I use variables with Liquid in Jekyll?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Tuesday, March 17, 2015</time>
+          </div>
+          <div class="body">
+            <p>I want to use a variable inside a <code>for</code> loop, like this:</p>
+<pre><code>{% capture sidebar %}
+site.data.sidebar_fe.entries
+{% endcapture %}
+
+{% for entry in sidebar %}
+</code></pre><p>Basically here I want to set up a variable called <code>sidebar</code> that really refers to <code>site.data.sidebar.fe.entries</code>.</p>
+<p>However, this doesn&#39;t work. Any ideas why? I thought <code>capture</code> was how I set up a variable. </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, March 17, 2015</time>
+          </div>
+          <div class="body"><p>You might want to try using <code>assign</code> instead of <code>capture</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, March 17, 2015</time>
+          </div>
+          <div class="body"><p>Yeah, <code>assign</code> is what you want. This is what I do:</p>
+<pre><code class="lang-liquid">{% assign page-lang = site.data.locales[page.lang] %}
+</code></pre>
+<p><code>page.lang</code> is either <code>de</code> or <code>en</code> and I have a YAML file in <code>_data</code> that has a structure like this:</p>
+<pre><code class="lang-yaml">de:
+  whatever: &#39;Ding&#39;
+
+en:
+  whatever: &#39;thing&#39;
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Tuesday, March 17, 2015</time>
+          </div>
+          <div class="body"><p>Awesome! Thanks, that does work. I appreciate your quick response. </p>
+<p>Here&#39;s the code I used. Basically I have an audience value defined in my config file. Depending on the audience, different sidebars are called:</p>
+<pre><code>{% if site.audience == &quot;fe&quot; %}
+{% assign sidebar = site.data.sidebar_fe.entries %}
+
+{% elsif site.audience == &quot;customer&quot; %}
+{% assign sidebar = site.data.sidebar_customer.entries %}
+{% endif %}
+
+{% for entry in sidebar %} ...
+</code></pre><p>Thanks for your help.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, March 17, 2015</time>
+          </div>
+          <div class="body"><p>:boom: :metal: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

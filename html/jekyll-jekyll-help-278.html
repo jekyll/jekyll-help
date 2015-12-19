@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How can I programmatically modify permalinks?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#278</span>
+        </p>
+        <h1>How can I programmatically modify permalinks?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">skagedal</a>
+            <time>Tuesday, February 24, 2015</time>
+          </div>
+          <div class="body">
+            <p><a href="http://stackoverflow.com/questions/28681575/in-jekyll-how-can-i-programmatically-modify-permalinks-for-pages">I asked this question on Stack Overflow</a> but thought it would be good to ask as well, sorry if some of you already read this.</p>
+<p>I want to tweak the permalink of each page programatically, using <a href="http://jekyllrb.com/docs/permalinks/">permalink templates</a> is not enough. I tried using a Generator plugin, something like:</p>
+<pre><code class="lang-ruby">module MySite
+  class MySiteGenerator &lt; Jekyll::Generator
+    def generate(site)
+      site.pages.each do |page|
+        page.data[&#39;permalink&#39;] = &#39;/foo&#39; + page.url
+        # real world manipulation of course more complicated
+      end
+    end
+  end
+end
+</code></pre>
+<p>But although this would run and set the <code>page.data[&#39;permalink&#39;]</code> field, the output was still the same.</p>
+<p>On Stack Overflow I got the suggestion to instead override the <code>Page</code> class, like:</p>
+<pre><code class="lang-ruby">module Jekyll
+  class Page
+    alias orig_permalink permalink
+    def permalink
+      permalink    = orig_permalink
+      newPermalink = &quot;foo/#{permalink}&quot;
+    end
+  end
+end
+</code></pre>
+<p>But this didn&#39;t work either, only if a page had a manually configured permalink in the front matter did it work, otherwise the pages were not generated in <code>_site</code> at all. <a href="https://github.com/skagedal/permalink_mod_test">Here&#39;s a test repo.</a></p>
+<p>Is there a way to get what I want?  Thanks!</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

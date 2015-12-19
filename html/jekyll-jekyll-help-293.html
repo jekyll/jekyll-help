@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Loop trough subfolder of _posts?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#293</span>
+        </p>
+        <h1>Loop trough subfolder of _posts?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">baasdesign</a>
+            <time>Wednesday, April 29, 2015</time>
+          </div>
+          <div class="body">
+            <p>I can&#39;t seem to figur this out. Is it possible to loop trough posts and pages in a subfolder of &quot;_posts&quot;?</p>
+<p>Like so: </p>
+<p><code>{% for page in posts.staticpages %} {{ page.title }} {% endfor %}</code></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Wednesday, April 29, 2015</time>
+          </div>
+          <div class="body"><p>I believe you&#39;re looking for <code>site.categories.category_name</code> I know that works for where you have:</p>
+<pre><code>category_name
+  _posts
+    2015-04-29-post-name.md
+</code></pre><p>but not if the folder is within the _posts folder</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/baasdesign">
+              baasdesign
+            </a>
+            <time>Thursday, April 30, 2015</time>
+          </div>
+          <div class="body"><p>That&#39;s the thing, I want to be able to loop trough markdown files in a subfolder of the posts folder. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, April 30, 2015</time>
+          </div>
+          <div class="body"><p>Well it&#39;s a clunky solution, but if you have or make something in your front matter that&#39;s consistent you can use the &#39;where&#39; filter. Sorry I don&#39;t have a better solution!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jamesonzimmer">
+              jamesonzimmer
+            </a>
+            <time>Thursday, April 30, 2015</time>
+          </div>
+          <div class="body"><p>You could put the categories folders within the posts folder, like:</p>
+<p>_posts
+   category-a
+      2015-01-01-a-post.md
+   category-b
+      2016-01-02-another-post.md</p>
+<p>Maybe see <a href="https://github.com/mmistakes/so-simple-theme">https://github.com/mmistakes/so-simple-theme</a> for example of using
+categories like this...  Still clunky but at least keeps stuff within posts
+folder</p>
+<p>Well it&#39;s a clunky solution, but if you have or make something in your
+front matter that&#39;s consistent you can use the &#39;where&#39; filter. Sorry I
+don&#39;t have a better solution!</p>
+<p>—
+Reply to this email directly or view it on GitHub
+<a href="https://github.com/jekyll/jekyll-help/issues/293#issuecomment-97780144">https://github.com/jekyll/jekyll-help/issues/293#issuecomment-97780144</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/baasdesign">
+              baasdesign
+            </a>
+            <time>Friday, May 01, 2015</time>
+          </div>
+          <div class="body"><p>That&#39;s how I solved it now yes :) 
+But its good to see that most people solve it like this, atleast I know there isn&#39;t a better solution. </p>
+<p>Thanks</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

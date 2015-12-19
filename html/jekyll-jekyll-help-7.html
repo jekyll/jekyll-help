@@ -1,0 +1,502 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Working, official-unofficial Atom feed code</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#7</span>
+        </p>
+        <h1>Working, official-unofficial Atom feed code</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ndarville</a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body">
+            <p>I currently use <a href="https://github.com/ndarville/ndarville.github.io/blob/master/feed/index.xml">this</a> feed code for <a href="http://ndarville.github.io/">my blog</a>. Unfortunately, it doesn’t seem to work in readers (ndarville/ndarville.github.io#11).</p>
+<p>Finding the right feed code is a terrible experience I wouldn’t wish upon my worst enemy, and I recall how long it took me to get it to work for the static Blogofile CMS.</p>
+<p>Can we establish a working official-unofficial Jekyll feed code that people can use, and which can be improved upon in one central place, should any new bugs be found?</p>
+<h2 id="decisions">Decisions</h2>
+<ul>
+<li>[x] <code>{{ site.baseurl }}</code> vs. <code>{{ site.url }}</code> w/r/t SSL</li>
+<li>[x] <code>xml_escape</code> vs. <code>CDATA</code></li>
+<li>[x] Filename: <code>/atom/index.xml</code>, <code>atom.xml</code>, <code>feed.atom</code>, etc.</li>
+</ul>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>This is a fantastic idea! @benbalter or @imathis might have an idea. I&#39;d be down to write a plugin which handles this for us.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>I think @mdo has a good example of a feed: <a href="https://github.com/poole/poole/blob/master/atom.xml">https://github.com/poole/poole/blob/master/atom.xml</a></p>
+<p>this works for me, realizing that much of this would vary from site to site:</p>
+<pre><code>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+
+ &lt;title&gt;{{ site.sitename }}&lt;/title&gt;
+ &lt;link href=&quot;{{ site.baseurl }}/atom.xml&quot; rel=&quot;self&quot;/&gt;
+ &lt;link href=&quot;{{ site.baseurl }}/&quot;/&gt;
+ &lt;updated&gt;{{ site.time | date_to_xmlschema }}&lt;/updated&gt;
+ &lt;id&gt;{{ site.baseurl }}/&lt;/id&gt;
+ &lt;author&gt;
+   &lt;name&gt;{{ site.author }}&lt;/name&gt;
+   {% if  site.author.email  %}&lt;email&gt;{{ site.author.email }}&lt;/email&gt;{% endif %}
+ &lt;/author&gt;
+
+ {% for post in site.posts %}
+ &lt;entry&gt;
+   &lt;title&gt;{{ post.title }}&lt;/title&gt;
+   &lt;link href=&quot;{{ site.baseurl }}{{ post.url }}&quot;/&gt;
+   &lt;updated&gt;{{ post.date | date_to_xmlschema }}&lt;/updated&gt;
+   &lt;id&gt;{{ site.baseurl }}{{ post.id }}&lt;/id&gt;
+   &lt;content type=&quot;html&quot;&gt;{{ post.content | xml_escape }}&lt;/content&gt;
+ &lt;/entry&gt;
+ {% endfor %}
+
+&lt;/feed&gt;
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>Is there some kind of feed validation available? My method of seeing whether a handful of feed readers will eat my XML probably isn’t the smartest way of testing, especially if someone breaks farther down the road.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Wednesday, April 02, 2014</time>
+          </div>
+          <div class="body"><p>This: <a href="http://feedvalidator.org/">http://feedvalidator.org/</a>
+But beware - it will throw warnings based on content.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Sunday, April 06, 2014</time>
+          </div>
+          <div class="body"><p>I implemented mdo’s script, but I still get some errors: <a href="http://feedvalidator.org/check.cgi?url=https%3A%2F%2Fndarville.github.io%2Ffeed%2Findex.xml">http://feedvalidator.org/check.cgi?url=https%3A%2F%2Fndarville.github.io%2Ffeed%2Findex.xml</a>.</p>
+<p>It looks like feed readers still won’t eat it as well, so maybe we need something beyond mdo’s script. Maybe wrapping it in <code>CDATA</code> will help. I’ll try to look into it tomorrow.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Sunday, April 06, 2014</time>
+          </div>
+          <div class="body"><p>Adding <a href="https://github.com/ndarville/ndarville.github.io/commit/ba4dad36d2eed113e3cfea68532a656f87eb2151">this</a> change fixed it.</p>
+<p>So if we add that part, we can canonize mdo’s as the unofficial-official Jekyll feed.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Sunday, April 06, 2014</time>
+          </div>
+          <div class="body"><p>except I think it should be {{site.baseurl}} rather than just {{site.url}} <a href="http://jekyllrb.com/docs/upgrading/#baseurl">http://jekyllrb.com/docs/upgrading/#baseurl</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Monday, April 07, 2014</time>
+          </div>
+          <div class="body"><p>Hmm. I am using a <a href="https://github.com/ndarville/ndarville.github.io/commit/168acc112ad418ef956697c02cf42d26b9604ab9">hardcoded, absolute URL</a> to ensure I direct users to the SSL version of my website—although I understand this is something specific to my set-up. Won’t <code>{{ site.baseurl }}</code> just redirect to <code>/feed/index.xml</code>?</p>
+<p>Either way, the change is to add an <code>xml_escape</code> filter; it’s also important to figure out which URL is better for SSL nuts, though, albeit a separate discussion. We should still figure it out here, though.</p>
+<p><code>- [ ] Decide on</code>{{ site.baseurl }}<code>vs.</code>{{ site.url }}<code>w/r/t SSL</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>For what it&#39;s worth, here&#39;s my implementation of an atom feed with only one warning using the validator:</p>
+<pre><code>---
+---
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+  &lt;title&gt;{{ site.title }}&lt;/title&gt;
+  &lt;link href=&quot;http://{{ site.domain }}/&quot;/&gt;
+  &lt;link href=&quot;http://{{ site.domain }}/atom.xml&quot; rel=&quot;self&quot;/&gt;
+  &lt;updated&gt;{{ site.time | date_to_xmlschema }}&lt;/updated&gt;
+  &lt;id&gt;http://{{ site.domain }}/&lt;/id&gt;
+  &lt;author&gt;
+    &lt;name&gt;{{ site.author.name }}&lt;/name&gt;
+    &lt;email&gt;{{ site.author.email }}&lt;/email&gt;
+  &lt;/author&gt;
+
+  {% for post in site.posts %}
+  &lt;entry&gt;
+    &lt;title&gt;{{ post.title }}&lt;/title&gt;
+    &lt;link href=&quot;http://{{ site.domain }}{{ post.url }}?utm_source=atom&amp;amp;utm_medium=rss&amp;amp;utm_campaign=atom&quot;/&gt;
+    &lt;updated&gt;{{ post.date | date_to_xmlschema }}&lt;/updated&gt;
+    &lt;id&gt;http://{{ site.domain }}{{ post.id }}&lt;/id&gt;
+    &lt;content type=&quot;html&quot;&gt;{{ post.content | xml_escape }}&lt;/content&gt;
+  &lt;/entry&gt;
+  {% endfor %}
+&lt;/feed&gt;
+</code></pre><p>This is combined with a few fairly straightforward settings in <code>config.yml</code>:</p>
+<pre><code>title: Matthew Scharley
+domain: matt.scharley.me
+author:
+  name: Matthew Scharley
+  email: matt.scharley@gmail.com
+</code></pre><p><a href="http://feedvalidator.org/check.cgi?url=http%3A%2F%2Fmatt.scharley.me%2Fatom.xml">http://feedvalidator.org/check.cgi?url=http%3A%2F%2Fmatt.scharley.me%2Fatom.xml</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Tuesday, April 15, 2014</time>
+          </div>
+          <div class="body"><p>After doing some testing, it seems CDATA is equivalent to <code>xml_escape</code>, which makes sense now that I think about it. That said, I&#39;ve taken to using xml_escape for the <code>&lt;title&gt;</code> and CDATA for the <code>&lt;content&gt;</code> as it will negate the need to escape to XML entities, making the content both shorter (and hence smaller filesize) as well as easier to read the XML directly.</p>
+<p>No opinion on baseurl vs url. baseurl seems useless at the moment as you can&#39;t include it if it is <code>/</code>,  which is the default and the case in 90% of cases.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Wednesday, April 16, 2014</time>
+          </div>
+          <div class="body"><p>I don&#39;t find baseurl useless. I set my production baseurl in config and then flag my local builds with <code>-baseurl &quot;&quot;</code> so to set url and baseurl would be redundant being that baseurl has meaning and url, to my knowledge does not.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Wednesday, April 16, 2014</time>
+          </div>
+          <div class="body"><p>An empty baseurl is actually a good idea, but it&#39;s not what&#39;s reflected in the documentation which recommends doing what you do and setting it to <code>/</code> locally. In that case, it&#39;s probably a good idea.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Wednesday, April 16, 2014</time>
+          </div>
+          <div class="body"><p>That also still doesn&#39;t take care of the default being <code>/</code> though, so it would break on default setups.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, April 16, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;ve transitioned to using <a href="https://help.github.com/articles/repository-metadata-on-github-pages">GitHub Pages Metadata</a> instead of using something like <code>baseurl</code> in the configuration file.</p>
+<p>Here&#39;s an example:</p>
+<pre><code class="lang-html">&lt;link rel=&quot;icon&quot; href=&quot;{{ site.github.url }}/img/favicon-16x16.png&quot; sizes=&quot;16x16&quot; type=&quot;image/png&quot;&gt;
+&lt;link rel=&quot;icon&quot; href=&quot;{{ site.github.url }}/img/favicon-32x32.png&quot; sizes=&quot;32x32&quot; type=&quot;image/png&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ site.github.url }}/css/cornerstone.css&quot;&gt;
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Wednesday, April 16, 2014</time>
+          </div>
+          <div class="body"><p>Very cool, @troyswanson </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Monday, April 21, 2014</time>
+          </div>
+          <div class="body"><p>According to <a href="http://tools.ietf.org/html/rfc4287">RFC4287</a> you can use the file extension <code>atom</code> for atom feeds:</p>
+<pre><code class="lang-xml">&lt;link rel=&quot;self&quot;
+  type=&quot;application/atom+xml&quot;
+  href=&quot;http://example.org/feed.atom&quot;/&gt;
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Monday, April 21, 2014</time>
+          </div>
+          <div class="body"><p>Yep, it&#39;s an official mime type
+On 22/04/2014 9:27 am, &quot;Anatol Broder&quot; <a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#110;&#x6f;&#x74;&#x69;&#102;&#x69;&#99;&#x61;&#x74;&#x69;&#111;&#110;&#115;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;">&#110;&#x6f;&#x74;&#x69;&#102;&#x69;&#99;&#x61;&#x74;&#x69;&#111;&#110;&#115;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>According to RFC4287 <a href="http://tools.ietf.org/html/rfc4287">http://tools.ietf.org/html/rfc4287</a> you can use the
+file extension atom for atom feeds:</p>
+<p>&lt;link rel=&quot;self&quot;
+  type=&quot;application/atom+xml&quot;
+  href=&quot;http://example.org/feed.atom&quot;/&gt;
+
+</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/help/issues/7#issuecomment-40988478">https://github.com/jekyll/help/issues/7#issuecomment-40988478</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>Just to get an idea of where we are, I added some tasks to the top post for the remaining things to hash out, before we decide on a canonical Atom file.</p>
+<p>Feel free to add to the list.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>My 2c.</p>
+<p>atom.xml.</p>
+<p>xml_escape. CDATA will yield slightly smaller file sizes due to less
+escaping, but xml_escape will yield more reliability.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>@ndarville I think the first issue is solved by @troyswanson&#39;s comment about using Github Pages Metadata (site.github.url). I think the use of one of the two (site.url, etc.) may be user preferences, whereas using GH metadata ensures it won&#39;t break.  SSL might be an issue, but I that&#39;s an edge case.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>The issue with Github Pages Metadata is that it relies on people deploying
+to Github Pages, which is far from the only way that people are deploying
+jekyll websites.</p>
+<p>On 22 April 2014 22:17, Bud Parr <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#110;&#x6f;&#116;&#105;&#x66;&#105;&#x63;&#x61;&#x74;&#x69;&#x6f;&#110;&#x73;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;">&#110;&#x6f;&#116;&#105;&#x66;&#105;&#x63;&#x61;&#x74;&#x69;&#x6f;&#110;&#x73;&#64;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;</a> wrote:</p>
+<blockquote>
+<p>@ndarville <a href="https://github.com/ndarville">https://github.com/ndarville</a> I think the first issue is
+solved by @troyswanson <a href="https://github.com/troyswanson">https://github.com/troyswanson</a>&#39;s comment about
+using Github Pages Metadata (site.github.url). I think the use of one of
+the two (site.url, etc.) may be user preferences, whereas using GH metadata
+ensures it won&#39;t break. SSL might be an issue, but I that&#39;s an edge case.</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/help/issues/7#issuecomment-41032484">https://github.com/jekyll/help/issues/7#issuecomment-41032484</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>Of course, good point.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>Out of curiousity, what&#39;s the argument for using HTTPS with jekyll anyway?
+There&#39;s nothing private in a static site, unless the entire site is, but
+that would be the minority of uses I think. Perhaps we&#39;re overthinking it?</p>
+<p>Of course, there&#39;s always another option that I just thought of. Scheme
+relative URL&#39;s, eg. <code>//github.com/jekyll/jekyll</code>, which means use either
+HTTP or HTTPS depending on how the original document was fetched.</p>
+<p>On 22 April 2014 22:19, Bud Parr <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#110;&#x6f;&#x74;&#105;&#102;&#105;&#x63;&#x61;&#x74;&#x69;&#111;&#x6e;&#115;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#110;&#x6f;&#x74;&#105;&#102;&#105;&#x63;&#x61;&#x74;&#x69;&#111;&#x6e;&#115;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a> wrote:</p>
+<blockquote>
+<p>Of course, good point.</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/help/issues/7#issuecomment-41032663">https://github.com/jekyll/help/issues/7#issuecomment-41032663</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>From what I see here <code>site.url</code> doesn’t exist by default. Jekyll expose <code>site.baseurl</code> only. The <a href="http://jekyllrb.com/docs/configuration/">documentation</a> lies about it. We can use conditions to find the base:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+
+{% if site.url %}
+  {% assign base = site.url %}
+{% elsif site.github.url %}
+  {% assign base = site.github.url %}
+{% else %}
+  {% assign base = &#39;&#39; %}
+{% endif %}
+
+&lt;id&gt;{{ base }}{{ page.url }}&lt;/id&gt;
+
+&lt;/feed&gt;
+</code></pre>
+<p>If one doesn’t use Github, she sets the url in the config file to <code>http://example.org</code> (no trailing slash).</p>
+<p>:unlock: 
+My votes:</p>
+<ul>
+<li><code>site.url</code></li>
+<li><code>xml_escape</code></li>
+<li><code>feed.atom</code> (Github uses the atom extension too)</li>
+</ul>
+<p>:lock: 
+Correction: </p>
+<ul>
+<li><code>site.github.url</code> if <code>site.url</code> isn&#39;t set</li>
+<li><code>xml_escape</code></li>
+<li><code>feed.atom</code></li>
+</ul>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>I like your idea of using conditionals. It means people also don’t have to alter their Atom code according to their set-up for most use cases.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>Why not use <code>site.github.url</code> if <code>site.url</code> isn&#39;t set and <code>site.github.url</code> is available?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>I vote for:</p>
+<ul>
+<li><code>site.github.url</code> if <code>site.url</code> isn&#39;t set.</li>
+<li><code>xml_escape</code></li>
+<li><code>feed.atom</code></li>
+</ul>
+<p>Same as @penibelst but with @parkr conditional</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>@parkr This is exactly what I want. Thank you @albertogg for putting everything together.</p>
+<p>I second @albertogg’s selection.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Wednesday, April 23, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m still not clear on why anyone would use site.url instead of site.baseurl. Can anyone enlighten me?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Wednesday, April 23, 2014</time>
+          </div>
+          <div class="body"><p>I’m down with @albertogg and @parkr as well.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

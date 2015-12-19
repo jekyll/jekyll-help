@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Upgrading Jekyll from 1.4.3 to 2.3.0,  Error:  undefined method &#x60;glob_include?&#x27; for [&quot;.htaccess&quot;]:Array</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#128</span>
+        </p>
+        <h1>Upgrading Jekyll from 1.4.3 to 2.3.0,  Error:  undefined method &#x60;glob_include?&#x27; for [&quot;.htaccess&quot;]:Array</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">rubygeek</a>
+            <time>Sunday, August 17, 2014</time>
+          </div>
+          <div class="body">
+            <p>I updated my project from 1.4.2 to 2.3.0 and got this error: </p>
+<p>jekyll 2.3.0 | Error:  undefined method `glob_include?&#39; for [&quot;.htaccess&quot;]:Array</p>
+<p>I don&#39;t have an .htaccess file nor do I use one, so this was puzzling. </p>
+<p>Turns out.. after some debugging and help from jaybe on irc, it was because I had the jekyll-sass gem. The later versions of Jekyll have sass support built in. Removing jekyll-sass from the Gemfile fixed it!</p>
+<p>Hope this saves someone a few hours :) </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Sunday, August 17, 2014</time>
+          </div>
+          <div class="body"><p>:thumbsup: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

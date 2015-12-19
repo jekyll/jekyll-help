@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Lots of white space -- will it affect performance?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#269</span>
+        </p>
+        <h1>Lots of white space -- will it affect performance?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Tuesday, February 10, 2015</time>
+          </div>
+          <div class="body">
+            <p>I have some code like this:</p>
+<pre><code>&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Scenarios&lt;/a&gt;
+&lt;ul&gt;
+{% for page in site.pages | sort: &quot;weight&quot; %}
+{% for tag in page.tags %}
+{% if tag == &quot;Scenarios&quot; %}
+&lt;li&gt;&lt;a class=&quot;post-link&quot; href=&quot;{{ page.url | prepend: site.baseurl }}&quot;&gt;{{ page.title }}&lt;/a&gt;&lt;/li&gt;
+{% endif %}
+{% endfor %}
+{% endfor %}
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre><p>When I view the source of the generated HTML, there&#39;s a TON of blank lines. Is that normal? Doesn&#39;t that affect performance?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Tuesday, February 10, 2015</time>
+          </div>
+          <div class="body"><p>It is normal, since Liquid repeats newlines and whitespace in loops.</p>
+<p>From what I know, the only downside to increased page size from whitespace is increased loading (downloading) time. From experience, this increase in time is extremely small (especially if gzip is enabled), and shouldn&#39;t be an issue at all.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, February 10, 2015</time>
+          </div>
+          <div class="body"><p>I think @penibelst has done some work on solving this issue: <a href="https://github.com/penibelst/jekyll-compress-html">https://github.com/penibelst/jekyll-compress-html</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, February 10, 2015</time>
+          </div>
+          <div class="body"><p>As @budparr mentioned you can remove whitespaces and other optional things by using my Compress Layout.</p>
+<p>@alfredxing The download performance affect is small, but performance is more than downloading: gzipping itself, rendering, and caching, especially on small devices, depend on the <em>raw</em> file size.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Tuesday, February 10, 2015</time>
+          </div>
+          <div class="body"><p>@penibelst True, thanks for the comment!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, February 11, 2015</time>
+          </div>
+          <div class="body"><p>It&#39;s worth mentioning the case of hosting on GitHub Pages: Content will be gzipped automatically.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, February 11, 2015</time>
+          </div>
+          <div class="body"><p>Thoroughly answered, gents. Thanks!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

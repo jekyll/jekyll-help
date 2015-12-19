@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Problem with array &quot;sort:&quot; liquid filter on a data file (CSV)</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#157</span>
+        </p>
+        <h1>Problem with array &quot;sort:&quot; liquid filter on a data file (CSV)</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">phillipadsmith</a>
+            <time>Tuesday, September 23, 2014</time>
+          </div>
+          <div class="body">
+            <p>I am having <em>all kinds</em> of problems with using &#39;sort&#39; on data files (a CSV in this case).</p>
+<p>Any ideas on why this isn&#39;t doing what I&#39;m expecting it to do? <a href="https://gist.github.com/phillipadsmith/0fdb339c911c21c56b09">https://gist.github.com/phillipadsmith/0fdb339c911c21c56b09</a></p>
+<p>Also included here for convenience:</p>
+<pre><code>{% assign candidates = site.data.toronto_council | sort: &#39;sortby&#39; %}
+{% for candidate in candidates %}
+{% if candidate.ward == page.wid %}
+&lt;li&gt;&lt;a title=&quot;Information on Toronto ward {{ page.wid }} city council candidate {{ candidate.name_full }}&quot; href=&quot;/toronto-city-council/{{ candidate.slug }}&quot;&gt;{{ candidate.name_full }}&lt;/a&gt; {% if candidate.incumbent == &#39;yes&#39; %}(Incumbent){% endif %}&lt;/li&gt;
+{% endif %}
+{% endfor %}
+</code></pre><p>It&#39;s very odd because if I dump the json for candidates, the array of objects is sorted properly (or appears to be). But then the {% for candidate in candidates %} loop seems to loose the sort order.</p>
+<p>(Obviously, if I sort the CSV itself, the sort is unnecessary).</p>
+<p>The CSV is here: <a href="https://github.com/phillipadsmith/everycandidate.org/blob/master/_data/toronto_council.csv">https://github.com/phillipadsmith/everycandidate.org/blob/master/_data/toronto_council.csv</a></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Tuesday, September 23, 2014</time>
+          </div>
+          <div class="body"><p>Ensure you are formatting and therefore defining the <code>page.wid</code> front matter properly to be interpreted later within the <code>if</code> conditional.</p>
+<p>i.e. <code>wid: &#39;44&#39;</code></p>
+<p>i.e. not <code>wid: 44</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/phillipadsmith">
+              phillipadsmith
+            </a>
+            <time>Wednesday, September 24, 2014</time>
+          </div>
+          <div class="body"><p>Hi @jaybe-jekyll Thanks for this. That&#39;s odd, as the if <em>is</em> working, but the sort seems off. I&#39;ll fix up the front matter anyway to see if that helps. </p>
+<p>I&#39;m not able to grab that CSV you messaged me last night (I was AFK at the time). Can you re-send or post here?</p>
+<p>Appreciate your help. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/phillipadsmith">
+              phillipadsmith
+            </a>
+            <time>Thursday, September 25, 2014</time>
+          </div>
+          <div class="body"><p>Just for those reading along... </p>
+<p>The issue was actually that the column I was using to sort was labelled &#39;sortby&#39; and that seems to be a reserved word in Liquid or something. </p>
+<p>When changed to &#39;name_last_lower&#39; it worked as expected.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Assigning multiple collections to a filtered loop variable</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#238</span>
+        </p>
+        <h1>Assigning multiple collections to a filtered loop variable</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">graemeduckett</a>
+            <time>Tuesday, January 13, 2015</time>
+          </div>
+          <div class="body">
+            <p>I have a couple collections set up, &#39;case-studies&#39; and &#39;projects&#39;, and I have front matter variables within them for things like client name, project date, project name, etc. I have successfully created loops that display only projects from a specific client, sorted by date, for example, but would I would like to do is create a loop that displays both case studies and projects from a specific client, sorted by date. I&#39;m curious if there is a way to assign more than one collection to a variable to be passed to the loop? Something like the following:</p>
+<p>&lt;pre&gt;{% assign client_timeline = site.projects and site.case-studies | where: &#39;client&#39;, page.client | sort: &#39;date&#39; %}
+
+{% for timeline_item in client_timeline %}
+{% endfor %}&lt;/pre&gt;
+
+</p>
+<p>Everything here has proven successful except for the second collection, which is ignored.</p>
+<p>Assigning filtered variables to loops seems like a pretty powerful feature, but I haven&#39;t found a lot of documentation on what all can be done with them. I&#39;ve just started with Jekyll last week so any resources with advanced usage documentation would be greatly appreciated!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, January 13, 2015</time>
+          </div>
+          <div class="body"><p>You&#39;re getting into some pretty advanced Jekyll stuff pretty quick! Bravo.</p>
+<p>I think this (lack of) behavior is being blocked by <a href="https://github.com/Shopify/liquid/issues/427">https://github.com/Shopify/liquid/issues/427</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/graemeduckett">
+              graemeduckett
+            </a>
+            <time>Tuesday, January 13, 2015</time>
+          </div>
+          <div class="body"><p>Thanks for your reply. That is disheartening news! I was feeling so close. I see there hasn&#39;t been much action on the topic since August but here&#39;s hoping it gets implemented.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

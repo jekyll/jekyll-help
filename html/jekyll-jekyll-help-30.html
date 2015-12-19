@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Installation error</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#30</span>
+        </p>
+        <h1>Installation error</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">bkfunk</a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body">
+            <p>When I try to install jekyll on my Mac (OSX 10.9.2), I get the following errors:</p>
+<pre><code>$ sudo gem install jekyll
+Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb
+creating Makefile
+
+make &quot;DESTDIR=&quot; clean
+
+make &quot;DESTDIR=&quot;
+compiling porter.c
+porter.c:359:27: warning: &#39;&amp;&amp;&#39; within &#39;||&#39; [-Wlogical-op-parentheses]
+      if (a &gt; 1 || a == 1 &amp;&amp; !cvc(z, z-&gt;k - 1)) z-&gt;k--;
+                ~~ ~~~~~~~^~~~~~~~~~~~~~~~~~~~
+porter.c:359:27: note: place parentheses around the &#39;&amp;&amp;&#39; expression to silence this warning
+      if (a &gt; 1 || a == 1 &amp;&amp; !cvc(z, z-&gt;k - 1)) z-&gt;k--;
+                          ^
+                   (                          )
+1 warning generated.
+compiling porter_wrap.c
+linking shared-object stemmer.bundle
+clang: error: unknown argument: &#39;-multiply_definedsuppress&#39; [-Wunused-command-line-argument-hard-error-in-future]
+clang: note: this will be a hard error (cannot be downgraded to a warning) in the future
+make: *** [stemmer.bundle] Error 1
+
+make failed, exit code 2
+
+Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/fast-stemmer-1.0.2 for inspection.
+Results logged to /Library/Ruby/Gems/2.0.0/extensions/universal-darwin-13/2.0.0/fast-stemmer-1.0.2/gem_make.out
+</code></pre><p>I have command line developer tools 5.1.0.0 and XCode 5.1.1. I can bypass the error by typing <code>ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future</code> before the <code>gem install</code>, but not sure if that was a good idea!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body"><p>Hi, I&#39;m sorry about this problem, but it seems to be related with Mac OS X System Ruby. To solve this problem install Ruby using a version manager like rbenv, chruby or rvm. You can also take a look at issue #11 and #19. Remember that when using a Ruby version manager you don&#39;t need to use <code>sudo</code> to install anything.</p>
+<p>Hope this helps! </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bkfunk">
+              bkfunk
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>Yeah, I found an SO post (I think...somewhere, anyway) that said stemmer was the problem, and suggested the workaround. Anyway, seems to be working now, and hopefully I didn&#39;t do too much damage.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>Thanks! it&#39;s nice to know that work around like this exists. I have read a bit about that problem and the flag you used, it seems to be something related with the new version of clang. It also seems that it doesn&#39;t do any damage, but I still suggest installing a fresh copy of ruby using a version manager.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll safe_yaml libyaml warning</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#13</span>
+        </p>
+        <h1>Jekyll safe_yaml libyaml warning</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ryanburnette</a>
+            <time>Wednesday, April 09, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m getting this safe_yaml warning any time I run a Jekyll command.</p>
+<pre><code>$ jekyll help
+
+  SafeYAML Warning
+  ----------------
+
+  You appear to have an outdated version of libyaml (0.1.5) installed on your system.
+
+  Prior to 0.1.6, libyaml is vulnerable to a heap overflow exploit from malicious YAML payloads.
+
+  For more info, see:
+  https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/
+
+  The easiest thing to do right now is probably to update Psych to the latest version and enable
+  the &#39;bundled-libyaml&#39; option, which will install a vendored libyaml with the vulnerability patched:
+
+  gem install psych -- --enable-bundled-libyaml
+</code></pre><p>There are a lot of folks who solved this by either upgrading their libyaml through brew, which I have done, or installing the psych gem with the lib built in. I tried both with no results either way. I&#39;d prefer to use libyaml through brew.</p>
+<p>I believe the problem is in rvm, but I&#39;m not sure how to troubleshoot this. Maybe I need to make sure Ruby is using the libyaml from brew when it installs.</p>
+<p>Here&#39;s some info.</p>
+<pre><code>$ brew info libyaml
+libyaml: stable 0.1.6 (bottled)
+http://pyyaml.org/wiki/LibYAML
+/usr/local/Cellar/libyaml/0.1.6 (7 files, 348K) *
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/commits/master/Library/Formula/libyaml.rb
+==&gt; Options
+--universal
+    Build a universal binary
+</code></pre><p>One weird thing is that I get the message saying I&#39;m using libyaml 0.1.5 but I can&#39;t find any evidence that it&#39;s installed.</p>
+<p>Help is appreciated.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, April 09, 2014</time>
+          </div>
+          <div class="body"><p>My guess is that Ruby (which is executing Jekyll) doesn&#39;t know about your brew installation.</p>
+<p>You may want to check out jekyll/jekyll#2207. One of the suggested fixes is to try <code>rvm reinstall all --force</code>, but definitely give that thread a gander and see if anything pops out at you.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 09, 2014</time>
+          </div>
+          <div class="body"><p>Yes, as @troyswanson said, it may be that Ruby doesn&#39;t know about the brew installation! You can check the version of your Rubies libyaml, using with this command <code>ruby -r psych -e &quot;puts Psych.libyaml_version.join(&#39;.&#39;)&quot;</code> then I will suggest the same... reinstall.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ryanburnette">
+              ryanburnette
+            </a>
+            <time>Wednesday, April 09, 2014</time>
+          </div>
+          <div class="body"><p>@albertogg </p>
+<p>The <code>ruby -r psych -e &quot;puts Psych.libyaml_version.join(&#39;.&#39;)&quot;</code> was what I was looking for it indicated that libyaml is at version 0.1.5. I&#39;ll report back when I find the fix that works for me.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, April 09, 2014</time>
+          </div>
+          <div class="body"><p>:clap: Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 09, 2014</time>
+          </div>
+          <div class="body"><p>Ok, your Ruby was compiled using 0.1.5 and it&#39;s not looking for the brew installed version. I&#39;ll suggest reinstall as @troyswanson said.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ryanburnette">
+              ryanburnette
+            </a>
+            <time>Wednesday, April 09, 2014</time>
+          </div>
+          <div class="body"><p>Yep. That&#39;s weird because I&#39;m using rvm and it usually plays nice using brew to fulfill requirements.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ryanburnette">
+              ryanburnette
+            </a>
+            <time>Wednesday, April 09, 2014</time>
+          </div>
+          <div class="body"><p>I think the issue was that my .zshrc file (I&#39;m using oh-my-zsh) had a path line that didn&#39;t re-insert the $PATH variable. I think that might be in oh-my-zsh&#39;s .zshrc template. Not sure. Anyway... That was breaking rvm and keeping it from using the proper libyaml during compile. Thanks for the help guys!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, April 09, 2014</time>
+          </div>
+          <div class="body"><p>No problem! :wink: :tada: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Template has page.excerpt, not post.excerpt.</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#180</span>
+        </p>
+        <h1>Template has page.excerpt, not post.excerpt.</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">boriseetgerink</a>
+            <time>Thursday, October 30, 2014</time>
+          </div>
+          <div class="body">
+            <p>In my head-template I tried to use the following HTML:</p>
+<pre><code class="lang-html">&lt;meta name=&quot;description&quot; content=&quot;{% if post.excerpt %}{{ post.excerpt | strip_html }}{% else %}{{ site.description }}{% endif %}&quot;&gt;
+</code></pre>
+<p>This always displayed the site description, because post.excerpt is empty on a post. Changing it to the following code worked:</p>
+<pre><code class="lang-html">&lt;meta name=&quot;description&quot; content=&quot;{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.description }}{% endif %}&quot;&gt;
+</code></pre>
+<p>The excerpt is stored on the page, not the post. Is that intended behavior? If so, I&#39;ll create a pull request to update the documentation.</p>
+<p>I&#39;m using Jekyll v2.4.0 on Windows 8.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p><code>page</code> refers to the current page being displayed, <code>post</code> doesn&#39;t really refer to anything, unless you&#39;re using <code>post</code> as your iterating variable in a loop, like <code>{% for post in site.posts %}</code>.</p>
+<p>I believe your change is correct; feel free to make a PR. Thanks! :smile: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

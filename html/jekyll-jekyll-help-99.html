@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How to create a listing of categories</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#99</span>
+        </p>
+        <h1>How to create a listing of categories</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">bitcolorine</a>
+            <time>Friday, July 18, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,</p>
+<p>I&#39;m slowly getting my website together, it&#39;s live, it&#39;s healthy but I want to add bits and pieces. Right now I&#39;m struggling with categories. 
+I want to create a listing for my categories to keep them as a sidebar. I&#39;ve been searching for a while how to do this and I can&#39;t find an answer.</p>
+<p>I&#39;m not sure if Jekyll generates a folder for each category or how it works. I know I have my categories defined in my _config.yml file and each post has its category in the front matter.</p>
+<p>Can somebody give me some clues or point me a resource?</p>
+<p>Thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Friday, July 18, 2014</time>
+          </div>
+          <div class="body"><p>Have a look at my <a href="https://github.com/kleinfreund/kleinfreund.github.io/blob/dev/en/categories.html">categories.html</a>:</p>
+<pre><code>{% for category in site.categories %}
+    {% assign posts = category[1] | where:&quot;lang&quot;,&quot;en&quot; %}
+
+    {% if posts.size &gt; 0 %}
+    &lt;h2 id=&quot;{{ category[0] }}&quot;&gt;{{ category[0] }}&lt;/h2&gt;
+    &lt;ul&gt;
+        {% for post in posts %}
+        &lt;li&gt;
+            &lt;a href=&quot;{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;
+        &lt;/li&gt;
+        {% endfor %}
+    &lt;/ul&gt;
+    {% endif %}
+
+    {% assign posts = nil %}
+{% endfor %}
+</code></pre><p>It lists all categories and English posts in them. However you just need a smaller bit:</p>
+<pre><code>&lt;ul class=&quot;category-list&quot;&gt;
+{% for category in site.categories %}
+    &lt;li&gt;{{ category[0] }}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bitcolorine">
+              bitcolorine
+            </a>
+            <time>Wednesday, July 23, 2014</time>
+          </div>
+          <div class="body"><p>Thank you very much.
+I will try this. 
+Also, your site comes in handy for study because I also need a bilingual site!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, July 23, 2014</time>
+          </div>
+          <div class="body"><p>@bitcolorine I&#39;m currently changing a few bits around. When 2.1 hits on GHP, I go back to pushing the uncompiled Jekyll files. In the meantime I push my current uncompiled state to the dev branch. …if you&#39;re interested.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bitcolorine">
+              bitcolorine
+            </a>
+            <time>Wednesday, July 23, 2014</time>
+          </div>
+          <div class="body"><p>Definitely interested!</p>
+<p>I had been searching for Jekyll sites to study, but many have been abandoned. I&#39;m building my first so I need to look at a lot of examples.</p>
+<p>Thanks again.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>sort or sort_by filter does not work</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#165</span>
+        </p>
+        <h1>sort or sort_by filter does not work</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">straz</a>
+            <time>Friday, October 10, 2014</time>
+          </div>
+          <div class="body">
+            <p>It seems like this is a bug in <code>sort</code>. How is sorting supposed to work? I&#39;m getting errors when I use either the <code>sort</code> or the <code>sort_by</code> filter in my Liquid template. <a href="http://docs.shopify.com/themes/liquid-documentation/filters/array-filters#sort">Liquid docs</a> say it&#39;s called <code>sort</code>, but <a href="http://cheat.markdunkley.com/">others</a> say it&#39;s now called <code>sort_by</code>. Which am I supposed to use here?</p>
+<pre><code class="lang-html">{% assign sorted_articles = site.data.articles  | sort:&quot;julian&quot; %}
+</code></pre>
+<p>I have a yaml file containing references to magazine articles. I&#39;m trying to sort them by date. I&#39;ve tried expressing dates in three different formats. Liquid fails to parse <code>YYYY-MM-DD</code> as a date, so <code>sort: &quot;date&quot;</code> sorts alphabetically instead of chronologically. Here is an example (<code>julian</code> is the same value as <code>date</code> and <code>iso_date</code>, just expressed as a Julian date integer):</p>
+<pre><code>- title: &#39;Measuring Information Work Productivity&#39;
+  desc: &#39;Computerworld&#39;
+  url: &#39;measuring-info.html&#39;
+  date: &#39;2004-3&#39;
+  iso_date: &#39;2004-3-1 00:00:01&#39;
+  julian: 731641
+</code></pre><p> <code>sort</code> works fine on my local machine with <code>jekyll serve</code>, but it gives an error (see below) with <code>jekyll serve --safe</code> and it fails to build on github-pages.</p>
+<p> <code>sort_by</code> builds without error on my local machine and builds successfully on github-pages. But the results are useless. (1) On my local machine, the articles aren&#39;t actually sorted, they appear to be in random order. (2) With <code>--safe</code> or on gh-pages, the sorted array appears to be empty instead of being sorted.</p>
+<p>Example of error when using <code>sort</code> (fails with <code>--safe</code> and fails to build on github-pages):</p>
+<pre><code>$ jekyll serve --watch
+    Configuration file: /Users/sstrassmann/src/jekhub/pas/_config.yml
+            Source: /Users/sstrassmann/src/jekhub/pas
+       Destination: /Users/sstrassmann/src/jekhub/pas/_site
+      Generating... 
+                    done.
+     Auto-regeneration: enabled for &#39;/Users/sstrassmann/src/jekhub/pas&#39;
+Configuration file: /Users/sstrassmann/src/jekhub/pas/_config.yml
+    Server address: http://0.0.0.0:4000/pas/
+  Server running... press ctrl-c to stop.
+ ^C
+$ jekyll serve --watch --safe
+Configuration file: /Users/sstrassmann/src/jekhub/pas/_config.yml
+            Source: /Users/sstrassmann/src/jekhub/pas
+       Destination: /Users/sstrassmann/src/jekhub/pas/_site
+      Generating...     
+  Liquid Exception: undefined method `sort&#39; for nil:NilClass in articles.html
+jekyll 2.4.0 | Error:  undefined method `sort&#39; for nil:NilClass
+</code></pre><p>So, what is the preferred way to sort a yaml array?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>Looks like it as simple as adding some parens around a part of your first <code>assign</code> block:</p>
+<pre><code class="lang-html">{% assign sorted_articles = (site.data.articles | sort: &#39;julian&#39;) %}
+</code></pre>
+<p>Stole from <a href="http://www.leveluplunch.com/blog/2014/04/03/sort-pages-by-title-filter-array-by-layout-jekyllrb/">this article</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, November 03, 2014</time>
+          </div>
+          <div class="body"><p>Here&#39;s an example that I cooked up. Works like a champion.</p>
+<p><a href="https://github.com/troyswanson/troyswanson.github.io/commit/6785844d56e62a4c51f19956b1ba901138947525">https://github.com/troyswanson/troyswanson.github.io/commit/6785844d56e62a4c51f19956b1ba901138947525</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/straz">
+              straz
+            </a>
+            <time>Monday, November 03, 2014</time>
+          </div>
+          <div class="body"><p>Cool, thank you, Troy!</p>
+<p>I wish the provided example of an <code>assign</code> block in <a href="http://docs.shopify.com/themes/liquid-documentation/filters/array-filters#sort">the documentation</a> used parens in the same way.</p>
+<p>Does this mean that the new <a href="http://cheat.markdunkley.com/"><code>sort_by</code></a> tag is now deprecated?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, November 03, 2014</time>
+          </div>
+          <div class="body"><p><code>¯\_(ツ)_/¯</code></p>
+<p>Hopefully this issue will show up in a search for folks who are having the same issue. Glad I could help!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

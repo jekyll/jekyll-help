@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Disqus comments are not showing up</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#233</span>
+        </p>
+        <h1>Disqus comments are not showing up</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">sr-murthy</a>
+            <time>Thursday, January 08, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi</p>
+<p>I&#39;m having problems with the include files for the Disqus comments (and the counter) on my posts.  I&#39;ve enabled comments in <code>_config.yml</code> as follows:</p>
+<pre><code># Comments
+ comments:
+   provider: disqus
+ disqus: 
+   short_name: codefree
+</code></pre><p>My <code>post.html</code> layout file, with the two <code>include</code> statements at the end, looks like this:</p>
+<pre><code class="lang-html">    ---
+    layout: default
+    ---
+
+    &lt;div class=&quot;post&quot;&gt;
+    &lt;h1 class=&quot;post-title&quot;&gt;{{ page.title }}&lt;/h1&gt;
+    &lt;span class=&quot;post-date&quot;&gt;{{ page.date | date_to_string }}&lt;/span&gt;
+    {{ content }}
+    &lt;/div&gt;
+
+    &lt;div class=&quot;related&quot;&gt;
+    &lt;h2&gt;Related Posts&lt;/h2&gt;
+    &lt;ul class=&quot;related-posts&quot;&gt;
+     {% for post in site.related_posts limit:3 %}
+      &lt;li&gt;
+        &lt;h3&gt;
+          &lt;a href=&quot;{{site.url}}{{ post.url }}#disqus_thread&quot;&gt;
+            {{ post.title }}
+            &lt;small&gt;{{ post.date | date_to_string }}&lt;/small&gt;
+          &lt;/a&gt;
+        &lt;/h3&gt;
+      &lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+    &lt;/div&gt;
+    {% include disqus_comments.html %}
+    {% include disqus_comments_counter.html %}
+</code></pre>
+<p>These Disqus code in the include files is standard.  I am using the Hyde theme.  I&#39;ve checked 
+What could be going wrong here?  At the moment these are the only two problems I need to fix before adding more content.  Your help would be much appreciated.</p>
+<p>Thanks</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Thursday, January 08, 2015</time>
+          </div>
+          <div class="body"><p>Have you restarted Jekyll? Changes in config.yaml are only picked up on start.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Thursday, January 08, 2015</time>
+          </div>
+          <div class="body"><p>Beyond that, perhaps you can include a link to your repo? </p>
+<p>Neither Jekyll nor the Hyde theme include Disqus comments, so you are not really giving us much to work on ;) </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sr-murthy">
+              sr-murthy
+            </a>
+            <time>Thursday, January 08, 2015</time>
+          </div>
+          <div class="body"><p>Hi</p>
+<p>Sorry about the info., I tried again and it worked.  I think it was the <code>disqus.short_name</code> field that I didn&#39;t set the correct value for, but it does work now.  Here&#39;s the link to the Disqus thread for one of my posts</p>
+<p><a href="https://sr-murthy.github.io/os/x,/shells/2015/01/08/Bashed/#disqus_thread">https://sr-murthy.github.io/os/x,/shells/2015/01/08/Bashed/#disqus_thread</a></p>
+<p>Thanks.</p>
+<p>P. S. THe </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Thursday, January 08, 2015</time>
+          </div>
+          <div class="body"><p>:cool: </p>
+<p>Thanks for confirming.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

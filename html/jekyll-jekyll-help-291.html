@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>problems with &#x27;bundle exec jekyll serve&#x27;</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#291</span>
+        </p>
+        <h1>problems with &#x27;bundle exec jekyll serve&#x27;</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">delekru</a>
+            <time>Tuesday, April 14, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi, I&#39;ve been following the guide to using Jekyll with bundler (<a href="https://help.github.com/articles/using-jekyll-with-pages/">https://help.github.com/articles/using-jekyll-with-pages/</a>) and I installed ruby/devkit/bundler and updated the gems however when I try to run the command &#39;bundle exec jekyll serve&#39; I get this error:</p>
+<pre><code>D:\Coding\delekru.github.io&gt;bundle exec jekyll serve
+Configuration file: none
+            Source: D:/Coding/delekru.github.io
+       Destination: D:/Coding/delekru.github.io/_site
+      Generating...
+                    done.
+D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/hitimes-1.2.2-x86-mingw32/lib/hitimes.rb:37:in `require&#39;: cannot load such file -- hitimes/hitimes (LoadError)
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/hitimes-1.2.2-x86-mingw32/lib/hitimes.rb:37:in `rescue in &lt;top (required)&gt;&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/hitimes-1.2.2-x86-mingw32/lib/hitimes.rb:32:in `&lt;top (required)&gt;&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/timers-4.0.1/lib/timers/group.rb:4:in `require&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/timers-4.0.1/lib/timers/group.rb:4:in `&lt;top (required)&gt;&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/timers-4.0.1/lib/timers.rb:4:in `require&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/timers-4.0.1/lib/timers.rb:4:in `&lt;top (required)&gt;&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/celluloid-0.16.0/lib/celluloid/receivers.rb:3:in `require&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/celluloid-0.16.0/lib/celluloid/receivers.rb:3:in `&lt;top (required)&gt;&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/celluloid-0.16.0/lib/celluloid.rb:475:in `require&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/celluloid-0.16.0/lib/celluloid.rb:475:in `&lt;top (required)&gt;&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/listen-2.10.0/lib/listen.rb:1:in `require&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/listen-2.10.0/lib/listen.rb:1:in `&lt;top (required)&gt;&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-watch-1.2.1/lib/jekyll/watcher.rb:26:in `require&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-watch-1.2.1/lib/jekyll/watcher.rb:26:in `build_listener&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-watch-1.2.1/lib/jekyll/watcher.rb:7:in `watch&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-2.4.0/lib/jekyll/commands/build.rb:67:in `watch&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-2.4.0/lib/jekyll/commands/build.rb:37:in `process&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-2.4.0/lib/jekyll/commands/serve.rb:25:in `block (2 levels) in init_with_program&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `call&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `block in execute&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `each&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `execute&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary/program.rb:42:in `go&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/mercenary-0.3.5/lib/mercenary.rb:19:in `program&#39;
+        from D:/Coding/Ruby22/lib/ruby/gems/2.2.0/gems/jekyll-2.4.0/bin/jekyll:18:in `&lt;top (required)&gt;&#39;
+        from D:/Coding/Ruby22/bin/jekyll:23:in `load&#39;
+        from D:/Coding/Ruby22/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre><p>I&#39;ve tried looking at previous posts and <code>gem cleanup</code> and <code>bundle update</code> but I can&#39;t figure it out.</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

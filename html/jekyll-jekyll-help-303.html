@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>{{ content }} Liquid tag not showing blog posts</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#303</span>
+        </p>
+        <h1>{{ content }} Liquid tag not showing blog posts</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">AlvSovereign</a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body">
+            <p>Link: <a href="https://github.com/AlvSovereign/AlvSovereign.github.io">https://github.com/AlvSovereign/AlvSovereign.github.io</a></p>
+<p>Hi all</p>
+<p>I am a beginner using jekyll and new to web development, so please be patient with me.</p>
+<p>I am coding my portfolio site, with a link to my blog. The fully processed portfolio site sits in _site/index.html which contains a link to the blog (fully processed link exists in _site/blog.html.</p>
+<p>Blog.html at the root of the repo has in the front matter a layout of &quot;bl&quot;, which is defined in my layouts folder under &quot;bl.html&quot;.</p>
+<p>&quot;bl.html&quot; is the layout I want for my blog page, which contains my includes etc.... It also contains the {{ content }} liquid tag.</p>
+<p>If I am thinking about this the right way, my posts are being parsed (I think this is the right terminology) into &quot;post.html&quot; - which has the front matter &quot;layout: bl&quot;,  which then parsed into &quot;bl.html&quot;, and that this is so as they both have {{ content }} in each files.</p>
+<p>Now all my posts are showing correctly (i think) within &quot;_site/(year)/(month) etc...&quot;. However, they are not ending being parsed through my &quot;blog.html&quot; file, and then visible on my webpage. How I know this is that the fully processed &quot;blog.html&quot; file does not have any of the posts in them.</p>
+<p>What will I need to do to solve this issue?</p>
+<p>If it helps, I use Prepros for LIveReload, and using LANYON template, <a href="http://lanyon.getpoole.com/">http://lanyon.getpoole.com/</a></p>
+<p>Thank you for your time and I really do appreciate the help you can give.</p>
+<p>Sorry for the confusing detail.</p>
+<p>Alvin Sovereign</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

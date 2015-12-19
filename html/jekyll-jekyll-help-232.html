@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>A file was included in &#x60;_layouts/default.html&#x60; that is a symlink or does not exist in your &#x60;_includes&#x60; directory</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#232</span>
+        </p>
+        <h1>A file was included in &#x60;_layouts/default.html&#x60; that is a symlink or does not exist in your &#x60;_includes&#x60; directory</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">russt</a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi,</p>
+<p>Getting an error when I try to deploy to github pages:</p>
+<p>A file was included in <code>_layouts/default.html</code> that is a symlink or does not exist in your <code>_includes</code> directory.</p>
+<p>I can&#39;t get around this error after many hours.  The source for my site is on github ( <a href="https://github.com/russt/russt.github.io">https://github.com/russt/russt.github.io</a> ) and the destination is the default ( <a href="http://russt.github.io/">http://russt.github.io/</a> ).  I am just generating the default site using &quot;jekyll new&quot; with a few changes to the _config.yaml file.  I have tried both 2.4.0 and 2.5.2 versions of jekyll</p>
+<p>Site looks fine locally, so I assume this has to do with how github is generating the site.</p>
+<p>Any clues?  I realize that this could be a github issue, but I want to make sure that I&#39;m not missing something basic.</p>
+<p>thanks!
+-Russ</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/russt">
+              russt
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><p>okay, this is a good one - I routinely git ignore &quot;foo&quot; files, but in this case it matched the footer.html pattern.  so indeed the _include file really was missing.</p>
+<p>too bad the error message is not more specific about which file is missing!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

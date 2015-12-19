@@ -1,0 +1,83 @@
+/* hi */
+/* :wave: */
+
+body {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  line-height: 1.6em;
+  font-size: 13px;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #08c;
+}
+
+.url {
+  font-family: monospace;
+  font-size: 12px;
+  color: #999;
+}
+
+.container {
+  width: 720px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.comments {}
+
+.comment {
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.comment:not(:last-child):after {
+  content: ""; display: block;
+  margin-top: 1px;
+  margin-left: 15px;
+  border-left: 2px solid #f0f0f0;
+  height: 20px;
+  position: absolute;
+}
+
+.meta {
+  background: #f9f9f9;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px 15px;
+}
+
+.person {
+  font-weight: bold;
+}
+
+.body {
+  padding: 15px;
+}
+
+.body > :first-child { margin-top: 0; }
+.body > :last-child { margin-bottom: 0; }
+
+h1 {
+  font-weight: normal;
+}
+
+time {
+  float: right;
+  font-size: 12px;
+  color: #999;
+}
+
+.badge {
+  padding: 3px 5px;
+  border-radius: 3px;
+  background: #999;
+  color: #fff;
+  font-weight: bold;
+  margin-right: 10px;
+  text-transform: capitalize;
+}
+
+.badge.closed { background: #c00; }
+.badge.open { background: #5c5; }

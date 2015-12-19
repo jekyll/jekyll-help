@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How do I auto-start jekyll?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#212</span>
+        </p>
+        <h1>How do I auto-start jekyll?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">lewispgj</a>
+            <time>Thursday, December 18, 2014</time>
+          </div>
+          <div class="body">
+            <p>First I have to commend the jekyll team on a great product! Installation and usage is extremely easy, for the most part. Thanks for all of your hard work!</p>
+<p>That said, after nearly two-hours of very-frustrated searching, I can&#39;t find any tips on how to auto-start Jekyll. It&#39;s obviously not reasonable for me to have to type into terminal &quot;jekyll serve --source /var/www/my-awesome-site&quot; every single time my server needs to reboot. So how the heck do I auto-start jekyll? I&#39;m new to upstart but over an hour of scripting hasn&#39;t yielded any results.</p>
+<p>Can someone please breathe some life into this process before I have to switch to another blogging solution, simply because I can&#39;t get it to auto-start? Thanks!!!!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Thursday, December 18, 2014</time>
+          </div>
+          <div class="body"><p>Glad you are enjoying Jekyll! It is indeed wonderful.</p>
+<p>Regarding serving and auto-starting... Jekyll leverages Ruby&#39; Webrick web server for local development serving. The Ruby&#39; Webrick server should not be used for serving public/production. It is designed to provide a simple, local development server.</p>
+<p>If your goal is to always have Jekyll running (--watch) and watching for changes to source files in order to re-render the [updated] site, that can be accomplished, i.e. <code>jekyll serve -w</code>.</p>
+<p>For automatically starting unix processes at boot time, that is a system administration detail and task unrelated to Jekyll or any other server-side technology.</p>
+<p>With that said, one could use <code>cron</code>, or <code>init.d</code>, or now, <code>systemd</code>, or the myriad other runtime management solutions.</p>
+<p>Another popular way to dynamically build sites when they change is to use <code>git</code> along with <code>git hooks</code> that triggers <code>jekyll</code> to build and output to the served web directory. Note GitHub does this for you.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Thursday, December 18, 2014</time>
+          </div>
+          <div class="body"><p>If you&#39;re planning to host the generated site for any prolonged period of time or to the public, I recommend serving the files with an actual web server like nginx or Apache. @jaybe-jekyll beat me to it, but I&#39;ll just reiterate that <code>jekyll serve</code> was meant to be used for development, not production.</p>
+<p>For your hosting needs, I also recommend <a href="https://pages.github.com">GitHub Pages</a>, which can build Jekyll sites without plugins.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

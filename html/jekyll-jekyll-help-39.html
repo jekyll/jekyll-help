@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Thoughts on a Content Folder?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#39</span>
+        </p>
+        <h1>Thoughts on a Content Folder?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">budparr</a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body">
+            <p><strong>(tl;dr) Seems to me that it&#39;d be great to put all content, whether that&#39;s collections, pages, or posts into one content folder.</strong></p>
+<p>Jumping in to collections I&#39;m creating a site now that has a bunch of folders of varying content, plus regular pages and posts. This is getting unruly because in one directory I&#39;ve got all those content files and folders and config files, CNAME file, etc. etc.</p>
+<p>I&#39;ve long put my pages in their own folder (_pages) and created an include directive for that folder in my config file and just set up permalinks in front-matter. </p>
+<p>I don&#39;t think there&#39;s currently a way to do what I&#39;m suggesting aside from altering the permalink in each and every document in the front-matter, but I don&#39;t think we should need to put permalinks inside of every document in a collection because that could be cumbersome and error prone for content creators.</p>
+<p>I think someone on here had suggested essentially the opposite, putting layouts and includes in a theme folder, but at any rate, I&#39;d like to be able to organize things a bit better. </p>
+<p>I&#39;d be interested in hearing any thoughts you guys have on this or any way you&#39;ve handled this yourself.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>That is precisely what the source option is for. See for instance, <a href="https://bitbucket.org/matthew-scharley/matt.scharley.me/src">https://bitbucket.org/matthew-scharley/matt.scharley.me/src</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>Fabulous! Can you just put content in &quot;source&quot;? </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>Basically it moves where jekyll looks for just about everything instead of
+&#39;./&#39; by default. Not sure if you don&#39;t specify plugins if that will then
+default to source + &#39;/_plugins&#39; or not though. Check the docs for what
+other options are there. Definitely sounds like source is the option you&#39;re
+looking for though.</p>
+<p>On 9 May 2014 06:30, Bud Parr <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#110;&#x6f;&#x74;&#x69;&#102;&#105;&#x63;&#97;&#116;&#105;&#111;&#110;&#x73;&#x40;&#103;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;">&#110;&#x6f;&#x74;&#x69;&#102;&#105;&#x63;&#97;&#116;&#105;&#111;&#110;&#x73;&#x40;&#103;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>Fabulous! Can you just put content in &quot;source&quot;?</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/39#issuecomment-42602312">https://github.com/jekyll/jekyll-help/issues/39#issuecomment-42602312</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>Yeah, the docs just say &quot;Change the directory where Jekyll will read files&quot; so that&#39;s for everything, not just content. It&#39;s close though.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>Personally, I&#39;d argue that source should be the option you are looking for
+and there should be more options to move the special folders like _includes
+individually. Probably just me arguing semantics though.</p>
+<p>On 9 May 2014 06:40, Bud Parr <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#110;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#97;&#x74;&#x69;&#x6f;&#x6e;&#115;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;">&#110;&#x6f;&#x74;&#x69;&#x66;&#x69;&#x63;&#97;&#x74;&#x69;&#x6f;&#x6e;&#115;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#x62;&#46;&#x63;&#x6f;&#109;</a> wrote:</p>
+<blockquote>
+<p>Yeah, the docs just say &quot;Change the directory where Jekyll will read
+files&quot; so that&#39;s for everything, not just content. It&#39;s close though.</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/39#issuecomment-42603343">https://github.com/jekyll/jekyll-help/issues/39#issuecomment-42603343</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>Either way would be fine if they accomplish the goal of keeping content orderly.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>Personally, I don&#39;t have an issue with having jekyll&#39;s special folders in
+with the content, it was mostly just that I didn&#39;t want to exclude all the
+other project files all manually. Each to their own. @parkr: Opinions?</p>
+<p>On 9 May 2014 06:45, Bud Parr <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x6e;&#x6f;&#116;&#105;&#x66;&#x69;&#x63;&#97;&#116;&#105;&#x6f;&#110;&#115;&#x40;&#103;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#x6e;&#x6f;&#116;&#105;&#x66;&#x69;&#x63;&#97;&#116;&#105;&#x6f;&#110;&#115;&#x40;&#103;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>Either way would be fine if they accomplish the goal of keeping content
+orderly.</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/39#issuecomment-42603978">https://github.com/jekyll/jekyll-help/issues/39#issuecomment-42603978</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>I want to say to a content creator &quot;your content is all in this folder, ignore everything else.&quot; </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

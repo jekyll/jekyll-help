@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>What would I do to install a favicon?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#101</span>
+        </p>
+        <h1>What would I do to install a favicon?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">CoWinkKeyDinkInc</a>
+            <time>Tuesday, July 22, 2014</time>
+          </div>
+          <div class="body">
+            <p>Where would the favicon be placed in a Jekyll site run by GitHub Pages?  Is the code to be placed in the .html in _site?  I have used this website <a href="http://realfavicongenerator.net">http://realfavicongenerator.net</a> to generate the favicons.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, July 23, 2014</time>
+          </div>
+          <div class="body"><p>Hello, you place the file on the root folder of your project, it will be copied to the <code>_site</code> directory on generation!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/CoWinkKeyDinkInc">
+              CoWinkKeyDinkInc
+            </a>
+            <time>Wednesday, July 23, 2014</time>
+          </div>
+          <div class="body"><p>Is it possible to use all the favicons that the generator created?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, July 23, 2014</time>
+          </div>
+          <div class="body"><p>Yes, yes you can.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, July 23, 2014</time>
+          </div>
+          <div class="body"><p>Wikipedia has a surprisingly good <a href="http://en.wikipedia.org/wiki/Favicon#Browser_implementation">implementation guide</a> for favicons.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

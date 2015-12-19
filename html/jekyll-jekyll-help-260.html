@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Do any generators work with pages or collections?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#260</span>
+        </p>
+        <h1>Do any generators work with pages or collections?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Friday, January 30, 2015</time>
+          </div>
+          <div class="body">
+            <p>Are there any generators that work with pages or collections? I want to auto-generate a page that lists all pages that have a specific tag (like a tag archive but for pages instead of posts). Alternatively, I would like to auto-generate a collection archive (a page showing all pages in the collection). I know how to manually create these archive pages, but is there a way to auto-generate this kind of archive page on build? Ideally, it would work like this <a href="https://github.com/recurser/jekyll-plugins">categories archive plugin</a> but for pages. </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p><a href="https://github.com/jekyll/jekyll-archives">https://github.com/jekyll/jekyll-archives</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>Thanks, but does this work for pages, or just for posts? When I implement it, it seems to only create archives for posts.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>Oh, you wanted for pages too? Not to sure that this is possible right now with Jekyll as pages and posts are two different things when generated, this might change in 3.0 but I&#39;m not sure. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>@tomjohnson1492 May I ask what kind of pages you have and why you want to why you want to put them together in an archive?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;m using jekyll for a documentation site (e.g., user guide). There are various sections in the user guide, such as Getting Started, Implementation, Configuration, Troubleshooting. I want to create different lists for pages in these sections. So I&#39;m using tags with pages. I&#39;m autopopulating my navigation sidebar like this:</p>
+<pre><code>&lt;ul&gt;
+  {% assign counter = &#39;0&#39; %}
+                {% assign pages = site.pages | sort: &quot;weight&quot;  %}
+                {% for page in pages %}
+                {% for tag in page.tags %}
+                {% if tag == &quot;Implementation&quot; and counter &lt; &#39;9&#39; %}
+                {% capture counter %}{{ counter | plus:&#39;1&#39; }}{% endcapture %}
+                  &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;{{ page.permalink | prepend: site.baseurl }}&quot;&gt;{{page.title}}&lt;/a&gt;&lt;/li&gt;
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+&lt;/ul&gt;
+</code></pre><p>When there are more than 9 topics, I want to say something like &quot;See all&quot; and direct people to an archive view that contains all topics. </p>
+<p>Am I going about this the wrong way? Should I be using posts instead? I just don&#39;t want to have to put dates in all my post file names, but maybe I can live with it if posts give me more functionality.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>Personally I think this would pretty easily be solved by having the pages be posts and have the permalink setting to be /:category/:name/ or something similar. Otherwise I think you might have to create separate pages manually and populate them yourself. You could possibly use a similar solution to how Jekyll organizes it&#39;s sidenav in the documentation on their website.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>What soundr3 said sound5 logical. I did a very basic archive on my blog with my posts as well. Linking to the archive when there is 10 posts already.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>How are pages and posts changing in v3 of Jekyll? I&#39;m not sure I totally understand the difference between the two. What I know is that posts are meant for chronological sorting, they have dates in file names, and they occupy a different namespace (posts instead of pages). Pages are meant to stand alone, they don&#39;t sort by filename, and they have a posts namespace. </p>
+<p>But it seems like more features are built around posts (like this plugin) since jekyll was initially conceived as a blogging platform, not a website/user-guide platform. Right?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>It&#39;s mostly a backend change as far as I know and I haven&#39;t really read much up on the specifics, but you can see the main issue here: jekyll/jekyll#3169. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>@tomjohnson1492 Yeah, I see your point. As far as I understand it, pages are meant to not have any relation between one and another. That&#39;s what collections <em>should</em> be for.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>I understand how collections work, but I&#39;m looking to develop a simple
+template that doesn&#39;t require other writers to add collection types to a
+configuration file. I think categories or tags on posts will work just fine
+for me.</p>
+<hr>
+<p>blog: idratherbewriting.com
+twitter: tomjohnson
+408-540-8562</p>
+<p>On Sun, Feb 8, 2015 at 10:22 AM, Philipp Rudloff <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#x3a;&#110;&#111;&#x74;&#x69;&#x66;&#105;&#99;&#97;&#116;&#105;&#x6f;&#110;&#x73;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#110;&#111;&#x74;&#x69;&#x66;&#105;&#99;&#97;&#116;&#105;&#x6f;&#110;&#x73;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>
+wrote:</p>
+<blockquote>
+<p>@tomjohnson1492 <a href="https://github.com/tomjohnson1492">https://github.com/tomjohnson1492</a> Yeah, I see your
+point. As far as I understand it, pages are meant to not have any relation
+between one and another. That&#39;s what collections <em>should</em> be for.</p>
+<p>—
+Reply to this email directly or view it on GitHub
+<a href="https://github.com/jekyll/jekyll-help/issues/260#issuecomment-73423722">https://github.com/jekyll/jekyll-help/issues/260#issuecomment-73423722</a>.</p>
+</blockquote>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

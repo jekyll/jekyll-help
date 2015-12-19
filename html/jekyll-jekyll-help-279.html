@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>site.tags does not list tags for pages</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#279</span>
+        </p>
+        <h1>site.tags does not list tags for pages</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tkrotoff</a>
+            <time>Wednesday, February 25, 2015</time>
+          </div>
+          <div class="body">
+            <p>If you add tags to a regular page (so outside _posts directory), they don&#39;t get listed with site.tags. Any reason for this behavior?</p>
+<p>Related source code: <a href="https://github.com/jekyll/jekyll/blob/v2.5.3/lib/jekyll/site.rb#L341">https://github.com/jekyll/jekyll/blob/v2.5.3/lib/jekyll/site.rb#L341</a></p>
+<p>(And if you want the tags from the regular pages to be listed along posts tags, you can&#39;t because you cannot join arrays in Liquid template: <a href="https://github.com/Shopify/liquid/issues/427">https://github.com/Shopify/liquid/issues/427</a>)</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tkrotoff">
+              tkrotoff
+            </a>
+            <time>Tuesday, March 03, 2015</time>
+          </div>
+          <div class="body"><p>I manage to make this work by creating a <a href="http://jekyllrb.com/docs/plugins/#generators">generator</a>:</p>
+<pre><code class="lang-Ruby">module Jekyll
+
+  # The list of pages and posts for each tag
+  class TagsGenerator &lt; Generator
+
+    def generate(site)
+      tags_html_page = site.pages.detect { |page| page.name == &#39;tags.html&#39; }
+      tags_html_page.data[&#39;all_tags&#39;] = prepend_page_tags_to_post_tags(site)
+    end
+
+    # Returns a hash of pages and posts indexed by tags.
+    #
+    # Example:
+    #   {
+    #     &#39;tech&#39; =&gt; [&lt;Page A&gt;, &lt;Page B&gt;, &lt;Post A&gt;, &lt;Post B&gt;],
+    #     &#39;ruby&#39; =&gt; [&lt;Post B&gt;]
+    #   }
+    #
+    # By default Jekyll does not return the list of pages for each tag, only the posts
+    def prepend_page_tags_to_post_tags(site)
+      # Already given by Jekyll: the list of posts for each tag
+      all_tags = site.post_attr_hash(&#39;tags&#39;)
+
+      # Trick: loop over the pages in reverse order because they are prepend to the hash
+      # =&gt; end up with the original order
+      site.pages.reverse.each do |page|
+        page_tags = page.data[&#39;tags&#39;]
+        unless page_tags.nil?
+          page_tags.each do |tag|
+            # Pages in front of the list
+            all_tags[tag].unshift(page)
+          end
+        end
+      end
+
+      return all_tags
+    end
+  end
+end
+</code></pre>
+<p>The generator returns the list of pages and posts for each tag (instead of just the list of posts for each tag).
+How to use: inside page <code>tags.html</code> (the page name matters), use <code>{{ page.all_tags }}</code>.</p>
+<p>See commit <a href="https://github.com/tkrotoff/osteo15.com/commit/45f0301ee1bf7d7738d3ed27ea8160be38c0f76f">https://github.com/tkrotoff/osteo15.com/commit/45f0301ee1bf7d7738d3ed27ea8160be38c0f76f</a></p>
+<p>For my first attempt, I tried to extend <a href="https://github.com/jekyll/jekyll/blob/v2.5.3/lib/jekyll/site.rb">Jekyll::Site class</a> by defining a new method <code>all_tags</code> without success. Could not find any resources on the subject beside <a href="http://stackoverflow.com/questions/26853529">this unanswered question on Stack Overflow</a>.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

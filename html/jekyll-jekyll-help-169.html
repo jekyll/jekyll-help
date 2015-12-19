@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Cannot load rdiscount.so (markdown processing)</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#169</span>
+        </p>
+        <h1>Cannot load rdiscount.so (markdown processing)</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">gg8345</a>
+            <time>Sunday, October 12, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m trying to use Octopress to generate my first post, but maybe this is something Jekyll can answer as it&#39;s used as the basis for Octopress.. Still can&#39;t get it to process the markdown post..</p>
+<p>I&#39;m running Windows 7 64 bits, installed Ruby 1.9.3 and the latest Octopress from the git repository (from today).</p>
+<p>I&#39;ve verified that rdiscount is correctly installed (through the bundle install).
+rdiscount is 2.1.7.1. rdiscount.so is in ext/rdiscount.so..</p>
+<p>Anybody has an idea of what is going wrong ? Thanks.</p>
+<blockquote>
+<p>rake generate</p>
+<h2 id="set-the-codepage-to-65001-for-windows-machines">Set the codepage to 65001 for Windows machines</h2>
+<h2 id="generating-site-with-jekyll">Generating Site with Jekyll</h2>
+<p>identical source/stylesheets/screen.css
+Configuration file: C:/website/octopress/_config.yml
+            Source: source
+       Destination: ../production/public/
+      Generating...
+[31m  Dependency Error:  Yikes! It looks like you don&#39;t have rdiscount or one o
+f its dependencies installed. In order to use Jekyll as currently configured, yo
+u&#39;ll need to install this gem. The full error message from Ruby is: &#39;cannot load
+ such file -- rdiscount.so&#39; If you run into trouble, you can find helpful
+ resources at <a href="http://jekyllrb.com/help/!">http://jekyllrb.com/help/!</a> [0m
+[31m  Conversion error: Jekyll::Converters::Markdown encountered an error conve
+rting &#39;_posts/2008-10-23-tt.md/#excerpt&#39;.[0m
+[31m  Conversion error: rdiscount[0m
+[31m             ERROR: YOUR SITE COULD NOT BE BUILT:[0m
+[31m                    ------------------------------------[0m
+[31m                    rdiscount[0m</p>
+</blockquote>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/thinkinglk">
+              thinkinglk
+            </a>
+            <time>Wednesday, October 22, 2014</time>
+          </div>
+          <div class="body"><p>maybe you should install rdiscount,  use the command &quot;gem install rdiscount&quot;</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Non-home pagination either doesn&#x27;t work or messes up navigation</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#177</span>
+        </p>
+        <h1>Non-home pagination either doesn&#x27;t work or messes up navigation</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">creativedutchmen</a>
+            <time>Thursday, October 23, 2014</time>
+          </div>
+          <div class="body">
+            <p>Consider the following url structure:</p>
+<p><code>domain/</code> for the homepage (static)
+<code>domain/news/</code> for the list of posts (paginated)
+<code>domain/news/page-n/</code> for page n of posts</p>
+<p>To my understanding, there are two ways I can structure the <code>news</code> page: either by using <code>news.html</code> or by using <code>news/index.html</code>. The first method will render the pagination in the home layout - and return empty on the <code>news.html</code> loop.</p>
+<p>No problem, let&#39;s try the <code>news/index.html</code> method. Pagination now works, but every paginated page now shows up in the navigation - making it look like <code>news | news | news | news | news</code>. Not good either.</p>
+<p>So, my question is: is there a way to provide pagination on a page other than home, without messing up the navigation?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/creativedutchmen">
+              creativedutchmen
+            </a>
+            <time>Saturday, November 01, 2014</time>
+          </div>
+          <div class="body"><p>Any ideas on what could be the problem here? Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/TheCodeDestroyer">
+              TheCodeDestroyer
+            </a>
+            <time>Saturday, February 21, 2015</time>
+          </div>
+          <div class="body"><p>I have the same issue... Any news on this?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, February 21, 2015</time>
+          </div>
+          <div class="body"><p>Pagination will only work on index.html files and with no filtered group of content like categories, tags, etc. I&#39;m not sure what&#39;s messing up your last example, though.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

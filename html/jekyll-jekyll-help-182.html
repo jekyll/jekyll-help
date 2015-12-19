@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How does one list pages in a directory</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#182</span>
+        </p>
+        <h1>How does one list pages in a directory</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">bloudraak</a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body">
+            <p>I have a couple of folders with documents.</p>
+<pre><code>dir1\page1.md
+dir1\page2.md
+dir1\page3.md
+dir1\dir2\page4.md
+dir1\dir2\page5.md
+dir1\dir2\page6.md
+dir3\page7.md
+dir3\page8.md
+dir3\page9.md
+</code></pre><p>For each folder, I&#39;d created an <code>index.html</code> in each directory, including <code>dir1</code>, <code>dir1\dir2</code> and <code>dir3</code> with some custom content.  However, I&#39;d like to generate list to each page inside the folder (but not subdirectories) similar to </p>
+<pre><code>&lt;h2&gt;dir1 specific header&lt;/h2&gt;
+&lt;p&gt;dir1specific content. bla bla bla.&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;page1.html&quot;Page1&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;excerpt from Page1&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;page2.html&quot;&gt;Page2&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;excerpt from Page2&lt;/p&gt;
+&lt;!-- more --&gt;
+</code></pre><p>I added this to <code>index.html</code> in dir1</p>
+<pre><code>&lt;h2&gt;dir1 specific header&lt;/h2&gt;
+&lt;p&gt;dir1specific content. bla bla bla.&lt;/p&gt;
+{% for page in site.pages %}
+&lt;h3&gt;&lt;a title=&quot;{{ page.title }}&quot; href=&quot;{{ page.url | prepend: site.baseurl }}&quot;&gt;{{ page.title }}&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;{{page.excerpt}}&lt;/p&gt;
+{% endfor %}     
+</code></pre><p>However, it shows all the pages from <code>page1.md</code> to <code>page9.md</code> rather than <code>page1</code> to <code>page3</code>. Is there a built-in way to limit the pages being listed to only have those in the same folder?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>You might want to try breaking those pages into a spiffy Jekyll feature called :sparkles: <a href="http://jekyllrb.com/docs/collections/">collections</a> :sparkles:</p>
+<p>The source is closed, but for a website that I just redid, I broke out all of the legal pages into a <code>_legal</code> collection, and used a loop to iterate over them:</p>
+<pre><code class="lang-html">&lt;ul&gt;
+{% for page in site.collections.legal.docs %}
+  &lt;li&gt;&lt;a href=&quot;{{ page.url }}&quot;&gt;{{ page.title }}&lt;/a&gt;&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</code></pre>
+<p>Without knowing much more about the relationship between your directories and pages, though, it will be tough to make specific recommendations for you. Can you give some more detail?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bloudraak">
+              bloudraak
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>Thanks mate.</p>
+<p>The pages do have references to each other. For example, page7.md may reference page4.md and vice versa. This could easily be written in ASP.NET, Python, Ruby or Java, but the content rarely changes (except for initial part).  The benefit of having a static website is that it can be uploaded to a CDN and I can get rather impressive performance. And then there is the thing that I don&#39;t have to worry about security (aka administration site, CGI etc), or runtime requirements (OS and frameworks which all require patching and maintenance). </p>
+<p>For a moment, assume its a portfolio showing images with metadata.  So you&#39;d have pages for each image, other pages for the location of the photos, and yet more pages for the keywords.  They are then interlinked such that when you view an image, you can select its location and see what photos where taken at that location.  </p>
+<p>Or you may have a site describing events, people and places and link them together where it matters. </p>
+<p>You get the idea.  So each &quot;record kind&quot; is in its own directory, with references to pages in other directories.  What&#39;s missing is the index pages. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>Dude, you didn&#39;t include php! :wink: By the way, you don&#39;t need to convince me the merits of Jekyllizing sites. The benefits are obvious. :+1: </p>
+<p>That said, it seems that you&#39;ve got a pretty complicated setup from the lens of Jekyll, however. I don&#39;t have enough time to demonstrate exactly what you ought to do (maybe I&#39;ll create an example site like this one day...), but I&#39;ll bet you can get by pretty far by using collections and including as much metadata in the front-matter as you can.</p>
+<p>For instance, you could include the &quot;location&quot; front-matter variable, and then create an include module that will loop through other documents in the collection and display those that have the same value for the location. However, it might be a little tricky to create an index page for each location, based solely on its presence in the front-matter.</p>
+<p>You could create an index of indexes, though, but you&#39;d have to create a pretty smart looper since your collection won&#39;t be organized by location. Lemme think on this one a bit. It&#39;s a good problem to tackle!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bloudraak">
+              bloudraak
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>Do you have an example perhaps of generating a site from JSON files which contains internal references? </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/MrHobbie">
+              MrHobbie
+            </a>
+            <time>Thursday, December 04, 2014</time>
+          </div>
+          <div class="body"><p>The answer re collections was spot on for my issue.  That bit of code should be added to the documentation. Thanks!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

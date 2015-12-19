@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Liquid Exception: cannot load such file -- yajl/2.0/yajl</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#50</span>
+        </p>
+        <h1>Liquid Exception: cannot load such file -- yajl/2.0/yajl</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">rdquintas</a>
+            <time>Tuesday, May 20, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi,
+When I run jekyll build command on windows I get this error.
+:o(</p>
+<pre><code class="lang-text">C:\Users\rdquintas\Desktop\jek\zrq&gt;jekyll build
+Configuration file: C:/Users/rdquintas/Desktop/jek/zrq/_config.yml
+            Source: C:/Users/rdquintas/Desktop/jek/zrq
+       Destination: C:/Users/rdquintas/Desktop/jek/zrq/_site
+      Generating...
+  Liquid Exception: cannot load such file -- yajl/2.0/yajl in _posts/2014-05-21-
+welcome-to-jekyll.markdown
+C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require&#39;: c
+annot load such file -- yajl/2.0/yajl (LoadError)
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in
+ `require&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/yajl-ruby-1.1.0-x86-mingw32/lib
+/yajl/yajl.rb:2:in `&lt;top (required)&gt;&#39;
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in
+ `require&#39;
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in
+ `require&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/yajl-ruby-1.1.0-x86-mingw32/lib
+/yajl.rb:1:in `&lt;top (required)&gt;&#39;
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:135:i
+n `require&#39;
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:135:i
+n `rescue in require&#39;
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:144:i
+n `require&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/pygments.rb-0.5.4/lib/pygments/
+popen.rb:3:in `&lt;top (required)&gt;&#39;
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in
+ `require&#39;
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in
+ `require&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/pygments.rb-0.5.4/lib/pygments.
+rb:1:in `&lt;top (required)&gt;&#39;
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in
+ `require&#39;
+        from C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in
+ `require&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/tags/hi
+ghlight.rb:53:in `render_pygments&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/tags/hi
+ghlight.rb:41:in `render&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/liquid-2.5.5/lib/liquid/block.r
+b:106:in `block in render_all&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/liquid-2.5.5/lib/liquid/block.r
+b:93:in `each&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/liquid-2.5.5/lib/liquid/block.r
+b:93:in `render_all&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/liquid-2.5.5/lib/liquid/block.r
+b:82:in `render&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/liquid-2.5.5/lib/liquid/templat
+e.rb:124:in `render&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/liquid-2.5.5/lib/liquid/templat
+e.rb:132:in `render!&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/convert
+ible.rb:96:in `render_liquid&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/convert
+ible.rb:170:in `do_layout&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/post.rb
+:266:in `render&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb
+:245:in `block in render&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb
+:244:in `each&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb
+:244:in `render&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb
+:43:in `process&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/command
+.rb:43:in `process_site&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/command
+s/build.rb:46:in `build&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/command
+s/build.rb:30:in `process&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/command
+s/build.rb:17:in `block (2 levels) in init_with_program&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/c
+ommand.rb:220:in `call&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/c
+ommand.rb:220:in `block in execute&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/c
+ommand.rb:220:in `each&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/c
+ommand.rb:220:in `execute&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/p
+rogram.rb:35:in `go&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary.r
+b:22:in `program&#39;
+        from C:/Ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/bin/jekyll:18:in `
+&lt;top (required)&gt;&#39;
+        from C:/Ruby200/bin/jekyll:23:in `load&#39;
+        from C:/Ruby200/bin/jekyll:23:in `&lt;main&gt;&#39;
+
+C:\Users\rdquintas\Desktop\jek\zrq&gt;
+</code></pre>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, May 20, 2014</time>
+          </div>
+          <div class="body"><p>Could you please put the error in <a href="https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks">Fenced code blocks</a> so it&#39;s easier to read! <em>add highlight if posible</em>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdquintas">
+              rdquintas
+            </a>
+            <time>Friday, May 23, 2014</time>
+          </div>
+          <div class="body"><p>Hi Albert,
+thank you for pointing that out.
+I was not aware of that feature.</p>
+<p>Nevertheless, tried to do as you suggested, but markdown preview gave similar graphic output.</p>
+<p>Neverhtess, the error is related to this line only:</p>
+<pre><code>  Liquid Exception: cannot load such file -- yajl/2.0/yajl in _posts/2014-05-21-
+welcome-to-jekyll.markdown
+C:/Ruby200/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require&#39;: c
+annot load such file -- yajl/2.0/yajl (LoadError)
+</code></pre><p>Guess this is related with the fact that I&#39;m running these versions on windows:
+<strong>Compass 1.0.0.alpha.19</strong>
+<strong>ruby 2.0.0p481 (2014-05-08) [i386-mingw32]</strong></p>
+<p>If I downgrade Ruby it seems to work.
+But I do need to have ruby running on 2.0, I&#39;m afraid.</p>
+<p>Cheers.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Friday, May 23, 2014</time>
+          </div>
+          <div class="body"><p>It seems to be a problem with <code>yajl</code> not being found anywhere, it may be a path problem, do you have a <code>Gemfile</code>? Could you try to see if <code>yajl-ruby</code> is installed on your system?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/shellphon">
+              shellphon
+            </a>
+            <time>Thursday, May 29, 2014</time>
+          </div>
+          <div class="body"><p>@rdquintas hello, i have the same error in my machine. I guess maybe your local python is 3.x (the same to mine). And the pygments.rb needs to run with python 2.x (says the ReadMe.md of pygments.rb) , I&#39;m afraid.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, May 29, 2014</time>
+          </div>
+          <div class="body"><p>@shellphon if you think thats the case can you try using Rouge? <code>gem install rouge</code> and set it up <a href="https://github.com/albertogg/albertogg.github.com/blob/master/_config.yml#L31">in your _config.yml</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Saturday, June 28, 2014</time>
+          </div>
+          <div class="body"><p>Hello all!</p>
+<p>I started experiencing the same problem once I upgraded to Ruby 2.0.0 . I upgraded following a suggestion that it would help solve the original problem of this Liquid Exception:</p>
+<pre><code>Liquid Exception: No such file or directory - python C:/Ruby193/lib/ruby/gems/1.9.1/gems/pygments.rb-0.5.0/lib/pygments/mentos.py in _posts/2014/06/28-Name-of-post.md
+</code></pre><p>Details of that issue are here: <a href="https://github.com/jekyll/jekyll/issues/2551">https://github.com/jekyll/jekyll/issues/2551</a></p>
+<p>I also did a search of the Liquid Exception referenced in the title <code>Liquid Exception: cannot load such file -- yajl/2.0/yajl</code> and found this issue brianmario/yajl-ruby#116, which you may want to read.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Going to close this as it seems to be resolved.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gazeldx">
+              gazeldx
+            </a>
+            <time>Friday, November 28, 2014</time>
+          </div>
+          <div class="body"><pre><code>gem install rouge
+</code></pre><p>works for me. Thanks.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/XhmikosR">
+              XhmikosR
+            </a>
+            <time>Monday, January 05, 2015</time>
+          </div>
+          <div class="body"><p>This is definitely an issue and I&#39;m still trying to find a sensible fix.</p>
+<p><a href="https://ci.appveyor.com/project/XhmikosR/pages-gem/build/28/job/j75kggkac3fh2l2k">https://ci.appveyor.com/project/XhmikosR/pages-gem/build/28/job/j75kggkac3fh2l2k</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

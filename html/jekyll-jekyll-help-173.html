@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How can I include a transformed to HTML markdown file?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#173</span>
+        </p>
+        <h1>How can I include a transformed to HTML markdown file?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">aleksey-bykov</a>
+            <time>Sunday, October 19, 2014</time>
+          </div>
+          <div class="body">
+            <p>I use {% include something.md %} and jekyll does it literally without transforming md to html. How do I enable the transformation?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Sunday, October 19, 2014</time>
+          </div>
+          <div class="body"><p>You may capture and filter through Markdown.</p>
+<p>{% capture something %]
+  {% include something.md %}
+{% endcapture %}</p>
+<p>{{ something | markdownify }}</p>
+<p><a href="http://jekyllrb.com/docs/templates/#filters">http://jekyllrb.com/docs/templates/#filters</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>Usually, includes are already HTML (think of them as modules for the layout). However, @jaybe-jekyll&#39;s solution should work as advertised.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

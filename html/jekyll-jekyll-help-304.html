@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Redirect users to talk.jekyllrb.com</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#304</span>
+        </p>
+        <h1>Redirect users to talk.jekyllrb.com</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">erlend-sh</a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body">
+            <p>Suggested rewrite to begin redirecting users to the new forum. Discussion here:</p>
+<p><a href="https://talk.jekyllrb.com/t/retire-jekyll-help-in-favor-of-the-new-forum/170/8?u=erlend_sh">https://talk.jekyllrb.com/t/retire-jekyll-help-in-favor-of-the-new-forum/170/8?u=erlend_sh</a></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;m :+1: on this. How do we migrate the issues, you think?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>We&#39;d want to either make the comment via the user if one exists with the same email/username or we&#39;d want to just have system do something like gopherbot does for golang/go:</p>
+<pre><code class="lang-text">[@erlend-sh](https://github.com/erlend-sh) wrote on 2015-05-10 at 22:03:23 UTC:
+
+&gt; Suggested rewrite to begin redirecting users to the new forum. Discussion here:
+&gt;
+&gt; https://talk.jekyllrb.com/t/retire-jekyll-help-in-favor-of-the-new-forum/170/8?u=erlend_sh
+</code></pre>
+<p>which would render as</p>
+<p><a href="https://github.com/erlend-sh">@erlend-sh</a> wrote on 2015-05-10 at 22:03:23 UTC:</p>
+<blockquote>
+<p>Suggested rewrite to begin redirecting users to the new forum. Discussion here:</p>
+<p><a href="https://talk.jekyllrb.com/t/retire-jekyll-help-in-favor-of-the-new-forum/170/8?u=erlend_sh">https://talk.jekyllrb.com/t/retire-jekyll-help-in-favor-of-the-new-forum/170/8?u=erlend_sh</a></p>
+</blockquote>
+<p>and we&#39;re good.</p>
+<p>And do that for each thread. I use <a href="https://github.com/jlord/offline-issues">offline-issues</a> already to work on Jekyll stuff on the go :airplane: so maybe we can use that to grab the issues and go from there.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/erlend-sh">
+              erlend-sh
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><blockquote>
+<p>How do we migrate the issues, you think?
+(...)
+or we&#39;d want to just have system do something like gopherbot does for golang/go</p>
+</blockquote>
+<p>That sounds like the way to go to me. Trying to maintain post ownership quickly gets complicated: There&#39;s 300 issues totalling roughly 600 posts, and I&#39;m guessing far less than 50% of the posters have a forum account they can be tied to.</p>
+<p>offline-issues looks neat. I had a similar idea and found these:</p>
+<p><a href="http://jaredly.github.io/github-issues-viewer/#jekyll/jekyll-help">http://jaredly.github.io/github-issues-viewer/#jekyll/jekyll-help</a>
+<a href="https://github.com/jaxbot/github-issues.vim">https://github.com/jaxbot/github-issues.vim</a></p>
+<p>I can&#39;t do anything with any of those myself though.</p>
+<p>If you can get me plain-text (i.e. Markdown friendly) transcripts of the 300 issues, I wouldn&#39;t mind pretending to be your bot for the week, manually posting those issues over the course of a couple of days (e.g. as a new &quot;github-help&quot; user).</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

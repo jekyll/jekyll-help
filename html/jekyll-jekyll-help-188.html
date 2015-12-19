@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Stop Jekyll Wrapping Images in P Tags</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#188</span>
+        </p>
+        <h1>Stop Jekyll Wrapping Images in P Tags</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">juicymark</a>
+            <time>Saturday, November 08, 2014</time>
+          </div>
+          <div class="body">
+            <p>Can somebody advise on how it is possible to stop jekyll wrapping p tags around image tags using markdown</p>
+<p>Regards</p>
+<p>Mark</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p>That is a Markdown thing and pretty sane if you ask me. What do you need it for, though? </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p><code>&lt;img&gt;</code> is an inline element, so it should <em>always</em> exist within a block level element. So I would agree, the markdown converters behaviour is entirely correct, in my opinion.</p>
+<p>This behaviour is also detailed in the CommonMark Spec, the most detailed Markdown specification that currently exists:</p>
+<p><a href="http://spec.commonmark.org/0.10/#images">http://spec.commonmark.org/0.10/#images</a> </p>
+<p>That said, if you don&#39;t want your images inside <code>&lt;p&gt;</code> you could place them inside another suitable block-level element like <code>&lt;div&gt;</code> or <code>&lt;figure&gt;</code> but, from a semantics standpoint, I don&#39;t see anything wrong with <code>&lt;p&gt;</code> unless <code>&lt;figure&gt;</code> is a better fit.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/juicymark">
+              juicymark
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p>Hi nternetinspired, Thanks for the reply.</p>
+<p>I needed to stop the img tag being wrapped in a p tag since my paragraphs contain a margin on the bottom so its messing up my styling, since its a HTML5 document i have decided to go with using the &lt;code&gt;&lt;figure&gt;&lt;/code&gt; tag around any images.</p>
+<p>Thanks</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p>Why is using the figure tag around images better? Are all your images figures? </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Why is using the figure tag around images better? Are all your images figures?</p>
+</blockquote>
+<p>This. Images are not always figures, and if they aren&#39;t you&#39;d be better not using that element. No semantics are better than incorrect semantics.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

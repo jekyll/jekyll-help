@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>post.html not doing anything other than displaying post content (can&#x27;t include header, footer, etc)</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#80</span>
+        </p>
+        <h1>post.html not doing anything other than displaying post content (can&#x27;t include header, footer, etc)</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">HarrisRobin</a>
+            <time>Saturday, June 21, 2014</time>
+          </div>
+          <div class="body">
+            <p>So I am using <a href="https://github.com/centresource/generator-playbook">https://github.com/centresource/generator-playbook</a> to kickstart my jekyll blog and everytihng is fine except for the fact that my post.html doesn&#39;t seem to be applying the layout it should be (default.html).</p>
+<p>In fact, anything i add to post.html gets ignored, all it does is display the post {{content}} and nothing else. 
+Am I doing something wrong ? There also seems to be no css file that works on it, yet all of this works everywhere else.</p>
+<p>Thank you,</p>
+<p>Here is the markup : </p>
+<pre><code class="lang-html">---
+layout: default
+---
+
+&lt;div class=&quot;post&quot;&gt;
+  &lt;h1 class=&quot;post-title&quot;&gt;{{ page.title }}&lt;/h1&gt;
+  &lt;span class=&quot;post-date&quot;&gt;{{ page.date | date_to_string }}&lt;/span&gt;
+  {{ content }}
+&lt;/div&gt;
+
+&lt;div class=&quot;related&quot;&gt;
+  &lt;h2&gt;Related Posts&lt;/h2&gt;
+  &lt;ul class=&quot;related-posts&quot;&gt;
+    {% for post in site.related_posts limit:3 %}
+      &lt;li&gt;
+        &lt;h3&gt;
+          &lt;a href=&quot;{{ site.baseurl }}{{ post.url }}&quot;&gt;
+            {{ post.title }}
+            &lt;small&gt;{{ post.date | date_to_string }}&lt;/small&gt;
+          &lt;/a&gt;
+        &lt;/h3&gt;
+      &lt;/li&gt;
+    {% endfor %}
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/HarrisRobin">
+              HarrisRobin
+            </a>
+            <time>Saturday, June 21, 2014</time>
+          </div>
+          <div class="body"><p>Apparently, I have to include the layout: default in every markdown post i make. I assumed it would automatically apply if i put it in post.html.</p>
+<p>didn&#39;t know, sorry.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, June 21, 2014</time>
+          </div>
+          <div class="body"><p>Yep, Jekyll tries to stay away from being too &quot;automagical&quot; so as not to confuse. Glad you got it figured out!</p>
+<p>If you&#39;re using Jekyll 2.x, check out <a href="http://jekyllrb.com/docs/configuration/#frontmatter-defaults">Front-Matter Defaults</a>.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

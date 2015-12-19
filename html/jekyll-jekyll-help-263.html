@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>more information about gemfiles?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#263</span>
+        </p>
+        <h1>more information about gemfiles?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Saturday, January 31, 2015</time>
+          </div>
+          <div class="body">
+            <p>I wish the Jekyll documentation had more information about gemfiles. I find this aspect of jekyll really confusing. As I understand it, the gemfile is where you can reference gems specific to your project. Github pages requires a certain gem in order to use github as the repository, and they describe it here: <a href="https://help.github.com/articles/using-jekyll-with-pages/">https://help.github.com/articles/using-jekyll-with-pages/</a>. </p>
+<p>The basic setup, I think, is to do this:</p>
+<ol>
+<li><p>Create a file called Gemfile (no extension) that includes this:</p>
+<p> source &#39;<a href="https://rubygems.org">https://rubygems.org</a>&#39;
+ gem &#39;github-pages&#39;</p>
+</li>
+<li><p>Save it in your project directory. </p>
+</li>
+<li>Run <code>bundle install</code>. 
+ A lot of things get installed...</li>
+</ol>
+<pre><code>Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Installing RedCloth 4.2.9
+Installing i18n 0.7.0
+Installing json 1.8.2
+Installing minitest 5.5.1
+Installing thread_safe 0.3.4
+Installing tzinfo 1.2.2
+Installing activesupport 4.2.0
+Using blankslate 2.1.2.4
+Using hitimes 1.2.2
+Using timers 4.0.1
+Using celluloid 0.16.0
+Using fast-stemmer 1.0.2
+Using classifier-reborn 2.0.3
+Using coffee-script-source 1.9.0
+Using execjs 2.2.2
+Using coffee-script 2.3.0
+Using colorator 0.1
+Using ffi 1.9.6
+Installing gemoji 2.1.0
+Installing net-dns 0.8.0
+Installing public_suffix 1.4.6
+Installing github-pages-health-check 0.2.1
+Using jekyll-coffeescript 1.0.1
+Using jekyll-gist 1.1.0
+Using jekyll-paginate 1.1.0
+Using sass 3.4.11
+Installing jekyll-sass-converter 1.2.0
+Using rb-fsevent 0.9.4
+Using rb-inotify 0.9.5
+Using listen 2.8.5
+Using jekyll-watch 1.2.1
+Using kramdown 1.5.0
+Installing liquid 2.6.1
+Using mercenary 0.3.5
+Using posix-spawn 0.3.9
+Using yajl-ruby 1.2.1
+Installing pygments.rb 0.6.1
+Installing redcarpet 3.1.2
+Using safe_yaml 1.0.4
+Using parslet 1.5.0
+Using toml 0.1.2
+Installing jekyll 2.4.0
+Installing mini_portile 0.6.2
+Installing nokogiri 1.6.6.2
+Installing html-pipeline 1.9.0
+Installing jekyll-mentions 0.2.1
+Installing jekyll-redirect-from 0.6.2
+Installing jekyll-sitemap 0.6.3
+Installing jemoji 0.4.0
+Installing maruku 0.7.0
+Installing rdiscount 2.1.7
+Installing terminal-table 1.4.5
+Installing github-pages 33
+Using bundler 1.7.12
+Your bundle is complete!
+It was installed into ./_vendor/bundle
+Post-install message from html-pipeline:
+-------------------------------------------------
+Thank you for installing html-pipeline!
+You must bundle Filter gem dependencies.
+See html-pipeline README.md for more details.
+https://github.com/jch/html-pipeline#dependencies
+</code></pre><ol>
+<li>Then I run <code>jekyll serve</code> and get the following errors: </li>
+</ol>
+<pre><code>tjohnson-mbpr13:resolvev3 tjohnson$ jekyll serve
+Configuration file: /Users/tjohnson/projects/resolvev3/_config.yml
+/Users/tjohnson/projects/resolvev3/_plugins/jekyll-lunr-js-search.rb:1:in `require&#39;: cannot load such file -- jekyll_lunr_js_search/version (LoadError)
+    from /Users/tjohnson/projects/resolvev3/_plugins/jekyll-lunr-js-search.rb:1:in `&lt;top (required)&gt;&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/plugin_manager.rb:58:in `require&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/plugin_manager.rb:58:in `block (2 levels) in require_plugin_files&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/plugin_manager.rb:57:in `each&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/plugin_manager.rb:57:in `block in require_plugin_files&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/plugin_manager.rb:56:in `each&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/plugin_manager.rb:56:in `require_plugin_files&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/plugin_manager.rb:18:in `conscientious_require&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/site.rb:74:in `setup&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/site.rb:36:in `initialize&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/commands/build.rb:28:in `new&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/commands/build.rb:28:in `process&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/lib/jekyll/commands/serve.rb:25:in `block (2 levels) in init_with_program&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `call&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `block in execute&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `each&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/mercenary-0.3.5/lib/mercenary/command.rb:220:in `execute&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/mercenary-0.3.5/lib/mercenary/program.rb:42:in `go&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/mercenary-0.3.5/lib/mercenary.rb:19:in `program&#39;
+    from /Users/tjohnson/projects/resolvev3/_vendor/bundle/ruby/2.0.0/gems/jekyll-2.4.0/bin/jekyll:18:in `&lt;top (required)&gt;&#39;
+    from /Users/tjohnson/.rvm/gems/ruby-2.0.0-p481/bin/jekyll:23:in `load&#39;
+    from /Users/tjohnson/.rvm/gems/ruby-2.0.0-p481/bin/jekyll:23:in `&lt;main&gt;&#39;
+    from /Users/tjohnson/.rvm/gems/ruby-2.0.0-p481/bin/ruby_executable_hooks:15:in `eval&#39;
+    from /Users/tjohnson/.rvm/gems/ruby-2.0.0-p481/bin/ruby_executable_hooks:15:in `&lt;main&gt;&#39;
+</code></pre><p>So I remove the Gemfile and Gemfile.lock, and rebuild Jekyll, and then it works. </p>
+<p>Why am I getting so many errors with this Gemfile?</p>
+<p>I do have ruby installed:</p>
+<pre><code>ruby 2.0.0p481 (2014-05-08 revision 45883) [x86_64-darwin13.1.0]
+</code></pre><p>And XCode. </p>
+<p>Besides the confusion with the errors, I&#39;m also confused about these points:</p>
+<ul>
+<li><p>where do all of the bundle install utilities get installed? I don&#39;t see any change inside Gemfile. I can&#39;t open Gemfile.lock.</p>
+</li>
+<li><p>are Gemfiles required, or only required for Github Pages solutions?</p>
+</li>
+<li><p>what&#39;s the difference between installing something myself (<code>gem install github-pages</code>) versus adding a gem in my Gemfile and then running bundle install? </p>
+</li>
+<li><p>are gems the way that people get around the &quot;no plugins allowed&quot; restrcction on github?</p>
+</li>
+</ul>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, February 03, 2015</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Github pages requires a certain gem in order to use github as the repository, and they describe it here</p>
+</blockquote>
+<p>No. You do <em>not</em> need a Gemfile to run Jekyll at Github Pages.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

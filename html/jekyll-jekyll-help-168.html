@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Collections site object is empty</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#168</span>
+        </p>
+        <h1>Collections site object is empty</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tylercraft</a>
+            <time>Sunday, October 12, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m building a new site using Jekyll and I&#39;m having trouble getting collections to work. I&#39;m trying to use collections to display a portfolio of projects.</p>
+<p>I&#39;ve added this to my <code>_config.yml</code> file:</p>
+<pre><code class="lang-yaml">collections:
+  projects:
+    output: true
+`
+</code></pre>
+<p>I then created a folder called <code>_projects</code> and within it I have one file named <code>2014-10-08-test-project.md</code></p>
+<p>At this point, I&#39;m just hoping to have an html file created, or a way to reference it from another page (for instance, the home page).</p>
+<p>However, when I build this, no project html files are created. And if I output <code>{{ site }}</code> on a page, this is the only reference to my collection that I get: <code>&quot;collections&quot;=&gt;{&quot;projects&quot;=&gt;{&quot;output&quot;=&gt;true}}</code></p>
+<p>I installed Jekyll this week, so I shouldn&#39;t be on an old version. I&#39;m on OSX 10.9.5. When I run <code>ruby -v</code> on the terminal, I get this <code>ruby 1.9.3p362 (2012-12-25 revision 38607) [x86_64-darwin12.2.0]</code>. I&#39;m also using this in conjunction with yeoman.</p>
+<p>I&#39;ve even tried using some sample code from blog posts that I&#39;ve found (ex, <a href="https://github.com/tay1orjones/jekyllTest">https://github.com/tay1orjones/jekyllTest</a>), and I get the same result - the collections aren&#39;t getting processed.</p>
+<p>I&#39;ve reread the documentation, and I&#39;ve been searching through stackoverflow and the github issues with no luck. I&#39;m worried that this is an issue with my machine/setup more than Jekyll but not sure where to look.</p>
+<p>Any ideas or suggestions would be greatly appreciated.</p>
+<p>thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tylercraft">
+              tylercraft
+            </a>
+            <time>Tuesday, October 21, 2014</time>
+          </div>
+          <div class="body"><p>Looks like this was something unique to my system. A fresh install of Yosemite and all was fixed.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>Glad you got it sorted out!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

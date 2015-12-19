@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Using SASS files from gems installed with bundler</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#292</span>
+        </p>
+        <h1>Using SASS files from gems installed with bundler</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">astehlik</a>
+            <time>Thursday, April 23, 2015</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m wondering if this is possible: I&#39;m installing the <a href="http://github.com">GitHub</a> gem by adding it to my <code>Gemfile</code>:</p>
+<pre><code>source &#39;https://rubygems.org&#39;
+gem &#39;github-pages&#39;
+gem &#39;bootstrap-sass&#39;, &#39;~&gt; 3.3.4&#39;
+</code></pre><p>Then i call <code>bundle install</code>.</p>
+<p>But I don&#39;t get how I now can access the installed SASS files within Jekyll. How do I import the bootstrap SASS file from</p>
+<pre><code>/var/lib/gems/2.1.0/gems/bootstrap-sass-3.3.4.1/assets/stylesheets
+</code></pre><p>in my local SASS files?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Thursday, April 23, 2015</time>
+          </div>
+          <div class="body"><p>I <em>think</em> you might have to install with bower to use it in Jekyll. Then just add to your config and Jekyll will build it for you <a href="http://jekyllrb.com/docs/assets/#sassscss">http://jekyllrb.com/docs/assets/#sassscss</a> I&#39;d point you to a repo to look at, but I use bourbon.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/astehlik">
+              astehlik
+            </a>
+            <time>Friday, April 24, 2015</time>
+          </div>
+          <div class="body"><p>Thank you for your reply!</p>
+<p>Using bower is what I did actually to solve the problem :)</p>
+<p>I was just curious if there is a possibility to use the files from the gem.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

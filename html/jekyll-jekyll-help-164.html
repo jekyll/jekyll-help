@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>After moving from GitHub Pages to S3 &amp; Cloudfront, Google Analytics No Longer Firing</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#164</span>
+        </p>
+        <h1>After moving from GitHub Pages to S3 &amp; Cloudfront, Google Analytics No Longer Firing</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">vincentbarr</a>
+            <time>Thursday, October 09, 2014</time>
+          </div>
+          <div class="body">
+            <p>Google Analytics tag is no longer showing up in source code on vincentbarr.com. Config file: <a href="https://gist.github.com/vincentbarr/032012e103eee4208f98">https://gist.github.com/vincentbarr/032012e103eee4208f98</a></p>
+<p>Can you please help?*</p>
+<p>*Please let me know if there is a better way to demonstrate issues going forward. </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Friday, October 17, 2014</time>
+          </div>
+          <div class="body"><p>Do you manage to solve the issue?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>It&#39;s a pretty convoluted way render this, but <code>{{ site.JB.analytics.google.tracking_id }}</code> should work fine.</p>
+<pre><code class="lang-html">&lt;!-- GOOGLE ANALYTICS --&gt;
+  &lt;script&gt;
+    (function(i,s,o,g,r,a,m){i[&#39;GoogleAnalyticsObject&#39;]=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,&#39;script&#39;,&#39;//www.google-analytics.com/analytics.js&#39;,&#39;ga&#39;);
+    ga(&#39;create&#39;, &#39;{{ site.JB.analytics.google.tracking_id }}&#39;, &#39;auto&#39;);
+    ga(&#39;send&#39;, &#39;pageview&#39;);
+  &lt;/script&gt;
+</code></pre>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

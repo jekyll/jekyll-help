@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll doesn&#x27;t respect line breaks</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#171</span>
+        </p>
+        <h1>Jekyll doesn&#x27;t respect line breaks</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">weilawei</a>
+            <time>Monday, October 13, 2014</time>
+          </div>
+          <div class="body">
+            <p>The Markdown syntax documentation on Daring Fireball says:</p>
+<p>&quot;When you do want to insert a &lt;br /&gt; break tag using Markdown, you end a line with two or more spaces, then type return.&quot;</p>
+<p>Doesn&#39;t work.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, October 14, 2014</time>
+          </div>
+          <div class="body"><p>hi @weilawei, what markdown parser are you using?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/weilawei">
+              weilawei
+            </a>
+            <time>Tuesday, October 14, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m using kramdown, and I&#39;ve filed a bug against that. Perhaps this one should be closed in favor of that one?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, October 14, 2014</time>
+          </div>
+          <div class="body"><p>@weilawei maybe you can post your repo? I&#39;ve never had a problem with this and I&#39;m wondering if you have your editor set to remove spaces on save, or something like that.</p>
+<p><em>as an aside, note with Kramdown, you can end a line with two backslashes to create a line break</em></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

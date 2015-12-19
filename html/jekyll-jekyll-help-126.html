@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>jekyll watch not watching</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#126</span>
+        </p>
+        <h1>jekyll watch not watching</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">qasimalyas</a>
+            <time>Friday, August 15, 2014</time>
+          </div>
+          <div class="body">
+            <p>I have a weird issue where Jekyll isn&#39;t watching for changes when the project in certain directory. I have project in the location of <code>users/me/projects/myproject/</code> which if I cd into with the <code>--watch</code> flag works as expected. The project rebuilds on changes. </p>
+<p>If I move the project to my dropbox and run the same commands the project generates but no longer watches for changes.</p>
+<p>I tested this with a new project too and the same issue is reproduced.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, August 18, 2014</time>
+          </div>
+          <div class="body"><p>Can you give some more info about your setup? Which version of Jekyll are you running, which operating system are you using, etc?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/qasimalyas">
+              qasimalyas
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m using the current version of jekyll (2.3.0) which was upgraded from 1.5. I&#39;m on Mac (Mavericks). My project is on github <a href="https://github.com/qasimalyas/Jekyll-site">https://github.com/qasimalyas/Jekyll-site</a> but my config is out of date there but it should be</p>
+<pre><code>markdown: kramdown
+highlghter: pygments
+permalink: /:day-:month-:year/:title.html
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p><code>jekyll watch</code> does not register changes to <code>_config.yml</code>; you have to restart it.</p>
+<p>We probably need to communicate this in a better way with the CLI.</p>
+<p>Just so that’s clear; it’s not a given that it resolves your problem.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/qasimalyas">
+              qasimalyas
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m not at my Mac right now but the problem was also reproduced if I created a <a href="http://jekyllrb.com/docs/quickstart/">new Jekyll project</a>. Again this is only if I&#39;m in my Dropbox folder. As soon as I moved the project out <code>--watch</code> works as expected.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>My guess is that Dropbox is conflicting with Jekyll&#39;s watcher. Dropbox&#39;s app might be causing other watchers to break. Try killing the Dropbox app and see how it goes.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/qasimalyas">
+              qasimalyas
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>Seems to be working now as normal. Bizarre. Closing issue.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

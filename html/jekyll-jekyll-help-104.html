@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Sass compiler not working</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#104</span>
+        </p>
+        <h1>Sass compiler not working</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">mrzool</a>
+            <time>Tuesday, July 29, 2014</time>
+          </div>
+          <div class="body">
+            <p>Jekyll seems to ignore my <code>*.scss</code> files and doesn&#39;t compile any CSS.</p>
+<p>This is my project:</p>
+<pre><code>.
+├── LICENSE
+├── README.md
+├── _config.yml
+├── _scss
+│   ├── _borders.scss
+│   ├── _button-themes.scss
+│   ├── _buttons.scss
+│   ├── _colors.scss
+│   ├── _form-themes.scss
+│   ├── _forms.scss
+│   ├── _grid.scss
+│   ├── _lists.scss
+│   ├── _margins.scss
+│   ├── _nav-themes.scss
+│   ├── _navs.scss
+│   ├── _padding.scss
+│   ├── _positions.scss
+│   ├── _reset.scss
+│   ├── _table-object.scss
+│   ├── _table-themes.scss
+│   ├── _tables.scss
+│   ├── _theme.scss
+│   ├── _type.scss
+│   ├── _utilities.scss
+│   ├── _variables.scss
+│   ├── basscss-lite.scss
+│   └── basscss.scss
+├── css
+├── gulpfile.js
+├── index.html
+├── js
+│   ├── app.js
+│   └── min
+│       └── app.js
+└── package.json
+
+4 directories, 31 files
+</code></pre><p>This is my <code>_config.yml</code>:</p>
+<pre><code># Site settings
+title: trim-jekyll-basscss
+email: your-email@domain.com
+description: &quot;Combinig Jekyll, Trim and BassCSS&quot;
+baseurl: &quot;/&quot;
+url: &quot;http://https://github.com/mrzool/trim-jekyll-basscss&quot;
+twitter_username: __zool
+github_username:  mrzool
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Sass settings
+sass:
+    sass_dir: _scss
+    style: :compressed
+</code></pre><p>The Sass on my system: <code>Sass 3.3.11 (Maptastic Maple)</code>
+Jekyll: <code>jekyll 2.1.1</code></p>
+<p>Am I doing something wrong?</p>
+<p>Thanks for any help.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, July 29, 2014</time>
+          </div>
+          <div class="body"><p>Have you prepended dashes on your basscss.scss?</p>
+<pre><code>---
+---
+// content of your basscss.scss
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, July 29, 2014</time>
+          </div>
+          <div class="body"><p>No folders that start with an underscore will be read in. Place your base scss files in the desired output directory, such as <code>css</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mrzool">
+              mrzool
+            </a>
+            <time>Tuesday, July 29, 2014</time>
+          </div>
+          <div class="body"><p>@kleinfreund I did. Matter of fact, every single *.scss file in the scss folder starts with two lines of triple dashes.</p>
+<p>@parkr I thought it was the other way around, i.e. that every folder not prefixed with an underscore would get mirrored into the generated site without getting processed. Also,  <a href="http://jekyllrb.com/docs/assets/">Jekyll&#39;s documentation</a> uses an underscore-prefixed directory as an example:</p>
+<blockquote>
+<p>If you are using Sass @import statements, you’ll need to ensure that your sass_dir is set to the base directory that contains your Sass files. You can do that thusly:</p>
+</blockquote>
+<pre><code>    sass:
+        sass_dir: _sass
+</code></pre><blockquote>
+<p>The Sass converter will default to _sass.</p>
+</blockquote>
+<p>That said, I did as you said and now Jekyll is processing the Sass (actually it isn&#39;t because I&#39;m getting errors, but at least it sees the files).</p>
+<p>Does that mean that there is an error in the documentation? It is very unclear how to proceed here, I think that page should be expanded quite a bit.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mrzool">
+              mrzool
+            </a>
+            <time>Tuesday, July 29, 2014</time>
+          </div>
+          <div class="body"><p>UPDATE: I was getting errors because i prepended dashes also to the partials, while they where required in the main file only. Everything is working now! </p>
+<p>That&#39;s another thing that should be better dealt with in the docs though, IMHO.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, July 29, 2014</time>
+          </div>
+          <div class="body"><p>@mrzool Sorry for the confusion! I&#39;ll rewrite the docs page.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mrzool">
+              mrzool
+            </a>
+            <time>Tuesday, July 29, 2014</time>
+          </div>
+          <div class="body"><p>@parkr Thanks a lot.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Can&#x27;t start server with jekyll 2.0.3 on windows.</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#64</span>
+        </p>
+        <h1>Can&#x27;t start server with jekyll 2.0.3 on windows.</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">FernandoBasso</a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body">
+            <p>When I type:</p>
+<pre><code>D:\Fernando\prog\fernandobasso.github.io&gt;jekyll server --watch
+Configuration file: D:/Fernando/prog/fernandobasso.github.io/_config.yml
+            Source: D:/Fernando/prog/fernandobasso.github.io
+       Destination: D:/Fernando/prog/fernandobasso.github.io/_site
+      Generating...
+                    done.
+jekyll 2.0.3 | Error:  undefined method `_log&#39; for Listen::Adapter::Windows:Class
+</code></pre><p>Google didn&#39;t help this time.</p>
+<p>ruby 1.9.3p545 (2014-02-24) [i386-mingw32]</p>
+<p>gem 1.8.28</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>What happens if you type <code>serve</code>, without the <code>r</code> at the end?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>Same stuff. If in _config.yml I comment out the line</p>
+<pre><code>highlighter: true
+</code></pre><p>then it works. So, that seems to be the problem. The error message gives no clue about this, though.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p><code>highlighter</code> should be set to either <code>pygments</code> or <code>rouge</code>, not to anything else.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>The problem is the <code>--watch</code> option. That is where the error about the <code>_log</code> stuff comes from.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>That probably has something to do with <a href="https://github.com/jekyll/jekyll/issues/2320">https://github.com/jekyll/jekyll/issues/2320</a>.
+Try upgrading to Listen v2.7.6 and trying again.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><pre><code class="lang-text">D:\Fernando\prog\fernandobasso.github.io&gt;gem install listen -v 2.7.6
+Fetching: listen-2.7.6.gem (100%)
+Successfully installed listen-2.7.6
+1 gem installed
+Installing ri documentation for listen-2.7.6...
+Installing RDoc documentation for listen-2.7.6...
+
+D:\Fernando\prog\fernandobasso.github.io&gt;jekyll serve --watch
+Configuration file: D:/Fernando/prog/fernandobasso.github.io/_config.yml
+            Source: D:/Fernando/prog/fernandobasso.github.io
+       Destination: D:/Fernando/prog/fernandobasso.github.io/_site
+      Generating...
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/posix-spawn-0.3.8/lib/posix/spawn.rb:162: warning: cannot close fd before spawn
+&#39;which&#39; não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.
+←[31m  Liquid Exception: No such file or directory - python C:/Ruby193/lib/ruby/gems/1.9.1/gems/pygments.rb-0.5.4/lib/pygments/mentos.py in _posts/2014-03-10-welcome-to-jekyll.markdown←[0m
+                    done.
+jekyll 2.0.3 | Error:  undefined method `_log&#39; for Listen::Adapter::Windows:Class
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>Looks like you need to install Python and Pygments in order to run the site. Set <code>highlighter: rouge</code> in your <code>_config.yml</code>.</p>
+<p>Also, uninstall all other versions of Listen you have installed.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>Okay, but my _config.yml has just this:</p>
+<pre><code>name: Your New Jekyll Site
+markdown: redcarpet
+#highlighter: pygments
+</code></pre><p>Shouldn&#39;t jekyll completely ignore highlighter then?</p>
+<p>If I run the server without the <code>--watch</code> option, the server runs:</p>
+<pre><code>D:\Fernando\prog\fernandobasso.github.io&gt;jekyll serve
+Configuration file: D:/Fernando/prog/fernandobasso.github.io/_config.yml
+            Source: D:/Fernando/prog/fernandobasso.github.io
+       Destination: D:/Fernando/prog/fernandobasso.github.io/_site
+      Generating...
+C:/Ruby193/lib/ruby/gems/1.9.1/gems/posix-spawn-0.3.8/lib/posix/spawn.rb:162: warning: cannot close fd before spawn
+&#39;which&#39; não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.
+←[31m  Liquid Exception: No such file or directory - python C:/Ruby193/lib/ruby/gems/1.9.1/gems/pygments.rb-0.5.4/lib/pygments/mentos.py in _posts/2014-03-10-welcome-to-jekyll.markdown←[0m
+                    done.
+Configuration file: D:/Fernando/prog/fernandobasso.github.io/_config.yml
+    Server address: http://0.0.0.0:4000/
+  Server running... press ctrl-c to stop.
+</code></pre><p>But when I try `<a href="http://127.0.0.1:4000">http://127.0.0.1:4000</a>&#39; I only see a blank page, even though I do have an index.html with some stuff in it.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Shouldn&#39;t jekyll completely ignore highlighter then?</p>
+</blockquote>
+<p>No, Jekyll defaults <code>highlighter</code> to <code>pygments</code>. Set it to <code>rouge</code> or <code>null</code>.</p>
+<blockquote>
+<p>I only see a blank page, even though I do have an index.html with some stuff in it.</p>
+</blockquote>
+<p>What is the contents of <code>_site/index.html</code>?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>@FernandoBasso It still is using pygments. try what @parkr said.. install rouge <code>gem install rouge</code> if you haven&#39;t and test that.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>With <code>rouge</code> it works. Still, I had to drop the <code>--watch</code> option for the server to run.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>@FernandoBasso great. Check that you are using Listen version 2.7.6.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>Yes.</p>
+<pre><code>gem list | findstr listen
+listen (2.7.6)
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>Can you post the complete stack trace? I don&#39;t know if it would work but, <code>jekyll serve --watch --trace</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>EDIT: This is what SOLVED the problem:</p>
+<p>Uninstalling <code>listen 2.7.6</code> and installing <code>listen 2.7.5</code> seems to have solved the issue.</p>
+<p>This <a href="http://stackoverflow.com/questions/23998719/running-guard-throwing-error">stackoverflow post</a> lead me to give it a try.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>I uninstalled listen 2.7.5 and installed 2.7.6 to get you the stack trace. Here it is:</p>
+<pre><code>Removing listen
+Successfully uninstalled listen-2.7.5
+
+D:\Fernando\prog\fernandobasso.github.io&gt;gem install listen
+Fetching: listen-2.7.6.gem (100%)
+Successfully installed listen-2.7.6
+Parsing documentation for listen-2.7.6
+Installing ri documentation for listen-2.7.6
+1 gem installed
+
+D:\Fernando\prog\fernandobasso.github.io&gt;jekyll serve --watch --trace
+Configuration file: D:/Fernando/prog/fernandobasso.github.io/_config.yml
+            Source: D:/Fernando/prog/fernandobasso.github.io
+       Destination: D:/Fernando/prog/fernandobasso.github.io/_site
+      Generating...
+                    done.
+C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/adapter/windows.rb:21:in `rescue in usable?&#39;: undefined method `_log&#39; for Listen::Adapter::Windows:Class (NoMethodError)
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/adapter/windows.rb:17:in `usable?&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/adapter.rb:32:in `each&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/adapter.rb:32:in `detect&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/adapter.rb:32:in `_usable_adapter_class&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/adapter.rb:20:in `select&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/listener.rb:252:in `_adapter_class&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/listener.rb:208:in `_init_actors&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/listener.rb:72:in `block in &lt;class:Listener&gt;&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/celluloid-0.15.2/lib/celluloid/fsm.rb:175:in `instance_eval&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/celluloid-0.15.2/lib/celluloid/fsm.rb:175:in `call&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/celluloid-0.15.2/lib/celluloid/fsm.rb:127:in `transition_with_callbacks!&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/celluloid-0.15.2/lib/celluloid/fsm.rb:95:in `transition&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/listen-2.7.6/lib/listen/listener.rb:85:in `start&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/commands/build.rb:87:in `watch&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/commands/build.rb:31:in `process&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/commands/serve.rb:23:in `block (2 levels) in init_with_program&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `call&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `block in execute&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `each&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `execute&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/program.rb:35:in `go&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary.rb:22:in `program&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/bin/jekyll:18:in `&lt;top (required)&gt;&#39;
+        from C:/Ruby200-x64/bin/jekyll:23:in `load&#39;
+        from C:/Ruby200-x64/bin/jekyll:23:in `&lt;main&gt;&#39;
+
+D:\Fernando\prog\fernandobasso.github.io&gt;
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>Well, I am stuck on this windows machine at work anyway. Thanks for all the help and patience. I really appreciate it.</p>
+<p>PS: Should I close this?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>No problem, at least you got a solution. I will reference this issue in the guard/listen repo to let them know of this problem. It seems that they touched some Windows stuff in the 2.7.6 which may be causing this issue.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/seanpoulter">
+              seanpoulter
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>Unfortunately I can confirm I get the same stack trace as @FernandoBasso <a href="https://github.com/jekyll/jekyll-help/issues/64#issuecomment-45012164">above</a> using <em>ruby 2.0.0p481 (2014-05-08) [i386-mingw32]</em>, <em>jekyll-2.0.3</em>, and <em>listen (2.7.6)</em>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, June 12, 2014</time>
+          </div>
+          <div class="body"><p>Hey, @seanpoulter and @FernandoBasso could you try running jekyll with listen <em>(2.7.7)</em> and see if it stills errors out?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Thursday, June 12, 2014</time>
+          </div>
+          <div class="body"><p>Not for me. I still get that error:</p>
+<pre><code>jekyll 2.0.3 | Error:  undefined method `_log&#39; for Listen::Adapter::Windows:Class
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rohaan911">
+              rohaan911
+            </a>
+            <time>Saturday, June 14, 2014</time>
+          </div>
+          <div class="body"><p>Running <code>gem update listen</code> to update my &#39;listen&#39; ruby gem to version 2.7.8 (released on 12th June, 2014) seemed to fix this bug.</p>
+<p>Also, to run Jekyll server in watch mode for versions 1.0+ , I use <code>jekyll serve --watch</code>. According to the documentation, the <code>--server</code> command now seems to be obsolete.</p>
+<p>Hope that helps.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/FernandoBasso">
+              FernandoBasso
+            </a>
+            <time>Monday, June 16, 2014</time>
+          </div>
+          <div class="body"><p>Updated to <code>listen 2.7.8</code> and now I am able to start jekyll server with the <code>--watch</code> option. Everything is working fine now. Thanks to everybody for the support.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alcidesqueiroz">
+              alcidesqueiroz
+            </a>
+            <time>Wednesday, June 18, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;ve just updated <code>listen</code> to 2.7.8 and that did the job! Now, <code>jekyll serve --watch</code> is working perfectly!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rsb12php">
+              rsb12php
+            </a>
+            <time>Thursday, March 26, 2015</time>
+          </div>
+          <div class="body"><p>Well, i tried all! But, fail :(</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, March 26, 2015</time>
+          </div>
+          <div class="body"><p>@rsb12php You&#39;re using <code>bundle exec jekyll serve</code> on the latest version of Jekyll?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rsb12php">
+              rsb12php
+            </a>
+            <time>Monday, March 30, 2015</time>
+          </div>
+          <div class="body"><p>@parkr it&#39;s all right now, but thak you</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rsb12php">
+              rsb12php
+            </a>
+            <time>Monday, March 30, 2015</time>
+          </div>
+          <div class="body"><p>@parkr I using Windows 8
+jekyll - Auto regeneration is not working!
+Do you can help me?</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

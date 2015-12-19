@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Problem with Upgrade</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#35</span>
+        </p>
+        <h1>Problem with Upgrade</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">zachlyon</a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello, first thanks for Jekyll, and congrats on the anniversary! I was just playing around over the last few days on 1.5.1, then saw the update for 2.0.2 today and upgraded. However, if I change into a directory where I had a site built before it&#39;s still running 1.5.1 (and presently wont serve or build). I&#39;m new to Ruby so not really sure where this all lives on my Mac (10.9) but I must have something configured incorrectly...</p>
+<p>Here is my terminal history... is there a way to switch/force to use the new Jekyll? I suspect this may be a conflict with bundler, homebrew or other package manager? I&#39;ll admit I didn&#39;t know what the hell I was doing when I installed 1.5.1 last week :/ </p>
+<pre><code>mbp:~ zachlyon$ jekyll -v
+jekyll 2.0.2
+mbp:~ zachlyon$ cd Sites/mysite.jekyll/
+mbp:mysite.jekyll zachlyon$ jekyll -v
+jekyll 1.5.1
+mbp:mysite.jekyll zachlyon$ gem update jekyll
+Updating installed gems
+Nothing to update
+mbp:mysite.jekyll zachlyon$ gem uninstall jekyll
+
+Select gem to uninstall:
+ 1. jekyll-1.5.1
+ 2. jekyll-2.0.2
+ 3. All versions
+&gt; 1
+
+You have requested to uninstall the gem:
+    jekyll-1.5.1
+
+jekyll-coffeescript-1.0.0 depends on jekyll (~&gt; 1.0, development)
+jekyll-sitemap-0.3.0 depends on jekyll (~&gt; 1.4)
+If you remove this gem, these dependencies will not be met.
+Continue with Uninstall? [yN]  y
+Successfully uninstalled jekyll-1.5.1
+mbp:mysite.jekyll zachlyon$ jekyll -v
+Could not find proper version of jekyll (1.5.1) in any of the sources
+Run `bundle install` to install missing gems.
+mbp:mysite.jekyll zachlyon$
+</code></pre><p>The bundle install just grabs another 1.5.1. Any ideas?</p>
+<p>Thanks!
+Zach</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Friday, May 09, 2014</time>
+          </div>
+          <div class="body"><p>You closed your issue. Was this intentional?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/zachlyon">
+              zachlyon
+            </a>
+            <time>Friday, May 09, 2014</time>
+          </div>
+          <div class="body"><p>Yep, I figure it was my bad. I basically just fired up a new jekyll site in a different directory and copied my files over to it and started working from there. I couldn&#39;t figure out how one site/directory was &quot;stuck&quot; on 1.5.1 and every new site or any other dir on my system was 2.0.2 according to jekyll -v.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Friday, May 09, 2014</time>
+          </div>
+          <div class="body"><p>@zachlyon for future reference install <strong>bundler</strong> (<code>gem install bundler</code>), create a <code>Gemfile</code> file and add your project dependencies there and then type <code>bundle install</code>. Run your project prefixing it with <code>bundle exec</code>, e.g. <code>bundle exec jekyll serve -w</code> that will help you avoid this type of problems. I know it&#39;s a bunch of stuff but you can check <a href="https://github.com/albertogg/albertogg.github.com">my jekyll site</a> if you want.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

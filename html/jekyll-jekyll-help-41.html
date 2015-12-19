@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Error with SCSS generation in Jekyll 2.0</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#41</span>
+        </p>
+        <h1>Error with SCSS generation in Jekyll 2.0</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">JHSheridan</a>
+            <time>Saturday, May 10, 2014</time>
+          </div>
+          <div class="body">
+            <p>I have my project laid out like so:</p>
+<pre><code>-Project
+  -css
+    -import.scss
+    -_sass/
+      main.scss
+</code></pre><p>The contents of import.scss are:</p>
+<pre><code>---
+---
+
+@import &quot;main.scss&quot;;
+</code></pre><p>What I expected to happen was for main.scss to be imported into import.scss, then, import.scss would compile to import.css within the genrated _site/ directory.</p>
+<p>Instead, I get the following error</p>
+<pre><code>Conversion error: There was an error converting &#39;css/import.scss&#39;.
+jekyll 2.0.3 | Error:  Invalid CSS after &quot;-&quot;: expected number or function, was &quot;--&quot;
+</code></pre><p>I&#39;m guessing it&#39;s complaining about the YAML front-matter at the top of import.scss, but jekyll won&#39;t convert this if I remove the front-matter, will it?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, May 10, 2014</time>
+          </div>
+          <div class="body"><p>Only files you want to go directly from SCSS to CSS do you add the YAML front-matter to. If it&#39;s a partial, don&#39;t add the front-matter. This may be unclear in the docs.</p>
+<p>Can you run jekyll with <code>--trace</code> and post that output here?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/JHSheridan">
+              JHSheridan
+            </a>
+            <time>Saturday, May 10, 2014</time>
+          </div>
+          <div class="body"><p>Looks as if it was just a misunderstanding on my part. </p>
+<p>My question was answered here <a href="http://stackoverflow.com/questions/23585587/error-with-scss-generation-in-jekyll-2-0/">http://stackoverflow.com/questions/23585587/error-with-scss-generation-in-jekyll-2-0/</a></p>
+<p>Turns out <em>only</em> the files that you want to be generated into the _site directory as .css files should have the YAML front matter. I just removed the YAML front matter from the files within the _sass directory, and everything runs fine now.</p>
+<p>Maybe this could be clearer in the docs. That&#39;s something I could contribute myself, I suppose.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kostrse">
+              kostrse
+            </a>
+            <time>Friday, July 11, 2014</time>
+          </div>
+          <div class="body"><p>Yes, this could be added to the documentation. I just bumped to the same problem.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Friday, July 11, 2014</time>
+          </div>
+          <div class="body"><p>@kostrse Would you mind submitting a pull request?</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

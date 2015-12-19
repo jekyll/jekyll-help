@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Pagination Duplicating Root Index.html</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#258</span>
+        </p>
+        <h1>Pagination Duplicating Root Index.html</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">MSurbrook</a>
+            <time>Thursday, January 29, 2015</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m trying to follow the instructions of pagination on Jekyll. However, after editing the _config.yml file and rebuilding my site, my root index.html file is duplicated within the pagination directory.</p>
+<p>The Jekyll site has the following layout:
+_data
+_includes
+_layouts
+_posts
+_site
+css
+about.html
+authors.html
+hof.html
+index.html
+issues.html
+links.html
+news.html</p>
+<p>Inside _site the site looks like this:
+about
+css
+haymaker
+issues
+about.html
+authors.html
+hof.html
+index.html
+issues.html
+links.html
+news.html</p>
+<p>The problem is that in _posts, I have 66 files. I want have 10 items per page in the issues directory. We took the issues.html file, renamed it index.html and dropped it into the issues directory, and then had Jekyll rebuild the site. However, once I rebuilt the site and then looked at the directory structure, the index.html file had vanished from the issues directory, and while I had folders labeled page 2-7, each of them contained just one file, which was a duplicate of the index.html from my root directory.</p>
+<p>I have a screenshot here:
+<img src="https://cloud.githubusercontent.com/assets/3038283/5970271/df1d54c2-a7fe-11e4-9848-d056a9586a3a.png" alt="directory_strucutre"></p>
+<p>I suspect the issue is with the code I am using, but I&#39;m not versed enough with the syntax to figure it out on my own.</p>
+<p>Any suggestions?</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

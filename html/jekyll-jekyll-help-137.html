@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Can&#x27;t Install Jekyll - Updated Ruby Gems</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#137</span>
+        </p>
+        <h1>Can&#x27;t Install Jekyll - Updated Ruby Gems</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">mriccelli75</a>
+            <time>Saturday, August 23, 2014</time>
+          </div>
+          <div class="body">
+            <p>Here is the error I receive on the command line in my terminal on OSX 10.6.8 .</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, August 23, 2014</time>
+          </div>
+          <div class="body"><p>I think you forgot something. :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mriccelli75">
+              mriccelli75
+            </a>
+            <time>Saturday, August 23, 2014</time>
+          </div>
+          <div class="body"><p>/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby -r ./siteconf20140823-291-ngzkuf-0.rb extconf.rb
+mkmf.rb can&#39;t find header files for ruby at /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/ruby.h</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Tuesday, August 26, 2014</time>
+          </div>
+          <div class="body"><p>What do you see in terminal when you type <code>ruby -v</code>?</p>
+<p>Look into installing a ruby version manager like rvm (with Homebrew or MacPorts) if you are running the system installed ruby 1.8.7.</p>
+<p>AJ</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/redknitin">
+              redknitin
+            </a>
+            <time>Saturday, December 06, 2014</time>
+          </div>
+          <div class="body"><p>@mriccelli75 The error seems to indicate that you don&#39;t have the needed Ruby Development files on your system. Do you have Xcode installed?</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

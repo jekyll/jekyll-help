@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Problem with permalink case and existing folder names on the same drive - Windows</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#250</span>
+        </p>
+        <h1>Problem with permalink case and existing folder names on the same drive - Windows</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">rdyar</a>
+            <time>Sunday, January 25, 2015</time>
+          </div>
+          <div class="body">
+            <p>I had an issue where no matter what I did, if I had <code>permalink: /videos/</code> I would get Videos (uppercase V) as the folder name.</p>
+<p>It turned out that I had a folder on the same drive but outside the jekyll project that was also called Videos with a cap V. That folder was a parent folder on the same drive. It looks like any parent/top level folder on the same drive that has the same name as the permalink causes jekyll to pickup the case of that folder. So if I change the folder to &#39;videos&#39; then jekyll gives me &#39;videos&#39; and all is well. </p>
+<p>So I had a folder named Videos (outside of my jekyll project), jekyll gave me Videos when I asked for videos.
+If I have a folder named TEST-images, then I get TEST-images when I ask for test-images in the permalink.</p>
+<p>It doesn&#39;t appear to do it on folders that are not top level/parent folders. So if the folder &#39;TEST-images&#39; is inside another folder named &#39;test&#39; then there is no problem. It also doesn&#39;t seem to be a problem if the folders are on another drive - it has to be same drive, parent folder.</p>
+<p>Just to be clear, the folders causing the problem are outside of jekyll, and have nothing to do with jekyll, they are just random other folders on the same drive, but if by chance you want a permalink that is the same name as one of these other folder names, jekyll picks up the case of the outside folder rather than giving you what you asked for. I suppose I should be calling them directories?</p>
+<p>Windows 8.1, latest Jekyll - 2.5.3</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

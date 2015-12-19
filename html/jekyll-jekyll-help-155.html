@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Question about the &quot;where&quot; filter</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#155</span>
+        </p>
+        <h1>Question about the &quot;where&quot; filter</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">budparr</a>
+            <time>Friday, September 19, 2014</time>
+          </div>
+          <div class="body">
+            <p>Am I crazy, or was it possible at one point to use the &quot;where&quot; filter to exclude items with a particular value, like this:</p>
+<p>Documented usage:</p>
+<pre><code>{{ site.members | where:&quot;graduation_year&quot;,&quot;2014&quot; }}
+</code></pre><p>and not-documented, but I thought once worked:</p>
+<pre><code>{{ site.members | where:&quot;graduation_year&quot;, -&quot;2014&quot; }}
+</code></pre><p>to pull members who graduated in any year NOT 2014.</p>
+<p>It seems to me like I used this once, but it doesn&#39;t work now.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Friday, September 19, 2014</time>
+          </div>
+          <div class="body"><p>Just want to add that I know there are other ways to accomplish the same thing, I just think this is efficient and seemed to recall it working at some point.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

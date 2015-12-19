@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Get frontmatter of specific post</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#256</span>
+        </p>
+        <h1>Get frontmatter of specific post</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">kaatt</a>
+            <time>Wednesday, January 28, 2015</time>
+          </div>
+          <div class="body">
+            <pre><code>_posts
+-- 2015-01-20-foo.md
+-- 2015-01-20-bar.md
+</code></pre><p>2015-01-20-foo.md:</p>
+<pre><code>---
+title: Foo
+img: 12345
+---
+</code></pre><p>Is there a way to get the <code>img</code> front matter for just <code>foo.md</code> in any other jekyll file?</p>
+<p>Like <code>site.posts[2015-01-20-foo].img</code>?</p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

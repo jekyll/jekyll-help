@@ -1,0 +1,709 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Can&#x27;t seem to get bundler to update Jekyll 1.5.1 to latest</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#218</span>
+        </p>
+        <h1>Can&#x27;t seem to get bundler to update Jekyll 1.5.1 to latest</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">jglovier</a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m trying to update my <a href="https://github.com/jglovier/jglovier.github.io">personal site</a> to use Jekyll 2.X.X locally, and cannot seem to get it to update for the life of me. :rage4: I&#39;ve tried everything I can think of, and it probably stems from my lack of knowledge around bundler, so I&#39;m reaching out <del>in despair</del> for help.</p>
+<p>When I try simply running <code>bundle update</code>, bundler does it&#39;s thing, but still ends up using Jekyll 1.5.1 at the end (maybe that command doesn&#39;t do what I think it should be doing):</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle update
+Fetching gem metadata from https://rubygems.org/........
+Resolving dependencies..........
+Using json 1.8.1
+Using minitest 5.5.0
+Using thread_safe 0.3.4
+Using blankslate 2.1.2.4
+Using i18n 0.7.0
+Using fast-stemmer 1.0.2
+Using colorator 0.1
+Using highline 1.6.21
+Using ffi 1.9.6
+Using RedCloth 4.2.9
+Using gemoji 1.5.0
+Using liquid 2.5.5
+Using rb-fsevent 0.9.4
+Using maruku 0.7.0
+Using posix-spawn 0.3.9
+Using yajl-ruby 1.1.0
+Using safe_yaml 1.0.4
+Using mini_portile 0.6.1
+Using redcarpet 2.3.0
+Using kramdown 1.3.1
+Using rdiscount 2.1.7
+Using bundler 1.6.9
+Using tzinfo 1.2.2
+Using parslet 1.5.0
+Using classifier 1.3.4
+Using commander 4.1.6
+Using rb-inotify 0.9.5
+Using rb-kqueue 0.2.3
+Using pygments.rb 0.5.4
+Using activesupport 4.2.0
+Using nokogiri 1.6.5
+Using toml 0.1.2
+Using listen 1.3.1
+Using html-pipeline 1.5.0
+Using jekyll 1.5.1
+Using jekyll-mentions 0.0.9
+Using jekyll-sitemap 0.3.0
+Using jekyll-redirect-from 0.3.1
+Using jemoji 0.1.0
+Using github-pages 20
+Your bundle is updated!
+</code></pre><p>Also tried deleting <code>Gemfile.lock</code> and just running <code>bundle install</code>, but that appears to do the same thing, and the result is just a new <code>Gemfile.lock</code> with the same <code>Jekyll 1.5.1</code> listed. (Is there something wrong with the way my <a href="https://gist.github.com/jglovier/1477caab8209d8cbd27c">Gemfile is setup</a>?)</p>
+<p>So interestingly, when I run <code>jekyll -v</code> I get the following output, which I don&#39;t understand at all:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ jekyll -v
+WARN: Unresolved specs during Gem::Specification.reset:
+      posix-spawn (~&gt; 0.3.6)
+      redcarpet (~&gt; 3.1)
+      listen (~&gt; 2.7)
+      classifier-reborn (~&gt; 2.0)
+WARN: Clearing out unresolved specs.
+Please report a bug if this causes problems.
+/opt/rubies/2.1.4-github1/lib/ruby/gems/2.1.0/gems/jekyll-2.5.3/bin/jekyll:21:in `block in &lt;top (required)&gt;&#39;: cannot load such file -- jekyll/version (LoadError)
+    from /opt/rubies/2.1.4-github1/lib/ruby/gems/2.1.0/gems/mercenary-0.3.5/lib/mercenary.rb:18:in `program&#39;
+    from /opt/rubies/2.1.4-github1/lib/ruby/gems/2.1.0/gems/jekyll-2.5.3/bin/jekyll:20:in `&lt;top (required)&gt;&#39;
+    from /opt/boxen/rbenv/versions/2.1.4-github/bin/jekyll:23:in `load&#39;
+    from /opt/boxen/rbenv/versions/2.1.4-github/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre><p>Of course, if I run <code>bundle exec jekyll -v</code> I get the expected:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle exec jekyll -v
+jekyll 1.5.1
+</code></pre><p>So I tried straight up doing <code>gem update jekyll</code>, and I get:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ gem update jekyll
+Updating installed gems
+Nothing to update
+</code></pre><p>When I try <code>bundle exec gem update jekyll</code>, and I actually get:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle exec gem update jekyll
+Updating installed gems
+Updating jekyll
+Successfully installed liquid-2.6.1
+Successfully installed mercenary-0.3.5
+Successfully installed pygments.rb-0.6.0
+Building native extensions.  This could take a while...
+Successfully installed redcarpet-3.2.2
+Successfully installed jekyll-paginate-1.1.0
+Successfully installed jekyll-gist-1.1.0
+Successfully installed coffee-script-source-1.8.0
+Successfully installed execjs-2.2.2
+Successfully installed coffee-script-2.3.0
+Successfully installed jekyll-coffeescript-1.0.1
+Successfully installed sass-3.4.9
+Successfully installed jekyll-sass-converter-1.3.0
+Building native extensions.  This could take a while...
+Successfully installed hitimes-1.2.2
+Successfully installed timers-4.0.1
+Successfully installed celluloid-0.16.0
+Successfully installed listen-2.8.4
+Successfully installed jekyll-watch-1.2.0
+Successfully installed classifier-reborn-2.0.3
+Successfully installed jekyll-2.5.3
+Updating jekyll-mentions
+Successfully installed classifier-reborn-2.0.3
+Building native extensions.  This could take a while...
+Successfully installed hitimes-1.2.2
+Successfully installed timers-4.0.1
+Successfully installed celluloid-0.16.0
+Successfully installed listen-2.8.4
+Successfully installed jekyll-watch-1.2.0
+Successfully installed sass-3.4.9
+Successfully installed jekyll-sass-converter-1.3.0
+Successfully installed coffee-script-source-1.8.0
+Successfully installed execjs-2.2.2
+Successfully installed coffee-script-2.3.0
+Successfully installed jekyll-coffeescript-1.0.1
+Successfully installed jekyll-gist-1.1.0
+Successfully installed jekyll-paginate-1.1.0
+Building native extensions.  This could take a while...
+Successfully installed redcarpet-3.2.2
+Successfully installed pygments.rb-0.6.0
+Successfully installed mercenary-0.3.5
+Successfully installed liquid-2.6.1
+Successfully installed jekyll-2.5.3
+-------------------------------------------------
+Thank you for installing html-pipeline!
+You must bundle Filter gem dependencies.
+See html-pipeline README.md for more details.
+https://github.com/jch/html-pipeline#dependencies
+-------------------------------------------------
+Successfully installed html-pipeline-1.9.0
+Successfully installed jekyll-mentions-0.2.1
+Updating jekyll-redirect-from
+Successfully installed classifier-reborn-2.0.3
+Building native extensions.  This could take a while...
+Successfully installed hitimes-1.2.2
+Successfully installed timers-4.0.1
+Successfully installed celluloid-0.16.0
+Successfully installed listen-2.8.4
+Successfully installed jekyll-watch-1.2.0
+Successfully installed sass-3.4.9
+Successfully installed jekyll-sass-converter-1.3.0
+Successfully installed coffee-script-source-1.8.0
+Successfully installed execjs-2.2.2
+Successfully installed coffee-script-2.3.0
+Successfully installed jekyll-coffeescript-1.0.1
+Successfully installed jekyll-gist-1.1.0
+Successfully installed jekyll-paginate-1.1.0
+Building native extensions.  This could take a while...
+Successfully installed redcarpet-3.2.2
+Successfully installed pygments.rb-0.6.0
+Successfully installed mercenary-0.3.5
+Successfully installed liquid-2.6.1
+Successfully installed jekyll-2.5.3
+Successfully installed jekyll-redirect-from-0.6.2
+Updating jekyll-sitemap
+Successfully installed jekyll-sitemap-0.7.0
+Gems updated: celluloid classifier-reborn coffee-script coffee-script-source execjs hitimes jekyll jekyll-coffeescript jekyll-gist jekyll-paginate jekyll-sass-converter jekyll-watch liquid listen mercenary pygments.rb redcarpet sass timers celluloid classifier-reborn coffee-script coffee-script-source execjs hitimes html-pipeline jekyll jekyll-coffeescript jekyll-gist jekyll-mentions jekyll-paginate jekyll-sass-converter jekyll-watch liquid listen mercenary pygments.rb redcarpet sass timers celluloid classifier-reborn coffee-script coffee-script-source execjs hitimes jekyll jekyll-coffeescript jekyll-gist jekyll-paginate jekyll-redirect-from jekyll-sass-converter jekyll-watch liquid listen mercenary pygments.rb redcarpet sass timers jekyll-sitemap
+</code></pre><p>...however when I run <code>bundle exec jekyll -v</code> it just shows:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle exec jekyll -v
+jekyll 1.5.1
+</code></pre><p>I even tried blowing away my entire local repo via <code>rm -rf</code>, and re-cloning from GitHub, and trying all this stuff again (in case it was just some odd bug), but no avail, and same results.</p>
+<p>What am I doing wrong??? </p>
+<p><img src="http://gifs.joelglovier.com/accidents/fumble.gif" alt="img"></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mattr-">
+              mattr-
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>The <code>github-pages</code> gem is what&#39;s constraining your Jekyll version here. A <code>bundle update github-pages</code> should get you the upgraded version of Jekyll you&#39;re looking for.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mattr-">
+              mattr-
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>You&#39;ll also want to make sure that when you do anything with Jekyll locally, that you always run things through <code>bundle exec</code> as that&#39;s the best way to ensure consistency.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>A <code>bundle update github-pages</code> should get you the upgraded version of Jekyll you&#39;re looking for.</p>
+</blockquote>
+<p>@mattr- thanks for the help! However, running <code>bundle update github-pages</code> doesn&#39;t seem to affect anything. Still uses <code>1.5.1</code>:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle update github-pages
+Fetching gem metadata from https://rubygems.org/........
+Resolving dependencies...........
+Using json 1.8.1
+Using RedCloth 4.2.9
+Using i18n 0.7.0
+Using minitest 5.5.0
+Using thread_safe 0.3.4
+Using blankslate 2.1.2.4
+Using fast-stemmer 1.0.2
+Using colorator 0.1
+Using highline 1.6.21
+Using ffi 1.9.6
+Using gemoji 1.5.0
+Using liquid 2.5.5
+Using rb-fsevent 0.9.4
+Using maruku 0.7.0
+Using posix-spawn 0.3.9
+Using yajl-ruby 1.1.0
+Using redcarpet 2.3.0
+Using safe_yaml 1.0.4
+Using mini_portile 0.6.1
+Using kramdown 1.3.1
+Using rdiscount 2.1.7
+Using bundler 1.6.9
+Using parslet 1.5.0
+Using tzinfo 1.2.2
+Using classifier 1.3.4
+Using commander 4.1.6
+Using rb-inotify 0.9.5
+Using pygments.rb 0.5.4
+Using rb-kqueue 0.2.3
+Using toml 0.1.2
+Using activesupport 4.2.0
+Using nokogiri 1.6.5
+Using listen 1.3.1
+Using html-pipeline 1.5.0
+Using jekyll 1.5.1
+Using jekyll-redirect-from 0.3.1
+Using jekyll-sitemap 0.3.0
+Using jekyll-mentions 0.0.9
+Using jemoji 0.1.0
+Using github-pages 20
+Your bundle is updated!
+
+|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle exec jekyll -v
+jekyll 1.5.1
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>cc <a href="https://github.com/jekyll/jekyll/issues/3124">https://github.com/jekyll/jekyll/issues/3124</a> for another example case for that thread.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>A bundle update github-pages should get you the upgraded version of Jekyll you&#39;re looking for.</p>
+</blockquote>
+<p>@mattr- also, shouldn&#39;t this have already been performed as part of running <code>bundle update</code>??</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>Perhaps what&#39;s confusing it is that you have both <code>github-pages</code> and <code>jekyll</code> in the Gemfile? Maybe try removing <code>jekyll</code> and <code>bundle update</code> again.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>@alfredxing so I tried removing <code>jekyll</code> from the Gemfile, and ran <code>bundle update</code>, but it&#39;s still using <code>jekyll 1.5.1</code> :frowning: </p>
+<p>I also tried running <code>gem cleanup</code>, which returned:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ gem cleanup
+Cleaning up installed gems...
+Attempting to uninstall github-pages-20
+Successfully uninstalled github-pages-20
+Attempting to uninstall jemoji-0.1.0
+Successfully uninstalled jemoji-0.1.0
+Attempting to uninstall jekyll-sitemap-0.3.0
+Successfully uninstalled jekyll-sitemap-0.3.0
+Attempting to uninstall jekyll-redirect-from-0.3.1
+Successfully uninstalled jekyll-redirect-from-0.3.1
+Attempting to uninstall jekyll-mentions-0.0.9
+Successfully uninstalled jekyll-mentions-0.0.9
+Attempting to uninstall jekyll-1.5.1
+Successfully uninstalled jekyll-1.5.1
+Attempting to uninstall html-pipeline-1.5.0
+Successfully uninstalled html-pipeline-1.5.0
+Attempting to uninstall gemoji-1.5.0
+Successfully uninstalled gemoji-1.5.0
+Attempting to uninstall redcarpet-2.3.0
+Successfully uninstalled redcarpet-2.3.0
+Attempting to uninstall pygments.rb-0.5.4
+Successfully uninstalled pygments.rb-0.5.4
+Attempting to uninstall listen-1.3.1
+Successfully uninstalled listen-1.3.1
+Attempting to uninstall liquid-2.5.5
+Successfully uninstalled liquid-2.5.5
+Clean Up Complete
+</code></pre><p>But I ran <code>bundle update</code> again afterward and it&#39;s still showing <code>jekyll 1.5.1</code>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>How do you even computer??</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1319791/5551177/21e3fc5e-8b8d-11e4-8c5d-e1a071d69a6a.png" alt="image"></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>Should I be deleting the <code>Gemfile.lock</code> manually? I&#39;m assuming that supposed to get&#39;s overwritten when I run <code>bundle update</code> and there is a new gem available. But is my assumption incorrect?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>What&#39;s weird here is when I run <code>bundle install</code> or <code>bundle update</code> again, I see version 20 of the GH pages gem listed:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle update github-pages
+Fetching gem metadata from https://rubygems.org/.........
+Resolving dependencies...........
+Using json 1.8.1
+Using i18n 0.7.0
+Using RedCloth 4.2.9
+Using minitest 5.5.0
+Using blankslate 2.1.2.4
+Using thread_safe 0.3.4
+Using fast-stemmer 1.0.2
+Using colorator 0.1
+Using ffi 1.9.6
+Using highline 1.6.21
+Using gemoji 1.5.0
+Using liquid 2.5.5
+Using rb-fsevent 0.9.4
+Using maruku 0.7.0
+Using posix-spawn 0.3.9
+Using yajl-ruby 1.1.0
+Using redcarpet 2.3.0
+Using safe_yaml 1.0.4
+Using mini_portile 0.6.1
+Using kramdown 1.3.1
+Using bundler 1.6.9
+Using rdiscount 2.1.7
+Using tzinfo 1.2.2
+Using classifier 1.3.4
+Using parslet 1.5.0
+Using commander 4.1.6
+Using rb-inotify 0.9.5
+Using rb-kqueue 0.2.3
+Using pygments.rb 0.5.4
+Using nokogiri 1.6.5
+Using toml 0.1.2
+Using activesupport 4.2.0
+Using listen 1.3.1
+Using html-pipeline 1.5.0
+Using jekyll 1.5.1
+Using jekyll-redirect-from 0.3.1
+Using jekyll-sitemap 0.3.0
+Using jekyll-mentions 0.0.9
+Using jemoji 0.1.0
+Using github-pages 20
+Your bundle is updated!
+</code></pre><p>However when I actually ask which version is installed, it tell sme version 31:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ github-pages -v
+github-pages 31
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>Maybe try removing <code>Gemfile.lock</code>, then <code>gem uninstall github-pages jekyll</code>, <code>gem install github-pages</code>, <code>bundle install</code>?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>Ugh - looked like it worked, but does not appear to have:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ gem uninstall github-pages jekyll
+
+Select gem to uninstall:
+ 1. jekyll-1.5.1
+ 2. jekyll-2.4.0
+ 3. jekyll-2.5.3
+ 4. All versions
+&gt; 1.
+
+You have requested to uninstall the gem:
+    jekyll-1.5.1
+
+github-pages-20 depends on jekyll (= 1.5.1)
+jekyll-mentions-0.0.9 depends on jekyll (~&gt; 1.4)
+jekyll-redirect-from-0.3.1 depends on jekyll (~&gt; 1.4)
+jekyll-sitemap-0.3.0 depends on jekyll (~&gt; 1.4)
+jemoji-0.1.0 depends on jekyll (~&gt; 1.4)
+If you remove this gem, these dependencies will not be met.
+Continue with Uninstall? [yN]  y
+Successfully uninstalled jekyll-1.5.1
+
+Select gem to uninstall:
+ 1. github-pages-20
+ 2. github-pages-31
+ 3. All versions
+&gt; 3.
+Successfully uninstalled github-pages-20
+Remove executables:
+    github-pages
+
+in addition to the gem? [Yn]  Y
+Removing github-pages
+Successfully uninstalled github-pages-31
+
+
+|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ gem uninstall jekyll
+
+Select gem to uninstall:
+ 1. jekyll-2.4.0
+ 2. jekyll-2.5.3
+ 3. All versions
+&gt; 3.
+Successfully uninstalled jekyll-2.4.0
+
+You have requested to uninstall the gem:
+    jekyll-2.5.3
+
+jekyll-coffeescript-1.0.1 depends on jekyll (~&gt; 2.0, development)
+jekyll-gist-1.1.0 depends on jekyll (~&gt; 2.0, development)
+jekyll-mentions-0.2.1 depends on jekyll (~&gt; 2.0)
+jekyll-paginate-1.1.0 depends on jekyll (~&gt; 2.0, development)
+jekyll-redirect-from-0.6.2 depends on jekyll (~&gt; 2.0)
+jekyll-sass-converter-1.3.0 depends on jekyll (~&gt; 2.0, development)
+jekyll-sass-converter-1.2.0 depends on jekyll (~&gt; 2.0, development)
+jekyll-sitemap-0.7.0 depends on jekyll (~&gt; 2.0, development)
+jekyll-sitemap-0.6.3 depends on jekyll (~&gt; 2.0, development)
+jekyll-watch-1.2.0 depends on jekyll (~&gt; 2.0, development)
+jekyll_test_plugin-0.1.0 depends on jekyll (&gt;= 0, development)
+jekyll_test_plugin_malicious-0.1.0 depends on jekyll (&gt;= 0, development)
+jemoji-0.4.0 depends on jekyll (~&gt; 2.0)
+If you remove this gem, these dependencies will not be met.
+Continue with Uninstall? [yN]  y
+Remove executables:
+    jekyll
+
+in addition to the gem? [Yn]  Y
+Removing jekyll
+Successfully uninstalled jekyll-2.5.3
+
+
+|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ gem install github-pages
+Fetching: jekyll-2.4.0.gem (100%)
+Successfully installed jekyll-2.4.0
+Fetching: github-pages-31.gem (100%)
+Successfully installed github-pages-31
+2 gems installed
+
+
+|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle install
+Fetching gem metadata from https://rubygems.org/.........
+Resolving dependencies...........
+Using i18n 0.7.0
+Using json 1.8.1
+Using RedCloth 4.2.9
+Using minitest 5.5.0
+Using thread_safe 0.3.4
+Using blankslate 2.1.2.4
+Using fast-stemmer 1.0.2
+Using colorator 0.1
+Using highline 1.6.21
+Using ffi 1.9.6
+Using gemoji 1.5.0
+Using liquid 2.5.5
+Using rb-fsevent 0.9.4
+Using maruku 0.7.0
+Using posix-spawn 0.3.9
+Using yajl-ruby 1.1.0
+Using redcarpet 2.3.0
+Using safe_yaml 1.0.4
+Using mini_portile 0.6.1
+Using kramdown 1.3.1
+Using rdiscount 2.1.7
+Using bundler 1.6.9
+Using parslet 1.5.0
+Using tzinfo 1.2.2
+Using commander 4.1.6
+Using classifier 1.3.4
+Using rb-inotify 0.9.5
+Using rb-kqueue 0.2.3
+Using pygments.rb 0.5.4
+Using nokogiri 1.6.5
+Using toml 0.1.2
+Using activesupport 4.2.0
+Using listen 1.3.1
+Using html-pipeline 1.5.0
+Installing jekyll 1.5.1
+Using jekyll-sitemap 0.3.0
+Using jekyll-mentions 0.0.9
+Using jemoji 0.1.0
+Using jekyll-redirect-from 0.3.1
+Installing github-pages 20
+Your bundle is complete!
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+
+
+|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ jekyll -v
+jekyll 2.4.0
+
+
+|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle exec jekyll -v
+jekyll 1.5.1
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>@alfredxing btw thank you for your help!!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mattr-">
+              mattr-
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>@jglovier I&#39;ve <a href="https://gist.github.com/mattr-/410afef45f3baac50189">updated your Gemfile</a>. Setting the explicit version for the <code>github-pages</code> gem and then running <code>bundle update</code> gets you where you want to go. Once the update is complete, you can remove that version specifier from your Gemfile.</p>
+<p>I&#39;m not sure why running <code>bundle update</code> doesn&#39;t take care of this for you, because this is exactly what it should do according to the docs. It would appear we&#39;ve found a bug in Bundler.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Setting the explicit version for the github-pages gem and then running bundle update gets you where you want to go.</p>
+</blockquote>
+<p>Whoa - interesting.</p>
+<blockquote>
+<p>Once the update is complete, you can remove that version specifier from your Gemfile.</p>
+</blockquote>
+<p>So, interestingly, once I removed the version and ran <code>bundle update</code> again, it actually reverted back to version 20:</p>
+<pre><code>|===jglovier===| ~/code/github-jglovier/jglovier.github.io $ bundle update
+Fetching gem metadata from https://rubygems.org/.........
+Resolving dependencies...........
+Using RedCloth 4.2.9
+Using minitest 5.5.0
+Using thread_safe 0.3.4
+Using blankslate 2.1.2.4
+Using fast-stemmer 1.0.2
+Using colorator 0.1
+Using highline 1.6.21
+Using i18n 0.7.0
+Using ffi 1.9.6
+Using liquid 2.5.5 (was 2.6.1)
+Using gemoji 1.5.0 (was 2.1.0)
+Using rb-fsevent 0.9.4
+Using maruku 0.7.0
+Using posix-spawn 0.3.9
+Using yajl-ruby 1.1.0
+Using redcarpet 2.3.0 (was 3.1.2)
+Using safe_yaml 1.0.4
+Using json 1.8.1
+Using mini_portile 0.6.1
+Using kramdown 1.3.1
+Using rdiscount 2.1.7
+Using bundler 1.6.9
+Using tzinfo 1.2.2
+Using parslet 1.5.0
+Using commander 4.1.6
+Using classifier 1.3.4
+Using rb-inotify 0.9.5
+Using rb-kqueue 0.2.3
+Using pygments.rb 0.5.4 (was 0.6.0)
+Using nokogiri 1.6.5
+Using activesupport 4.2.0
+Using toml 0.1.2
+Using listen 1.3.1 (was 2.8.4)
+Using html-pipeline 1.5.0 (was 1.9.0)
+Using jekyll 1.5.1 (was 2.4.0)
+Using jekyll-mentions 0.0.9 (was 0.2.1)
+Using jekyll-redirect-from 0.3.1 (was 0.6.2)
+Using jekyll-sitemap 0.3.0 (was 0.6.3)
+Using jemoji 0.1.0 (was 0.4.0)
+Using github-pages 20 (was 31)
+Your bundle is updated!
+</code></pre><p>@mattr- thanks for your help here!!!</p>
+<p>And Merry Christmas to all. :christmas_tree: :santa: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Wednesday, December 24, 2014</time>
+          </div>
+          <div class="body"><p>I just set up the same scenario and got the same result. Interestingly though, if I removed the <code>gem &#39;jekyll-redirect-from&#39;</code> line in the Gemfile and did <code>bundle update</code>, it allowed for Pages version 31 and Jekyll 2.4...</p>
+<p>Can you try that and see if you get the same result?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Friday, December 26, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Can you try that and see if you get the same result?</p>
+</blockquote>
+<p>Yup, good catch. When I remove <code>jekyll-redirect-from</code> bundler updates to the latest versions! Should I open an issue on <code>jekyll-redirect-from</code> for that then? cc @parkr </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Friday, January 02, 2015</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Yup, good catch. When I remove jekyll-redirect-from bundler updates to the latest versions! Should I open an issue on jekyll-redirect-from for that then?</p>
+</blockquote>
+<p>I don&#39;t think so – it&#39;s the way RubyGems resolves dependencies. If you specify <code>gem &#39;jekyll-redirect-from&#39;</code> and in your <code>Gemfile.lock</code> it&#39;s locked to <code>0.3.1</code>, then any time you run <code>bundle install</code>, it&#39;ll make sure all the other dependencies allow for this, by taking, for example, a version of <code>github-pages</code> which contained <code>jekyll-redirect-from v0.3.1</code>. If you delete your Gemfile.lock, or manually update your <code>gem &#39;jekyll-redirect-from&#39;</code> to <code>gem &#39;jekyll-redirect-from&#39;, &#39;~&gt; 0.6&#39;</code>, and run <code>bundle install</code>, then you should be good to go. :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jglovier">
+              jglovier
+            </a>
+            <time>Tuesday, January 06, 2015</time>
+          </div>
+          <div class="body"><p>Ahh :cool:. @parkr as always, thanks for the education!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Once again I have another issue: running &#x27;jekyll new myblog&#x27;</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#29</span>
+        </p>
+        <h1>Once again I have another issue: running &#x27;jekyll new myblog&#x27;</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">UbuntuTheOS</a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body">
+            <p>I got jekyll installed via &#39;sudo gem install jekyll&#39; and now I get errors running &#39;jekyll new myblog&#39; from quick start guide:</p>
+<pre><code class="lang-text">ubuntu:~$ jekyll new myblog
+/var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:385:in `require_program&#39;: program version required (Commander::Runner::CommandError)
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:384:in `each&#39;
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:384:in `require_program&#39;
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:52:in `run!&#39;
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/delegates.rb:8:in `run!&#39;
+    from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/import.rb:10
+    from /usr/local/bin/jekyll:19
+/usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&#39;: no such file to load -- json (LoadError)
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;
+    from /var/lib/gems/1.8/gems/jekyll-1.5.1/bin/../lib/jekyll/filters.rb:2
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&#39;
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;
+    from /var/lib/gems/1.8/gems/jekyll-1.5.1/bin/../lib/jekyll.rb:44
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `gem_original_require&#39;
+    from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in `require&#39;
+    from /var/lib/gems/1.8/gems/jekyll-1.5.1/bin/jekyll:7
+    from /usr/local/bin/jekyll:19:in `load&#39;
+    from /usr/local/bin/jekyll:19
+</code></pre>
+<p>I really don&#39;t know what any of this means... Can someone help please?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>You&#39;re running ruby 1.8. This isn&#39;t advised, but should you should be able
+to run jekyll just fine if you also install the json gem manually.</p>
+<p>On 5 May 2014 06:50, Max <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x6e;&#111;&#x74;&#105;&#x66;&#x69;&#99;&#x61;&#x74;&#x69;&#x6f;&#110;&#115;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#x6e;&#111;&#x74;&#105;&#x66;&#x69;&#99;&#x61;&#x74;&#x69;&#x6f;&#110;&#115;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>I got jekyll installed via &#39;sudo gem install jekyll&#39; and now I get errors
+running &#39;jekyll new myblog&#39; from quick start guide:</p>
+<p>ubuntu:~$ jekyll new myblog
+/var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:385:in require_program&#39;:
+program version required (Commander::Runner::CommandError)
+from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:384:in
+each&#39;
+from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:384:in
+require_program&#39;
+from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/runner.rb:52:in
+run!&#39;
+from
+/var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/delegates.rb:8:in
+run!&#39;
+from /var/lib/gems/1.8/gems/commander-4.1.6/lib/commander/import.rb:10
+from /usr/local/bin/jekyll:19
+/usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:ingem_original_require&#39;:
+no such file to load -- json (LoadError)
+from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in
+require&#39;
+from /var/lib/gems/1.8/gems/jekyll-1.5.1/bin/../lib/jekyll/filters.rb:2
+from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in
+gem_original_require&#39;
+from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in
+require&#39;
+from /var/lib/gems/1.8/gems/jekyll-1.5.1/bin/../lib/jekyll.rb:44
+from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in
+gem_original_require&#39;
+from /usr/lib/ruby/vendor_ruby/1.8/rubygems/custom_require.rb:36:in
+require&#39;
+from /var/lib/gems/1.8/gems/jekyll-1.5.1/bin/jekyll:7
+from /usr/local/bin/jekyll:19:inload&#39;
+from /usr/local/bin/jekyll:19</p>
+<p>I really don&#39;t know what any of this means... Can someone help please?</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/29">https://github.com/jekyll/jekyll-help/issues/29</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/UbuntuTheOS">
+              UbuntuTheOS
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>So do I install the newest version of ruby?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>Personally, I&#39;d recommend Ruby 2.0+, ruby 1.8 has been end of life for a
+while now. As far as Jekyll goes, no, you don&#39;t need to, you just need to
+install json manually (for now at least).</p>
+<p>On 5 May 2014 06:52, Max <a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#58;&#x6e;&#x6f;&#x74;&#x69;&#102;&#105;&#99;&#x61;&#x74;&#x69;&#111;&#x6e;&#115;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#x6e;&#x6f;&#x74;&#x69;&#102;&#105;&#99;&#x61;&#x74;&#x69;&#111;&#x6e;&#115;&#x40;&#103;&#105;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>So do I install the newest version of ruby?</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/29#issuecomment-42144603">https://github.com/jekyll/jekyll-help/issues/29#issuecomment-42144603</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/UbuntuTheOS">
+              UbuntuTheOS
+            </a>
+            <time>Sunday, May 04, 2014</time>
+          </div>
+          <div class="body"><p>Ok thank you!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, May 05, 2014</time>
+          </div>
+          <div class="body"><p>Going to close this one out. Looks like it has been resolved. Good job! :+1: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

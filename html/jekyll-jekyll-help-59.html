@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Frontmatter in page should override Frontmatter in layout</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#59</span>
+        </p>
+        <h1>Frontmatter in page should override Frontmatter in layout</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">axelfontaine</a>
+            <time>Saturday, May 31, 2014</time>
+          </div>
+          <div class="body">
+            <p>For a layout abc with:</p>
+<pre><code>---
+mykey: &quot;myvalue&quot;
+---
+My Key = {{mykey}}
+</code></pre><p>and a page with</p>
+<pre><code>layout: abc
+mykey: &quot;bettervalue&quot;
+</code></pre><p>currently myvalue is displayed. This really should be bettervalue to allow easy overriding of defaults.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Saturday, May 31, 2014</time>
+          </div>
+          <div class="body"><p>An approach to accomplishing the desired logic is as follows:</p>
+<p><code>./a-page.md</code></p>
+<pre><code>---
+layout: layout-a
+mykey: &quot;my custom non-default value&quot;
+---
+
+...
+</code></pre><p><code>./_layouts/layout-a.html</code></p>
+<pre><code>---
+layout: default
+---
+
+&lt;p&gt;
+  mykey:  {% if page.mykey %}{{ page.mykey }}{% else %}MY *DEFAULT* MYKEY!{% endif %}
+  mkey again, another way:  {% if page.mykey %}{{ page.mykey }}{% else %}{{ site.default.mykey }}{% endif %}
+&lt;/p&gt;
+</code></pre><blockquote>
+<p>Logic translation:</p>
+</blockquote>
+<p>If page.mkey is defined/exists via a page, then use it, else use either my static declared default, and or secondly, as above, a global variable.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, May 31, 2014</time>
+          </div>
+          <div class="body"><p>Yes, use <code>page.mykey</code>. We don&#39;t define any top-level Liquid vars other than <code>page</code>, and <code>site</code>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/axelfontaine">
+              axelfontaine
+            </a>
+            <time>Monday, June 02, 2014</time>
+          </div>
+          <div class="body"><p>Thanks for the suggestion. With the proposed syntax, I think we can all agree this qualifies as a workaround at best.</p>
+<p>I hope you&#39;ll consider this change of overriding precedence for a future version. After all the whole point of a template is the be a base to be customized by the individual pages building upon it.</p>
+<p>Cheers and thanks for the fantastic product,
+Axel</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

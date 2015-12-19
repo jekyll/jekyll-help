@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll seems to half work</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#226</span>
+        </p>
+        <h1>Jekyll seems to half work</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">gitjohndoe</a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body">
+            <p>Repo: <a href="https://github.com/gitjohndoe/mediator">https://github.com/gitjohndoe/mediator</a></p>
+<p>Github Page: <a href="http://gitjohndoe.github.io/mediator/">http://gitjohndoe.github.io/mediator/</a></p>
+<p>Not sure what is wrong here but I have been troubleshooting all day with no results. Can anyone help and tell me what I am doing wrong?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdyar">
+              rdyar
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>your css is not loading - in your head section try</p>
+<p> /mediator/css/main.css</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdyar">
+              rdyar
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>that goes for any of your other urls to - you need the /mediator/ part. Like your logo.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gitjohndoe">
+              gitjohndoe
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>Yeah so /mediator will do the trick for css, js and images.
+Any idea why the posts are not working? 
+<a href="http://gitjohndoe.github.io/mediator/feature/2014/11/30/mediator_features.html">http://gitjohndoe.github.io/mediator/feature/2014/11/30/mediator_features.html</a> the first post can not be found.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdyar">
+              rdyar
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>i think because in your _config.yml file you need your base url to include the /mediator .</p>
+<p>Which I think you just figured out.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gitjohndoe">
+              gitjohndoe
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>baseurl: &quot;/mediator&quot;
+This does fix the css and js but does not fix the posts issue. Still confused here. Really weird.
+Thanks for the help by the way</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdyar">
+              rdyar
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><pre><code>url: &quot;http://gitjohndoe.github.io/mediator&quot; # the base hostname &amp; protocol for your site
+</code></pre><p>I don&#39;t use github, and am not 100% sure on the useage of url vs baseurl. But all your problems stem from the  fact that your site is at /mediator not just github.io. </p>
+<p>i think i would try just using URL and leave Baseurl blank?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdyar">
+              rdyar
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>the url to the features article is really:</p>
+<pre><code>http://gitjohndoe.github.io/mediator/mediator/feature/2014/11/30/mediator_features.html
+</code></pre><p>the mediator bit is very confusing because it is the name of your repo and the name of the skin you are using. The url above has mediator/mediator/feature because your repo is at /mediator - so it will always be there, then the next mediator is because the Category set for that articel in the frontmatter is &#39;mediator feature&#39; and jekyll is doing the post url as each word in category is another &#39;/&#39; if that makes sense. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gitjohndoe">
+              gitjohndoe
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>Alright, I will play around with it. At least I know now the posts are being created. Greatly appreciate the help.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gitjohndoe">
+              gitjohndoe
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p><a href="http://jekyllrb.com/docs/github-pages/#project-pages">http://jekyllrb.com/docs/github-pages/#project-pages</a>
+For others to reference. Again thanks for the help.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdyar">
+              rdyar
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>no problem, good luck!</p>
+<p>I think you need url: &quot;<a href="http://gitjohndoe.github.io/mediator">http://gitjohndoe.github.io/mediator</a>&quot;
+and baseurl: &quot;/mediator&quot;</p>
+<p>but not 100% sure - I think baseurl is for local, url is for what it really is when live.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>Gents, I would highly encourage you to not use <code>baseurl</code> and instead use <a href="https://help.github.com/articles/repository-metadata-on-github-pages/">GitHub Pages Metadata</a>.</p>
+<p>A quick example: Assuming you have a CSS file called <code>/css/styles.css</code> relative to the root of your repo, you can use something like <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ site.github.url }}/css/styles.css&quot;&gt;</code>. The <code>{{ site.github.url }}</code> value will be replaced by the URL for your repo&#39;s site.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

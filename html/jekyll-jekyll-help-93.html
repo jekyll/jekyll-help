@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>New pushes aren&#x27;t appearing in blog</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#93</span>
+        </p>
+        <h1>New pushes aren&#x27;t appearing in blog</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">trevordjones</a>
+            <time>Monday, July 07, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi!</p>
+<p>So I&#39;ve been pushing to my gh-pages for my blog and I can see the changes/added posts take affect within my Github repo under gh-pages, but when I go to my blog the changes don&#39;t appear. It&#39;s been a few days now since I&#39;ve noticed this happening and it still hasn&#39;t updated. Any ideas on what could be going wrong?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, July 07, 2014</time>
+          </div>
+          <div class="body"><p>Is this your repo? <a href="https://github.com/trevordjones/trevordjones.github.io">https://github.com/trevordjones/trevordjones.github.io</a></p>
+<p>If so, there isn&#39;t actually a gh-pages branch. Are you sure you&#39;re pushing to the right remote repo?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, July 07, 2014</time>
+          </div>
+          <div class="body"><p>@kleinfreund For user pages (like the one you linked to), the <code>master</code> branch is used.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, July 07, 2014</time>
+          </div>
+          <div class="body"><p>@trevordjones Use <code>gh-pages</code> branch for project pages or <code>master</code> for your user pages repo (your trevordjones.github.io repo). Be sure to check your email – failed builds will trigger an email notification with information as to why it failed.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, July 07, 2014</time>
+          </div>
+          <div class="body"><p>@parkr Yeah, sure, I&#39;m rockin&#39; the same. I asked, because I sometime didn&#39;t point to an actual remote repo as well.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/trevordjones">
+              trevordjones
+            </a>
+            <time>Monday, July 07, 2014</time>
+          </div>
+          <div class="body"><p>@kleinfreund it&#39;s my blog repo at <a href="https://github.com/trevordjones/blog/">https://github.com/trevordjones/blog/</a> - I am getting a build error in my email (google filtered it out) but it didn&#39;t give me a reason why. I have to keep digging.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Monday, July 07, 2014</time>
+          </div>
+          <div class="body"><p>@trevordjones I notice your gemfile points to Jekyll, which is at <code>2.1</code>, but gh-pages is at <code>1.5.1</code> so you need <code>gem &#39;github-pages&#39;</code> as long as you&#39;re not using any 2.x features.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/trevordjones">
+              trevordjones
+            </a>
+            <time>Monday, July 07, 2014</time>
+          </div>
+          <div class="body"><p>Thanks @budparr - turns out it wasn&#39;t accepting my post_url links. I feel like that should be documented somewhere at <a href="http://jekyllrb.com/docs/templates/#post_url">http://jekyllrb.com/docs/templates/#post_url</a> - but alas, they don&#39;t mention it anywhere.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

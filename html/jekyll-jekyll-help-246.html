@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Paths to other pages versus paths to images seems inconsistent</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#246</span>
+        </p>
+        <h1>Paths to other pages versus paths to images seems inconsistent</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Thursday, January 22, 2015</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m a little confused on subdirectory paths with with links to pages versus links to images. In my root directory, I have a folder called &quot;content.&quot; In &quot;content&quot; I have a subdirectory called &quot;web&quot;. If I want to link to a page in content/web, I just reference the permalink, like this: </p>
+<pre><code>[Tutorial]({{ &quot;/tutorial&quot; | prepend: site.baseurl }})
+</code></pre><p>In my root directory, I have another folder called &quot;images.&quot; Inside images, I have a subdirectory called web. If I have an image in there and want to link to it, I would use this:</p>
+<pre><code>![Sample Wiki Image]({{ &quot;/images/web/samplewiki.png&quot; | prepend: site.baseurl }})
+</code></pre><p>It seems that with pages, which have a permalink attribute in the front matter, I don&#39;t need to specify the path to the page -- I just reference the page&#39;s permalink. </p>
+<p>But with images, it&#39;s not the case. Images require me to use the subdirectory path. </p>
+<p>Is this correct? </p>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Can&#x27;t install Jekyll on Mac OS X 10.9.5</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#305</span>
+        </p>
+        <h1>Can&#x27;t install Jekyll on Mac OS X 10.9.5</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">johnwilkes</a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body">
+            <p>Guidance/suggestions would be much appreciated.  Thanks.</p>
+<pre><code>&gt; sudo gem install jekyll
+Password:
+Fetching: liquid-2.6.2.gem (100%)
+Successfully installed liquid-2.6.2
+Fetching: kramdown-1.7.0.gem (100%)
+Successfully installed kramdown-1.7.0
+Fetching: mercenary-0.3.5.gem (100%)
+Successfully installed mercenary-0.3.5
+Fetching: safe_yaml-1.0.4.gem (100%)
+Successfully installed safe_yaml-1.0.4
+Fetching: colorator-0.1.gem (100%)
+Successfully installed colorator-0.1
+Fetching: yajl-ruby-1.2.1.gem (100%)
+Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb
+mkmf.rb can&#39;t find header files for ruby at /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/include/ruby.h
+
+
+Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/yajl-ruby-1.2.1 for inspection.
+Results logged to /Library/Ruby/Gems/2.0.0/gems/yajl-ruby-1.2.1/ext/yajl/gem_make.out
+</code></pre><p>Oh well.  Let&#39;s follow the troubleshooting guide here: <a href="http://jekyllrb.com/docs/troubleshooting/#installation-problems">http://jekyllrb.com/docs/troubleshooting/#installation-problems</a></p>
+<pre><code>&gt; sudo gem update --system
+Password:
+Updating rubygems-update
+Fetching: rubygems-update-2.4.6.gem (100%)
+Successfully installed rubygems-update-2.4.6
+Parsing documentation for rubygems-update-2.4.6
+Installing ri documentation for rubygems-update-2.4.6
+Installing darkfish documentation for rubygems-update-2.4.6
+Installing RubyGems 2.4.6
+RubyGems 2.4.6 installed
+Parsing documentation for rubygems-2.4.6
+Installing ri documentation for rubygems-2.4.6
+
+=== 2.4.6 / 2014-02-05
+
+Bug fixes:
+[...]
+RubyGems system software updated
+</code></pre><p>But no ...</p>
+<pre><code>&gt; sudo gem install jekyll
+Fetching: fast-stemmer-1.0.2.gem (100%)
+Building native extensions.  This could take a while...
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby -r ./siteconf20150510-83523-6gdy6c.rb extconf.rb
+mkmf.rb can&#39;t find header files for ruby at /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/include/ruby.h
+
+extconf failed, exit code 1
+
+Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/fast-stemmer-1.0.2 for inspection.
+Results logged to /Library/Ruby/Gems/2.0.0/extensions/universal-darwin-13/2.0.0/fast-stemmer-1.0.2/gem_make.out
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>Migrated to Jekyll Talk!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p><a href="https://talk.jekyllrb.com/t/cant-install-jekyll-on-mac-os-x-10-9-5/428">https://talk.jekyllrb.com/t/cant-install-jekyll-on-mac-os-x-10-9-5/428</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

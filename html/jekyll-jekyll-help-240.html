@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>condition.rb:18:in &#x60;block in &lt;class:Condition&gt;&#x27;: undefined method &#x60;include?&#x27; for ??? (NoMethodError)</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#240</span>
+        </p>
+        <h1>condition.rb:18:in &#x60;block in &lt;class:Condition&gt;&#x27;: undefined method &#x60;include?&#x27; for ??? (NoMethodError)</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">deragon</a>
+            <time>Sunday, January 18, 2015</time>
+          </div>
+          <div class="body">
+            <p>Liquid Exception: undefined method <code>include?&#39; for 1111884:Fixnum in _layouts/bug.html
+/var/lib/gems/1.9.1/gems/liquid-2.6.1/lib/liquid/condition.rb:18:in</code>block in &lt;class:Condition&gt;&#39;: undefined method `include?&#39; for 1111884:Fixnum (NoMethodError)</p>
+<p>Beginner to Ruby and Jekyll here.  Not sure if this is a real bug of my fault.  Maybe a dependency is missing?  I have a layout (bug.html) that uses the Liquid &quot;contains&quot; operator and it fails there.  If I use any other operator, i.e. == or != for instance, it works fine.</p>
+<p>If a dependency is missing, Jekyll should complain about it instead of launching.  Jekyll 2.5.3 used.  Version of Gems and Liquid are 1.9.1 and 2.6.1 respectively, according to the path given in the error message.  I use Ubuntu 14.04 LTS Trusty Thar.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kansaichris">
+              kansaichris
+            </a>
+            <time>Wednesday, January 21, 2015</time>
+          </div>
+          <div class="body"><p>Could you paste the content of your layout (<code>bug.html</code>)?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/deragon">
+              deragon
+            </a>
+            <time>Sunday, January 25, 2015</time>
+          </div>
+          <div class="body"><p>Sorry for the late reply, your question found its self in gmail&#39;s spam box.  Here is the content.</p>
+<pre><code>---
+layout: default
+---
+&lt;div class=&quot;post&quot;&gt;
+
+  &lt;header class=&quot;post-header&quot;&gt;
+    &lt;p class=&quot;post-meta&quot;&gt;{{ page.date | date: &quot;%b %-d, %Y&quot; }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}&lt;/p&gt;
+
+    &lt;table class=&quot;bug-table&quot;&gt;
+      {% for data in page.bug %}
+      &lt;tr class=&quot;bug-table&quot;&gt;
+        &lt;td&gt;
+          {{ data[0] }}
+        &lt;/td&gt;
+        &lt;td&gt;
+          {% if data[1] != nil %}
+            {% if data[1] contains &quot;http&quot; %}
+              Bonjourldskf
+            {% endif %}
+          {% endif %}
+          {{ data[1] }}
+        &lt;/td&gt;
+      &lt;/tr&gt;
+      {% endfor %}
+
+      &lt;tr class=&quot;bug-table&quot;&gt;
+        &lt;td&gt;
+        Manual Title
+        &lt;/td&gt;
+        &lt;td&gt;
+        {{ page.bug.title }}
+        &lt;/td&gt;
+          {% if data[1] contains &#39;http&#39; %}
+          a href=&quot;{{ data[1] }}&quot;
+          {% endif %}
+      &lt;/tr&gt;
+      &lt;tr class=&quot;bug-table&quot;&gt;
+        &lt;td&gt;
+          Number
+        &lt;/td&gt;
+        &lt;td&gt;
+          {{ page.bug.number }}
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+
+    &lt;p class=&quot;bug-meta&quot;&gt;{{ page.launchpad }} &lt;/p&gt;
+    &lt;p class=&quot;bug-meta&quot;&gt;{{ page.upstream}} &lt;/p&gt;
+    &lt;p class=&quot;bug-meta&quot;&gt;page.bug.title = {{ page.bug.title }} &lt;/p&gt;
+    &lt;p class=&quot;bug-meta&quot;&gt;page.bug.number = {{ page.bug.number }} &lt;/p&gt;
+    &lt;p class=&quot;bug-meta&quot;&gt;{{ page.bug.system }} &lt;/p&gt;
+    &lt;p class=&quot;bug-meta&quot;&gt;{{ page.bug.component }} &lt;/p&gt;
+    &lt;p class=&quot;bug-meta&quot;&gt;{{ page.bug.launchpad }} &lt;/p&gt;
+    &lt;p class=&quot;bug-meta&quot;&gt;{{ page.bug.upstream }} &lt;/p&gt;
+
+  &lt;/header&gt;
+
+  &lt;article class=&quot;post-content&quot;&gt;
+    {{ content }}
+  &lt;/article&gt;
+
+&lt;/div&gt;
+</code></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

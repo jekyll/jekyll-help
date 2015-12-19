@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Template no longer included in site after upgrade from 1.4.3 to 2.0.2</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#37</span>
+        </p>
+        <h1>Template no longer included in site after upgrade from 1.4.3 to 2.0.2</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">philipmjohnson</a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body">
+            <p>Greetings,</p>
+<p>I was excited to upgrade to 2.0.2, but found that my generated index.html file no longer included the template code. I reverted back to 1.4.3 and everything works again.</p>
+<p>Here&#39;s the repo:</p>
+<p><a href="https://github.com/morea-framework/basic-template">https://github.com/morea-framework/basic-template</a></p>
+<p>It just generates the index.html without any content in the &lt;head&gt; element.</p>
+<p>What am I doing wrong, and/or what should I change for 2.0 to make this site work correctly? </p>
+<p>Or if it works fine for you, that would be useful info as well. </p>
+<p>Thanks,
+Philip</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/philipmjohnson">
+              philipmjohnson
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>My basic-template repo includes a ruby plugin (MoreaGenerator.rb).  I disabled the plugin (by renaming it to MoreaGenerator.txt) and found that the problem still exists under Jekyll 2.0.2  but not under 1.4.3.  So there must be something simple that I&#39;m doing wrong that causes my <a href="https://github.com/morea-framework/basic-template/blob/master/src/_layouts/morea.html">morea.html</a> layout to not be included when <a href="https://github.com/morea-framework/basic-template/blob/master/src/index.md">index.md</a> is compiled to index.html.  </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/philipmjohnson">
+              philipmjohnson
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>I just created a more detailed description of my problem with Jekyll 2.0.2 here:</p>
+<p><a href="http://stackoverflow.com/questions/23553629/why-does-my-site-work-using-jekyll-1-4-3-but-not-jekyll-2-0-2">http://stackoverflow.com/questions/23553629/why-does-my-site-work-using-jekyll-1-4-3-but-not-jekyll-2-0-2</a></p>
+<p>Please respond in StackExchange.  Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>I have run your site in Jekyll 2.0.2 and I&#39;m seeing this:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/451539/2923983/9c9cc9d4-d725-11e3-9789-7ee88b5b9048.png" alt="screen shot 2014-05-08 at 10 26 44 pm"></p>
+<p>It seems it&#39;s working, no?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/philipmjohnson">
+              philipmjohnson
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>No, that image indicates it&#39;s broken (and that you&#39;re using the master branch, not the jekyll-2.0 branch).  When correctly generated (as happens in 1.4.3) you should see a page styled using bootstrap similar to this:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/290288/2925195/abee0f8a-d746-11e3-96ad-12961ca2a6d2.png" alt="basic-template-1 4 3"></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Friday, May 09, 2014</time>
+          </div>
+          <div class="body"><p>Your template has no default layout, though it is referenced from your post layout:</p>
+<p><a href="https://github.com/morea-framework/basic-template/blob/jekyll-2.0/src/_layouts/post.html">https://github.com/morea-framework/basic-template/blob/jekyll-2.0/src/_layouts/post.html</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Friday, May 09, 2014</time>
+          </div>
+          <div class="body"><p>I can&#39;t see how this could have worked in 1.4.3 either. You need to have a default layout.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/philipmjohnson">
+              philipmjohnson
+            </a>
+            <time>Friday, May 09, 2014</time>
+          </div>
+          <div class="body"><p>Thanks, renaming the layout morea.html to default.html and updating
+references did fix my problem.</p>
+<p>Since index.md was a page, not a post, it was not obvious to me that the
+reference to a layout called default in post.html would matter to
+index.html generation (and, obviously, it did not matter under Jekyll
+1.4.3).</p>
+<p>Maybe update the docs at some point to specify that a layout called
+default.html is required?</p>
+<p>I appreciate your quick response!</p>
+<p>Philip</p>
+<p>On Thu, May 8, 2014 at 10:52 PM, Seth Warburton <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#x3a;&#110;&#x6f;&#116;&#x69;&#x66;&#x69;&#x63;&#x61;&#116;&#105;&#x6f;&#110;&#x73;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;">&#110;&#x6f;&#116;&#x69;&#x66;&#x69;&#x63;&#x61;&#116;&#105;&#x6f;&#110;&#x73;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;</a>wrote:</p>
+<blockquote>
+<p>I can&#39;t see how this could have worked in 1.4.3 either. You need to have a
+default layout.</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/37#issuecomment-42645618">https://github.com/jekyll/jekyll-help/issues/37#issuecomment-42645618</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Friday, May 09, 2014</time>
+          </div>
+          <div class="body"><p>No worries, I&#39;m glad I was able to resolve it for you.</p>
+<p>AFAIK, nothing has changed in this behaviour though, there always has to be a default layout file whether it is called default or not. You were asking Jekyll to render content to a file that didn&#39;t exist, that will always cause a break.</p>
+<p>The only thing that defines if the output of the index file is a page, post or anything else is the layout specified in the files front-matter.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Note block</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#206</span>
+        </p>
+        <h1>Note block</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">zemadmat</a>
+            <time>Friday, December 05, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi,
+I have seen the Jekyll web site and i love the idea to have hint, note warning/ alert box but if i just type markdown note: it does not render like the jekyll site.</p>
+<p>how is it possible to have a such box ? also like the ProTip box.</p>
+<p>Cheers</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Friday, December 05, 2014</time>
+          </div>
+          <div class="body"><p>The notes that appear on the Jekyll documentation site are just snippets of HTML styled with custom CSS:</p>
+<pre><code class="lang-html">&lt;div class=&quot;note&quot;&gt;
+  &lt;h5&gt;ProTips™ help you get more from Jekyll&lt;/h5&gt;
+  &lt;p&gt;These are tips and tricks that will help you be a Jekyll wizard!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="lang-scss">.note {
+  margin: 30px 0;
+  margin-left: -30px;
+  padding: 20px 20px 24px;
+  padding-left: 50px;
+  @include border-radius(0 5px 5px 0);
+  position: relative;
+  @include box-shadow(0 1px 5px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.3));
+  background-color: #7e6d42;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdlNmQ0MiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzRlMzUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#7e6d42), to(#5c4e35));
+  background-image: -webkit-linear-gradient(top, #7e6d42 0%, #5c4e35 100%);
+  background-image: -moz-linear-gradient(top, #7e6d42 0%, #5c4e35 100%);
+  background-image: -o-linear-gradient(top, #7e6d42 0%, #5c4e35 100%);
+  background-image: linear-gradient(to bottom, #7e6d42 0%,#5c4e35 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=&#39;#7e6d42&#39;, endColorstr=&#39;#5c4e35&#39;,GradientType=0 );
+}
+</code></pre>
+<p>(full SCSS starting <a href="https://github.com/jekyll/jekyll/blob/89bdd47ebcf0e3a60ff0f1795eaabc391fc2307e/site/_sass/_style.scss#L811">here</a>).</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/zemadmat">
+              zemadmat
+            </a>
+            <time>Friday, December 05, 2014</time>
+          </div>
+          <div class="body"><p>Thank you for your answer. Instead of using this</p>
+<pre><code>&lt;div class=&quot;note&quot;&gt;
+  &lt;h5&gt;ProTips™ help you get more from Jekyll&lt;/h5&gt;
+  &lt;p&gt;These are tips and tricks that will help you be a Jekyll wizard!&lt;/p&gt;
+&lt;/div&gt;
+</code></pre><p>is it possible to simply use a markdown syntax ?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Friday, December 05, 2014</time>
+          </div>
+          <div class="body"><p>I don&#39;t think so, since Markdown doesn&#39;t have variables or anything. However, it would be possible to use <a href="http://jekyllrb.com/docs/templates/#includes">includes</a>.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

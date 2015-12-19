@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>YAML configuration problem when using &quot;gh-pages&quot;</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#215</span>
+        </p>
+        <h1>YAML configuration problem when using &quot;gh-pages&quot;</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ajlohman</a>
+            <time>Monday, December 22, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m getting errors on the settings page when pushing things to github:</p>
+<p>&quot;Your page is having problems building: Page build failed. For more information, see <a href="https://help.github.com/articles/using-jekyll-with-pages#troubleshooting">https://help.github.com/articles/using-jekyll-with-pages#troubleshooting</a>.&quot;</p>
+<p>So I figured my &quot;url&quot; and &quot;baseurl&quot; are wrong in my _config.yml file.</p>
+<p>My _config.yml file:</p>
+<p>========================================</p>
+<h1 id="syntax-highlighting">Syntax highlighting</h1>
+<p>highlighter:         pygments</p>
+<h1 id="permalinks">Permalinks</h1>
+<h1 id="use-of-relative_permalinks-ensures-post-links-from-the-index-work-properly-">Use of <code>relative_permalinks</code> ensures post links from the index work properly.</h1>
+<p>permalink:           pretty
+relative_permalinks: true</p>
+<h1 id="setup">Setup</h1>
+<p>title:               Magento design
+tagline:          Magento designs and such...</p>
+<h1 id="local">Local</h1>
+<h1 id="http-localhost-4000-magentoproto-homepage-v1-"><a href="http://localhost:4000/magentoproto/homepage-v1/">http://localhost:4000/magentoproto/homepage-v1/</a></h1>
+<h1 id="this-is-what-i-can-t-get-to-work-doesn-t-work-locally-or-on-github">This is what I can&#39;t get to work? Doesn&#39;t work locally or on github</h1>
+<h1 id="url-https-github-corp-ebay-com-pages-ajlohman-magentoproto">url:                 <a href="https://github.corp.ebay.com/pages/ajlohman/magentoproto">https://github.corp.ebay.com/pages/ajlohman/magentoproto</a></h1>
+<h1 id="baseurl-pages-ajlohman-magentoproto">baseurl:         /pages/ajlohman/magentoproto</h1>
+<h1 id="this-works-locally-but-error-when-pushed-to-github">This works locally but error when pushed to github</h1>
+<h1 id="url-http-ajlohman-github-io-magentoproto">url:                 <a href="http://ajlohman.github.io/magentoproto">http://ajlohman.github.io/magentoproto</a></h1>
+<h1 id="baseurl-magentoproto">baseurl:         /magentoproto</h1>
+<h1 id="assets">Assets</h1>
+<p>#</p>
+<h1 id="we-specify-the-directory-for-jekyll-so-we-can-use-imports-">We specify the directory for Jekyll so we can use @imports.</h1>
+<p>sass:
+  sass_dir:          _scss
+  style:            :compressed</p>
+<p>========================================</p>
+<p>Any help would be greatly appreciated! thanks,</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Monday, December 22, 2014</time>
+          </div>
+          <div class="body"><p>Hi @ajlohman have seen this? It&#39;s a good place to start with baseurl issues, as, at a glance, it looks like that might be an issue for you: <a href="https://byparker.com/blog/2014/clearing-up-confusion-around-baseurl/">https://byparker.com/blog/2014/clearing-up-confusion-around-baseurl/</a></p>
+<p>if you want to post a link to your repo, that&#39;d be helpful too.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ajlohman">
+              ajlohman
+            </a>
+            <time>Monday, December 22, 2014</time>
+          </div>
+          <div class="body"><p>Thanks for sending the article!  I still can&#39;t get it to work, wondering if it&#39;s something different?</p>
+<p>Here&#39;s the repo: <a href="https://github.corp.ebay.com/alohman/magentoproto/tree/gh-pages">https://github.corp.ebay.com/alohman/magentoproto/tree/gh-pages</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Monday, December 22, 2014</time>
+          </div>
+          <div class="body"><p>So I&#39;m assuming you changed your config file based on the article? In your second example, you have <code>magentoproto</code> in the url and the base url. </p>
+<p>One thing I might add - I rarely use baseurl any longer. If I need to see a live site for staging I use a subdomain, which is simplistic, but once I have one domain set up, everything else is just a matter of adding a cname file with the subdomain.</p>
+<p>is this the repo? <a href="https://github.com/ajlohman/magentoproto">https://github.com/ajlohman/magentoproto</a> I don&#39;t see the config file, but the other looks like it&#39;s sitting on your corporate domain. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>I mentioned it <a href="https://github.com/jekyll/jekyll-help/issues/226#issuecomment-68659540">here</a>, but I&#39;ll mention it again. Use <a href="https://help.github.com/articles/repository-metadata-on-github-pages/">GitHub Pages Metadata</a>. It&#39;s immensely helpful in situations like this.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

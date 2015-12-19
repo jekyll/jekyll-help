@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Implementing shorturls?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#6</span>
+        </p>
+        <h1>Implementing shorturls?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ndarville</a>
+            <time>Monday, March 31, 2014</time>
+          </div>
+          <div class="body">
+            <p>What is the best and/or easiest way to create base16 shorturls (short urls) mapping from your blog posts to your own domain without relying on services like bit.ly—which don’t protect your links, should the company fail or get acquired?</p>
+<p>How have you implemented them on your site?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, March 31, 2014</time>
+          </div>
+          <div class="body"><p>Hey @ndarville - your question has several avenues that end in different results, depending on which path you choose to travel.</p>
+<p>The <em>easiest</em> way is pretty obvious: use a system that already exists (<a href="http://bit.ly">bitly</a>, <a href="http://tinyurl.com">tinyurl</a>, <a href="http://is.gd">is.gd</a>, etc.) to create the short URLs. These services - like anything else on the internet - have the possibility of going under, which would cause those shortened URLs to disappear.</p>
+<p>Another way would be to host your own URL shortening service. It&#39;s way more involved, but obviously gives you total control over the system. The popular self-hosted URL shorteners (<a href="http://yourls.org/">YOURS</a> and <a href="https://code.google.com/p/phurl/">phurl</a>) are PHP scripts that live on some server that you are in charge of.</p>
+<p>Here&#39;s another idea: if you are using GitHub Pages and have a server that you&#39;d like to use to help automate the creation of these short URLs, take a gander at the <code>page_build</code> <a href="http://developer.github.com/webhooks/">webhook</a>. This hook fires when GitHub publishes your site to their Pages platform, giving you the ability to create a script that crawls the site as soon as it is built and dynamically create shortened URLs as it come across new pages.</p>
+<p>Which route you decide to take depends on the level of effort you wish to trade off for the amount of control you want to have over the system.</p>
+<p>Personally, I think URL shorteners are very rarely necessary. The only time I need to shorten a link is when I&#39;m sending a tweet, but Twitter does that automatically through its <a href="http://t.co">t.co</a> service.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, March 31, 2014</time>
+          </div>
+          <div class="body"><p>@troyswanson @ndarville what about something with <code>jekyll-redirect-from</code> ? I&#39;ve never used that gem but from my understanding it does redirects from different URLs. I may also be completely wrong.  </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, March 31, 2014</time>
+          </div>
+          <div class="body"><p>Same, I&#39;ve never used it, but I believe it deals with creating redirects within your site, which is only for your own domain. For instance, setting up a &quot;vanity URL&quot; like <code>http://example.com/a-new-hope</code> which would redirect to <code>http://example.com/2014/4/1/star-wars-a-new-hope-review/</code>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, March 31, 2014</time>
+          </div>
+          <div class="body"><p>@troyswanson yes, but it may work for what @ndarville wants; and as you said, that be, e.g. <code>http://example.com/XdFdE</code> would redirect to <code>http://example.com/2014/4/1/star-wars-a-new-hope-review/</code> he will just need a rake task or whatever script to generate a draft with the <code>redirect_from:</code> and the base64.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, March 31, 2014</time>
+          </div>
+          <div class="body"><p>It would be awesome to have some special keyword built into <a href="https://github.com/jekyll/jekyll-redirect-from">https://github.com/jekyll/jekyll-redirect-from</a> ... :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, April 01, 2014</time>
+          </div>
+          <div class="body"><p>@parkr On second thought, maybe not, huh?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, April 01, 2014</time>
+          </div>
+          <div class="body"><p>Yurrrrp. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Tuesday, April 01, 2014</time>
+          </div>
+          <div class="body"><p>So the parting advice is to not involve Jekyll in the process at all?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, April 01, 2014</time>
+          </div>
+          <div class="body"><p>My parting advice would be to use jekyll-redirect-from and use more semantic short URL&#39;s, rather than the base 64 encoded gobbledy-gook we love so much. ;) E.g. My post &quot;The Crime of Net Neutrality and What We Can Do to Fix It&quot;, I&#39;d probably shorten that to <code>redirect_from: /net-neutrality</code> or something. Or, if you wish, you can even make up a lil set of nonsense chars: <code>redirect_from: /b32JakI</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, April 01, 2014</time>
+          </div>
+          <div class="body"><p>Bingo. :raised_hands: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

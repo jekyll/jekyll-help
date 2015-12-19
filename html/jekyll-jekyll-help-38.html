@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll 2 fails to auto-gen on folder starting with &#x27;___&#x27; outside of Jekyll scope</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#38</span>
+        </p>
+        <h1>Jekyll 2 fails to auto-gen on folder starting with &#x27;___&#x27; outside of Jekyll scope</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">janzheng</a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hey guys,</p>
+<p>A few of my projects have stopped working, and I realize it&#39;s because my folders are set up kind of like this:
+Documents/Folders/<strong><em>ImportantFolder/JekyllProjects/Project1
+Documents/Folders/</em></strong>ImportantFolder/JekyllProjects/Project2</p>
+<p>Ideally I want Jekyll&#39;s escaping &#39;<strong><em>&#39; only to happen within Project1 and Proejct2, so it&#39;s not generating folders that start with </em></strong> in Project1 or 2, but right now it&#39;s stopped generating anything that starts with <em>_</em>, even when those folders are outside of Jekyll&#39;s project folder&#39;s scope</p>
+<p>This was never a problem with the previous Jekyll.</p>
+<p>Thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>@janzheng Is this still a problem? I just tried recreating this in 2.4.0, but it seems to work fine.</p>
+<pre><code>Troys-MacBook-Air:troyswanson.github.io troy$ jekyll --version
+jekyll 2.4.0
+Troys-MacBook-Air:troyswanson.github.io troy$ jekyll build
+Configuration file: /Users/troy/__Projects/troyswanson.github.io/_config.yml
+            Source: /Users/troy/__Projects/troyswanson.github.io
+       Destination: /Users/troy/__Projects/troyswanson.github.io/_site
+      Generating... 
+                    done.
+ Auto-regeneration: disabled. Use --watch to enable.
+</code></pre><p>If it&#39;s still broken for you, feel free to re-open the issue and include some additional info about your setup, e.g.: operating system, Ruby version, etc.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>@troyswanson I&#39;m not sure, if this is an issue, but he uses triple underscores (e.g. <code>___</code> instead of <code>__</code>).</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Ah, you&#39;re right. Either way, it still works.</p>
+<pre><code>Troys-MacBook-Air:troyswanson.github.io troy$ cd ../..
+Troys-MacBook-Air:~ troy$ mv __Projects ___Projects
+Troys-MacBook-Air:~ troy$ cd ___Projects/troyswanson.github.io/
+Troys-MacBook-Air:troyswanson.github.io troy$ jekyll build
+Configuration file: /Users/troy/___Projects/troyswanson.github.io/_config.yml
+            Source: /Users/troy/___Projects/troyswanson.github.io
+       Destination: /Users/troy/___Projects/troyswanson.github.io/_site
+      Generating... 
+                    done.
+ Auto-regeneration: disabled. Use --watch to enable.
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Also, <code>--watch</code> is working fine.</p>
+<pre><code>Troys-MacBook-Air:troyswanson.github.io troy$ jekyll build --watch
+Configuration file: /Users/troy/___Projects/troyswanson.github.io/_config.yml
+            Source: /Users/troy/___Projects/troyswanson.github.io
+       Destination: /Users/troy/___Projects/troyswanson.github.io/_site
+      Generating... 
+                    done.
+ Auto-regeneration: enabled for &#39;/Users/troy/___Projects/troyswanson.github.io&#39;
+      Regenerating: 1 files at 2014-09-15 12:30:51 ...done.
+</code></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

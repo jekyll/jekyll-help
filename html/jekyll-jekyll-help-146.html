@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Breadcrumb plugin</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#146</span>
+        </p>
+        <h1>Breadcrumb plugin</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">LeG3nDz</a>
+            <time>Wednesday, September 10, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello community,</p>
+<p>I am looking for a breadcrumb plugin that allow myself to do this : Home / Blog / Category / Title page</p>
+<p>I tried several solutions found on the net, but none works :( :</p>
+<ul>
+<li><a href="http://biosphere.cc/software-engineering/jekyll-breadcrumbs-navigation-plugin">http://biosphere.cc/software-engineering/jekyll-breadcrumbs-navigation-plugin</a></li>
+<li><a href="https://github.com/socrata/labs-common-jekyll/blob/master/with-breadcrumbs.html">https://github.com/socrata/labs-common-jekyll/blob/master/with-breadcrumbs.html</a> (not the path name)</li>
+<li><a href="http://stackoverflow.com/questions/9612235/what-are-some-good-ways-to-implement-breadcrumbs-on-a-jekyll-site">http://stackoverflow.com/questions/9612235/what-are-some-good-ways-to-implement-breadcrumbs-on-a-jekyll-site</a></li>
+</ul>
+<p>Do you have a reliable solution ?</p>
+<p>Thank you so much :)</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/liquidvisual">
+              liquidvisual
+            </a>
+            <time>Monday, October 13, 2014</time>
+          </div>
+          <div class="body"><p>Yeah none of these work for me either. Would really like to hear someone&#39;s solution!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/janvanmansum">
+              janvanmansum
+            </a>
+            <time>Tuesday, October 14, 2014</time>
+          </div>
+          <div class="body"><p>The one from biosphere works for me. </p>
+<ul>
+<li>Copy-paste the plugin code to &lt;your-project&gt;/_plugins/breadcrumbs.rb</li>
+<li><p>Create a file &lt;your-project&gt;/_includes/breadcrumbs.html:</p>
+<pre><code>     &lt;ol class=&quot;breadcrumbs&quot;&gt;
+         {% for p in page.ancestors %}
+         &lt;li&gt;&lt;a href=&quot;{{ site.baseurl}}{{ p.url }}&quot;&gt;{{ p.title }}&lt;/a&gt;&lt;/li&gt;
+         {% endfor %}
+         &lt;li class=&quot;active&quot;&gt;{{ page.title }}&lt;/li&gt;
+     &lt;/ol&gt;
+</code></pre></li>
+<li><p>Create a file &lt;your-project&gt;_sass/_breadcrumbs.scss:</p>
+<pre><code>  .breadcrumbs {
+      margin-left: 0;
+      li {
+             display: inline;
+             list-style: none;
+             &amp;:after {
+                content: &quot; &gt; &quot;;
+             }
+            &amp;.active {
+                &amp;:after {
+                    content: &quot;&quot;;
+            }
+         }
+      }
+  }
+</code></pre></li>
+<li>Add the _breadcrumbs.scss  to &lt;your project&gt;/css/main.scss:<pre><code>  @import
+  &quot;base&quot;,
+  &quot;layout&quot;,
+  &quot;syntax-highlighting&quot;,
+  &quot;breadcrumbs&quot;,
+  ....
+</code></pre>Then the titles of the index files show up something like this:</li>
+</ul>
+<p>Home &gt; Manual &gt; Code Style</p>
+<p>if your directory tree is laid out like this:</p>
+<pre><code> [root of project] 
+        - index.html  (with &quot;title: Home&quot; in the metadata)
+        [manual]
+             - index.md (with &quot;title: Manual&quot;  in the metadata)
+             [code]
+                   - index.md (with &quot;title: Code Style&quot; in the metadata)
+</code></pre><p>For posts too many &quot;&gt;&quot; characters appear though.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

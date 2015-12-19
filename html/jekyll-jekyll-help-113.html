@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Development tools cant be found &amp; Configuration Issues</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#113</span>
+        </p>
+        <h1>Development tools cant be found &amp; Configuration Issues</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">j-waltz</a>
+            <time>Thursday, August 07, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello I am trying to install Jekyll and I have scoured the internet for solutions but not made much of a dent.  I have the latest version of ruby installed along with homebrew and the developer tools.  When in try to install the xcode via &quot;xcode-select --install&quot; I receive the following even though my path is to &quot;/Applications/Xcode.app/Contents/Developer&quot;  </p>
+<pre><code>xcode-select: Error: unknown command option &#39;--install&#39;.
+
+xcode-select: Report or change the path to the active
+              Xcode installation for this machine.
+
+Usage: xcode-select --print-path
+           Prints the path of the active Xcode folder
+   or: xcode-select --switch &lt;xcode_path&gt;
+           Sets the path for the active Xcode folder
+   or: xcode-select --version
+           Prints the version of xcode-select
+</code></pre><p>When I try to install Jekyll or anything similar I receive:</p>
+<pre><code>new-host:~ jameswaltz$ gem install jekyll
+Building native extensions.  This could take a while...
+/Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/site_ruby/2.1.0/rubygems/ext/builder.rb:73: warning: Insecure world writable dir /usr/local in PATH, mode 040777
+ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+    /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/bin/ruby -r ./siteconf20140807-99237-l32ov4.rb extconf.rb
+/Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:1523: warning: Insecure world writable dir /usr/local in PATH, mode 040777
+checking for ffi.h... *** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of necessary
+libraries and/or headers.  Check the mkmf.log file for more details.  You may
+need configuration options.
+
+Provided configuration options:
+    --with-opt-dir
+    --without-opt-dir
+    --with-opt-include
+    --without-opt-include=${opt-dir}/include
+    --with-opt-lib
+    --without-opt-lib=${opt-dir}/lib
+    --with-make-prog
+    --without-make-prog
+    --srcdir=.
+    --curdir
+    --ruby=/Users/jameswaltz/.rvm/rubies/ruby-2.1.2/bin/ruby
+    --with-ffi_c-dir
+    --without-ffi_c-dir
+    --with-ffi_c-include
+    --without-ffi_c-include=${ffi_c-dir}/include
+    --with-ffi_c-lib
+    --without-ffi_c-lib=${ffi_c-dir}/lib
+    --with-libffi-config
+    --without-libffi-config
+    --with-pkg-config
+    --without-pkg-config
+/Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:456:in `try_do&#39;: The compiler failed to generate an executable file. (RuntimeError)
+You have to install development tools first.
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:587:in `try_cpp&#39;
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:1067:in `block in have_header&#39;
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:918:in `block in checking_for&#39;
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:351:in `block (2 levels) in postpone&#39;
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:321:in `open&#39;
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:351:in `block in postpone&#39;
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:321:in `open&#39;
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:347:in `postpone&#39;
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:917:in `checking_for&#39;
+    from /Users/jameswaltz/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/mkmf.rb:1066:in `have_header&#39;
+    from extconf.rb:16:in `&lt;main&gt;&#39;
+
+extconf failed, exit code 1
+
+Gem files will remain installed in /Users/jameswaltz/.rvm/gems/ruby-2.1.2/gems/ffi-1.9.3 for inspection.
+Results logged to /Users/jameswaltz/.rvm/gems/ruby-2.1.2/extensions/x86_64-darwin-13/2.1.0-static/ffi-1.9.3/gem_make.out
+</code></pre><p>Thanks for any help!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, August 07, 2014</time>
+          </div>
+          <div class="body"><p>It seems that you need to fix some permissions first. Go to Disk Utility, select your Macintosh HD and Press Repair Permissions. Lets see if we can get rid of <code>warning: Insecure world writable dir /usr/local in PATH, mode 040777</code>. After that, try to run <code>xcode-select --install</code>. This command should pop up something like a banner that you have to press install to get the command line tools. This will not install xcode though. Remember that you can also download the latest Command Line Tools from the 
+Developer Apple site. BTW, if you type <code>brew doctor</code> what&#39;s the output?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/j-waltz">
+              j-waltz
+            </a>
+            <time>Thursday, August 07, 2014</time>
+          </div>
+          <div class="body"><p>Thanks! I will try to repair permissions when I am back at my computer tomorrow.  I originally installed the developer tools from the apple site and they are installed on my computer but they do not seem to get recognized.  My brew doctor is up to date and the system is ready to brew.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/j-waltz">
+              j-waltz
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>I have repaired my permissions but I am still receiving the same message as originally posted and when I install xcode i receive the following and my path is set to &#39;/Applications/Xcode.app/Contents/Developer&#39;:</p>
+<pre><code>xcode-select: Report or change the path to the active
+              Xcode installation for this machine.
+
+Usage: xcode-select --print-path
+           Prints the path of the active Xcode folder
+   or: xcode-select --switch &lt;xcode_path&gt;
+           Sets the path for the active Xcode folder
+   or: xcode-select --version
+           Prints the version of xcode-select
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>Hi @j-waltz, My have my path is set to:</p>
+<pre><code>$ xcode-select --print-path
+/Library/Developer/CommandLineTools
+</code></pre><p>I don&#39;t have xcode installed though, just the Command Line Tools. I don&#39;t really know whats happening here with xcode or of your path is ok. I can recommend you try to reinstall your ruby. <code>rvm reinstall &lt;your-ruby-version&gt;</code> to see if you can solve the ruby related problem.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/j-waltz">
+              j-waltz
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>Success! I had tried reinstalling ruby before but I think repairing my permissions and then reinstalling seemed to do the trick. I do still receive the warning below, but since it is a personal computer it shouldn&#39;t cause any issues, correct?</p>
+<pre><code>warning: Insecure world writable dir /usr/local in PATH, mode 040777
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m glad it worked, It&#39;s weird that you continue having that warning, you should try to Repair Permissions again and check if the warning goes away. If that doesn&#39;t work try <code>chmod go-w /usr/local</code> good luck!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m going to close the issue, feel free to reopen it again or create a new one if you have any other problem!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

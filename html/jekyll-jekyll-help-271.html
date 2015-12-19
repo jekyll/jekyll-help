@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How do you properly enable syntax highlighting for Objective-C code?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#271</span>
+        </p>
+        <h1>How do you properly enable syntax highlighting for Objective-C code?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ronak2121</a>
+            <time>Wednesday, February 11, 2015</time>
+          </div>
+          <div class="body">
+            <p>I&#39;ve been trying to input Objective-C code into Jekyll but am not able to properly get the syntax highlighting working.</p>
+<p>None of the following seem to do anything:</p>
+<p><code>objective-c</code>objc
+```objectivec</p>
+<p>How do you let Jekyll know about objective-c code?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ronak2121">
+              ronak2121
+            </a>
+            <time>Wednesday, February 11, 2015</time>
+          </div>
+          <div class="body"><p>To clarify, it looks like it doesn&#39;t detect comments, </p>
+<pre><code class="lang-objc">@interface, @end, @implementation objective-c constructs.
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, February 11, 2015</time>
+          </div>
+          <div class="body"><p>@ronak2121 On a side note, it would be helpful to format <code>@interface</code>, <code>@end</code> and <code>@implementation</code> as code, because you just notified these people about this issue. They probably don&#39;t have anything to do with it.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, February 11, 2015</time>
+          </div>
+          <div class="body"><p>@ronak2121 Did you manage to resolve this issue? It would help future visitors to tell them what you needed to do.</p>
+<p>Otherwise, feel free to reopen this one.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ronak2121">
+              ronak2121
+            </a>
+            <time>Wednesday, February 11, 2015</time>
+          </div>
+          <div class="body"><p>Well I thought that I could fix this by using:</p>
+<p>{% highlight objective-c %}</p>
+<p>{% endhighlight %}</p>
+<p>but that doesn&#39;t format anything really.</p>
+<p>Do I have to add any css or Javascript to the page to enable this?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, February 11, 2015</time>
+          </div>
+          <div class="body"><p>Do you have a highlighter set in your config? </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

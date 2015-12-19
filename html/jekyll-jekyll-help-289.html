@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How to Change Your Homepage from Recent Posts to About?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#289</span>
+        </p>
+        <h1>How to Change Your Homepage from Recent Posts to About?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">DanielRoberts95</a>
+            <time>Saturday, April 11, 2015</time>
+          </div>
+          <div class="body">
+            <p>I have been messing around with the <a href="http://brianmaierjr.com/long-haul/">Long-Haul</a> theme for Jekyll lately and I want to make &quot;About&quot; the homepage, not the standard &quot;Recent Posts&quot; page (which I want to instead put in a Blog section). Does anyone know how to do this? Any help is greatly appreciated. :)</p>
+<p>The repository for Long-Haul is <a href="https://github.com/brianmaierjr/long-haul">here</a>.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Saturday, April 11, 2015</time>
+          </div>
+          <div class="body"><p>The index file in the root directory gets rendered as the homepage. Maybe just take the existing code out of that file and put it into a new page called &quot;Recent Posts.&quot; Then move the content from your About page into that index page (and delete the About page).</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/DanielRoberts95">
+              DanielRoberts95
+            </a>
+            <time>Sunday, April 12, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;ve tried doing that but the problem is that there are two index.html files by default that are used to create the Recent Posts page. There&#39;s one in the root directory and one in the _sites folder. The one in the _sites folder is what actually shows up when I run the command Jekyll serve, but the one in the root folder is used to take what you put in the _posts folder onto the page. I&#39;m new to Jekyll so I&#39;m not really sure why this is, but if you want you can check out the Long-Haul repository and see what I&#39;m talking about <a href="https://github.com/brianmaierjr/long-haul">here</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, April 12, 2015</time>
+          </div>
+          <div class="body"><p>All the content in the _site folder is where Jekyll builds your site. You never edit those files, since that folder&#39;s contents is deleted and regenerated each time you rebuild your site.</p>
+<p>Looking in index.html, this is the code that is getting your recent posts (along with pagination):</p>
+<pre><code> &lt;ul class=&quot;posts noList&quot;&gt;
+          {% for post in paginator.posts %}
+            &lt;li&gt;
+                &lt;span class=&quot;date&quot;&gt;{{ post.date | date: &#39;%B %d, %Y&#39; }}&lt;/span&gt;
+                &lt;h3&gt;&lt;a href=&quot;{{ site.url }}{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;&lt;/h3&gt;
+                &lt;p class=&quot;description&quot;&gt;{% if post.description %}{{ post.description  | strip_html | strip_newlines | truncate: 250 }}{% else %}{{ post.content | strip_html | strip_newlines | truncate: 250 }}{% endif %}&lt;/p&gt;
+            &lt;/li&gt;
+          {% endfor %}
+        &lt;/ul&gt;
+        &lt;!-- Pagination links --&gt;
+        &lt;div class=&quot;pagination&quot;&gt;
+          {% if paginator.previous_page %}
+            &lt;a href=&quot;{{ site.url }}{{ paginator.previous_page_path }}&quot; class=&quot;previous button__outline&quot;&gt;Newer Posts&lt;/a&gt;  
+          {% endif %} 
+          {% if paginator.next_page %}
+            &lt;a href=&quot;{{ site.url }}{{ paginator.next_page_path }}&quot; class=&quot;next button__outline&quot;&gt;Older Posts&lt;/a&gt;
+          {% endif %}
+        &lt;/div&gt;
+</code></pre><p>Just remove this content and replace it with your About information. Create a new page and stick this content in there. See how it works. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/DanielRoberts95">
+              DanielRoberts95
+            </a>
+            <time>Sunday, April 12, 2015</time>
+          </div>
+          <div class="body"><p>While that did work for putting the About page content on the homepage (thank you!) this is what the Blog page looks like for some reason.
+<img src="https://cloud.githubusercontent.com/assets/11403206/7107236/073aa3b2-e114-11e4-9e31-96d64443ed9b.png" alt="atfirst"></p>
+<p>This is what the index.html code looked like originally in the blog.md
+<img src="https://cloud.githubusercontent.com/assets/11403206/7107254/bb3f06be-e114-11e4-93c3-486ced21fb3a.png" alt="originalcode"></p>
+<p>I then changed the indentation of the code (by just pressing backspace in front of a lot of the code) which changed it to this:
+<img src="https://cloud.githubusercontent.com/assets/11403206/7107258/d125ba72-e114-11e4-82f2-75a1c6a862a4.png" alt="fixedindentation"></p>
+<p>Doing so changed the page to this, just making the entirety of the Blog page blank:
+<img src="https://cloud.githubusercontent.com/assets/11403206/7107267/2c9f0ed0-e115-11e4-97ff-df6d9029f425.png" alt="after"></p>
+<p>Thank you so much for all of your help so far by the way @tomjohnson1492 :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, April 12, 2015</time>
+          </div>
+          <div class="body"><p>Markdown files process spacing as syntax (two spaces to the left sets off text as code), so that&#39;s why pasting the code into an md file initially probably set it off as code. you have to remove all the spacing to the left at the start of the first element and the last element. I believe you did that, so I&#39;m not sure why it&#39;s not rendering. I would play around with the spacing a bit more. </p>
+<p>Might be easier to change the file extension from .md to .html for that recent posts file.</p>
+<p><del>(I assume you registered the collection (paginator) in your config file.)</del></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/DanielRoberts95">
+              DanielRoberts95
+            </a>
+            <time>Sunday, April 12, 2015</time>
+          </div>
+          <div class="body"><p>I messed around with the spacing a bit more, here&#39;s what the blog.md file looks like now:
+<img src="https://cloud.githubusercontent.com/assets/11403206/7107378/ae75be10-e118-11e4-8b55-d2e77dad26b9.png" alt="blogmd">
+From what I see the only difference is that it registered the HTML comment as a comment, unfortunately it did not change anything and the Blog page is still blank.</p>
+<p>I tried changing the file extension from .md to .html in the blog file but the page is still blank.</p>
+<p>Here&#39;s a screenshot of my config.yml file if you&#39;re interested.
+<img src="https://cloud.githubusercontent.com/assets/11403206/7107397/4b9bf88a-e119-11e4-9089-1f41764c3b1c.png" alt="config"></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Sunday, April 12, 2015</time>
+          </div>
+          <div class="body"><p>Sorry, I haven&#39;t actually worked with pagination much, so I incorrectly assumed something about a collection that wasn&#39;t the case at all. The paginator reference is a feature of Jekyll for paginating blog posts (e.g., showing 10 per page or something). See <a href="http://jekyllrb.com/docs/pagination/">http://jekyllrb.com/docs/pagination/</a>. See esp. the Enable Pagination section. </p>
+<p>I am not sure how to reconfigure pagination on a page other than the homepage. I would assume it&#39;s possible -- I just don&#39;t know how. Maybe look at another theme to see how it&#39;s done?</p>
+<p>As a short term fix, you could just change the following line in the recent posts code: </p>
+<pre><code>{% for post in paginator.posts %}
+</code></pre><p>to this:</p>
+<pre><code>{% for post in site.posts %}
+</code></pre><p>Then it works. Not sure how you get pagination, though. On my site, for the blog archive, I just point to a page that will list a bunch of old posts:</p>
+<pre><code>&lt;div class=&quot;home-read-more&quot;&gt;
+  &lt;a href=&quot;{{ &quot;/archive&quot; | prepend:site.baseurl }}&quot; class=&quot;btn btn-primary btn-lg&quot;&gt;View All {{ site.posts | size }} Articles →&lt;/a&gt;
+&lt;/div&gt;
+</code></pre><p>As I said, I am primarily working with pages to build out a doc theme, not using Jekyll for a blog (not yet anyway).</p>
+<p>Tom</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/DanielRoberts95">
+              DanielRoberts95
+            </a>
+            <time>Sunday, April 12, 2015</time>
+          </div>
+          <div class="body"><p>It works, thanks! Yeah I&#39;m not sure how to get pagination either, but I will try my best to figure it out. Thank you so much for all of your help! :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jamesonzimmer">
+              jamesonzimmer
+            </a>
+            <time>Sunday, April 12, 2015</time>
+          </div>
+          <div class="body"><p>FYI to my knowledge, pagination only works with files in your &#39;post&#39; folder
+via a &#39;for&#39; liquid loop. Probably you already know this though :-).</p>
+<p>I found the Poole theme (<a href="http://getpoole.com">http://getpoole.com</a>) really useful for figuring
+out proper ways to use pagination. Also you can get endless scroll hooked
+up pretty easy: <a href="https://github.com/tobiasahlin/infinite-jekyll">https://github.com/tobiasahlin/infinite-jekyll</a></p>
+<p>On Mon, Apr 13, 2015 at 5:21 AM, DanielRoberts95 <a href="&#109;&#97;&#x69;&#108;&#116;&#x6f;&#58;&#110;&#x6f;&#116;&#x69;&#x66;&#x69;&#99;&#x61;&#x74;&#x69;&#111;&#x6e;&#115;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#109;">&#110;&#x6f;&#116;&#x69;&#x66;&#x69;&#99;&#x61;&#x74;&#x69;&#111;&#x6e;&#115;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#111;&#109;</a>
+wrote:</p>
+<blockquote>
+<p>It works, thanks! Yeah I&#39;m not sure how to get pagination either, but I
+will try my best to figure it out. Thank you so much for all of your help!
+:)</p>
+<p>—
+Reply to this email directly or view it on GitHub
+<a href="https://github.com/jekyll/jekyll-help/issues/289#issuecomment-92135346">https://github.com/jekyll/jekyll-help/issues/289#issuecomment-92135346</a>.</p>
+</blockquote>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Liquid Exception: Included file not found</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#77</span>
+        </p>
+        <h1>Liquid Exception: Included file not found</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">charliegriefer</a>
+            <time>Thursday, June 19, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi all:</p>
+<p>With the caveat that I&#39;m not a Ruby person, and more of a back-end person in general... I&#39;m trying to broaden my horizons and learn a bit.</p>
+<p>I&#39;ve set up a Jekyll site on Github Pages at <a href="http://charliegriefer.github.io">http://charliegriefer.github.io</a>. I&#39;m using the <a href="https://github.com/mmistakes/minimal-mistakes">Minimal Mistakes theme</a>, which is awesome. Everything was going swimmingly until last night, when I wanted to add TravisCI (another new to me technology) to the mix.</p>
+<p>Everything still builds and works fine locally. But my Travis build failed with the following:</p>
+<blockquote>
+<p>Liquid Exception: Included file &#39;/home/travis/build/charliegriefer/charliegriefer.github.io/_includes/news_item.html&#39; not found in vendor/bundle/ruby/1.9.1/gems/jekyll-1.5.1/site/news/index.html</p>
+</blockquote>
+<p>I&#39;ve &quot;fixed&quot; the issue by adding <code>news_item.html</code> to <code>_includes</code>, but I think we can all agree that this isn&#39;t really the proper fix :)</p>
+<p>I&#39;ve verified that Jekyll on my local machine (OS X Mavericks) is 1.5.1, which I believe is in use on Github Pages. My version of ruby shows as <code>ruby 2.0.0p451 (2014-02-24 revision 45167) [universal.x86_64-darwin13]</code>. I wouldn&#39;t think this would be an issue, even tho Github Pages uses 2.1.1, but it&#39;s the only difference that I can see.</p>
+<p>In a nutshell, the Minimal Mistakes theme already had a Gemfile and gemfile.lock. I modified those as part of getting Travis CI set up. I&#39;m probably not intelligent enough (yet) to be modifying Gemfiles. But I&#39;d imagine that maybe something there went terribly wrong (in spite of the fact that my jekyll build and serve work fine locally).</p>
+<p>I don&#39;t see <em>anywhere</em> in my files where I&#39;d be calling <code>news_item</code>, and it&#39;s driving me nuts.</p>
+<p>Any thoughts/suggestions/advice would be greatly appreciated. If there&#39;s any additional information that I should be providing, please let me know.</p>
+<p>Thanks!
+Charlie</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Friday, June 27, 2014</time>
+          </div>
+          <div class="body"><p>You must exclude the vendor directory from the build. Add to your <code>_config.yml</code>:</p>
+<pre><code>exclude: [vendor]
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Friday, June 27, 2014</time>
+          </div>
+          <div class="body"><p>@penibelst is correct! That should fix your build. Currently working on a CI guide: <a href="https://github.com/jekyll/jekyll/pull/2432">https://github.com/jekyll/jekyll/pull/2432</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

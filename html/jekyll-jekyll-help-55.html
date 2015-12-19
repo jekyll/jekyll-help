@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>ERROR when installing jekyll</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#55</span>
+        </p>
+        <h1>ERROR when installing jekyll</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">Vercryger</a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body">
+            <p>When i trying to install jekyll with &lt;code&gt;$ gem install jekyll&lt;/code&gt; i got this:</p>
+<pre><code>ERROR:  Loading command: install (LoadError)
+    cannot load such file -- zlib
+ERROR:  While executing gem ... (NoMethodError)
+    undefined method `invoke_with_build_args&#39; for nil:NilClass
+</code></pre><p>I have already installed this package:</p>
+<pre><code>
+$ ruby -v
+ruby 2.1.2p95 (2014-05-08 revision 45877) [i686-linux]
+$ gem -v
+2.2.2
+$ sudo update-alternatives --config ruby
+There is only one alternative in link group ruby: /usr/bin/ruby1.9.1
+Nothing to configure.
+$ sudo update-alternatives --config gem
+There is only one alternative in link group gem: /usr/bin/gem1.9.1
+Nothing to configure.
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body"><p>Hi @Vercryger, It seems that <code>zlib</code> is missing... If you are using Ubuntu I believe its name will be <code>zlib1g-dev</code>; try installing it and see if it solves your problem.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Vercryger">
+              Vercryger
+            </a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body"><p>Hi @albertogg, &lt;code&gt;zlib1g-dev&lt;/code&gt; is already installed in the newest version, i don&#39;t understand :/</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body"><p>Did you install it before installing your Rubies?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Vercryger">
+              Vercryger
+            </a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body"><p>Mmm i think no,  should i have to?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m not completely sure of, but I always do, you can try that.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Vercryger">
+              Vercryger
+            </a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body"><p>Great! It&#39;s all working! I followed this steps:
+First i removed all previously installed rubies on my OS.
+And next this:</p>
+<pre><code>sudo apt-get update
+sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties
+
+sudo apt-get install libgdbm-dev libncurses5-dev automake libtool bison libffi-dev
+curl -L https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+echo &quot;source ~/.rvm/scripts/rvm&quot; &gt;&gt; ~/.bashrc
+rvm install 2.1.2
+rvm use 2.1.2 --default
+</code></pre><p>and finally
+&lt;code&gt;gem install jekyll&lt;/code&gt;
+and Bingo!</p>
+<p>Thanks a lot! This thread can be closed.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Sunday, May 25, 2014</time>
+          </div>
+          <div class="body"><p>No problem! glad I could help.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/thomasdola">
+              thomasdola
+            </a>
+            <time>Monday, March 30, 2015</time>
+          </div>
+          <div class="body"><p>how did y remove all previously installed rubies on your OS???
+need help with that... thank y...</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Vercryger">
+              Vercryger
+            </a>
+            <time>Tuesday, March 31, 2015</time>
+          </div>
+          <div class="body"><p>In my case, i did that just removing from my ubuntu synaptic any gem and ruby too. Then i deleted all my gems from RVM, i followed <a href="http://stackoverflow.com/questions/4907668/removing-all-installed-gems-and-starting-over">this guide</a>.
+Remember, you have to have Node previously installed for Jekyll.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

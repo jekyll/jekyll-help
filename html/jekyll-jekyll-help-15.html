@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Accessing un-published posts in a template?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#15</span>
+        </p>
+        <h1>Accessing un-published posts in a template?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">staxmanade</a>
+            <time>Sunday, April 13, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,</p>
+<p>New to Jekyll, but recently ported my blog to Octopress. And sorry if this should be posted over at Octopress instead, but it felt Jekyll related.</p>
+<p>I&#39;m working on a <code>series</code> about porting a blog from BlogSpot/Blogger to Octopress and found <a href="http://realjenius.com/2012/11/03/jekyll-series-list/">this post</a> about creating a series template to live in <code>_includes</code>.</p>
+<p>I&#39;ve since <a href="https://gist.github.com/staxmanade/10601886">modified the template</a> and want access to un-published posts within the template. (or if this can be done through drafts - maybe I just need a tip on how to get them).</p>
+<p>My end goal would be to get the following template to work.</p>
+<p><a href="https://gist.github.com/staxmanade/10601886">Series Gist Template</a></p>
+<blockquote>
+<p>Notice how I&#39;m trying to use <code>post.published == false</code> to output <code>(coming soon)</code>...</p>
+</blockquote>
+<p>This works when I use <code>rake generate; rake preview</code> but the (coming soon) posts don&#39;t show up immediately. There&#39;s some sort of delay before this gets generated, and I presume this is related to the <code>preview</code> rake task in Octopress (but haven&#39;t dug in enough). After some time if I refresh it will display what I want, but I&#39;m pretty sure <code>rake generate; rake deploy</code> won&#39;t produce the same thing.</p>
+<h3 id="is-it-possible-to-access-un-published-posts-or-possibly-drafts-to-accomplish-something-like-this-">Is it possible to access un-published posts or possibly drafts - to accomplish something like this?</h3>
+<hr>
+<p>This article is <strong>Part 2</strong> of <strong>5</strong> in a series about <strong>something awesome.</strong></p>
+<ul>
+<li>Part 1 - something awesome - <a href="http://example.com">Introduction</a></li>
+<li><strong>Part 2 - something awesome - (current) Step 1</strong></li>
+<li>Part 3 - something awesome - <a href="http://example.com">Step 2</a></li>
+<li>Part 4 - something awesome - (coming soon) Step 3</li>
+<li>Part 5 - something awesome - (coming soon) Wrapping up</li>
+</ul>
+<p>Over on Jekyll/Jekyll#2226 @parkr</p>
+<blockquote>
+<p>Presently, only posts which are published are added to the site.posts array, so this isn&#39;t possible.</p>
+</blockquote>
+<p>Was hoping anyone with experience could light the way to an alternative approach to accomplish the desires output.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, April 13, 2014</time>
+          </div>
+          <div class="body"><p>Consider using a different YAML front-matter item:</p>
+<h2 id="in-your-post-">In your post:</h2>
+<pre><code class="lang-yaml">---
+title: My upcoming post
+written: false
+permalink: THIS-CRAZY-UNGUESSABLE-LINK-HAHAHAHOIAENFOEA
+---
+
+This post is unwritten
+</code></pre>
+<h2 id="now-list-the-posts-but-showing-only-those-you-want-to-show-">Now list the posts, but showing only those you want to show:</h2>
+<pre><code class="lang-html">&lt;ul&gt;
+{% for post in site.posts %}
+  &lt;li&gt;
+  {% if post.written %}
+    &lt;a href=&quot;{{ post.url }}&quot;&gt;{{ post.title }}&lt;/a&gt;
+  {% else %}
+    {{ post.title }} (coming soon)
+  {% endif %}
+  &lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/staxmanade">
+              staxmanade
+            </a>
+            <time>Sunday, April 13, 2014</time>
+          </div>
+          <div class="body"><p>Thanks for the info - that could work at the post level, but I have the following issues with it.</p>
+<ol>
+<li>The series component allows me to just include <code>{% include series.html %}</code> anywhere and it generates the series</li>
+<li>I would rather not duplicate code like this within blog-post content if possible. Would love to find a way to abstract out the <code>series</code> concept from the posts...</li>
+<li>I&#39;m not sure how to get what I want with that example and not have the future posts arrive in the <code>rss</code> feed and the RecentPosts section on the right of the page.</li>
+</ol>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, April 13, 2014</time>
+          </div>
+          <div class="body"><p>You&#39;ll like collections: <a href="https://github.com/jekyll/jekyll/pull/2199">https://github.com/jekyll/jekyll/pull/2199</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/staxmanade">
+              staxmanade
+            </a>
+            <time>Sunday, April 13, 2014</time>
+          </div>
+          <div class="body"><p>Thanks, I&#39;ll be patient and wait to take a look at this.</p>
+<p>For now I may just go with what I have and not worry about showing the up-and-coming posts. Since the tool will automatically re-generate the series section anyway.</p>
+<p>Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, April 29, 2014</time>
+          </div>
+          <div class="body"><p>Closing this out. I think this is a fantastic use case for collections, though. We should write a tutorial on how to do this once 2.0 is finally released.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

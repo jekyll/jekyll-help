@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Can I create a association between two posts (e.g. for multilingual posts)?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#222</span>
+        </p>
+        <h1>Can I create a association between two posts (e.g. for multilingual posts)?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">kleinfreund</a>
+            <time>Thursday, January 01, 2015</time>
+          </div>
+          <div class="body">
+            <p>I have a bilingual site. For each post, I like to link to its counterpart. Currently, there is no logical connection between the two posts.</p>
+<p>The German posts (default) reside in <code>/_posts</code> while the English posts are located in <code>/en/_posts</code>. The category <code>en</code> which is automatically created by having the posts inside <code>/en</code> is used for permalinks.</p>
+<p><strong>My question is:</strong> Is there a way I can <em>entangle</em> two posts (German and English) and create the links to the respective counterpart without writing them directly in my posts? What would be the strategy for that?</p>
+<p><em>(I let Pages do the build, so plugins won&#39;t work. Also, I don&#39;t want working code, just a small entry point.)</em></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mattr-">
+              mattr-
+            </a>
+            <time>Friday, January 02, 2015</time>
+          </div>
+          <div class="body"><p>There&#39;s not really any way to do this currently. It&#39;s up to the site creator to determine how they want to handle multilingual sites and how they link their posts together.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>As @mattr- said, there isn&#39;t anything built in, but you could create a loop in your posts layout which looks for the translated counterpart and outputs some HTML if it finds something.</p>
+<p>Hope this helps.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

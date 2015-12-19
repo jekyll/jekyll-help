@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Correct way to add a collection to Site</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#71</span>
+        </p>
+        <h1>Correct way to add a collection to Site</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">usbsnowcrash</a>
+            <time>Thursday, June 12, 2014</time>
+          </div>
+          <div class="body">
+            <p>I am writing a Jekyll plugin that will fetch your latest entries from your social feeds for display on a page.  For an example look at this blog <a href="http://www.codersblock.com">here</a></p>
+<p>I have my superfeed.rb file in the plugins directory and I am attempting to add a feed_items property to the Site object.</p>
+<pre><code class="lang-Ruby">module Jekyll
+#Monkey patching site
+  class Site
+    attr_accessor :feed
+
+    def feed_items
+      @feed
+    end
+  end
+#Here I generate the social feed
+  class FeedGenerator &lt; Generator
+    def generate(site)
+      #Lots of things happened here to get all_items generated
+      site.feed = all_items
+    end
+  end
+#This is the type of class contained in all_items above 
+  class FeedItem
+    extend Forwardable
+    attr_accessor :icon, :source_name, :published, :title, :title_link, :snippet, :image_preview_uri
+
+    def initialize(options = {})
+      @options = OpenStruct.new(options)
+      self.class.instance_eval do
+        def_delegators :@options, *options.keys
+      end
+    end
+
+    def to_liquid
+      {
+        &#39;icon&#39;              =&gt;  icon,
+        &#39;source_name&#39;       =&gt;  source_name,
+        &#39;published&#39;         =&gt;  published,
+        &#39;title&#39;             =&gt;  title,
+        &#39;title_link&#39;        =&gt;  title_link,
+        &#39;snippet&#39;           =&gt;  snippet,
+        &#39;image_preview_uri&#39; =&gt;  image_preview_uri
+      }
+    end
+  end
+</code></pre>
+<p>I am then trying to consume this work in one of my pages like so.</p>
+<pre><code class="lang-HTML">{% for item in site.feed_items %}
+&lt;hr/&gt;
+&lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;small-2 columns&quot;&gt;
+        &lt;p&gt;
+            &lt;a href=&quot;/blog&quot;&gt;&lt;img src=&quot;{{ item.icon }}&quot;&gt;&lt;/a&gt;
+        &lt;/p&gt;
+        {{ item.published | date_to_string }}
+     &lt;/div&gt;
+    &lt;div class=&quot;small-10 columns&quot;&gt;
+        &lt;p&gt;
+            &lt;strong&gt;&lt;a href=&quot;{{ item.title_url }}&quot;&gt;{{ item.title }}&lt;/a&gt;:&lt;/strong&gt;
+            &lt;br&gt;
+            {{ item.snippet | strip_html }}
+            &lt;a href=&quot;{{ item.title_url }}&quot;&gt;Read full post &amp;raquo;&lt;/a&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+{% endfor %}
+</code></pre>
+<p>The problem I am having is that nothing outputs...it seems as if site.feed_items is returning nothing.  Inside of my generator I set a breakpoint and I can see that at the end of my generate method my site object has the collection.  So my question is, is this the right way to do this?  Should I be patching Site?  I am pretty new to Jekyll and I&#39;ve been having a hard time finding examples doing something like this.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>Not sure if this will help, but here is how I did it. Note that my _config.yml file has the <a href="http://jekyllrb.com/docs/collections/#step-3-optionally-render-your-collections-documents-into-independent-files">collections output set to true</a>.</p>
+<p>_config.yml</p>
+<pre><code>collections:
+  kb:
+    output: true
+</code></pre><p>KB Page</p>
+<pre><code>{% for each in site.kb %}
+  &lt;li&gt;&lt;a href=&quot;{{ each.url }}&quot;&gt;{{ each.title }}&lt;/a&gt;&lt;/li&gt;
+{% endfor %}
+</code></pre><p>Reference: <a href="https://github.com/AJAlabs/jekyllkb/blob/master/_kb/index.html">JekyllKB</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

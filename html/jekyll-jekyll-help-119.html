@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How do I prevent {{ page.url }} returning a .html extension on GHP?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#119</span>
+        </p>
+        <h1>How do I prevent {{ page.url }} returning a .html extension on GHP?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">barryclark</a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body">
+            <p>When I use {{ page.url }} locally it returns /page-name/. When I use it {{ page.url }} on a GitHub Pages hosted site it returns /page-name.html. </p>
+<p>How can I get the /page-name/ format on a GitHub Pages hosted site?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/barryclark">
+              barryclark
+            </a>
+            <time>Monday, August 11, 2014</time>
+          </div>
+          <div class="body"><p>Looks like I should probably use {{ page.id }} instead?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Try including <code>permalink: pretty</code> in your <code>_config.yml</code> file. That is what I have on my site and it is doing exactly what you&#39;re asking for.</p>
+<p>There&#39;s a fancy doc page about <a href="http://jekyllrb.com/docs/permalinks/">permalinks</a> that might be relevant to your interests, too.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

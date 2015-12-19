@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How to get a document&#x27;s (page&#x27;s) collection </title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#52</span>
+        </p>
+        <h1>How to get a document&#x27;s (page&#x27;s) collection </h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">budparr</a>
+            <time>Thursday, May 22, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m not seeing anything in the docs or code on this. </p>
+<p>I&#39;d like to do something like...<code>{{page.collection_label}}  or {{page.collection_name}}</code> to output the collection of the current page&#39;s document. </p>
+<p>Essentially, I want to accomplish two things: 1) Put a label for the collection at the top of the page and 2) create a menu of other items in the collection.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Thursday, May 22, 2014</time>
+          </div>
+          <div class="body"><p>We&#39;d add this to <code>Document#to_liquid</code>. I&#39;m cool with this addition.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

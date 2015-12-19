@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Integrate Premailer with Jekyll</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#285</span>
+        </p>
+        <h1>Integrate Premailer with Jekyll</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">alexphelps</a>
+            <time>Tuesday, March 24, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi, I&#39;m working on a project that has both static web pages and also HTML Email templates. </p>
+<p>As you probably know, HTML Emails require all CSS to be inlined which is a huge pain to manage. Most people use Premailer to handle this automatically - <a href="https://github.com/premailer/premailer">https://github.com/premailer/premailer</a></p>
+<p>How would I go about using premailer with Jekyll for a certain layout?</p>
+<p>Would it be possible to use premailer via a plugin?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mattr-">
+              mattr-
+            </a>
+            <time>Wednesday, March 25, 2015</time>
+          </div>
+          <div class="body"><p>I can&#39;t answer your question about using premailer with Jekyll for a
+certain layout, but I would imagine that it would be possible to use
+premailer via a plugin. However, a lot of that will depend on how premailer
+works, so you&#39;d have to write the plugin and see for yourself how the two
+would work together.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alexphelps">
+              alexphelps
+            </a>
+            <time>Wednesday, March 25, 2015</time>
+          </div>
+          <div class="body"><p>Thanks Matt. I got a little help on stackoverflow here - <a href="http://stackoverflow.com/questions/29246991/premailer-with-jekyll">http://stackoverflow.com/questions/29246991/premailer-with-jekyll</a></p>
+<p>I&#39;m testing rewriting the code as a premailer plugin like below, which is working properly. Hopefully this will help anyone else trying to accomplish the same thing.</p>
+<pre><code class="lang-ruby">
+require &#39;premailer&#39;
+
+module Jekyll
+  class Site
+
+    #declare this plugin as safe 
+    safe true
+    # create an alias for the overriden site::write method
+    alias orig_write write
+
+    # we override the site::write method
+    def write
+
+      # first call the overriden write method,
+      # in order to be sure to find generated css
+      orig_write
+
+      # layout name we are looking for in pages/post front matter
+      # this can come from site config
+      @layout   = &#39;email-base-test&#39;
+
+      # this the css that will be inlined
+      # this can come from site config
+      @css_path = &#39;assets/css/email.css&#39;
+
+      # look for generated css file content
+      @cssPages = pages.select{ |page|
+        page.destination(dest).include? @css_path
+      }
+
+      # look again in pages and posts
+      # to generate inlinedcontent with premailer
+      inlinedcontent = [posts, pages].flatten.select{ |page_or_post|
+        page_or_post.data[&#39;layout&#39;] == @layout
+      }
+
+      inlinedcontent.each do |inlinedcontent|
+
+        inlinedcontent.output = Premailer.new(
+            inlinedcontent.output,
+            {
+                # declare that we pass page html as a string not an url
+                :with_html_string =&gt; true,
+                # also pass css content as a string
+                :css_string       =&gt; @cssPages.join,
+            }
+        ).to_inline_css;
+
+        # rewrite the newsletter with inlined css
+        inlinedcontent.write(dest)
+
+      end
+    end
+  end
+end
+</code></pre>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

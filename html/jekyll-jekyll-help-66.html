@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Trouble with permalinks - :title and :categories not being expanded correctly</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#66</span>
+        </p>
+        <h1>Trouble with permalinks - :title and :categories not being expanded correctly</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">FernandoBasso</a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body">
+            <pre><code>--&gt; jekyll build --trace
+Configuration file: D:/Fernando/prog/fernandobasso.github.io/_config.yml
+            Source: D:/Fernando/prog/fernandobasso.github.io
+       Destination: D:/Fernando/prog/fernandobasso.github.io/_site
+      Generating...
+C:/Ruby200-x64/lib/ruby/2.0.0/fileutils.rb:245:in `mkdir&#39;: Invalid argument - D:/Fernando/prog/fernandobasso.github.io/_site/:title (Errno::EINVAL)
+        from C:/Ruby200-x64/lib/ruby/2.0.0/fileutils.rb:245:in `fu_mkdir&#39;
+        from C:/Ruby200-x64/lib/ruby/2.0.0/fileutils.rb:219:in `block (2 levels) in mkdir_p&#39;
+        from C:/Ruby200-x64/lib/ruby/2.0.0/fileutils.rb:217:in `reverse_each&#39;
+        from C:/Ruby200-x64/lib/ruby/2.0.0/fileutils.rb:217:in `block in mkdir_p&#39;
+        from C:/Ruby200-x64/lib/ruby/2.0.0/fileutils.rb:203:in `each&#39;
+        from C:/Ruby200-x64/lib/ruby/2.0.0/fileutils.rb:203:in `mkdir_p&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/convertible.rb:186:in `write&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb:262:in `block in write&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb:420:in `block (2 levels) in each_site_file&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb:419:in `each&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb:419:in `block in each_site_file&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb:418:in `each&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb:418:in `each_site_file&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb:262:in `write&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/site.rb:45:in `process&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/command.rb:43:in `process_site&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/commands/build.rb:46:in `build&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/commands/build.rb:30:in `process&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/lib/jekyll/commands/build.rb:17:in `block (2 levels) in init_with_program&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `call&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `block in execute&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `each&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `execute&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary/program.rb:35:in `go&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/mercenary-0.3.3/lib/mercenary.rb:22:in `program&#39;
+        from C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.0.3/bin/jekyll:18:in `&lt;top (required)&gt;&#39;
+        from C:/Ruby200-x64/bin/jekyll:23:in `load&#39;
+        from C:/Ruby200-x64/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre><p>That happens when I try to set permalinks with <code>:title</code> or <code>:categories</code> for instance. It seems jekyll is trying to literally run <code>mkdir</code> on those literal strings.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m clueless here. How did you installed your Ruby?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>Neither for <a href="https://github.com/jekyll/jekyll/blob/master/lib/jekyll/page.rb#L92-L98"><code>Page</code></a>, <a href="https://github.com/jekyll/jekyll/blob/master/lib/jekyll/post.rb#L218-L232"><code>Post</code></a>, nor <a href="https://github.com/jekyll/jekyll/blob/master/lib/jekyll/document.rb#L110-L116"><code>Document</code></a> does <code>:title</code> exist. Only <code>Post</code>s can have categories.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Wednesday, June 04, 2014</time>
+          </div>
+          <div class="body"><p>Via IRC discussion(s), <a href="https://github.com/jekyll/jekyll/issues/2475">https://github.com/jekyll/jekyll/issues/2475</a> became relevant.</p>
+<p>This thread can probably be closed. See <a href="https://github.com/jekyll/jekyll/issues/2475">https://github.com/jekyll/jekyll/issues/2475</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>:boom: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll Pagination</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#213</span>
+        </p>
+        <h1>Jekyll Pagination</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">juicymark</a>
+            <time>Thursday, December 18, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi</p>
+<p>I am currently transferring a blog from wordpress to jekyll  for a friend of mine and need some help with how to create pagination links for the blog posts.</p>
+<p>I need the pagination to show first &amp; last Pages along with a selection of the pages in between the first and last pages</p>
+<p>eg..</p>
+<p>1 2 3 4 5 ... 15
+1 2 3 4 5 6 ... 15
+1 ... 7 8 9 10 11 ... 15 </p>
+<p>Does anyone on here know how i can achieve this without the use of a plugin??</p>
+<p>Regards</p>
+<p>Mark</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, January 14, 2015</time>
+          </div>
+          <div class="body"><p>I believe @rodaine managed this: <a href="https://github.com/rodaine/rodaine.github.io/tree/master/_includes/pagination">https://github.com/rodaine/rodaine.github.io/tree/master/_includes/pagination</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rodaine">
+              rodaine
+            </a>
+            <time>Wednesday, January 14, 2015</time>
+          </div>
+          <div class="body"><p>There is plenty of room for improvement though :)</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

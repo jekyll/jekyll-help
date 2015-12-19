@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>site.tags list omits page title</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#57</span>
+        </p>
+        <h1>site.tags list omits page title</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">hamishwillee</a>
+            <time>Thursday, May 29, 2014</time>
+          </div>
+          <div class="body">
+            <p>If you iterate through site.tags in a for loop the first value of the array is the tag, and the second is the content of all the pages, but not including the headings or any separators between that content. Effectively it just looks like a big mess. </p>
+<p>The functionality would be much more useful if the first item was the tag, and the second was a list of page objects with the tag - so we could get title and any other values defined in the page itself.</p>
+<p>This can of course be emulated by iterating the pages, but it is a bit more painful that it needs to be.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, July 06, 2014</time>
+          </div>
+          <div class="body"><p>@hamishwillee Hey there. Sorry for taking so long to respond. This is a tricky one, since you have to deal with iterating over a Liquid hash. There really isn&#39;t any good documentation on this, unfortunately, but <a href="http://stackoverflow.com/questions/8206869/iterate-over-hashes-in-liquid-templates">this Stack Overflow answer</a> is probably the best at explaining those pesky punks:</p>
+<blockquote>
+<p>When you iterate over a hash using a variable called <code>hash</code>, <code>hash[0]</code> contains the key and <code>hash[1]</code> contains the value on each iteration.</p>
+</blockquote>
+<p>Here&#39;s an implementation that might work for you:</p>
+<pre><code class="lang-html">&lt;ul&gt;
+{% for tag in site.tags %}
+  &lt;li&gt;&lt;span class=&quot;tag&quot;&gt;{{ tag[0] }}&lt;/span&gt;
+    &lt;ul&gt;
+      {% for p in tag[1] %}
+      &lt;li&gt;&lt;a href=&quot;{{ p.url }}&quot;&gt;{{ p.title }}&lt;/a&gt;&lt;/li&gt;
+      {% endfor %}
+    &lt;/ul&gt;
+  &lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</code></pre>
+<p>Closing this issue for now, but if you have any questions, feel free to add a comment!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/hamishwillee">
+              hamishwillee
+            </a>
+            <time>Sunday, July 06, 2014</time>
+          </div>
+          <div class="body"><p>Hi Troy, </p>
+<p>Thanks for that. Are you saying that tag[1] is an iterable list of the pages - not just the page dump as I thought? Interesting! That certainly should work, though I didn&#39;t see the title in the page dump. </p>
+<p>The way I solved this problem was to iterate through the tags then iterate the pages. Your solution is better, and I will try it at some point!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, July 06, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Are you saying that tag[1] is an iterable list of the pages - not just the page dump as I thought?</p>
+</blockquote>
+<p>Yes, exactly! If you have two tags (&quot;food&quot; and &quot;drink&quot;) and a few posts that use those tags, the <code>site.tags</code> hash would look something like this:</p>
+<pre><code>[&#39;food&#39;] =&gt; list(
+  Post,
+  Post
+),
+[&#39;drink&#39;] =&gt; list(
+  Post
+)
+</code></pre><p>In this example, when you iterate on <code>site.tags</code>, the first iteration will receive the <code>food</code> item. If your iterator variable is <code>tag</code> (e.g. <code>for tag in site.tags</code>), then <code>tag[0]</code> would be &quot;food&quot; and <code>tag[1]</code> would be a list of Posts.</p>
+<p>Iterating on that list of Posts allows you to do the same kind of things you would normally do inside of a post&#39;s layout. I used <code>for p in tag[1]</code>, so doing stuff like <code>{{ p.url }}</code> outputs the URL for that post, <code>{{ p.title }}</code> outputs the title, and so on.</p>
+<hr>
+<p>The way Liquid handles outputting hash objects is a little wonky, imo. Experiment with it a little bit by outputting the <code>site.tags</code> hash directly onto a page somewhere (using <code>{{ site.tags }}</code>).</p>
+<p>You&#39;ll see something that looks like: <code>{&quot;food&quot;=&gt;[, ], &quot;drink&quot;=&gt;[]}</code>. Unfortunately, Jekyll doesn&#39;t have a way to represent a Post in a list like this, so the values in the list are a vasty nothingness. That said, you know that there is at least something inside that list, otherwise the key for that tag wouldn&#39;t be there.</p>
+<hr>
+<p>Experimentation goes a long way when trying to understand hashes in Liquid. Try putting this in your front-matter:</p>
+<pre><code class="lang-yaml">hash:
+  hello: [&#39;world&#39;, &#39;earth&#39;, &#39;sunshine&#39;]
+  ahoy: mateys
+</code></pre>
+<p>If you just output the <code>hash</code> value on that page with <code>{{ hash }}</code>, it returns with:</p>
+<blockquote>
+<p>{&quot;hello&quot;=&gt;[&quot;world&quot;, &quot;earth&quot;, &quot;sunshine&quot;], &quot;ahoy&quot;=&gt;&quot;mateys&quot;}</p>
+</blockquote>
+<p>Reasonable enough, right? But when you try to loop on that hash using Liquid, like so...</p>
+<pre><code class="lang-html">{% for h in page.hash %}
+&lt;div&gt;{{ h }}&lt;/div&gt;
+{% endfor %}
+</code></pre>
+<p>...you wind up with this:</p>
+<blockquote>
+<p>helloworldearthsunshine
+ahoymateys</p>
+</blockquote>
+<p>As you can see, the hash key and the value are all jumbled together, and even the values of the list in the first item get squished. In order to make sense of these, you need to use <code>val[0]</code> and <code>val[1]</code>.</p>
+<p>Here&#39;s some example code of how to get this looking pretty (I added some additional spaces to show loop nesting):</p>
+<pre><code class="lang-html">&lt;dl&gt;
+  {% for h in page.hash %}
+    &lt;dt&gt;{{ h[0] }}&lt;/dt&gt;
+    {% for i in h[1] %}
+      &lt;dd&gt;{{ i }}&lt;/dd&gt;
+    {% endfor %}
+  {% endfor %}
+&lt;/dl&gt;
+</code></pre>
+<p>When rendered by a browser, here&#39;s what it looks like:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1420926/3491677/80e09430-0599-11e4-9025-8e103eb891d9.png" alt="screen shot 2014-07-07 at 12 40 07 am"></p>
+<hr>
+<p>I&#39;ll admit, I may have gone a little overkill answering this question. However, dealing with hashes was one of the biggest pains in my ass when I started using Jekyll. Hopefully this will serve some good for folks who are getting into it and having the same trouble I did.</p>
+<p>If you have any other questions, feel free to respond here! I&#39;ll do my best to help.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Trying to install RVM on OSX 10.9.2</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#33</span>
+        </p>
+        <h1>Trying to install RVM on OSX 10.9.2</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">pathawks</a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body">
+            <p>I know this isn&#39;t specifically a Jekyll issue, but I cannot get to the point where I can even install Jekyll.</p>
+<p><strong>rvm install ruby-2.0.0-p451</strong></p>
+<pre><code>Searching for binary rubies, this might take some time.
+Found remote file https://rvm.io/binaries/osx/10.9/x86_64/ruby-2.0.0-p451.tar.bz2
+Checking requirements for osx.
+Installing requirements for osx.
+Updating system....
+Installing required packages: libksba.....
+Error running &#39;requirements_osx_brew_libs_install libksba&#39;,
+showing last 15 lines of /Users/Pat/.rvm/log/1399438313_ruby-2.0.0-p451/package_install_libksba.log
+++ case &quot;$1&quot; in
+++ [[ -t 1 ]]
+++ return 1
+++ printf %b &#39;There were package installation errors, make sure to read the log.
+
+Try `brew tap --repair` and make sure `brew doctor` looks reasonable.
+
+Check Homebrew requirements https://github.com/mxcl/homebrew/wiki/Installation\n&#39;
+There were package installation errors, make sure to read the log.
+
+Try `brew tap --repair` and make sure `brew doctor` looks reasonable.
+
+Check Homebrew requirements https://github.com/mxcl/homebrew/wiki/Installation
+++ case &quot;$_system_version&quot; in
+++ return 1
+Requirements installation failed with status: 1.
+</code></pre><p><strong>brew install libksba</strong></p>
+<pre><code>Warning: A newer Command Line Tools release is available
+Update them from Software Update in the App Store.
+==&gt; Downloading ftp://ftp.gnupg.org/gcrypt/libksba/libksba-1.3.0.tar.bz2
+Already downloaded: /Library/Caches/Homebrew/libksba-1.3.0.tar.bz2
+==&gt; ./configure --prefix=/usr/local/Cellar/libksba/1.3.0
+checking for clang option to accept ISO C89... (cached) unsupported
+checking dependency style of clang... (cached) none
+checking how to run the C preprocessor... clang -E
+checking whether clang and cc understand -c and -o together... yes
+configure: error: No C-89 compiler found
+Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+
+READ THIS: https://github.com/Homebrew/homebrew/wiki/troubleshooting
+</code></pre><p><strong>brew doctor</strong></p>
+<pre><code>Warning: A newer Command Line Tools release is available
+Update them from Software Update in the App Store.
+</code></pre><p><strong>xcode-select --install</strong></p>
+<pre><code>Can&#39;t install the software because it is not currently available from the Software Update server.
+</code></pre><p><strong>xcode-select -p</strong></p>
+<pre><code>/Applications/Xcode.app/Contents/Developer
+</code></pre><p><strong>gcc -v</strong></p>
+<pre><code>Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 5.1 (clang-503.0.40) (based on LLVM 3.4svn)
+Target: x86_64-apple-darwin13.1.0
+Thread model: posix
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>Hi @pathawks, Did you tried checking the App Store to see if there was an update? I&#39;m up to date and I have the same version of <code>gcc -v</code>. Also did you <code>brew update</code> before installing <code>libksba</code>? I&#39;m not a rvm guy so I don&#39;t know much about it.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pathawks">
+              pathawks
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>I just installed Xcode today.
+Yes, I tried <code>brew update</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, May 06, 2014</time>
+          </div>
+          <div class="body"><p>Do you have gcc4.2, from the pre-LLVM days?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pathawks">
+              pathawks
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Do you have gcc4.2, from the pre-LLVM days?</p>
+</blockquote>
+<p>Perhaps. How can I tell / what can I do about that?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><p>Can you run <code>gcc-4.2 -v</code> successfully?</p>
+<p>If not, run <code>brew install apple-gcc42</code> :smiley: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pathawks">
+              pathawks
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Can you run <code>gcc-4.2 -v</code> successfully?</p>
+</blockquote>
+<pre><code>Using built-in specs.
+Target: i686-apple-darwin11
+Configured with: /Volumes/Media/Builds/gcc-5666.3/build/obj/src/configure --disable-checking --prefix=/usr --mandir=/share/man --enable-languages=c,objc,c++,obj-c++,fortran --program-transform-name=/^[cg][^.-]*$/s/$/-4.2/ --with-slibdir=/usr/lib --build=i686-apple-darwin11 --program-prefix=i686-apple-darwin11- --host=x86_64-apple-darwin11 --target=i686-apple-darwin11 --with-gxx-include-dir=/include/c++/4.2.1
+Thread model: posix
+gcc version 4.2.1 (Apple Inc. build 5666) (dot 3)
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><pre><code class="lang-text">configure: error: No C-89 compiler found
+</code></pre>
+<p>That&#39;s the problem installing <code>libksba</code>. Did you find anything via google for that?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pathawks">
+              pathawks
+            </a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body"><p>Google is remarkably unhelpful in this case.</p>
+<p>A search for <a href="https://www.google.com/#q=%22configure%3A+error%3A+No+C-89+compiler+found%22">&quot;<em>configure:&nbsp;error:&nbsp;No&nbsp;C-89&nbsp;compiler&nbsp;found</em>&quot;</a> returns <strong>zero</strong> results, while <a href="https://www.google.com/#q=%22No+C-89+compiler+found%22">&quot;<em>No&nbsp;C-89&nbsp;compiler&nbsp;found</em>&quot;</a> just gets me pages of <code>configure.ac</code> files.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pathawks">
+              pathawks
+            </a>
+            <time>Thursday, May 08, 2014</time>
+          </div>
+          <div class="body"><p>Wiped laptop clean. Did a fresh install of OS X 10.9.
+Everything works like a champ now.</p>
+<p>I hadn&#39;t done a fresh install on this laptop for 6 years, so who knows what garbage was getting in the way.</p>
+<p>There I fixed it.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

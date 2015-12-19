@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Theme settings in config or data?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#21</span>
+        </p>
+        <h1>Theme settings in config or data?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">penibelst</a>
+            <time>Monday, April 21, 2014</time>
+          </div>
+          <div class="body">
+            <p>I write a customizable theme for Jekyll. Call it <code>theme</code>. I see two places where the user can place her settings:</p>
+<ol>
+<li><p><code>_config.yml</code></p>
+<pre><code class="lang-yml"> theme:
+   option1: value1
+   option2: value2
+</code></pre>
+<p> Then I access the settings via <code>site.theme</code>.</p>
+</li>
+<li><p><code>_data/theme.yml</code></p>
+<pre><code class="lang-yml"> option1: value1
+ option2: value2
+</code></pre>
+<p> Then I access the settings via <code>site.data.theme</code>.</p>
+</li>
+</ol>
+<p>Which one is better and why?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Monday, April 21, 2014</time>
+          </div>
+          <div class="body"><p>For my plugins I&#39;ve been favouring option #2, simply because it&#39;s
+segregated. It&#39;s easier to ask users for their _data/config.yml file and
+get just the relevant settings. It&#39;s also an organisational tool. Just with
+jekyll plus a few other settings, my _settings.yml file is getting quite
+long as it is.</p>
+<p>On 22 April 2014 06:24, Anatol Broder <a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#x6e;&#x6f;&#116;&#105;&#x66;&#105;&#x63;&#x61;&#116;&#x69;&#111;&#x6e;&#x73;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#x6e;&#x6f;&#116;&#105;&#x66;&#105;&#x63;&#x61;&#116;&#x69;&#111;&#x6e;&#x73;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#x63;&#x6f;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>I write a customizable theme for Jekyll. Call it theme. I see two places
+where the user can place her settings:</p>
+<p>   1.</p>
+<p>   _config.yml</p>
+<p>   theme:
+     option1: value1
+     option2: value2</p>
+<p>   Then I access the settings via site.theme.
+    2.</p>
+<p>   _data/theme.yml</p>
+<p>   option1: value1option2: value2</p>
+<p>   Then I access the settings via site.data.theme.</p>
+<p>Which one is better and why?</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/help/issues/21">https://github.com/jekyll/help/issues/21</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, April 21, 2014</time>
+          </div>
+          <div class="body"><p>I would say <code>_config.yml</code>, since you&#39;re configuring the theme. Use data for real datasets like <a href="https://github.com/github/government.github.com/blob/gh-pages/_data/organizations.yml">government organizations that use GitHub</a>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, April 21, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m bit more inclined to the <code>_config.yml</code>; both ways are good and functionally the same, but those options seems to be more like configuration settings.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Monday, April 21, 2014</time>
+          </div>
+          <div class="body"><p>I use _data/settings.yaml for anything I want to expose to non-technical people, and config for everything else. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, April 22, 2014</time>
+          </div>
+          <div class="body"><p>Thank you for opinions. I will use <code>_config.yml</code> because:</p>
+<ul>
+<li>the file already exists in every installation</li>
+<li><code>_data</code> should contain user content only</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll &amp; JavaScript Templates</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#187</span>
+        </p>
+        <h1>Jekyll &amp; JavaScript Templates</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">jcanelis</a>
+            <time>Thursday, November 06, 2014</time>
+          </div>
+          <div class="body">
+            <p>How can I use JavaScript templating in a Jekyll site? (Angular.js, Handlebars.js, etc.) </p>
+<p>The {{ double brackets }} don&#39;t work because the Liquid template uses them.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, November 06, 2014</time>
+          </div>
+          <div class="body"><p>You can use the <code>{% raw %}</code> tag to prevent Liquid from parsing stuff. Like this:</p>
+<pre><code class="lang-html">&lt;span&gt;You have {% raw %}{{ unread_count }}{% endraw %} unread messages&lt;/span&gt;
+</code></pre>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

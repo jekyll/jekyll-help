@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>[question] Example of Jekyll site using bower and bootstrap-sass?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#82</span>
+        </p>
+        <h1>[question] Example of Jekyll site using bower and bootstrap-sass?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ornamentist</a>
+            <time>Saturday, June 21, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m looking for example Jekyll sites that use (official) bootstrap-sass, preferably managed with bower. I figure there must be some idiomatic ways of using these kind of external dependencies with Jekyll.</p>
+<p>Thanks!</p>
+<p>Stu   </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, June 23, 2014</time>
+          </div>
+          <div class="body"><p>There&#39;s nothing inherently special about using Bower or other external dependencies in a Jekyll site. It does make hosting with GitHub Pages a bit more complicated, since you&#39;d have to check in the stuff that Bower pulls down into (at least the) <code>gh-pages</code> branch.</p>
+<p>Are there any specific questions you have about using Bower or others with Jekyll? We&#39;d love to help!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ornamentist">
+              ornamentist
+            </a>
+            <time>Monday, June 23, 2014</time>
+          </div>
+          <div class="body"><p>Thanks for responding--much appreciated. I can see there&#39;s a world of very useful external dependencies for Jekyll sites and I&#39;m wondering whether the Jekyll community has converged at all on best practices for managing these dependencies?</p>
+<p>For example, use of Bower .vs. direct inclusion of frameworks like Bootstrap and pragmatic techniques for organizing Jekyll Git repositories with multiple external dependencies. There may be exemplar Jekyll sites that do this kind of thing well?</p>
+<p>Thanks!</p>
+<p>Stu</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, June 23, 2014</time>
+          </div>
+          <div class="body"><p>There aren&#39;t any &quot;best practices&quot; that I know of that are specific to Jekyll. I guess the advice I would give you is to use the best practices for each tool you&#39;re inclined to use. For things like Bower, you&#39;ll have to make choices about how you want to deploy your site with regards to the dependencies. Using Grunt or Gulp to build/compress/move source files would be a good place to start, but it would definitely be tricky with GitHub Pages.</p>
+<p>All of that said, it&#39;s certainly possible, and would probably be a fun proof-of-concept project.</p>
+<p>I can envision a system that includes a Jenkins rig for continuous delivery. Include scripts for Jenkins that deploy run tests and then deploys a subtree to the <code>gh-pages</code> branch or something like that.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ornamentist">
+              ornamentist
+            </a>
+            <time>Tuesday, June 24, 2014</time>
+          </div>
+          <div class="body"><p>FWIW: The Jekyll assets plugin (<a href="https://github.com/ixti/jekyll-assets">https://github.com/ixti/jekyll-assets</a>) does have some pragmatic practices for managing external dependencies (including Bootstrap)--at the cost of not being able to use github pages.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Tuesday, June 24, 2014</time>
+          </div>
+          <div class="body"><p>Here is one: <a href="https://github.com/AJAlabs/jekyllkb">https://github.com/AJAlabs/jekyllkb</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ornamentist">
+              ornamentist
+            </a>
+            <time>Tuesday, June 24, 2014</time>
+          </div>
+          <div class="body"><p>Very nice--thanks.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, June 26, 2014</time>
+          </div>
+          <div class="body"><p>@ornamentist I&#39;m going to close this issue. If you need more help, feel free to create a new issue!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

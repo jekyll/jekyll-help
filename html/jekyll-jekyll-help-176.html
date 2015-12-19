@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Best mechanisms for single source in multiple locations</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#176</span>
+        </p>
+        <h1>Best mechanisms for single source in multiple locations</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">hamishwillee</a>
+            <time>Wednesday, October 22, 2014</time>
+          </div>
+          <div class="body">
+            <p>Consider the requirement for a document site with one more more sections that have common topics. Each section has its own TOC and can navigate to the next/prev items in that TOC using prev-&gt;next buttons. The documents may have slightly different rendering in each section (and of course a different TOC/next/prev). There should be a single &quot;content&quot; document for the common content.</p>
+<p>The obvious way to implement something like this is to have the &quot;common content&quot; source as an <em>_include</em>. Then have &quot;stub&quot; articles for each TOC item that imports it. This would work nicely and allow me to feed in &quot;version specific&quot; configuration in the front matter.</p>
+<p>Are there any other ways that people have achieved this? For example, is there a way to automatically copy appropriate documents into specified locations at build time (from within Jekyll)?</p>
+<p>Thank you!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>You might want to take a gander at <a href="http://jekyllrb.com/docs/collections/">collections</a> for your shared content, but I might have misunderstood your situation. Can you give some more detail, and maybe an example of exactly what you&#39;re after?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/hamishwillee">
+              hamishwillee
+            </a>
+            <time>Sunday, November 02, 2014</time>
+          </div>
+          <div class="body"><p>Hi Troy,</p>
+<p>Collections might be part of the solution to my problem, but not the whole problem.</p>
+<p>Consider the imaginary case where I have a site supporting a number of manuals for using and assembling bicycles. Each section of the site has its own table of contents (and I might reasonably have these in collections). While some articles will be different for each bike, a few will be common (for example &quot;How to ring the bell&quot;).</p>
+<p>My question was &quot;what is the BEST&quot; method for maintaining this common content so it renders in all places where it is used. I THINK that we need a separate stub for each instance of the article that includes a common document that we don&#39;t render. The include markup allows this, but only for files in _include (which I guess is OK). 
+ Is there any alternative? E.g. can we somehow declare in the file where it should build to as a first step. </p>
+<p>Hope that makes it clear!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

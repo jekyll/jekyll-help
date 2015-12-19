@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>THIS IS A PAIN IN THE ASS TO INSTALL</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#18</span>
+        </p>
+        <h1>THIS IS A PAIN IN THE ASS TO INSTALL</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">acidflip</a>
+            <time>Tuesday, April 15, 2014</time>
+          </div>
+          <div class="body">
+            <p>Can I get some instructions that are easier to install Jekyll????</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Tuesday, April 15, 2014</time>
+          </div>
+          <div class="body"><p>What instructions are you using currently and what operating system are you using? At it&#39;s simplest it&#39;s just (assuming you have ruby available on your system):</p>
+<pre><code>$ gem install jekyll
+$ jekyll new my_new_website
+$ cd my_new_website
+$ jekyll build
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, April 15, 2014</time>
+          </div>
+          <div class="body"><p>Hey. We need some more info in order to help you.</p>
+<ul>
+<li>What operating system are you running?</li>
+<li>Are you using a version manager for Ruby?</li>
+<li>What&#39;s the error you&#39;re getting?</li>
+</ul>
+<p>Sorry you&#39;re having trouble, but help us help you.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, April 15, 2014</time>
+          </div>
+          <div class="body"><p>Yes, please provide more information to guide you in the best possible way. Have you checked the <a href="http://jekyllrb.com/docs/installation/">documentation</a> about installation?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/iamgabeortiz">
+              iamgabeortiz
+            </a>
+            <time>Sunday, April 27, 2014</time>
+          </div>
+          <div class="body"><p>For any windows customers, I&#39;ve worked up a little <a href="https://github.com/iamgabeortiz/install-jekyll-win">guide</a> that combines steps from a few sources into a working install for Windows 7.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, April 27, 2014</time>
+          </div>
+          <div class="body"><p>I have something similar also available at
+<a href="http://matt.scharley.me/2012/03/10/windows-cygwin-and-jekyll.html">http://matt.scharley.me/2012/03/10/windows-cygwin-and-jekyll.html</a> for
+jekyll via cygwin. I don&#39;t actually use that setup any more and I keep
+meaning to write up a guide without cygwin.
+On 28/04/2014 7:43 AM, &quot;Gabe Ortiz&quot; <a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x6e;&#111;&#116;&#x69;&#102;&#105;&#x63;&#x61;&#x74;&#105;&#111;&#x6e;&#x73;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#x6e;&#111;&#116;&#x69;&#102;&#105;&#x63;&#x61;&#x74;&#105;&#111;&#x6e;&#x73;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>For any windows customers, I&#39;ve worked up a little guide<a href="https://github.com/iamgabeortiz/install-jekyll-win">https://github.com/iamgabeortiz/install-jekyll-win</a>that combines steps from a few sources into a working install for Windows 7.</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/help/issues/18#issuecomment-41510286">https://github.com/jekyll/help/issues/18#issuecomment-41510286</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/acidflip">
+              acidflip
+            </a>
+            <time>Sunday, April 27, 2014</time>
+          </div>
+          <div class="body"><p>I can install it (I think). I just don&#39;t know what to do after I get the Jekyll files into the repository</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, April 27, 2014</time>
+          </div>
+          <div class="body"><p>Try having a look at jekyllrb.com. There&#39;s a bunch of documentation there
+about layouts and posts and such. If you don&#39;t use either, then jekyll will
+essentially just translate files one to one from the source to destination
+folders doing very little. If you don&#39;t have a website folder at all yet,
+try <code>jekyll new folder_name</code>.
+On 28/04/2014 8:21 AM, &quot;Jason Kinetec&quot; <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#110;&#x6f;&#x74;&#105;&#x66;&#x69;&#99;&#x61;&#x74;&#105;&#111;&#x6e;&#x73;&#64;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#46;&#99;&#111;&#109;">&#110;&#x6f;&#x74;&#105;&#x66;&#x69;&#99;&#x61;&#x74;&#105;&#111;&#x6e;&#x73;&#64;&#x67;&#105;&#116;&#x68;&#x75;&#98;&#46;&#99;&#111;&#109;</a> wrote:</p>
+<blockquote>
+<p>I can install it (I think). I just don&#39;t know what to do after I get the
+Jekyll files into the repository</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/help/issues/18#issuecomment-41511323">https://github.com/jekyll/help/issues/18#issuecomment-41511323</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, April 29, 2014</time>
+          </div>
+          <div class="body"><p>Going to close this out.</p>
+<p>@jsnkntc If you have any other questions, feel free to file a new issue and we&#39;ll be happy to help you!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Get Tags by Category</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#114</span>
+        </p>
+        <h1>Get Tags by Category</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">rdyar</a>
+            <time>Friday, August 08, 2014</time>
+          </div>
+          <div class="body">
+            <p>I am trying to make a page that will list Tags for a given Category - so I will specify the Category, and then want to get all Tags, with the corresponding posts.</p>
+<p>I can get all Tags site wide with posts, but I can&#39;t figure out a way to filter it by category.</p>
+<p>I want to do ths same thing as this guy on SO:</p>
+<p><a href="http://stackoverflow.com/questions/23521931/list-tags-within-a-specific-category-in-jekyll">http://stackoverflow.com/questions/23521931/list-tags-within-a-specific-category-in-jekyll</a></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/rdyar">
+              rdyar
+            </a>
+            <time>Saturday, August 09, 2014</time>
+          </div>
+          <div class="body"><p>I think I figured it out after about 1000 tries - seems to work for all kinds of filters like category or other front matter variables - like &quot;type&quot; so I can have type: article or type: video and this seems to get tags from just one of them if I put that in the where part.</p>
+<pre><code>{% assign sorted_tags = site.tags | sort %}
+{% for tag in sorted_tags %}
+{% assign zz = tag[1] | where: &quot;category&quot;, &quot;Photoshop&quot; | sort %}
+{% if zz != empty %}
+
+&lt;li&gt;&lt;span class=&quot;tag&quot;&gt;{{ tag[0] }}&lt;/span&gt;
+&lt;ul&gt;
+  {% for p in zz %}
+  &lt;li&gt;&lt;a href=&quot;{{ p.url }}&quot;&gt;{{ p.title }}&lt;/a&gt;&lt;/li&gt;
+  {% endfor %}
+ &lt;/ul&gt;
+ &lt;/li&gt;
+ {% endif %}
+
+ {% endfor %}
+</code></pre><p>zz is just something to use to filter above the first tag[0] since all it seems to have is the tag itself, so you can&#39;t filter anything else with it. tag[1] has all of the other stuff.</p>
+<p>Initially I was using if zz != null or if zz != &quot;&quot; but neither of them worked.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

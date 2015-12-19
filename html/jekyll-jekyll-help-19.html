@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Error Installing Jekyll with Native Mavericks Ruby</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#19</span>
+        </p>
+        <h1>Error Installing Jekyll with Native Mavericks Ruby</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">jennazee</a>
+            <time>Tuesday, April 15, 2014</time>
+          </div>
+          <div class="body">
+            <p>Had native Mavericks ruby, and updated gems, and XCode Command LIne tools. Ran into this error:</p>
+<pre><code>ERROR:  Error installing jekyll:
+    ERROR: Failed to build gem native extension.
+
+    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb
+creating Makefile
+
+make &quot;DESTDIR=&quot; clean
+
+make &quot;DESTDIR=&quot;
+compiling porter.c
+porter.c:359:27: warning: &#39;&amp;&amp;&#39; within &#39;||&#39; [-Wlogical-op-parentheses]
+      if (a &gt; 1 || a == 1 &amp;&amp; !cvc(z, z-&gt;k - 1)) z-&gt;k--;
+                ~~ ~~~~~~~^~~~~~~~~~~~~~~~~~~~
+porter.c:359:27: note: place parentheses around the &#39;&amp;&amp;&#39; expression to silence this warning
+      if (a &gt; 1 || a == 1 &amp;&amp; !cvc(z, z-&gt;k - 1)) z-&gt;k--;
+                          ^
+                   (                          )
+1 warning generated.
+compiling porter_wrap.c
+linking shared-object stemmer.bundle
+clang: error: unknown argument: &#39;-multiply_definedsuppress&#39; [-Wunused-command-line-argument-hard-error-in-future]
+clang: note: this will be a hard error (cannot be downgraded to a warning) in the future
+make: *** [stemmer.bundle] Error 1
+
+make failed, exit code 2
+</code></pre><p>Was able to solve the problem with the guidance of <a href="http://stackoverflow.com/questions/22479246/how-to-install-jekyll-on-mac-osx-10-9-with-ruby-2-0-0">http://stackoverflow.com/questions/22479246/how-to-install-jekyll-on-mac-osx-10-9-with-ruby-2-0-0</a>, which suggested installing <code>rvm</code> and then doing <code>rvm use ruby-2.1.1</code> and then <code>sudo gem install jekyll</code></p>
+<p>Figured other people could benefit from the rvm/version suggestion. Cheers!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, April 15, 2014</time>
+          </div>
+          <div class="body"><p>Thank you @jennazee, It will be very useful!  </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Wednesday, April 16, 2014</time>
+          </div>
+          <div class="body"><p>:+1: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Wednesday, April 16, 2014</time>
+          </div>
+          <div class="body"><p>Note, if you&#39;re using rvm there&#39;s never a reason to install gems using
+<code>sudo</code>. Please don&#39;t do that, it&#39;ll only cause problems.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jennazee">
+              jennazee
+            </a>
+            <time>Wednesday, April 16, 2014</time>
+          </div>
+          <div class="body"><p>Oh okay, noted. Without rvm it seemed I didn&#39;t have permissions so I
+figured I needed to use it. Any problems I should look out for for this
+case?</p>
+<p>On Wednesday, April 16, 2014, Matthew Scharley <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#x6e;&#x6f;&#116;&#x69;&#x66;&#x69;&#99;&#97;&#x74;&#x69;&#111;&#110;&#x73;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#x6e;&#x6f;&#116;&#x69;&#x66;&#x69;&#99;&#97;&#x74;&#x69;&#111;&#110;&#x73;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>
+wrote:</p>
+<blockquote>
+<p>Note, if you&#39;re using rvm there&#39;s never a reason to install gems using
+<code>sudo</code>. Please don&#39;t do that, it&#39;ll only cause problems.</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/help/issues/19#issuecomment-40598918">https://github.com/jekyll/help/issues/19#issuecomment-40598918</a>
+.</p>
+</blockquote>
+<p>-- 
+Jenna Zeigen
+jennazeigen.com
+@zeigenvector
+215.833.5104</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Wednesday, April 16, 2014</time>
+          </div>
+          <div class="body"><p>Without RVM, ruby is installed into the system locations and so it needs
+sudo access. RVM installs ruby into your home folder, <code>~/.rvm</code>, so you
+don&#39;t need any special sort of access ever. One of the many benefits of RVM.
+​</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

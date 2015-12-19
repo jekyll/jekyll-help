@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Problem getting the &quot;truncate&quot; filter to work</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#72</span>
+        </p>
+        <h1>Problem getting the &quot;truncate&quot; filter to work</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">budparr</a>
+            <time>Saturday, June 14, 2014</time>
+          </div>
+          <div class="body">
+            <p>jekyll (2.0.3), liquid (2.5.5)</p>
+<p>I&#39;m having a problem with the Liquid filter <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers#standard-filters">&quot;truncate&quot;</a></p>
+<pre><code>{% if item.front_matter_key %}
+  {{ item.front_matter_key  | truncate: 1 }}
+{% endif %}
+</code></pre><p>For me, this returns nothing but ellipses (&#39;...&#39;), when if the front matter value was <code>foo</code> I&#39;d expect the filter to return <code>f</code></p>
+<p>I&#39;ve tried using capture and adding other filters to no avail. I&#39;m assuming that anything on the Liquid for Designers page should work for us in Jekyll.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Sunday, June 15, 2014</time>
+          </div>
+          <div class="body"><p>Figured this out. Liquid apparently, obviously, adds the ellipses as a result of the truncate filter, but what I didn&#39;t understand is that to get the desired result (of the value truncated to one character) you have to include the ellipses, so &quot;truncate: 4&quot; works, whereas whereas &quot;truncate: 1&quot; does not.</p>
+<p>So, this seems strictly a liquid issue, which I will take up over there.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Sunday, June 15, 2014</time>
+          </div>
+          <div class="body"><p>Issue <a href="https://github.com/Shopify/liquid/issues/366">here</a> if anyone is intrested.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

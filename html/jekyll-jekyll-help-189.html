@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Issue with Jekyll Mercenary</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#189</span>
+        </p>
+        <h1>Issue with Jekyll Mercenary</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ericthor</a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body">
+            <p>Running Jekyll 2.5.1 with Ruby 2.0 . When I run <code>jekyll s</code> or <code>jekyll w</code></p>
+<pre><code>Error output
+/Library/Ruby/Gems/2.0.0/gems/mercenary-0.3.4/lib/mercenary.rb:20:in `program&#39;: cannot load such file -- mercenary/program (LoadError)
+    from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.1/bin/jekyll:20:in `&lt;top (required)&gt;&#39;
+    from /usr/bin/jekyll:23:in `load&#39;
+    from /usr/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre><p>My Gemfile. I&#39;ve commented out the other gem still getting error.</p>
+<pre><code>source &#39;https://rubygems.org&#39;
+gem &#39;jekyll&#39;
+# gem &#39;jekyll-assets&#39;
+# gem &#39;autoprefixer-rails&#39;
+# gem &#39;jekyll-press&#39;
+# gem &#39;jekyll-sitemap&#39;
+# gem &#39;jekyll-mentions&#39;
+# gem &#39;jekyll-tagging&#39;
+# gem &#39;ruby-oembed&#39;
+# gem &#39;mercenary&#39;
+</code></pre><p>bunder.rb file</p>
+<pre><code>require &#39;rubygems&#39;
+require &#39;bundler/setup&#39;
+require &#39;jekyll&#39;
+# require &#39;jekyll-assets&#39;
+# require &#39;autoprefixer-rails&#39;
+# require &#39;jekyll-press&#39;
+# require &#39;jekyll-sitemap&#39;
+# require &#39;jekyll-mentions&#39;
+# require &#39;jekyll/tagging&#39;
+# require &#39;oembed&#39;
+</code></pre><p>I&#39;m not too experienced with Ruby, but I noticed in the Gemfile.lock under Jekyll in requires lists       mercenary (~&gt; 0.3.3) and then later on lists &quot; mercenary (0.3.4)&quot; separately.</p>
+<p>If I run <code>bundle exec jekyll s</code> I receive no errors. Maybe it&#39;s the way I&#39;m calling / requiring these gems.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ericthor">
+              ericthor
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p>Witched to  Ruby to 2.1.2 with rvm. No longer receiving errors. Need to update back to latest Jekyll will see if it creates same errors on <code>jekyll s</code> or <code>jekyll serve</code> or <code>jekyll b</code> ...</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ericthor">
+              ericthor
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p>Running the same setup including other gems using Ruby 2.1.2 and Jekyll 2.51 no error.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p>Should be a duplicate of jekyll/jekyll#3084</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sparanoid">
+              sparanoid
+            </a>
+            <time>Tuesday, November 11, 2014</time>
+          </div>
+          <div class="body"><p>I got the same error when running it with bundler:</p>
+<p><a href="https://travis-ci.org/sparanoid/sparanoid.com/builds/40634156">https://travis-ci.org/sparanoid/sparanoid.com/builds/40634156</a></p>
+<p>Still receiving errors using Ruby 2.1.2 with Jekyll 2.5.1.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Chat window - How can jekyll/liquid get the URL of the current page and place it on the template</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#127</span>
+        </p>
+        <h1>Chat window - How can jekyll/liquid get the URL of the current page and place it on the template</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">saveriobaq</a>
+            <time>Saturday, August 16, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,
+Sorry for my lack of knowledge about these two tools.
+I have a chat widget on the &quot;current web page&quot;.
+In that page, I also embedded the code shown below, which has liquid code.
+When the visitor hits the &quot;chat widget&quot;, he/she is taken to a chat window, with some fields, like, name, email, phone, etc.
+The question is, how can we also create on the chat form, an additional field, with the URL of the &quot;current page&quot; already pasted in that field, which do not allow editing.
+Thanks a lot</p>
+<p>&lt;script&gt;
+
+                        // <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>
+                        // This needs to be placed in the document body where you want the widget to render
+                        // <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>
+
+                        new DESK.Widget({ 
+                                version: 1, 
+                                site: &#39;equis.desk.com&#39;, 
+                                port: &#39;80&#39;, 
+                                type: &#39;chat&#39;, 
+                                displayMode: 1,  //0 for popup, 1 for lightbox
+                                features: {<br>                                        offerAlways: true, 
+                                        offerAgentsOnline: false, 
+                                        offerRoutingAgentsAvailable: false,<br>                                        offerEmailIfChatUnavailable: false 
+                                },<br>                                fields: { 
+                                        ticket: { 
+                                                // desc: &#x27;&#x27;,
+                                // labels_new: &#x27;&#x27;,
+                                // priority: &#x27;&#x27;,
+                                // subject: &#x27;&#x27;,
+                                // custom_campo_consulta: &#x27;&#x27;,
+                                // custom_campo_tipo_caso: &#x27;&#x27;
+                                        }, 
+                                        interaction: { 
+                                                // email: &#x27;&#x27;,
+                                // name: &#x27;&#x27;
+                                        }, 
+                                        chat: { 
+                                                //subject: &#39;&#39; 
+                                        }, 
+                                        customer: { 
+                                                // company: &#x27;&#x27;,
+                                // desc: &#x27;&#x27;,
+                                // first_name: &#x27;&#x27;,
+                                // last_name: &#x27;&#x27;,
+                                // locale_code: &#x27;&#x27;,
+                                // title: &#x27;&#x27;
+                                        } 
+                                } 
+                        }).render();<br>                &lt;/script&gt;
+</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Saturday, August 16, 2014</time>
+          </div>
+          <div class="body"><p>If the chat widget/form is part of your jekyll site, and is generated by jekyll, then the following Liquid variable may be used to obtain the page URL:</p>
+<p><code>{{ page.url }}</code></p>
+<p><em>Reference documentation: <a href="http://jekyllrb.com/docs/variables/#page-variables">http://jekyllrb.com/docs/variables/#page-variables</a></em></p>
+<p>If the chat widget/form is not part of your jekyll-generated site, and or is external/third-party, then this is not a jekyll question and is unrelated to jekyll.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/saveriobaq">
+              saveriobaq
+            </a>
+            <time>Saturday, August 16, 2014</time>
+          </div>
+          <div class="body"><p>Hi, thanks a lot. Very kind.
+Regards
+On Aug 16, 2014 8:26 AM, &quot;jaybe@jekyll&quot; <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#110;&#x6f;&#116;&#x69;&#102;&#x69;&#99;&#x61;&#x74;&#x69;&#111;&#110;&#115;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#x63;&#111;&#x6d;">&#110;&#x6f;&#116;&#x69;&#102;&#x69;&#99;&#x61;&#x74;&#x69;&#111;&#110;&#115;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#x63;&#111;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>If the chat widget/form is part of your jekyll site, and is generated by
+jekyll, then the following variable may be used to obtain the page URL:</p>
+<p>{{ page.url }}</p>
+<p><em>Reference documentation:
+<a href="http://jekyllrb.com/docs/variables/#page-variables">http://jekyllrb.com/docs/variables/#page-variables</a>
+<a href="http://jekyllrb.com/docs/variables/#page-variables">http://jekyllrb.com/docs/variables/#page-variables</a></em></p>
+<p>If the chat widget/form is not part of your jekyll-generated site, and or
+is external/third-party, then this is not a jekyll question and is
+unrelated to jekyll.</p>
+<p>—
+Reply to this email directly or view it on GitHub
+<a href="https://github.com/jekyll/jekyll-help/issues/127#issuecomment-52392991">https://github.com/jekyll/jekyll-help/issues/127#issuecomment-52392991</a>.</p>
+</blockquote>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

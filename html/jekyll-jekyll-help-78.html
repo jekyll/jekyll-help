@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll not outputting HTML</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#78</span>
+        </p>
+        <h1>Jekyll not outputting HTML</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">sleeke</a>
+            <time>Friday, June 20, 2014</time>
+          </div>
+          <div class="body">
+            <p>Since upgrading tot he latest version of Jekyll, I&#39;m getting some really broken output. The output seems to be partial HTML - it uses tags like <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code> and <code>&lt;div&gt;</code> but doesn&#39;t include <code>&lt;doctype&gt;</code> or <code>&lt;html&gt;</code> tags, so its not rendered correctly in the browser. It also seems to be ignoring supplied includes such as the sidebar and css files. The output index.html looks like this:</p>
+<pre><code class="lang-html">&lt;h1 id=&quot;sdk-for-android-applications&quot;&gt;SDK for Android Applications&lt;/h1&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;This guide will explain the functionality provided by the ForeSee cxReplay
+for Mobile Software Development Kit (SDK) and provide some information on
+the concepts it leverages.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;See the &lt;a href=&quot;getting-started/quick-start.html&quot;&gt;Quick Start&lt;/a&gt; to get going&lt;/li&gt;
+  &lt;li&gt;See the &lt;a href=&quot;apidocs/index.html&quot;&gt;API&lt;/a&gt; docs for more detailed information about the methods
+described in this guide.&lt;/li&gt;
+  &lt;li&gt;See the examples provided with the SDK to help get you going.&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, June 26, 2014</time>
+          </div>
+          <div class="body"><p>@sleeke This looks like HTML that has been processed by a Markdown renderer only.</p>
+<p>You need to include a <code>layout</code> value in the <a href="http://jekyllrb.com/docs/frontmatter/">Front-matter</a> that specifies which layout to use. Here&#39;s an example of how to set this up:</p>
+<p><em>_layouts/post.html</em></p>
+<pre><code class="lang-html">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Jekyll - {{ page.title }}&lt;/title&gt;
+  {% include head.html %}
+&lt;/head&gt;
+&lt;body&gt;
+  {{ content }}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><em>_includes/head.html</em></p>
+<pre><code class="lang-html">  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;
+</code></pre>
+<p><em>_posts/a-cool-guy.md</em></p>
+<pre><code>---
+layout: post
+---
+
+# I&#39;m a post!
+
+This is a paragraph with some content.
+</code></pre><hr>
+<p>There are three things in here that are worth knowing about, especially in the <code>_layouts/post.html</code> file</p>
+<ul>
+<li><code>{{ page.title }}</code> - This is a Liquid tag that will render the variable that was defined in the Front-matter. <code>title</code> is special; Jekyll will try to automatically populate this variable based on the name of the post file. You can override that by explicitly setting it in the Front-matter.</li>
+<li><code>{% include head.html %}</code> - This is another Liquid tag, but this one grabs the content from the file specified located in the <code>_includes</code> directory. This makes it easy to re-use HTML that should appear in multiple layouts.</li>
+<li><code>{{ content }}</code> - This is the rendered Markdown from your post. This will be the HTML that you gave in your original post.</li>
+</ul>
+<p>Hopefully this helps! If you have any other questions, feel free to hit us up!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, July 06, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m gonna go ahead and close this one. If you have any other questions about this topic, feel free to add a comment and @mention me.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

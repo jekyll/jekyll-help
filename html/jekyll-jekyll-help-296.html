@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>problem with installing jekyll on windows</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#296</span>
+        </p>
+        <h1>problem with installing jekyll on windows</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">amysidra</a>
+            <time>Wednesday, May 06, 2015</time>
+          </div>
+          <div class="body">
+            <p>C:\Users\amysidra&gt;gem install jekyll
+ERROR:  While executing gem ... (Gem::RemoteFetcher::UnknownHostError)
+    no such name (<a href="https://api.rubygems.org/quick/Marshal.4.8/jekyll-2.5.3.gemspe">https://api.rubygems.org/quick/Marshal.4.8/jekyll-2.5.3.gemspe</a>
+c.rz)</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, May 10, 2015</time>
+          </div>
+          <div class="body"><p>Sometimes there&#39;s a problem getting to RubyGems from Southeast Asia: <a href="https://github.com/jekyll/jekyll/issues/1409">https://github.com/jekyll/jekyll/issues/1409</a></p>
+<pre><code class="lang-text">$ gem sources --remove http://rubygems.org/
+$ gem sources -a http://ruby.taobao.org/
+$ gem sources -l
+*** CURRENT SOURCES ***
+http://ruby.taobao.org    
+$ gem install rack
+</code></pre>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

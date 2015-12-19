@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How to create a 404 page?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#58</span>
+        </p>
+        <h1>How to create a 404 page?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">astanush</a>
+            <time>Friday, May 30, 2014</time>
+          </div>
+          <div class="body">
+            <p>I couldn&#39;t find anything in the official documentation about this, and all the other blog posts out there on the topic are about 404s w/ Github Pages.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/astanush">
+              astanush
+            </a>
+            <time>Friday, May 30, 2014</time>
+          </div>
+          <div class="body"><p>Sorry, this is an Apache thing in <code>.htaccess</code></p>
+<pre><code>ErrorDocument 404 /404.html
+</code></pre></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

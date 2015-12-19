@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Why should I use git clone when deploying with git post-receive hook?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#230</span>
+        </p>
+        <h1>Why should I use git clone when deploying with git post-receive hook?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">golddranks</a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body">
+            <p>In the deployment guide (<a href="http://jekyllrb.com/docs/deployment-methods/">http://jekyllrb.com/docs/deployment-methods/</a>), there is the git post-receive hook method explained. I set up my deployment system almost the same way before finding the guide. The only difference is that I don&#39;t git clone into a temp directory, like it&#39;s done in the guide. Instead I use git reset to write out the HEAD.</p>
+<p>Git dir: /srv/git/zuihitsu/zuihitsu.git (a bare repository)
+Worktree: /srv/git/zuihitsu/zuihitsu.worktree
+Public dir: /srv/www/zuihitsu</p>
+<p>I just:</p>
+<pre><code>#!/bin/sh
+git --work-tree=/srv/git/zuihitsu/zuihitsu.worktree reset --hard master
+jekyll build --source /srv/git/zuihitsu/zuihitsu.worktree --destination /srv/www/zuihitsu
+</code></pre><p>That seems to work fine. What are the pros and cons of this reseting method, versus the cloning one? This way git doesn&#39;t have the clone the whole repo, just write out this specific branch. But is there any hazards that I&#39;m overlooking?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><p>@golddranks The goal of the guide was most likely to be as simple as possible and effectively deal with force pushes that modify the history of the repo. If you&#39;re doing a hard reset, you&#39;re probably fine. I&#39;ll leave this issue open for a bit for others to chime in, but I don&#39;t see a problem with your method.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

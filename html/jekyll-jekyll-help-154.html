@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Mangled quotation marks</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#154</span>
+        </p>
+        <h1>Mangled quotation marks</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">kentcb</a>
+            <time>Thursday, September 18, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi,</p>
+<p>I&#39;m just getting started with Jekyll. I&#39;ve run into an issue where my quotation marks are being mistransformed. Presumably this is an encoding issue, but I&#39;ve explicitly set my encoding to UTF-8 in my <em>_config.yml</em>:</p>
+<pre><code>exclude: [ Gemfile ]
+encoding: &quot;UTF-8&quot;
+
+defaults:
+  -
+    scope:
+      path: &quot;&quot;          # all files
+      type: &quot;posts&quot;     # only posts though
+    values:
+      layout: &quot;default&quot;
+</code></pre><p>I&#39;ve also double-checked that the file in question is being saved as UTF-8. I tried two different text editors to be sure.</p>
+<p>Here&#39;s the input file (markdown):</p>
+<pre><code>---
+title: A test
+---
+
+Here are some &#39;single quotes&#39;. Here are some &quot;double quotes&quot;.
+</code></pre><p>And here is what I see when I browse to the generated site:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1901832/4330107/2de6e124-3fa7-11e4-9f79-c57889ad3dc0.png" alt="screen shot 2014-09-19 at 12 15 54 pm"></p>
+<p>Can anyone tell me how to rectify this?</p>
+<p>Thanks</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Friday, September 19, 2014</time>
+          </div>
+          <div class="body"><p>Can you show us what you have in your <code>_layouts/default.html</code>?</p>
+<p>There has to be a line like this:</p>
+<pre><code class="lang-html">&lt;meta charset=&quot;utf-8&quot;&gt;
+</code></pre>
+<p>If not, add it between the <code>&lt;head&gt;&lt;/head&gt;</code> tags in the HTML.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

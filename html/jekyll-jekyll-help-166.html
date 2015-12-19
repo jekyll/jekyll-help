@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How to get offline documentation with the command docs?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#166</span>
+        </p>
+        <h1>How to get offline documentation with the command docs?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">KabbAmine</a>
+            <time>Saturday, October 11, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi.</p>
+<p>As I understood the command <code>docs</code> is for viewing <em>jekyll</em> documentation offline, but I don&#39;t know how to use it.</p>
+<p>This is what I get for <code>jekyll docs</code>:</p>
+<pre><code>            Source: /var/lib/gems/2.1.0/gems/jekyll-2.4.0/site
+   Destination: /var/lib/gems/2.1.0/gems/jekyll-2.4.0/site/_site
+  Generating... 
+jekyll 2.4.0 | Error:  No such file or directory @ dir_chdir - /var/lib/gems/2.1.0/gems/jekyll-2.4.0/site/
+</code></pre><p>Note that I&#39;m new to ruby and gem&#39;s system, so maybe I&#39;ve missed something.</p>
+<p>Configuration:</p>
+<ul>
+<li>Jekyll 2.4.0</li>
+<li>Xubuntu 14.04</li>
+</ul>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, October 11, 2014</time>
+          </div>
+          <div class="body"><p>Getting the the same on Windows 7:</p>
+<pre><code>$ jekyll docs
+Configuration file: none
+            Source: c:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.4.0/site
+       Destination: c:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.4.0/site/_site
+      Generating...
+jekyll 2.4.0 | Error:  No such file or directory - c:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/jekyll-2.4.0/site/
+</code></pre><p>The <code>site</code> directory is missing in the specified path. Seems to be broken, huh?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Tuesday, October 14, 2014</time>
+          </div>
+          <div class="body"><p>@kleinfreund just tried this and also getting this error. It seems that is broken. :cry: </p>
+<pre><code class="lang-bash">$ be jekyll docs --port 3000 --host 0.0.0.0 --trace
+Configuration file: none
+            Source: /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/site
+       Destination: /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/site/_site
+      Generating...
+/Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/site.rb:136:in `chdir&#39;: No such file or directory @ dir_chdir - /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/site/ (Errno::ENOENT)
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/site.rb:136:in `read_directories&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/site.rb:122:in `read&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/site.rb:44:in `process&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/command.rb:28:in `process_site&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/commands/build.rb:55:in `build&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/commands/build.rb:33:in `process&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/lib/jekyll/commands/docs.rb:20:in `block (2 levels) in init_with_program&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `call&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `block in execute&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `each&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `execute&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/mercenary-0.3.4/lib/mercenary/program.rb:35:in `go&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/mercenary-0.3.4/lib/mercenary.rb:22:in `program&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.4.0/bin/jekyll:18:in `&lt;top (required)&gt;&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/bin/jekyll:23:in `load&#39;
+    from /Users/albertogg/.rbenv/versions/2.1.2/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/redknitin">
+              redknitin
+            </a>
+            <time>Saturday, December 06, 2014</time>
+          </div>
+          <div class="body"><p>This seems to be broken in the Jekyll release (I&#39;ve got 2.5.2 installed through <code>gem install jekyll</code>) but when running <code>jekyll docs</code> in the bin directory of the source code that I cloned from git, it works.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

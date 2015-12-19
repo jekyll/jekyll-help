@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Weird error</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#268</span>
+        </p>
+        <h1>Weird error</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">MattForerunner</a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body">
+            <p>What up Hubbsters, So today i tried to get jekyll working on my computer (64 bit- Widows 7 PC) I downloaded ruby, installed it, and got the dev kit (both 64 bit) I ran them both got them both working and made sure to have exacutables. I made sure to give the devkit its own area to play (i.e C:\devkit )
+After this i jumped onto my Command prompt and made sure to have C:\devkit in the prompt.<br>Frist I did -
+C:\devkit&gt;ruby dk.rb init
+that worked completely successful.
+Than,
+C:\devkit&gt;ruby dk.rb install
+that also ran perfect. Here is where the error comes in.
+I run,
+C:\devkit&gt;gem install jekyll.
+It loads for little and than i get this error (I am writing the error verbatim)</p>
+<p>ERROR: could not find a valid gem &#39;jekyll&#39; &lt;&gt;=0, here is why:
+Unable to download data from <a href="https://rubygems.org/">https://rubygems.org/</a> - ssl_connect return need=1 errno=0 state=SSLv3 read server certificate B; certificate verify failed ( <a href="https://api.rubygems.org/latest_specs.4.8.gz">https://api.rubygems.org/latest_specs.4.8.gz</a>)</p>
+<p>Please help if you can. I have a screen shot of it as well if that would be more useful.</p>
+<p>Thanks,
+Matthew V</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, February 08, 2015</time>
+          </div>
+          <div class="body"><p>While googling around for this I found a GIST (<a href="https://gist.github.com/luislavena/f064211759ee0f806c88">https://gist.github.com/luislavena/f064211759ee0f806c88</a>) with a couple of strategies and this issue (<a href="https://github.com/juthilo/run-jekyll-on-windows/issues/34">https://github.com/juthilo/run-jekyll-on-windows/issues/34</a>).</p>
+<p>However, I would at first try updating the <code>gem</code> with <code>gem update --system</code>.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

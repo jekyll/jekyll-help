@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>FreeBSD: Could not find kramdown</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#46</span>
+        </p>
+        <h1>FreeBSD: Could not find kramdown</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">neelchauhan</a>
+            <time>Tuesday, May 13, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hi,
+When I try to run jekyll <code>new bloglocation</code> on FreeBSD 10.0, I get this error:</p>
+<pre><code>/usr/local/lib/ruby/site_ruby/2.1/rubygems/dependency.rb:247:in `to_specs&#39;: Could not find kramdown (~&gt; 1.0.2) amongst [classifier-1.3.3, colorator-0.1, commander-4.1.4, directory_watcher-1.4.1, fast-stemmer-1.0.2, highline-1.6.21, jekyll-1.0.3, kramdown-1.3.3, liquid-2.5.0, maruku-0.6.1, posix-spawn-0.3.6, pygments.rb-0.5.4, safe_yaml-0.9.4, syntax-1.0.0, yajl-ruby-1.2.0] (Gem::LoadError)
+        from /usr/local/lib/ruby/site_ruby/2.1/rubygems/specification.rb:778:in `block in activate_dependencies&#39;
+        from /usr/local/lib/ruby/site_ruby/2.1/rubygems/specification.rb:767:in `each&#39;
+        from /usr/local/lib/ruby/site_ruby/2.1/rubygems/specification.rb:767:in `activate_dependencies&#39;
+        from /usr/local/lib/ruby/site_ruby/2.1/rubygems/specification.rb:751:in `activate&#39;
+        from /usr/local/lib/ruby/site_ruby/2.1/rubygems.rb:1232:in `gem&#39;
+        from /usr/local/bin/jekyll:22:in `&lt;main&gt;&#39;
+</code></pre><p>Ruby says I have <code>kramdown</code> on my computer, so why is it giving an error that <code>kramdown</code> isn&#39;t installed on my computer? I installed Jekyll from FreeBSD ports, and set the default Ruby version to <code>2.1</code>.
+BTW I have posted this issue on <a href="https://github.com/jekyll/jekyll/issues/2403">Jekyll&#39;s main GitHub repo</a>, but @parktr said to come here.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/JesseHerrick">
+              JesseHerrick
+            </a>
+            <time>Tuesday, May 27, 2014</time>
+          </div>
+          <div class="body"><p>What version of Kramdown do you have? <code>kramdown -v</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, May 27, 2014</time>
+          </div>
+          <div class="body"><p>It&#39;s looking for Kramdown ~&gt; 1.0.2 (&gt;= 1.0.2, &lt; 1.1), but you have 1.3.3 installed.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/neelchauhan">
+              neelchauhan
+            </a>
+            <time>Tuesday, May 27, 2014</time>
+          </div>
+          <div class="body"><p>@parkr I have a question.
+Why can&#39;t Jekyll work with Kramdown 1.3.3? I know how to code, but I don&#39;t know Ruby (have no interest, to the extent that I&#39;d rather learn assembly language!)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, May 27, 2014</time>
+          </div>
+          <div class="body"><p>You&#39;re running an old version of Jekyll there. The latest gemspec is <code>~&gt; 1.3</code>, which would include anything above 1.3.0 before 2.0.0.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, July 06, 2014</time>
+          </div>
+          <div class="body"><p>Going to close this one out since it looks like @parkr&#39;s solution ought to work. Feel free to add another comment if you need more help, or just open a new issue if something new comes up.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>had problems with Quick Start Guide until...</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#14</span>
+        </p>
+        <h1>had problems with Quick Start Guide until...</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">jxw</a>
+            <time>Thursday, April 10, 2014</time>
+          </div>
+          <div class="body">
+            <p>Just wanted to note (in case others have similar issues) that I had to modify the instructions slightly on the quick-start guide page (<a href="http://jekyllrb.com/docs/quickstart/">http://jekyllrb.com/docs/quickstart/</a>) to get it to work for me.</p>
+<p>Instead of:
+~ $ gem install jekyll
+~ $ jekyll new myblog
+~ $ cd myblog
+~/myblog $ jekyll serve
+ =&gt; Now browse to <a href="http://localhost:4000">http://localhost:4000</a></p>
+<p>I had to do:
+~ $ sudo gem install jekyll
+~ $ sudo gem install json
+~ $ jekyll new myblog
+~ $ cd myblog
+~/myblog $ jekyll serve
+ =&gt; Now browse to <a href="http://localhost:4000">http://localhost:4000</a></p>
+<p>As you can see, very minor differences.  Also, I got errors when the Jekyll documentation was being installed, but it still worked fine.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Thursday, April 10, 2014</time>
+          </div>
+          <div class="body"><p>The necessity of using <code>sudo</code> for those commands depends completely upon how you have your version of Ruby installed on your system. The goal should be to not have to use <code>sudo</code> to install gems, since that is potentially very dangerous. (Ruby will execute the code as root, giving that code access to do anything at all.)</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

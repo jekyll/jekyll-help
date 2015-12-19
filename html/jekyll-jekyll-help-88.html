@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Local Jekyll site works, github pages site does not display.</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#88</span>
+        </p>
+        <h1>Local Jekyll site works, github pages site does not display.</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">bitcolorine</a>
+            <time>Wednesday, July 02, 2014</time>
+          </div>
+          <div class="body">
+            <p>I am learning how to build a site with Jekyll. I&#39;m confident that my set up is correct because it had been working well, I&#39;ve been building and pushing changes without any trouble until I added a list of posts to my template.
+Then all I see are my pages and even if I edit my pages no changes get reflected on my site after I push my commits.</p>
+<p>I encountered this problem at the begining and I deleted my feed.xml file and suddenly everything worked, but the feed.xml is necessary if I have a blog so it&#39;s back.</p>
+<p>Could this be what is causing my problem?
+I don&#39;t think it&#39;s code related. You can view my repository here:
+<a href="https://github.com/bitcolorine/Je-suis-eclectique">https://github.com/bitcolorine/Je-suis-eclectique</a>
+and the site here: <a href="http://bitcolorine.github.io/Je-suis-eclectique/">http://bitcolorine.github.io/Je-suis-eclectique/</a></p>
+<p>Any help would be appreciated. I am very determined to build my site and a few others for my projects. 
+Thanks.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, July 02, 2014</time>
+          </div>
+          <div class="body"><p>Hey @bitcolorine! If your site is not updating every time you push, it&#39;s probably because the build is broken. If this is the case, you&#39;ll see emails from GitHub.</p>
+<p>Everything in your repo looks fine and seems to build properly for me. :+1: </p>
+<p>Write <code>support@github.com</code> for more information – they&#39;re the only ones who can actually track down the issue you might be having. :) Feel free to reply to this message in case things aren&#39;t solved.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

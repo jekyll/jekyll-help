@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Get excerpt from specific element</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#145</span>
+        </p>
+        <h1>Get excerpt from specific element</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">winghouchan</a>
+            <time>Monday, September 08, 2014</time>
+          </div>
+          <div class="body">
+            <p>Howdy peeps!</p>
+<p>I&#39;d like to ask if it is possible to get an excerpt from a specific element?</p>
+<p>For example, let&#39;s say I have a blog post and in it is:</p>
+<pre><code>&lt;div id=&quot;excerpt&quot;&gt;
+  &lt;!-- Excerpt --&gt;
+&lt;/div&gt;
+</code></pre><p>I then want the content, HTML and all, within said <code>&lt;div&gt;</code> to be used as the excerpt in post list.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, September 09, 2014</time>
+          </div>
+          <div class="body"><p>That is not possible at the moment. However, you can set <code>excerpt</code> in the front matter and put the content there.</p>
+<pre><code class="lang-yaml">---
+excerpt: &quot;Whatever you want it to be…&quot;
+---
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Tuesday, September 09, 2014</time>
+          </div>
+          <div class="body"><p>I need the HTML within the <code>&lt;div&gt;</code> to be parsed as part of the excerpt as well.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, September 09, 2014</time>
+          </div>
+          <div class="body"><pre><code class="lang-yaml">---
+excerpt: &quot;&lt;div class=&#39;note&#39;&gt;&lt;p&gt;Whatever you want it to be…&lt;/p&gt;&lt;/div&gt;&quot;
+---
+</code></pre>
+<p>…should do the trick. Be careful with <code>&quot;</code> and <code>&#39;</code>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Tuesday, September 09, 2014</time>
+          </div>
+          <div class="body"><p>Yes I could do that but sometimes the HTML gets quite complicated and it creates a mess at the beginning at the document.</p>
+<p>It doesn&#39;t really matter too much. I was hoping that the functionality would exist but it isn&#39;t crucial that from me. I&#39;ll find a different way around it.</p>
+<p>Thanks for the help @kleinfreund!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

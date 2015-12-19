@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll 2.1.0 search plugin that supports Collections</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#92</span>
+        </p>
+        <h1>Jekyll 2.1.0 search plugin that supports Collections</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">AJ-Acevedo</a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body">
+            <p>Has anyone found a good search plugin for Jekyll 2.1.0 that will support Collections?</p>
+<p>Looks like <a href="https://github.com/slashdotdash/jekyll-lunr-js-search/issues/28">jekyll-lunr-js-search</a> wont be supporting Collections.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>I don&#39;t like tooting my own horn, but …</p>
+<p>Not sure if it will be of any help, but I <a href="https://github.com/mhulse/jquery-bigglesworth">wrote this</a> for my Jekyll site. It uses a <a href="https://github.com/mhulse/jquery-bigglesworth/blob/gh-pages/demo/search.json">customizable JSON file</a> for the search results.</p>
+<p>For example, here&#39;s a basic Jekyll JSON file:</p>
+<p><code>/search.json</code>  </p>
+<pre><code class="lang-text">---
+---
+
+[
+  {% for post in site.posts %}
+    {% include post.json %}{% if forloop.last %}{% else %},{% endif %}
+  {% endfor %}
+]
+</code></pre>
+<p><code>/includes/post.json</code>  </p>
+<pre><code class="lang-text">{
+  &quot;title&quot;    : &quot;{% if post.external_site %}{{ post.external_site | xml_escape }}: {% endif %}{{ post.title | xml_escape }}&quot;,
+  &quot;category&quot; : [{% for category in post.categories %}&quot;{{ category }}&quot;{% if forloop.last %}{% else %}, {% endif %}{% endfor %}],
+  &quot;tags&quot;     : [{% for tag in post.tags %}&quot;{{ tag }}&quot;{% if forloop.last %}{% else %}, {% endif %}{% endfor %}],
+  &quot;uri&quot;     : &quot;{% if post.external_url %}{{ post.external_url }}{% else %}{{ post.url }}{% endif %}&quot;,
+  &quot;date&quot;     : {
+    &quot;day&quot;   : &quot;{{ post.date | date: &quot;%d&quot; }}&quot;,
+    &quot;month&quot; : &quot;{{ post.date | date: &quot;%B&quot; }}&quot;,
+    &quot;year&quot;  : &quot;{{ post.date | date: &quot;%Y&quot; }}&quot;
+  }
+}
+</code></pre>
+<p>If interested, I could provide a more complete Jekyll example.</p>
+<p>I setup the JS to recurse through nested keys, but I can&#39;t guarantee how speedy it will be if you go crazy in that department (i.e., collections … which, I have yet to use/test myself, so no guarantees).</p>
+<p>I wrote the above code for personal use. I&#39;m sure there&#39;s way better stuff out there. Personally, I could not find anything that had the features I wanted (nested keys) plus was simple to setup (lunr is awesome, but had more moving parts than I personally cared to maintain).</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>This one is pretty simple but it works: <a href="http://mathayward.com/jekyll-search/">http://mathayward.com/jekyll-search/</a>
+And if you need something more like filtering with a search component I&#39;ve used <a href="http://listjs.com/">list.js</a> to do that and it&#39;s really simple. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>@budparr I just tested <a href="https://github.com/mathaywarduk/jekyll-search/">mathaywarduk/jekyll-search</a>. It currently doesn&#39;t support Collections.</p>
+<p>@mhulse &quot;I&#39;m sure there&#39;s way better stuff out there.&quot; If your jekyll plugin could be updated to support Collections it would be the only one out there. :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>@AJ-Acevedo I haven&#39;t needed collections so I&#39;m not sure what it would take.</p>
+<p>With that said, seems like you should be able to generate a JSON file however you want. Aren&#39;t collections just objects to be iterated over? If you can create a JSON file for your collection, then it should work. I guess I don&#39;t see the limitation. :confused: </p>
+<p>Eventually I may use collections … I just haven&#39;t had a need to use &#39;em to date. :+1:</p>
+<p>I&#39;d be curious to know what the limitation is? What&#39;s so complicated about collections that none of these plugins work?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>@mhulse All of the plugins search pages and posts. The pages from collections are not being searched.</p>
+<p>Here is an example project using collections: <a href="https://github.com/AJAlabs/jekyllkb">JekyllKB</a> the _kb directory is a collection.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>@AJ-Acevedo I think I see.</p>
+<p>I guess my thinking is: If collections can be iterated over, like pages/posts, then you should be able to build a JSON file, using liquid tags, so that a plugin can use it for searching.</p>
+<p>Then again, I suppose I need to play with collections before I make any assumptions! :laughing: </p>
+<p>Good luck in your quest!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>@mhulse is right. Just change the JSON file to whatever you want to search through, including collections. It works, I&#39;ve done it.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>I took a stab at hacking on the <a href="https://github.com/mathaywarduk/jekyll-search/blob/master/feeds/feed.json">mathaywarduk/jekyll-search json file</a></p>
+<p>Couldn&#39;t get it working after a few attempts. Any ideas? Here is what I added</p>
+<pre><code class="lang-json">{% for page in site.collections %}
+    {% if page.layout != &#39;none&#39; and page.layout != &#39;none&#39; and page.title != null and page.title != empty and page.search_omit != true %}
+        {% if forloop.index &gt; 1 %},{%endif%}{
+            &quot;title&quot;: {{page.title | json }},
+            &quot;content&quot;: {{page.content | strip_html | strip_newlines | json}},
+            &quot;link&quot;: &quot;{{ site.url }}{{ page.url | replace: &#39;index.html&#39;, &#39;&#39; }}&quot;,
+            &quot;date&quot;: {{ page.date | json }},
+            &quot;excerpt&quot;: {{ page.description | json }}
+        }
+    {%endif%}
+{% endfor %}
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Sunday, July 06, 2014</time>
+          </div>
+          <div class="body"><p>Try checking your JSON with this: <a href="http://jsonlint.com">http://jsonlint.com</a> if it passes as valid it should work.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Saturday, August 09, 2014</time>
+          </div>
+          <div class="body"><p>Anyone come across any working solutions? </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Tuesday, August 26, 2014</time>
+          </div>
+          <div class="body"><p>There is now a bounty up for this feature:</p>
+<p><a href="https://www.bountysource.com/issues/2074457-new-jekyll-collections?utm_source=2074457&amp;utm_medium=shield&amp;utm_campaign=ISSUE_BADGE"><img src="https://www.bountysource.com/badge/issue?issue_id=2074457" alt="Bountysource"></a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Tuesday, August 26, 2014</time>
+          </div>
+          <div class="body"><p>Correct me if I&#39;m wrong, but isn&#39;t your goal to have a &quot;Search&quot; plugin recurse nested keys?</p>
+<p>That&#39;s all that collections are, right? Just multi-dimensional arrays.</p>
+<p>That was the problem I found with the Jekyll search plugins when I needed a &quot;search mechanism&quot; on my site several months ago (and the Lunr one was just a bit too many moving parts, so I did not check if it could recurse nested keys).</p>
+<p>That&#39;s why I wrote my own (simple) search plugin. I wanted to itterate/search across nested json objects.</p>
+<p>@AJ-Acevedo, that&#39;s the trick though. You need to find a JS search plugin that supports nested data structures. Most of the ones I&#39;ve seen only look at the top level (not sure about Lunr search).</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/iloveip">
+              iloveip
+            </a>
+            <time>Tuesday, January 06, 2015</time>
+          </div>
+          <div class="body"><p>@AJ-Acevedo Did you find any solution for this? I&#39;m also looking for a search plugin which powers Jekyll Collections now.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Sunday, January 11, 2015</time>
+          </div>
+          <div class="body"><p>Nope there is still a $65 bounty for this</p>
+<p><a href="https://www.bountysource.com/issues/2074457-new-jekyll-collections?utm_source=2074457&amp;utm_medium=shield&amp;utm_campaign=ISSUE_BADGE"><img src="https://www.bountysource.com/badge/issue?issue_id=2074457" alt="Bountysource"></a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Sunday, January 11, 2015</time>
+          </div>
+          <div class="body"><p>@iloveip and @AJ-Acevedo, why don&#39;t one of you post an example of the JSON output you want to search? Again, most search plugins I&#39;ve seen just loop over json to search, they don&#39;t care about Jekyll&#39;s &quot;Collections&quot;.</p>
+<p><strong>To clarify: It&#39;s all about the structure of your JSON and whether or not the search plugin supports nested JSON structure.</strong></p>
+<p><strong>Suggestion:</strong> Rather than worry about the search plugin supporting &quot;Collections&quot;, worry about the plugin supporting nested structures.</p>
+<p>With that said, I personally would like to see an example JSON output that you would like to have searched. Can one of you post an example? <strong>I want to see the output file … that means, no Jekyll tags.</strong> I&#39;m positive I could get my plugin to work if I had an example JSON file to loop over.</p>
+<p>This is not rocket science.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kojoru">
+              kojoru
+            </a>
+            <time>Monday, March 16, 2015</time>
+          </div>
+          <div class="body"><p>Just letting you know that we&#39;ve successfully merged collection support into <code>jekyll-junr-js-search</code>. Try it and see.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

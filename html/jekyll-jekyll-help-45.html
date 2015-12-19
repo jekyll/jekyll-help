@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Front Matter defaults: Use categories in scope?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#45</span>
+        </p>
+        <h1>Front Matter defaults: Use categories in scope?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">kleinfreund</a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body">
+            <p>Is it possible to use categories as scope for Front Matter defaults?</p>
+<pre><code>  # all files with the category `portfolio` have the layout `post--portfolio`
+  -
+    scope:
+      path: &quot;&quot;
+      category: &quot;portfolio&quot; # Doesn&#39;t work.
+    values:
+      layout: &quot;post--portfolio&quot;
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Thursday, May 15, 2014</time>
+          </div>
+          <div class="body"><p>Actually, using <code>category: &quot;portfolio&quot;</code> works just as expected.</p>
+<p>After going through the posts and layouts I was testing it with, I somehow figured it out. Can&#39;t reproduce what I did wrong in the first place.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

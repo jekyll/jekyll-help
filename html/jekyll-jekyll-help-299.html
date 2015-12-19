@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>An image wrapped inside div does not display</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#299</span>
+        </p>
+        <h1>An image wrapped inside div does not display</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">knsam</a>
+            <time>Friday, May 08, 2015</time>
+          </div>
+          <div class="body">
+            <p>An image wrapped inside a div does not show up in the html file created. The element #my_photo is styled as follows: </p>
+<h1 id="my_photo">my_photo</h1>
+<p>{
+  float: right;
+  padding-left: 50px;
+}</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Friday, May 08, 2015</time>
+          </div>
+          <div class="body"><p>This is not a Jekyll issue. When you use Markdown or HTML correctly to show an image and have no CSS applied that will hide the image, the image will show up. Jekyll doesn&#39;t interfere with that.</p>
+<p>Also I don&#39;t understand what this pull request is doing here.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Friday, May 08, 2015</time>
+          </div>
+          <div class="body"><p>Depending on the markdown renderer and options, sometimes markdown is not rendered within html blocks.</p>
+<p>Does the markdown display versus the image?</p>
+<p>Try separating the html and markdown with a newline/whitespace.</p>
+<p>Also try without the html block.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/knsam">
+              knsam
+            </a>
+            <time>Saturday, May 09, 2015</time>
+          </div>
+          <div class="body"><p>Hey, first off, this must have been an issue, I realised it only after I posted here. So, sorry! </p>
+<p>@jaybe-jekyll Yes, the markdown code shows up instead of the image. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, May 09, 2015</time>
+          </div>
+          <div class="body"><p>Then it might be the issue. Consider sometthing like this:</p>
+<pre><code class="lang-html">&lt;p&gt;Nice, but _sneaky_ paragraph.&lt;/p&gt;
+</code></pre>
+<p>This will render a paragraph, but the <code>sneaky</code> won&#39;t be put inside <code>em</code> tags, but as is (i.e. <code>_sneaky_</code>, not <code>&lt;em&gt;sneaky&lt;/em&gt;</code>). The problem is you can&#39;t mix HTML and Markdown in the same line.</p>
+<p>This will work:</p>
+<pre><code class="lang-md">Nice, but  _not so sneaky_ paragraph.
+</code></pre>
+<p>… which is the same as this:</p>
+<pre><code class="lang-html">&lt;p&gt;Nice, but  &lt;em&gt;not so sneaky&lt;/em&gt; paragraph.&lt;/p&gt;
+</code></pre>
+<p>If this doesn&#39;t help you, it&#39;d really help to have an example file with Markdown that is not processed correctly.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/knsam">
+              knsam
+            </a>
+            <time>Saturday, May 09, 2015</time>
+          </div>
+          <div class="body"><p>@kleinfreund Thank you very much! That indeed clarifies my problem. And, I shall so close this issue. </p>
+<p>Thank you for putting up with my newbie question. </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

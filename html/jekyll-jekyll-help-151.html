@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll not recognising file changes on &#x27;build&#x27; when run in a Vagrant VM</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#151</span>
+        </p>
+        <h1>Jekyll not recognising file changes on &#x27;build&#x27; when run in a Vagrant VM</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">matt-bailey</a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body">
+            <p>As requested, I&#39;m moving this issue here from <a href="https://github.com/jekyll/jekyll/issues/2923">one I raised</a> on the main Jekyll repo.</p>
+<p>I&#39;m using Jekyll for the first time to create a personal blog. I do all my development in Vagrant VMs (for the consistent dev environment and clean host machine), so I&#39;ve done the same with Jekyll.</p>
+<p>The issue I&#39;m having is that, fairly frequently, Jekyll doesn&#39;t appear to recognise when files have been updated when I <code>jekyll build</code> - the <code>_site</code> directory is regenerated, but with old code. It&#39;s like Jekyll is using some &#39;cached&#39; version of the source code, even though I know this isn&#39;t the case.</p>
+<p>This applies to all file types - .md, .html, .scss etc. I tried deleting the <code>.sass-cache</code> directory on the off-chance it would make a difference to CSS changes, but it didn&#39;t. It can take a minute or so before changes start to be recognised. Then, after another minute or so they stop being recognised again for a while.</p>
+<p>On the other thread @parkr said that it &quot;Sounds like your _site is being synced more slowly than jekyll is rebuilding it&quot;. I know that Vagrant syncs a directory between the VM and my host machine so this does sound plausible. He then asked &quot;Can you use something like haproxy and forwarded ports to run the server from vagrant as well as the jekyll project?&quot; As a mostly frontend developer this is already pushing my technical skills to the limit, so I&#39;m not really sure I understand this. However, As far as I was aware the VM is already running the server and forwarding the ports to my host machine.</p>
+<p>@troyswanson asked me to say a bit more about my set up, so here it is:</p>
+<ul>
+<li>OS X 10.9.4</li>
+<li>Virtual Box 4.3.12</li>
+<li>Vagrant 1.6.5</li>
+<li><a href="https://puphpet.com/">PuPHPet GUI</a> for VM config set up</li>
+<li>Ubuntu Trusty 14.04 LTS x64</li>
+<li>Forwarded ports: host <code>8188</code>, guest <code>22</code></li>
+<li>File system: NFS</li>
+<li>Server version: Apache/2.4.10 (Ubuntu)</li>
+<li>VHost port: <code>80</code></li>
+<li>PHP 5.6</li>
+<li>SSH <code>ForwardAgent</code> set to <code>yes</code> on the host machine</li>
+<li>Ruby 1.9.3p547</li>
+<li>Node 0.10.31</li>
+<li>Jekyll 2.3.0</li>
+<li>I&#39;m also using Grunt to do a few things first (imagemin, uglify etc.) before running <code>jekyll build</code> as the last task (using <a href="https://github.com/sindresorhus/grunt-shell">grunt-shell</a>)</li>
+</ul>
+<p>I&#39;m not sure what else to tell you. If there&#39;s anything else it would help to know please do let me know.</p>
+<p>Sods law, at the moment I can&#39;t reproduce the issue. But you can be sure the next time I sit down to do a bit of dev it&#39;ll reappear again ;)</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Would it be possible to share your <code>Vagrantfile</code> so that I can try to reproduce this?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Also, it seems there might be a bug related to this specific use case:</p>
+<p>From the <a href="https://docs.vagrantup.com/v2/synced-folders/virtualbox.html">Vagrant Docs</a>:</p>
+<blockquote>
+<p>There is a <a href="https://github.com/mitchellh/vagrant/issues/351#issuecomment-1339640">VirtualBox bug</a> related to <code>sendfile</code> which can result in corrupted or non-updating files. You should deactivate <code>sendfile</code> in any web servers you may be running.</p>
+</blockquote>
+<p>Not sure if this is related, just documenting it here for now in case it is.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/matt-bailey">
+              matt-bailey
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>That&#39;s very kind of you, thank you. I can&#39;t do it now as I have to shut my Mac down, but I&#39;ll send the Vagrant config stuff through tomorrow.</p>
+<p>Interesting about that bug - might be worth looking into...</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/matt-bailey">
+              matt-bailey
+            </a>
+            <time>Thursday, September 18, 2014</time>
+          </div>
+          <div class="body"><p>Hi @troyswanson, I&#39;ve zipped up <a href="http://cl.ly/2u1p1n1R2P1w/download/test-vagrant-config.zip">my Vagrant config here</a>.</p>
+<p>A few points that might help:</p>
+<ul>
+<li>The config was originally generated using the <a href="https://puphpet.com/">PuPHPet</a> GUI</li>
+<li>The VM settings can be found in <code>site/puphpet/config.yaml</code></li>
+<li>The main frontend dependencies are installed using <code>site/puphpet/files/startup-once/frontend-tools.sh</code></li>
+<li>Although not really necessary on this project, the shared directory is set to one level above the site root</li>
+<li>I&#39;ve set the domain to <code>my-project.dev</code> and the synced target folder name to <code>my-project</code> (you can of course change all this in <code>site/puphpet/config.yaml</code>)</li>
+</ul>
+<p>FYI, I did a bit more work on my site this evening and the problem was still persisting - I would make a change to one of the <code>.scss</code> files and it wouldn&#39;t be recognised when running <code>jekyll build</code>.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

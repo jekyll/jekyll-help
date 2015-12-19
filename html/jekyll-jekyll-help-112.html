@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>&quot;Build Warning: Layout &#x27;nil&#x27; requested in sitemap.xml does not exist.&quot;</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#112</span>
+        </p>
+        <h1>&quot;Build Warning: Layout &#x27;nil&#x27; requested in sitemap.xml does not exist.&quot;</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">dwana49</a>
+            <time>Monday, August 04, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello! I should warn you all, I&#39;m still pretty new to everything Jekyll/GitHub so if I need some obvious help just let me know.</p>
+<p>I&#39;m trying to start a blog with Jekyll, and I found a theme that I like (<a href="https://github.com/hmfaysal/hmfaysal-omega-theme">https://github.com/hmfaysal/hmfaysal-omega-theme</a>). I forked the repo, cloned it to desktop, and without modifying anything, ran <code>jekyll serve --watch</code>. I&#39;ve done a few simple Jekyll tutorials and I can at least get my web page to load most of the time on localhost:4000. But this one gave me the error message in the title. And for what it&#39;s worth, there&#39;s definitely stuff in sitemap.xml so I don&#39;t know what it&#39;s talking about. Here&#39;s my fork (<a href="https://github.com/dwana49/hmfaysal-omega-theme">https://github.com/dwana49/hmfaysal-omega-theme</a>). Can anyone help me? :confused: </p>
+<p>Dan</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/alfredxing">
+              alfredxing
+            </a>
+            <time>Monday, August 04, 2014</time>
+          </div>
+          <div class="body"><p>This warning was introduced recently in jekyll/jekyll#2620. Officially, in YAML, <code>layout: null</code> is the proper way to specify no layout, but there&#39;s <a href="https://github.com/jekyll/jekyll/pull/2652">an issue</a> open discussing usage of <code>nil</code>. For now, I&#39;d recommend changing <code>layout: nil</code> at the the top of your <code>sitemap.xml</code> file to <code>layout: null</code>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/dwana49">
+              dwana49
+            </a>
+            <time>Monday, August 04, 2014</time>
+          </div>
+          <div class="body"><p>I think that did the trick. Thanks for your help!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

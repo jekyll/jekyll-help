@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How can I limit the for loop to 2 items for pages (not posts)?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#248</span>
+        </p>
+        <h1>How can I limit the for loop to 2 items for pages (not posts)?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Saturday, January 24, 2015</time>
+          </div>
+          <div class="body">
+            <p>I have a for loop to get all pages with a certain tag:</p>
+<pre><code> {% for page in site.pages %}
+ {% for tag in page.tags %}
+ {% if tag == &quot;layout&quot; %}
+&lt;li&gt;&lt;a href=&quot;{{ page.permalink | prepend: site.baseurl }}&quot;&gt;{{page.title}}&lt;/a&gt;&lt;/li&gt;
+ {% endif %}
+ {% endfor %}
+ {% endfor %}
+</code></pre><p>How can I limit the results to just 2 pages? If I put the <code>limit</code> attribute in the first for statement, it limits the pages iterated through, not the number of pages with those tags iterated through. But if I put the limit on the second for loop, it doesn&#39;t work.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>Someone on <a href="http://stackoverflow.com/questions/28156020/in-jekyll-how-can-i-get-all-pages-with-a-specific-tag-and-limit-the-results-to">StackOverflow answered my question here</a>. </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

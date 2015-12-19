@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>category in post YAML mixed with automatic categories</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#138</span>
+        </p>
+        <h1>category in post YAML mixed with automatic categories</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">kenanpengyou</a>
+            <time>Monday, August 25, 2014</time>
+          </div>
+          <div class="body">
+            <p>Recently I found that the categories of my site become in a mass. </p>
+<p>Before. Category is: 
+<img src="https://cloud.githubusercontent.com/assets/3502393/4028533/ae7fc8b8-2c3e-11e4-8335-49a4c7930a35.png" alt="8">
+Now. It become:
+<img src="https://cloud.githubusercontent.com/assets/3502393/4028705/6b1bd60e-2c41-11e4-8457-e41483a27944.png" alt="9"></p>
+<p>The code for this part is:</p>
+<pre><code>&lt;div class=&quot;sidebar_unit&quot;&gt;
+  &lt;div class=&quot;unit_container&quot;&gt;
+      &lt;div class=&quot;aside_title&quot;&gt;&lt;i class=&quot;icon_sprite icon_categories&quot;&gt;&lt;/i&gt;&lt;em&gt;文章分类&lt;/em&gt;&lt;span&gt;Categories&lt;/span&gt;&lt;/div&gt;
+        &lt;ul class=&quot;category_list clearfix&quot;&gt;
+            {% for category in site.categories  %}
+            &lt;li class=&quot;category_item&quot;&gt;&lt;a class=&quot;category_link&quot; href=&quot;{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category | first }}-ref&quot; title=&quot;&quot;&gt;{{ category | first }}&lt;/a&gt;&lt;span class=&quot;post_count&quot;&gt;({{ category | last | size }})&lt;/span&gt;&lt;/li&gt;
+            {% endfor  %}
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>As posts in my folders are like:
+<strong>_posts/css/2013-03-13-sticky-footer.md</strong> (YAML - category: css)
+<strong>_posts/essay/2014-05-24-new-acgtofe-with-responsive-design.md</strong> (YAML - category: 记录随笔)</p>
+<p>So. I guess jekyll built category information refer to the subfolders of <strong>_posts</strong>. In each of my post, I wrote a YAML category. Maybe jekyll massed them up? How can I cancel jekyll&#39;s &quot;automatic category build&quot;?</p>
+<p>When I run my site locally, It&#39;s OK. It just happens on github pages.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, August 25, 2014</time>
+          </div>
+          <div class="body"><p>As long as posts lay inside a subdirectory like <code>[dir]/_posts/[post].md</code>, <code>[dir]</code> is treated as a category as well. It&#39;s currently not possible to disable this behavior as far as I am aware.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Monday, August 25, 2014</time>
+          </div>
+          <div class="body"><p>@kenanpengyou, the current problem is as follows:</p>
+<ul>
+<li>The current version of GitHub&#39; Jekyll is <code>2.2.0</code>.<ul>
+<li><a href="https://pages.github.com/versions/">https://pages.github.com/versions/</a></li>
+</ul>
+</li>
+<li>The current version of Jekyll is <code>2.3.0</code>.<ul>
+<li><a href="http://jekyllrb.com/news/">http://jekyllrb.com/news/</a></li>
+</ul>
+</li>
+</ul>
+<p>Version 2.2.0 of Jekyll changed the historic behavior of folders within _posts&#39; directories as follows:</p>
+<blockquote>
+<p>Categories in a post’s path are now respected (i.e. folders in _posts will now work properly).
+(* <a href="http://jekyllrb.com/news/2014/07/29/jekyll-2-2-0-released/">http://jekyllrb.com/news/2014/07/29/jekyll-2-2-0-released/</a>)</p>
+</blockquote>
+<p>Version 2.3.0 of Jekyll changed that behavior <em>back</em> because of confusion, conflicts, and feedback such as what you described:</p>
+<blockquote>
+<p>One change deserves special note. In #2633, subfolders inside a _posts folder were processed and added as categories to the posts. It turns out, this behaviour was unwanted by a large number of individuals, as it is a handy way to organize posts. Ultimately, we decided to revert this change in #2705, because it was a change in behaviour that was already well-established (at least since Jekyll v0.7.0), and was convenient.
+(* <a href="http://jekyllrb.com/news/2014/08/11/jekyll-2-3-0-released/">http://jekyllrb.com/news/2014/08/11/jekyll-2-3-0-released/</a>)</p>
+</blockquote>
+<p>Once GitHub Pages upgrades to Jekyll 2.3.0, the behavior of Jekyll with regards to folders nested within _posts&#39; folder will revert to its historic personality.</p>
+<p>Until then, you could- as follows:</p>
+<ul>
+<li>Ignore and put up with the added categorization until GitHub Pages updates to Jekyll 2.3.0.</li>
+<li>Do not use subdirectories nested within _posts folders, to avoid the added categorization, now.</li>
+</ul>
+<p>Jekyll will continue to provide and support categorization based upon folders leading up to _posts/ directories. i.e. <code>/llamas/sassy/_posts/why-llamas-should-not-be-trusted.md.</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kenanpengyou">
+              kenanpengyou
+            </a>
+            <time>Monday, August 25, 2014</time>
+          </div>
+          <div class="body"><p>@jaybe-jekyll , Thank you very much! That&#39;s it. Maybe I will adapt to this behavior temporarily and wait for github updating its jekyll version.</p>
+<p>I did know the method to use paths like <code>[dir]/_posts/[post].md</code> as @kleinfreund mentioned to make &quot;automatic categories&quot;. While I need Chinese characters, which cannot be used in path, I just treated subfolders of <strong>_posts</strong> as a way to keep files ordered.</p>
+<p>I didn&#39;t expect that jekyll 2.2.0 does this and change it back in 2.3.0. It seems that I&#39;m one of those &quot;individuals&quot; who really think it unwanted. :)   </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jaybe-jekyll">
+              jaybe-jekyll
+            </a>
+            <time>Monday, August 25, 2014</time>
+          </div>
+          <div class="body"><p>You are welcome.</p>
+<p>More information, for reference:</p>
+<ul>
+<li><a href="https://github.com/jekyll/jekyll/pull/2633">https://github.com/jekyll/jekyll/pull/2633</a></li>
+<li><a href="https://github.com/jekyll/jekyll/issues/2691">https://github.com/jekyll/jekyll/issues/2691</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

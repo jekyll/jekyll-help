@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How to create simple custom note tag?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#251</span>
+        </p>
+        <h1>How to create simple custom note tag?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Sunday, January 25, 2015</time>
+          </div>
+          <div class="body">
+            <p>I want to create a custom liquid tag that allows me to easily wrap a note in a specific class. </p>
+<p>For example, currently to create a note, I write this:</p>
+<pre><code>&lt;div class=&quot;alert alert-info&quot; role=&quot;alert&quot;&gt;This is a note. &lt;/div&gt;
+</code></pre><p>I want to create a custom liquid tag that allows me to simply write this:</p>
+<pre><code>{% alert This is a note.%}
+</code></pre><p>I looked at the <a href="http://jekyllrb.com/docs/plugins/#available_plugins">Jekyll docs</a> for creating a custom liquid tags via plugins, and found this sample:</p>
+<pre><code class="lang-ruby">module Jekyll
+  class RenderTimeTag &lt; Liquid::Tag
+
+    def initialize(tag_name, text, tokens)
+      super
+      @text = text
+    end
+
+    def render(context)
+      &quot;#{@text} #{Time.now}&quot;
+    end
+  end
+end
+
+Liquid::Template.register_tag(&#39;render_time&#39;, Jekyll::RenderTimeTag)
+</code></pre>
+<p>I saved this code as a file and added it to my _plugins directory -- and it worked. So I tried to clone the code and modify it as follows:</p>
+<pre><code>module Jekyll
+  class RenderNoteTag &lt; Liquid::Tag
+
+    def initialize(tag_name, text, tokens)
+      super
+      @text = text
+    end
+
+    def render(context)
+      &quot;#{@text} &lt;div class=&#39;alert alert-info&#39; role=&#39;alert&#39;&gt;my alert&lt;/div&gt;&quot;
+    end
+  end
+end
+
+Liquid::Template.register_tag(&#39;render_note&#39;, Jekyll::RenderNoteTag)
+</code></pre><p>I then inserted it on a page using this:</p>
+<pre><code class="lang-liquid">{% render_note %}
+</code></pre>
+<p>It works, but how do I add my note in the liquid tags? I want to add something like this:</p>
+<pre><code class="lang-liquid">{% render_note this is my note %}
+</code></pre>
+<p>And have &quot;this is my note&quot; wrapped inside like this:</p>
+<pre><code class="lang-html">&lt;div class=&quot;alert alert-info&quot; role=&quot;alert&quot;&gt;This is a note. &lt;/div&gt;
+</code></pre>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pootsbook">
+              pootsbook
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>I believe you were almost there. This is worked for me (<code>jekyll 2.5.3</code>):</p>
+<pre><code class="lang-ruby"># _plugins/render_note.rb
+module Jekyll
+  class RenderNoteTag &lt; Liquid::Tag
+
+    def initialize(tag_name, text, tokens)
+      super
+      @text = text
+    end
+
+    def render(context)
+      &quot;&lt;div class=\&quot;alert alert-info\&quot; role=\&quot;alert\&quot;&gt;#{@text}&lt;/div&gt;&quot;
+    end
+  end
+end
+
+Liquid::Template.register_tag(&#39;render_note&#39;, Jekyll::RenderNoteTag)
+</code></pre>
+<p>Then in a post,</p>
+<pre><code class="lang-liquid">{% render_note This is a note. %}
+</code></pre>
+<p>resulted in:</p>
+<pre><code class="lang-html">&lt;div class=&quot;alert alert-info&quot; role=&quot;alert&quot;&gt;This is a note. &lt;/div&gt;
+</code></pre>
+<p>Let me know how you get on.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>Thanks for the help. However, the code you suggested didn&#39;t work. It doesn&#39;t render any surrounding div tags at all. I just get <code>&lt;p&gt;This is a note&lt;/p&gt;</code>. </p>
+<p>I&#39;m not familiar with the liquid syntax here, so I&#39;m not sure where <code>#{@text}</code> must appear. Is this ruby, or is it specific to Liquid?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pootsbook">
+              pootsbook
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>The syntax is Ruby String interpolation, e.g.</p>
+<pre><code class="lang-ruby">@text = &quot;example&quot;
+puts &quot;This is an #{@text}&quot;
+#=&gt; &quot;This is an example&quot;
+</code></pre>
+<p>Note, that for the variable to be interpolated, the interpolation <code>#{}</code> must occur within a double quoted string.</p>
+<p>Can you paste your code in so I can have a look for you?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>Hey, it&#39;s working now. I didn&#39;t restart the server earlier. When I restarted it, it&#39;s all working. (The code is the same as what you pasted above.) Thanks so much for your help. This technique is going to be tremendously helpful.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pootsbook">
+              pootsbook
+            </a>
+            <time>Monday, January 26, 2015</time>
+          </div>
+          <div class="body"><p>Great :+1: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

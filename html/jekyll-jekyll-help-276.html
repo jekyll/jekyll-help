@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Solo theme won&#x27;t build in user pages? </title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#276</span>
+        </p>
+        <h1>Solo theme won&#x27;t build in user pages? </h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">jamesonzimmer</a>
+            <time>Sunday, February 22, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi, I&#39;m trying to setup a user pages for my brother based on the jekyll theme Solo (<a href="http://solo.chibi.io">http://solo.chibi.io</a>). I had set it up so he can edit the index.md file via prose.io whenever he likes, however gh-user pages doesn&#39;t seem to be building changes to the index.md file! Prose edits the file, but it doesn&#39;t build to _site. Strangely it seems to work fine on my local jekyll server, so I&#39;m not sure what I can do to make it build. </p>
+<p>repo is at <a href="https://github.com/SeanZimmer/seanzimmer.github.io">https://github.com/SeanZimmer/seanzimmer.github.io</a></p>
+<p>Any ideas for edits to the config file or structure that could fix this? (I know he could just build via command line, but that&#39;s a bit technical for him.) Thank you! </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Monday, February 23, 2015</time>
+          </div>
+          <div class="body"><blockquote>
+<p>however gh-user pages doesn&#39;t seem to be building changes to the index.md file!</p>
+</blockquote>
+<p>Just to be sure, the branch you have the site on is called <strong>gh-pages</strong> (not gh-user), right?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jamesonzimmer">
+              jamesonzimmer
+            </a>
+            <time>Monday, February 23, 2015</time>
+          </div>
+          <div class="body"><p>Yeah, it&#39;s on master branch at his github account under seanzimmer.github.io, since my understanding is you don&#39;t make a gh-pages branch for user pages. </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

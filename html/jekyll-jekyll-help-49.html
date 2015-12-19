@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>loop &quot;Regenerating: 0 files at ...&quot;</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#49</span>
+        </p>
+        <h1>loop &quot;Regenerating: 0 files at ...&quot;</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ValeryVS</a>
+            <time>Tuesday, May 20, 2014</time>
+          </div>
+          <div class="body">
+            <p>This problem appears with upgrade to Jekyll 2.
+Using</p>
+<pre><code>bundle exec jekyll serve --watch
+</code></pre><p>When some file modified jekyll regenerating one, and then keep trying to regenerate. Then, when something new was modified, it&#39;s regenerate the new file, and continues &quot;0 files&quot;.</p>
+<pre><code>Regenerating: 1 files at 2014-05-20 16:34:32 ...done.
+Regenerating: 0 files at 2014-05-20 16:34:33 ...done.
+Regenerating: 0 files at 2014-05-20 16:34:34 ...done.
+</code></pre><p>...</p>
+<pre><code>Regenerating: 1 files at 2014-05-20 16:34:39 ...done.
+Regenerating: 0 files at 2014-05-20 16:34:39 ...done.
+Regenerating: 0 files at 2014-05-20 16:34:40 ...done.
+</code></pre><p>Using</p>
+<pre><code>bundle exec jekyll serve --watch --force_polling
+</code></pre><p>solve this problem, but with this option regeneration event does not always work. </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ValeryVS">
+              ValeryVS
+            </a>
+            <time>Tuesday, May 20, 2014</time>
+          </div>
+          <div class="body"><p>This musb in jekyll, not in jekyll-help.
+Close. Moved.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

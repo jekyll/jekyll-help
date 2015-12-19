@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Is the option relative_permalinks deprecated?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#26</span>
+        </p>
+        <h1>Is the option relative_permalinks deprecated?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">penibelst</a>
+            <time>Monday, April 28, 2014</time>
+          </div>
+          <div class="body">
+            <p>If I set the variable <code>page.permalink</code> to a relative permalink, I get a deprecation message.</p>
+<blockquote>
+<p>Deprecation: Starting in 2.0, permalinks for pages in subfolders must be relative to the site source directory, not the parent directory. Check <a href="http://jekyllrb.com/docs/upgrading/">http://jekyllrb.com/docs/upgrading/</a> for more info.</p>
+</blockquote>
+<p>If I explicitly set </p>
+<pre><code class="lang-yaml">relative_permalinks: true
+</code></pre>
+<p>I still see the deprecation message. Does it mean, that <code>site.relative_permalinks</code> will completely disappear in 2.0.0?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, April 28, 2014</time>
+          </div>
+          <div class="body"><p>It will default to <code>false</code> starting in 2.0. Not sure about complete removal. It was a relic of the pre-1.0 days that made its way into 1.0. Ref: <a href="https://github.com/jekyll/jekyll/pull/1081">https://github.com/jekyll/jekyll/pull/1081</a></p>
+<p>/cc @benbalter</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, April 29, 2014</time>
+          </div>
+          <div class="body"><p>Thank you.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

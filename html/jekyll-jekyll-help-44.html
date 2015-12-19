@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Work with *.Rmd files and RStudio</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#44</span>
+        </p>
+        <h1>Work with *.Rmd files and RStudio</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">magnusmetz</a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,</p>
+<p>so far I was able to set up jekyll on github pages: <a href="http://magnusmetz.github.io/">http://magnusmetz.github.io/</a></p>
+<p>I want to use it as a substitute for RPubs and publish posts written as *.Rmd files.</p>
+<p>It seems, there are two major issues left, which were impossible for me to solve so far and I was not able to solve the problem with the information I found on the internet.</p>
+<ol>
+<li><p>I use RStudio to version control the website. If I make a change in one of the markdown files in the _posts folder and commit these changes, the changes are not overtaken on <a href="http://magnusmetz.github.io/">http://magnusmetz.github.io/</a>, although I can see them on <a href="http://localhost:4000/">http://localhost:4000/</a>. Why is that? It seems that changes in the markdown files are tracked but the subsequent changes in _site are not transmitted to github. How to solve this issue?</p>
+</li>
+<li><p>I want to use *.Rmd files as the root files for my posts instead of markdown. How can I accomplish that? I know the blog of <a href="http://jfisher-usgs.github.io/">http://jfisher-usgs.github.io/</a> but I was not really able to accomplish that. But this is a pretty good example what I want to do.</p>
+</li>
+</ol>
+<p>Thanks in advance for further help.</p>
+<p>Magnus</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/magnusmetz">
+              magnusmetz
+            </a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body"><p>By the way: Everytime I commit and push a change in one of the markdown files in _posts I reveive an Email from github with following message:</p>
+<p>The page build failed with the following error:</p>
+<p>A file was included in <code>_layouts/post.html</code> that is a symlink or does not exist in your <code>_includes</code> directory. For more information, see <a href="https://help.github.com/articles/page-build-failed-file-is-a-symlink">https://help.github.com/articles/page-build-failed-file-is-a-symlink</a>.
+If you have any questions please contact us at <a href="https://github.com/contact">https://github.com/contact</a>.</p>
+<p>Maybe this helps for your answer.</p>
+<p>Thanks.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/iamgabeortiz">
+              iamgabeortiz
+            </a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body"><p>Regarding your <code>#1</code> above RStudio is likely only tracking files for you locally.  You would need to then push your repo changes to Github so that they display on the website.  I can&#39;t comment to your <code>#2</code>. :smiley:</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/magnusmetz">
+              magnusmetz
+            </a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body"><p>Well I am pushing the changes to Github with RStudio, but still can&#39;t see the changes on <a href="http://magnusmetz.github.io/">http://magnusmetz.github.io/</a>....</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/iamgabeortiz">
+              iamgabeortiz
+            </a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body"><p>LOL.  I didn&#39;t even know you can push changes to Github with RStudio.  Just started working with it.  You might want to take your <code>#1</code> then to RStudio on Github and post the issue there.  Especially if Jekyll is building locally and you can see it locally.  If I have any free time this week, I&#39;ll probably trying messing with RStudio and pushing to Github.  Would be ideal with working some of my R projects. :thought_balloon: Thanks for the idea.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/magnusmetz">
+              magnusmetz
+            </a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body"><p>No problem. It&#39;s usually working perfectly. This is the first time I have a problem like this. The strange thing is, it doesn&#39;t seem that RStudio is the problem. Also if I use following commands the changes in _site are not on Github:</p>
+<pre><code>git add -A
+git commit -m &quot;Commit message&quot;
+git push
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/iamgabeortiz">
+              iamgabeortiz
+            </a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body"><p>Do you push your Jekyll working directory to Github and let Github build it or do you build locally and just push everything in <code>_site/</code> folder?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/magnusmetz">
+              magnusmetz
+            </a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body"><p>Well I push the whole repository <code>magnusmetz.github.com</code>. I know jekyll since yesterday. If I build locally with</p>
+<pre><code>jekyll serve
+</code></pre><p>I can see the changes immediately on <a href="http://localhost:4000/">http://localhost:4000/</a>. But if I commit and push the repository <code>magnusmetz.github.com</code> jekyll-generated changes in <code>_site/</code> , which is inside <code>magnusmetz.github.com</code> are not regarded.
+I really don&#39;t understand that...</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/iamgabeortiz">
+              iamgabeortiz
+            </a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body"><p>Yea so the <strong>local view</strong> with <code>Jekyll -serve</code> just serves up your <code>_site</code> folder to your local machine.  You can upload everything in that folder to a webhost and your site would look exactly the same as it does locally.  With Github Pages, you are providing Github the pre-build files and allowing Github to build and serve it for you.  Is RStudio updating posts in <code>magnusmetz.github.com/_posts/</code> or <code>magnusmetz.github.com/_site/_posts/</code>?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/magnusmetz">
+              magnusmetz
+            </a>
+            <time>Tuesday, May 13, 2014</time>
+          </div>
+          <div class="body"><p>I deleted the whole repository and made a fresh setup. Now it works. Still don&#39;t know the answer.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

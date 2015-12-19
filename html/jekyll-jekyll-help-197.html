@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll::Convertible#write does not get invoked on pages for Collections</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#197</span>
+        </p>
+        <h1>Jekyll::Convertible#write does not get invoked on pages for Collections</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">camkego</a>
+            <time>Monday, November 17, 2014</time>
+          </div>
+          <div class="body">
+            <p>I am on Jekyll 2.5.1
+Using the Jekyll master site as an example,
+if you create a simple plugin to modify the output of a Convertible,
+all pages will get affected, but Collections pages will not.</p>
+<p>I understand Collections are preliminary, but they are being used in the master Jekyll site: <a href="http://goo.gl/bGqs9t">http://goo.gl/bGqs9t</a></p>
+<p>You can verify this by throwing the following plugin into _plugins under the master Jekyll site.</p>
+<p>module Jekyll
+  module Convertible
+    def write(dest)
+      self.output = &#39;foo&#39;
+      path = destination(dest)
+      FileUtils.mkdir_p(File.dirname(path))
+      File.open(path, &#39;wb&#39;) do |f|
+        f.write(output)
+      end
+    end
+  end
+end</p>
+<p>All .html and .md files will get turned into &#39;foo&#39;, but the /docs/ folder will not be affected by this
+plugin.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/camkego">
+              camkego
+            </a>
+            <time>Tuesday, November 18, 2014</time>
+          </div>
+          <div class="body"><p>There is $100 bounty on this issue: <a href="http://goo.gl/gk4Zhu">http://goo.gl/gk4Zhu</a>
+(on the bountysource.com site)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, November 18, 2014</time>
+          </div>
+          <div class="body"><p>@camkego This issue would probably be better served in the main jekyll repo, as it pretains to the functionality of jekyll itself. Closing with the hope that you&#39;ll add an issue over there :wink: </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

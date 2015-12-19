@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Where are the group_by docs? :-)</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#42</span>
+        </p>
+        <h1>Where are the group_by docs? :-)</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">9peppe</a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body">
+            <p>I tried to group my posts by year by doing something like this:</p>
+<pre><code>{% for year in site.posts | group_by:&quot;{{ date | date:&#39;%Y&#39; }}&quot; %}
+</code></pre><p>but it doesn&#39;t work, and I&#39;ve been unable to find docs on what you can group by or how you should write it. And: </p>
+<pre><code>{% for year in {{ site.posts | group_by:&quot;{{ date | date:&#39;%Y&#39; }}&quot; }} %}
+## {{ year.name }}
+{% for post in year.items %}
+- [{{ post.title | markdownify | remove:&#39;&lt;p&gt;&#39; | remove:&#39;&lt;/p&gt;&#39; }}]({{ post.url }}) (&lt;time&gt;{{ post.date | date:&#39;%F&#39; }}&lt;/time&gt;){% endfor %}
+{% endfor %}
+</code></pre><p>doesn&#39;t work either, like:</p>
+<pre><code>{% for year in site.posts | group_by:&quot;date | date:&#39;%Y&#39;&quot; %}
+</code></pre><p>and </p>
+<pre><code>{% for year in {{ site.posts | group_by:&quot;date | date:&#39;%Y&#39;&quot; }} %}
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>The documentation is here: <a href="http://jekyllrb.com/docs/templates/">http://jekyllrb.com/docs/templates/</a></p>
+<p>{% for year in site.posts | group_by:&quot;date&quot; %}</p>
+<p>Which probably won&#39;t do what you want. But group_by doesn&#39;t take
+expressions like what you&#39;re trying to do, unfortunately.</p>
+<p>On 11 May 2014 23:43, Giuseppe C <a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#58;&#110;&#x6f;&#116;&#105;&#x66;&#105;&#99;&#x61;&#x74;&#105;&#111;&#110;&#115;&#64;&#103;&#105;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;">&#110;&#x6f;&#116;&#105;&#x66;&#105;&#99;&#x61;&#x74;&#105;&#111;&#110;&#115;&#64;&#103;&#105;&#116;&#x68;&#x75;&#x62;&#x2e;&#99;&#111;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>I tried to group my posts by year by doing something like this:</p>
+<p>{% for year in site.posts | group_by:&quot;{{ date | date:&#39;%Y&#39; }}&quot; %}</p>
+<p>but it doesn&#39;t work, and I&#39;ve been unable to find docs on what you can
+group by or how you should write it. And:</p>
+<p>{% for year in {{ site.posts | group_by:&quot;{{ date | date:&#39;%Y&#39; }}&quot; }} %}</p>
+<h2 id="-year-name-">{{ year.name }}</h2>
+<p>{% for post in year.items %}</p>
+<ul>
+<li><a href="{{ post.url }}">{{ post.title | markdownify | remove:&#39;&lt;p&gt;&#39; | remove:&#39;&lt;/p&gt;&#39; }}</a> (&lt;time&gt;{{ post.date | date:&#39;%F&#39; }}&lt;/time&gt;){% endfor %}
+{% endfor %}</li>
+</ul>
+<p>doesn&#39;t work either, like:</p>
+<p>{% for year in site.posts | group_by:&quot;date | date:&#39;%Y&#39;&quot; %}</p>
+<p>and</p>
+<p>{% for year in {{ site.posts | group_by:&quot;date | date:&#39;%Y&#39;&quot; }} %}</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/42">https://github.com/jekyll/jekyll-help/issues/42</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/9peppe">
+              9peppe
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>The documentation is here: <a href="http://jekyllrb.com/docs/templates/">http://jekyllrb.com/docs/templates/</a></p>
+</blockquote>
+<p>I saw that, I didn&#39;t find it very clear on what you can group by. Issue jekyll/jekyll#1735 makes it somewhat clearer. </p>
+<blockquote>
+<p>{% for year in site.posts | group_by:&quot;date&quot; %}</p>
+<p>Which probably won&#39;t do what you want. But group_by doesn&#39;t take
+expressions like what you&#39;re trying to do, unfortunately.</p>
+</blockquote>
+<p>Yeah, that probably means a feature request. :/</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>It&#39;s clear, it&#39;s just unfortunately succinct and technical. Not really sure
+what can be done on either front, the site design doesn&#39;t really allow for
+great amounts of verbosity there as there&#39;s not much room.</p>
+<p>On 12 May 2014 01:10, Giuseppe C <a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#58;&#x6e;&#111;&#x74;&#105;&#102;&#x69;&#99;&#x61;&#116;&#105;&#x6f;&#x6e;&#x73;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">&#x6e;&#111;&#x74;&#105;&#102;&#x69;&#99;&#x61;&#116;&#105;&#x6f;&#x6e;&#x73;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a> wrote:</p>
+<blockquote>
+<p>The documentation is here: <a href="http://jekyllrb.com/docs/templates/">http://jekyllrb.com/docs/templates/</a></p>
+<p>I saw that, I didn&#39;t find it very clear on what you can group by. Issue
+jekyll/jekyll#1735 <a href="https://github.com/jekyll/jekyll/issues/1735">https://github.com/jekyll/jekyll/issues/1735</a> makes
+it somewhat clearer.</p>
+<p>{% for year in site.posts | group_by:&quot;date&quot; %}</p>
+<p>Which probably won&#39;t do what you want. But group_by doesn&#39;t take
+expressions like what you&#39;re trying to do, unfortunately.</p>
+<p>Yeah, that probably means a feature request. :/</p>
+<p>—
+Reply to this email directly or view it on GitHub<a href="https://github.com/jekyll/jekyll-help/issues/42#issuecomment-42773114">https://github.com/jekyll/jekyll-help/issues/42#issuecomment-42773114</a>
+.</p>
+</blockquote>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

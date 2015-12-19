@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Custom sitemap overwritten in production</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#159</span>
+        </p>
+        <h1>Custom sitemap overwritten in production</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ndarville</a>
+            <time>Thursday, September 25, 2014</time>
+          </div>
+          <div class="body">
+            <p>(Via hafniatimes/issues#12.)</p>
+<p>I have a <a href="https://github.com/hafniatimes/hafniatimes.github.io/blob/master/sitemap.xml">manual sitemap file</a> I wish to use for my site in production. For some reason, though, I get <a href="http://hafniatimes.com/sitemap.xml">a different output</a> in production than in my local <code>_site</code> folder.</p>
+<p>I’ll post the content and output in a separate comment.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Thursday, September 25, 2014</time>
+          </div>
+          <div class="body"><p>Locally:</p>
+<pre><code class="lang-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot; xmlns:xhtml=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/da/articles/2014/09/14/danish-polls.html&lt;/loc&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;da&quot; href=&quot;http://hafniatimes.com/da/articles/2014/09/14/danish-polls.html&quot; /&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;en&quot; href=&quot;http://hafniatimes.com/articles/2014/09/14nish-polls.html&quot; /&gt;
+        &lt;lastmod&gt;2014-09-14T20:00:00+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/articles/2014/09/14/danish-polls.html&lt;/loc&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;en&quot; href=&quot;http://hafniatimes.com/articles/2014/09/14/danish-polls.html&quot; /&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;da&quot; href=&quot;http://hafniatimes.com/da/articles/2014/09/14/danish-polls.html&quot; /&gt;
+        &lt;lastmod&gt;2014-09-14T20:00:00+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/articles/2014/08/29/antiterror-manhunt.html&lt;/loc&gt;
+        &lt;lastmod&gt;2014-08-29T22:00:00+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/articles/2014/08/29/muslims-vs-jews.html&lt;/loc&gt;
+        &lt;lastmod&gt;2014-08-29T20:00:00+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/articles/2014/08/02/a-sideorder-of-sexism.html&lt;/loc&gt;
+        &lt;lastmod&gt;2014-08-02T14:00:00+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/articles/2014/07/25/danish-peoples-party-and-headscarves.html&lt;/loc&gt;
+        &lt;lastmod&gt;2014-07-25T17:00:00+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/da/articles/2014/06/06/intro.html&lt;/loc&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;da&quot; href=&quot;http://hafniatimes.com/da/articles/2014/06/06/intro.html&quot; /&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;en&quot; href=&quot;http://hafniatimes.com/articles/2014/06/06/intro.html&quot; /&gt;
+        &lt;lastmod&gt;2014-06-06T22:00:00+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/articles/2014/06/06/intro.html&lt;/loc&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;en&quot; href=&quot;http://hafniatimes.com/articles/2014/06/06/intro.html&quot; /&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;da&quot; href=&quot;http://hafniatimes.com/da/articles/2014/06/06/intro.html&quot; /&gt;
+        &lt;lastmod&gt;2014-06-06T22:00:00+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/da/&lt;/loc&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;da&quot; href=&quot;http://hafniatimes.com/da/&quot; /&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;en&quot; href=&quot;http://hafniatimes.com/&quot; /&gt;
+        &lt;lastmod&gt;2014-09-22T15:37:56+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/&lt;/loc&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;en&quot; href=&quot;http://hafniatimes.com/&quot; /&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;da&quot; href=&quot;http://hafniatimes.com/da/&quot; /&gt;
+        &lt;lastmod&gt;2014-09-22T15:37:56+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+    &lt;url&gt;
+        &lt;loc&gt;http://hafniatimes.com/404/&lt;/loc&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;&quot; href=&quot;http://hafniatimes.com/404/&quot; /&gt;
+        &lt;xhtml:link rel=&quot;alternate&quot; hreflang=&quot;da&quot; href=&quot;http://hafniatimes.com/404/&quot; /&gt;
+        &lt;lastmod&gt;2014-09-22T15:37:56+02:00&lt;/lastmod&gt;
+    &lt;/url&gt;
+&lt;/urlset&gt;
+</code></pre>
+<p><a href="http://hafniatimes.com/sitemap.xml">Production</a>:</p>
+<pre><code>http://hafniatimes.com/articles/2014/09/14/danish-polls.html 2014-09-14T18:00:00+00:00 
+http://hafniatimes.com/da/articles/2014/09/14/danish-polls.html 2014-09-14T18:00:00+00:00 
+http://hafniatimes.com/articles/2014/08/29/antiterror-manhunt.html 2014-08-29T22:00:00+00:00 
+http://hafniatimes.com/articles/2014/08/29/muslims-vs-jews.html 2014-08-29T18:00:00+00:00 
+http://hafniatimes.com/articles/2014/08/02/a-sideorder-of-sexism.html 2014-08-02T12:00:00+00:00 
+http://hafniatimes.com/articles/2014/07/25/danish-peoples-party-and-headscarves.html 2014-07-25T15:00:00+00:00 http://hafniatimes.com/articles/2014/06/06/intro.html 2014-06-06T20:00:00+00:00 
+http://hafniatimes.com/da/articles/2014/06/06/intro.html 2014-06-06T20:00:00+00:00 
+http://hafniatimes.com/ 2014-09-22T13:39:09+00:00 http://hafniatimes.com/da/ 2014-09-22T13:39:09+00:00 http://hafniatimes.com/404/ 2014-09-22T13:39:09+00:00
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mattr-">
+              mattr-
+            </a>
+            <time>Thursday, September 25, 2014</time>
+          </div>
+          <div class="body"><p>Is the sitemap generated by a plugin? If so, it&#39;s possible that the plugin isn&#39;t running correctly in production. </p>
+<p>Also, could the meaning of &#39;production&#39; be clarified? Is it GitHub Pages?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ndarville">
+              ndarville
+            </a>
+            <time>Thursday, September 25, 2014</time>
+          </div>
+          <div class="body"><p>The sitemap is just generated from the sitemap.xml file—with a (--- Jekyll
+YAML header). The (production) site is built and hosted with GitHub Pages,
+yes.</p>
+<p>I dont’t know whether the jekyll-sitemap gem has to be disabled explicitly
+in my config somehow, if that’s what causing it. Something is definitely
+superceding my own sitemap.xml file.</p>
+<p>On 25 September 2014 14:14, Matt Rogers <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#110;&#x6f;&#116;&#x69;&#x66;&#105;&#x63;&#x61;&#116;&#x69;&#111;&#x6e;&#x73;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#109;">&#110;&#x6f;&#116;&#x69;&#x66;&#105;&#x63;&#x61;&#116;&#x69;&#111;&#x6e;&#x73;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#109;</a> wrote:</p>
+<blockquote>
+<p>Is the sitemap generated by a plugin? If so, it&#39;s possible that the plugin
+isn&#39;t running correctly in production.</p>
+<p>Also, could the meaning of &#39;production&#39; be clarified? Is it GitHub Pages?</p>
+<p>—
+Reply to this email directly or view it on GitHub
+<a href="https://github.com/jekyll/jekyll-help/issues/159#issuecomment-56809855">https://github.com/jekyll/jekyll-help/issues/159#issuecomment-56809855</a>.</p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Thursday, September 25, 2014</time>
+          </div>
+          <div class="body"><p>No, <code>jekyll-sitemap</code> is only activated when explicitly stated.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

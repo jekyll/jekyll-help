@@ -1,0 +1,656 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Problem running generator on Windows Server 2008 R2</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#121</span>
+        </p>
+        <h1>Problem running generator on Windows Server 2008 R2</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">gep13</a>
+            <time>Tuesday, August 12, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,</p>
+<p>I am hoping that someone can help.</p>
+<p>I originally posted this question here:</p>
+<p><a href="https://github.com/jekyll/jekyll/issues/2738">https://github.com/jekyll/jekyll/issues/2738</a></p>
+<p>but it was suggested that I should ask it here instead.</p>
+<p>As requested there by @parkr I have confirmed the jekyll version that is running, and it is </p>
+<p><code>jekyll 2.2.0</code></p>
+<p>As I think I mentioned below, I have set this up on a fresh Azure VM, which is essentially throw away.  If it will help, and if someone has some time, I can gladly provide access to the VM via RDP in order to help figure out what could be going on.</p>
+<p>Original question follows....</p>
+<p>Thanks!</p>
+<hr>
+<p>Can anyone help with this issue that I am facing?</p>
+<p>I originally posted on the generator-jekyllrb issue tracker, but @robwierzbowski suggested that I post here instead.  The details of the issue are as follows (which was originally posted here <a href="https://github.com/robwierzbowski/generator-jekyllrb/issues/99#issuecomment-51968568">https://github.com/robwierzbowski/generator-jekyllrb/issues/99#issuecomment-51968568</a>):</p>
+<hr>
+<p>I have been trying to use the jekyllrb generator to template out a new Jekyll site I am making.  I have followed the guide here:</p>
+<p><a href="http://jekyll-windows.juthilo.com/">http://jekyll-windows.juthilo.com/</a></p>
+<p>And the instructions on this site to try to get it up and running, but I keep getting an error.</p>
+<p>These are the steps that I have followed:</p>
+<ul>
+<li>Install Chocolatey</li>
+<li>Install notepad++ <code>choco install notepadplusplus</code></li>
+<li>Install Ruby
+<code>choco install ruby</code></li>
+<li>Confirm ruby is installed correctly <code>ruby -v</code> which gives <code>ruby 2.0.0p481</code></li>
+<li>Install Ruby DevKit <code>choco install ruby2.devkit</code></li>
+<li>Fixed up config.yaml file and then ran <code>ruby dk.rb install</code></li>
+<li>Install jekyll <code>gem install jekyll</code></li>
+<li>Install rouge <code>gem install rouge</code></li>
+<li>Install python <code>choco install python2</code></li>
+<li>Confirm python is installed correctly <code>python -V</code> which gives <code>Python 2.7.8</code></li>
+<li>Install pip <code>choco install pip</code></li>
+<li>Install pygments <code>python -m pip install Pygments</code></li>
+<li>Install wdm <code>gem install wdm</code></li>
+<li>Install node <code>choco install nodejs.install</code></li>
+</ul>
+<p>Then I tested to see that things are working as expecte</p>
+<ul>
+<li><code>jekyll new myblog</code></li>
+<li><code>jekyll serve</code></li>
+</ul>
+<p>All good!</p>
+<p>Now onto installing the generator</p>
+<ul>
+<li>Install bundler <code>gem install bundler</code></li>
+<li>Install generator <code>npm install -g generator-jekyllrb</code></li>
+<li>And then templated out a site, accepting the default options</li>
+<li><code>yo jekyllrb</code></li>
+</ul>
+<p>And I get this at the end:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1271146/3896503/eb0484bc-2258-11e4-91bb-234aa96dd845.png" alt="image"></p>
+<p>So then I did this:</p>
+<ul>
+<li><code>bower install</code></li>
+<li><code>npm install</code></li>
+<li>Then I noticed errors about missing git so I did <code>choco install git</code></li>
+<li><code>bower install</code></li>
+<li><code>npm install</code></li>
+</ul>
+<p>Then I do this:</p>
+<p><code>grunt serve</code></p>
+<p>And this is what I get:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1271146/3896606/e83e03ec-2259-11e4-9b22-052fd5fa3381.png" alt="image"></p>
+<p>Any ideas what I did wrong?</p>
+<p>Thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Tuesday, August 12, 2014</time>
+          </div>
+          <div class="body"><p>helllo again! Did you run <code>jekyll build --trace</code> to get the full trace output?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Tuesday, August 12, 2014</time>
+          </div>
+          <div class="body"><p>Hi!</p>
+<p>Here is the full output:</p>
+<pre><code>Notice: for 10x faster LSI support, please install http://rb-gsl.rubyforge.org/
+       Deprecation: The &#39;pygments&#39; configuration option has been renamed to &#39;hig
+hlighter&#39;. Please update your config file accordingly. The allowed values are &#39;r
+ouge&#39;, &#39;pygments&#39; or null.
+C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/site.rb:133:in
+ `open&#39;: No such file or directory - . (Errno::ENOENT)
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:133:in `entries&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:133:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:133:in `chdir&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:133:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:144:in `block in read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:140:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:119:in `read&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/s
+ite.rb:41:in `process&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/c
+ommand.rb:53:in `process_site&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/c
+ommands/build.rb:50:in `build&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/c
+ommands/build.rb:33:in `process&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/lib/jekyll/c
+ommands/build.rb:17:in `block (2 levels) in init_with_program&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/merce
+nary/command.rb:220:in `call&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/merce
+nary/command.rb:220:in `block in execute&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/merce
+nary/command.rb:220:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/merce
+nary/command.rb:220:in `execute&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/merce
+nary/program.rb:35:in `go&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/merce
+nary.rb:22:in `program&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.2.0/bin/jekyll:1
+8:in `&lt;top (required)&gt;&#39;
+        from C:/tools/ruby200/bin/jekyll:23:in `load&#39;
+        from C:/tools/ruby200/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Thursday, August 14, 2014</time>
+          </div>
+          <div class="body"><p>@parkr Any ideas on how to proceed with this?  Is there any additional debugging that I can do?  Would you be in a position to jump on the VM via RDP to take a look if I can get you access?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Thursday, August 14, 2014</time>
+          </div>
+          <div class="body"><p>I have just installed the latest version of jekyll, 2.3.0, hoping that this might help, but I get the same problem (albeit, slightly different line numbers:</p>
+<pre><code>Configuration file: C:/temp/jekyllrbtest/_config.yml
+       Deprecation: The &#39;pygments&#39; configuration option has been renamed to &#39;highlighter&#39;. Please update your co
+e accordingly. The allowed values are &#39;rouge&#39;, &#39;pygments&#39; or null.
+            Source: C:/temp/jekyllrbtest
+       Destination: C:/temp/jekyllrbtest/_site
+      Generating...
+C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:135:in `open&#39;: No such file or directo
+Errno::ENOENT)
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:135:in `entries&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:135:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:135:in `chdir&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:135:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:146:in `block in read_dir
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:142:in `read_directories&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:121:in `read&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/site.rb:43:in `process&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/command.rb:28:in `process_site&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/commands/build.rb:55:in `build&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/commands/build.rb:33:in `process&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/lib/jekyll/commands/build.rb:17:in `block (2
+ in init_with_program&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `call&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `block in
+&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `each&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/mercenary/command.rb:220:in `execute&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/mercenary/program.rb:35:in `go&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/mercenary-0.3.4/lib/mercenary.rb:22:in `program&#39;
+        from C:/tools/ruby200/lib/ruby/gems/2.0.0/gems/jekyll-2.3.0/bin/jekyll:18:in `&lt;top (required)&gt;&#39;
+        from C:/tools/ruby200/bin/jekyll:23:in `load&#39;
+        from C:/tools/ruby200/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Friday, August 15, 2014</time>
+          </div>
+          <div class="body"><p>Ok, this is going to be a stoopid question, but here goes...</p>
+<p>When I ran the command to scaffold out the site, it created an app folder in the hierarchy.  The above output is for when I run <code>jekyll build --trace</code> on the root folder.  If I cd into the app folder, and run the command again, this is the output I get:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1271146/3939055/f3e6aa0e-24c1-11e4-9be2-918cc00b6b8d.png" alt="image"></p>
+<p>So the stoopid question...</p>
+<p>Which folder should I be running the command on?  I suspect that it is the latter, i.e. app, but this still seems to be generating an error in the build, however, if I do <code>jekyll serve --watch</code> I do get a site rendered:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1271146/3939079/2f20cd52-24c2-11e4-8604-2035da9a4ab5.png" alt="image"></p>
+<p>This doesn&#39;t really explain why the <code>grunt serve</code> command isn&#39;t working though, or does it?</p>
+<p>Any help?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Friday, August 15, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Which folder should I be running the command on?</p>
+</blockquote>
+<p>Run it at the root of your site. That&#39;s usually where your <code>_config.yml</code> file is or where you expect visitors to your site to go to (i.e. has the homepage <code>index.html</code>).</p>
+<p>If <code>jekyll serve --watch</code> works just fine for you then it&#39;s something in <code>grunt</code> that is acting up.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Saturday, August 16, 2014</time>
+          </div>
+          <div class="body"><p>Sorry, I am very confused by all of this.</p>
+<p>The folder structure that the generator-jekyllrb provided is the following:</p>
+<p>Root Folder:
+<img src="https://cloud.githubusercontent.com/assets/1271146/3941375/68c0c0b8-2525-11e4-9933-471659228d60.png" alt="image"></p>
+<p>App Folder:
+<img src="https://cloud.githubusercontent.com/assets/1271146/3941376/77d9ef34-2525-11e4-8abd-811a049bb9bd.png" alt="image"></p>
+<p>If I run <code>jekyll build --trace</code> on the root folder, I get the errors mentioned above.  If I run <code>jekyll build --trace</code> on the App Folder, it seems to work.  But the <code>_config.yml</code> and <code>index.html</code> file are not in the same location, therefore, am I right in saying that running jekyll build in the app folder means it isn&#39;t respecting what is in the config file?  Perhaps @robwierzbowski can help with why they are in different locations.</p>
+<p>As you can probably tell, I am very new to this, and am really feeling my way in the dark trying to get things to work.</p>
+<p>If this is a problem with grunt, any thoughts on where I should go for some help?</p>
+<p>Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Saturday, August 16, 2014</time>
+          </div>
+          <div class="body"><p>The Jekyll root directory is the one in the second screenshot.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Saturday, August 16, 2014</time>
+          </div>
+          <div class="body"><p>@kleinfreund Thanks for the information.  So that explains why doing <code>jekyll build --trace</code> in the app folder works, and why doing it on the root folder above fails.  Any ideas on why grunt seems to be failing?</p>
+<p>Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Saturday, August 16, 2014</time>
+          </div>
+          <div class="body"><p>If I do what it suggests, i.e <code>grunt serve --force</code> it gets further, but the end result is this:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1271146/3941554/bd9ed784-2532-11e4-83c7-b10afb0b5487.png" alt="image"></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Wednesday, August 20, 2014</time>
+          </div>
+          <div class="body"><p>Can no-one help with this issue?  I can&#39;t be the only person who has ran into this.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Tuesday, August 26, 2014</time>
+          </div>
+          <div class="body"><p>Lame suggestion but figured I&#39;d post it.
+If you have access to a Mac or Linux machine, you can build your jekyll site there and then host the compiled html on your Windows server.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Tuesday, August 26, 2014</time>
+          </div>
+          <div class="body"><p>@AJ-Acevedo thanks for the reply!  While that would work, I guess, I don&#39;t have a Mac or Linux machine to hand.  Part of the appeal of Jekyll is that I should be able to use it on &quot;any&quot; machine that I want to, but it looks like there is some sort of incompatibility with Windows.</p>
+<p>I am actually not looking to host on a Windows Machine, but rather host on Github Pages, but I would like to do the main development work, and compilation on my Windows machine.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>@gep13 Have you discovered something that will work for you? You might want to try a Vagrant/VirtualBox setup.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>@troyswanson Thank you for your reply! Unfortunately, no, I was never able to find a solution for this :-(  The test that I was doing, listed in the comments above, was on a brand new VM created in Windows Azure.  Am I missing something?  What would using Vagrant/VirtualBox bring to the table?</p>
+<p>Thanks!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>VirtualBox would provide Vagrant with a platform for running a virtual machine, running Ubuntu or some other Linux distro. You can use that to work with Jekyll much more easily. Here&#39;s the breakdown if you&#39;ve never used any of this stuff before:</p>
+<ol>
+<li>Download/install VirtualBox</li>
+<li>Download/install Vagrant</li>
+<li>Use Vagrant to create a new environment<ol>
+<li>Download a new box template (<code>vagrant box add hashicorp/precise64</code>)</li>
+<li>Initialize a box (<code>vagrant init hashicorp/precise64</code>)</li>
+<li>Fire it up (<code>vagrant up</code>)</li>
+</ol>
+</li>
+<li>SSH into the box you just made (<code>vagrant ssh</code>)</li>
+</ol>
+<p>Now you have a Linux box! There&#39;s other cool stuff you can do like sharing folders between the host machine and the virtual machine, advanced networking, etc.</p>
+<p>Hopefully this helps get you a little bit closer to the holy grail of developing on a *nix system. :wink: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Right, sorry, I see what you are getting at :-)</p>
+<p>I am familiar with Vagrant/VirtualBox, but to be honest, I am a Windows guy :-D  I develop on Windows all day, mainly in the .Net eco system, and run Windows at home as well.  While I understand that I &quot;could&quot; spin up a VM, and install Linux, I was under the impression that Ruby works happily on both Linux and Windows, so I should be able to work on either, no?</p>
+<p>I am not saying that I am against using Linux, I am just trying to understand why I should need to.</p>
+<p>I wanted to pick up learning Ruby, by using it as the underlying engine for running my blog, I wasn&#39;t expecting to have to pick up learning another Operating System, to try it out.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Yeah, that&#39;s fair enough.</p>
+<p>Unfortunately, this is the only thing I can offer, since I don&#39;t have a Windows machine to troubleshoot with! I wish I could help you more, but I just have no way to recreate what&#39;s happening on your machine so that I can understand the problem better.</p>
+<p>I will keep this issue open, though. Hopefully someone with more knowledge of the matter can help out more than I can. :confounded: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Not a problem at all, thanks for responding.</p>
+<p>In a way, I guess I have &quot;fixed&quot; the problem.  I switched to using Octopress, rather than straight up Jekyll, and so far, that seems to be working really well.  Blog site is up and running, with CI builds happening everytime I publish thanks to AppVeyor.  Quite why Octopress works, and Jekyll doesn&#39;t, I have no idea.  They were both running on the same machines.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Interesting. Well, feel free to close this issue if you&#39;re good to go. You can leave it open if you want, too.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>Yes, I believe I am all set.  It&#39;s a shame that we couldn&#39;t get to the bottom of this one though, as I suspect it might put people off getting started with Jekyll. :-(</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>It looks like you weren&#39;t using straight-up Jekyll after all – by running <code>grunt serve</code>, you were using a different system that wrapped around Jekyll. It&#39;s not difficult to imagine that that is where things could have been going wrong.</p>
+<p>Your error (the duplicate drive) is reminiscent of a bug we found in v1.5.3 of Jekyll, but it was patched by the time v2.0 came out. I think you may have been running v1.5.3, because the last line of a failed build should show jekyll and its version, not <code>error:</code>. Did you check the version that <code>grunt</code> was using? It looks like generator-jekyllrb was out of date.</p>
+<p>The warning about posix-spawn is fine, but you can set <code>highlighter: rouge</code> in Jekyll 2.0.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/gep13">
+              gep13
+            </a>
+            <time>Monday, September 15, 2014</time>
+          </div>
+          <div class="body"><p>That is actually a fair point, I had actually forgotten that I was trying to use the generator!  I had tried various things while trying to get this all setup.  For now, I am very happy with the Octopress setup that I have running, so I will continue with that.</p>
+<p>Thanks for all the help!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

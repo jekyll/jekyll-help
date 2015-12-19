@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Is there a Jekyll-Discourse plugin yet?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#139</span>
+        </p>
+        <h1>Is there a Jekyll-Discourse plugin yet?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">oblakeerickson</a>
+            <time>Monday, August 25, 2014</time>
+          </div>
+          <div class="body">
+            <p><a href="http://eviltrout.com/2014/01/22/embedding-discourse.html">Discourse</a> can be used to host comments on static sites and wasn&#39;t sure if there was a plugin for this yet? If not I&#39;ll probably work on one.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/oblakeerickson">
+              oblakeerickson
+            </a>
+            <time>Tuesday, August 26, 2014</time>
+          </div>
+          <div class="body"><p>Here is the Discourse-Comments plugin I created if anybody is interested.</p>
+<p><a href="https://github.com/oblakeerickson/jekyll-discourse-comments">https://github.com/oblakeerickson/jekyll-discourse-comments</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

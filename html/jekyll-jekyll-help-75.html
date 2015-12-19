@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Unable to pull content from .yml file in _data folder</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#75</span>
+        </p>
+        <h1>Unable to pull content from .yml file in _data folder</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">bdharva</a>
+            <time>Wednesday, June 18, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;ve been trying to set up author bios on posts that pull their content from <code>/_data/authors.yml</code>. No errors are being generated and the divs, spans, etc. that are supposed to hold the information are being generated, but they&#39;re empty.</p>
+<p>To make sure there wasn&#39;t an error in what I was doing, I created files to match the example given in the documentation:</p>
+<p>In <code>/_data/members.yml</code>:</p>
+<pre><code>- name: Tom Preston-Werner
+  github: mojombo
+
+- name: Parker Moore
+  github: parkr
+
+- name: Liu Fengyun
+  github: liufengyun
+</code></pre><p>with the following in an otherwise empty template:</p>
+<pre><code>&lt;ul&gt;
+{% for member in site.data.members %}
+  &lt;li&gt;
+    &lt;a href=&quot;https://github.com/{{ member.github }}&quot;&gt;
+      {{ member.name }}
+    &lt;/a&gt;
+  &lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</code></pre><p>This resulted in the following output:</p>
+<pre><code>&lt;ul&gt;
+
+&lt;/ul&gt;
+</code></pre><p>I&#39;ve been unable to locate any information addressing such an issue. </p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Wednesday, June 18, 2014</time>
+          </div>
+          <div class="body"><p>This may not be exactly helpful, but FYI, the code you have there works for me.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Wednesday, June 18, 2014</time>
+          </div>
+          <div class="body"><p>What version of Jekyll are you using?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bdharva">
+              bdharva
+            </a>
+            <time>Wednesday, June 18, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m an idiot -- thought I&#39;d updated it more recently than I have. Didn&#39;t even think to check that. Was still running pre-1.3.0. Thanks.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

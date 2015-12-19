@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Copy files verbatim to destination, without processing</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#214</span>
+        </p>
+        <h1>Copy files verbatim to destination, without processing</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">clauswilke</a>
+            <time>Saturday, December 20, 2014</time>
+          </div>
+          <div class="body">
+            <p>There should be an option that tells Jekyll to copy files verbatim, without processing. At present, to my knowledge, there is no way that one can host a markdown file verbatim. This <a href="http://stackoverflow.com/questions/20509912/how-to-post-an-md-file-on-jekyll-website">stackoverflow post</a> suggests that one could host markdown files that don&#39;t have YAML front-matter, but that doesn&#39;t help when I want to host files that actually do contain such front-matter.</p>
+<p>A simple configuration option like this:
+<code>verbatim: [DIR, FILE, ...]</code>
+modeled after <code>exclude</code> and <code>include</code>, would do the trick.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>I haven&#39;t tested this, so I don&#39;t know if this would actually work, but try using a <code>txt</code> file extension instead of <code>md</code> or <code>markdown</code>. I believe Jekyll converts files based on their file extension, so if you give it a <code>txt</code>, it won&#39;t have a converter for it and just dump it as it sees it.</p>
+<p>Let me know if that works, please.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/clauswilke">
+              clauswilke
+            </a>
+            <time>Tuesday, January 06, 2015</time>
+          </div>
+          <div class="body"><p>File extensions don&#39;t matter, as far as I can tell. I have files ending in .Rmd, which should be ignored, but they are not. </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

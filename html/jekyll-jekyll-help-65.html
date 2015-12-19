@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Best way to make an &quot;about $author&quot; partial</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#65</span>
+        </p>
+        <h1>Best way to make an &quot;about $author&quot; partial</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">romariorios</a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello.</p>
+<p>I&#39;m converting a blog to Jekyll and I want there to be an &quot;About Author&quot; box at the end of each post, containing the author&#39;s name, picture and description and I want this box to be consistent for each author. The easiest way to approach this is to provide the author&#39;s information in every posts written by them, but then there will be several copies of the same information across the articles written by that author.</p>
+<p>I, then, figured I could create a plugin to create those partials, but, as far as I can see, Generator plugins are only able to create full pages, not just partials.</p>
+<p>What, then, would be the best approach to do that?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>You can add authors to a <code>_data/authors.yaml</code> file and reference them in the front matter of each post. Might look like this: </p>
+<pre><code>{% assign article_author = site.data.authors | where: &#39;author&#39;, &#39;author&#39; %}
+{% for author in article_author  %}
+    {{author.name}}
+    {{author.bio}}
+{% endfor %}
+</code></pre><p>edit: you&#39;d probably need to capture the post&#39;s author beforehand with capture page.author. sorry, I left that out initially</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/romariorios">
+              romariorios
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>I suppose I should replace that first &#39;author&#39; in the first line by the name of the author, right?
+How can I find further documentation on that filter? I can&#39;t find anything in the liquid docs.</p>
+<p>Thanks.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>authors.yaml:</p>
+<pre><code>-
+ name: Author Name
+ email: email@gmail.com
+ author_id: author_identifier
+</code></pre><p>post.md</p>
+<pre><code>---
+title: Post
+layout: article
+author: author_identifier
+---
+copy
+</code></pre><p>template:</p>
+<pre><code>
+{% assign the_author = site.data.authors | where: &#39;author_id&#39;, {{page.author}} %}
+{% for author in the_author %}
+ name: {{author.name}}&lt;br /&gt;
+ email: {{author.email}}
+{% endfor %}
+</code></pre><p>I tend to use twitter as the author_id, and I tend to capture the page author before I use it in assign, but this will work.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/romariorios">
+              romariorios
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>It worked nicely. Thanks.</p>
+<p>Just one more (noob) question: is that &quot;the_author&quot; var available in all templates including that part, or it&#39;s just available locally? I need the author data in more than one place and don&#39;t want to write all that boilerplate code everywhere I use that data, so I thought it would be easier if I could create a partial that grabs the data and saves them in other variables.</p>
+<p>EDIT: Nevermind, it works.</p>
+<p>Thanks for all the help.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, June 03, 2014</time>
+          </div>
+          <div class="body"><p>Glad you got it working. You can put that in a partial and call the partial with the author as a parameter: <a href="http://jekyllrb.com/docs/templates/#includes">http://jekyllrb.com/docs/templates/#includes</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>LoadError</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#89</span>
+        </p>
+        <h1>LoadError</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">imkaywu</a>
+            <time>Friday, July 04, 2014</time>
+          </div>
+          <div class="body">
+            <p>I have ruby-del and rubygems install on my fedora 20, but when I used gem command to install jekyll, I got the following error.</p>
+<pre><code>Successfully installed jekyll-2.1.0
+/usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;: cannot load such file -- json/pure (LoadError)
+    from /usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+    from /usr/share/gems/gems/json-1.7.7/lib/json.rb:60:in `rescue in &lt;module:JSON&gt;&#39;
+    from /usr/share/gems/gems/json-1.7.7/lib/json.rb:57:in `&lt;module:JSON&gt;&#39;
+    from /usr/share/gems/gems/json-1.7.7/lib/json.rb:54:in `&lt;top (required)&gt;&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/text.rb:16:in `&lt;top (required)&gt;&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/code_object.rb:28:in `&lt;class:CodeObject&gt;&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/code_object.rb:26:in `&lt;top (required)&gt;&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/generator/markup.rb:59:in `&lt;top (required)&gt;&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/generator/darkfish.rb:6:in `&lt;top (required)&gt;&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/rdoc.rb:565:in `&lt;top (required)&gt;&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/core_ext/kernel_require.rb:55:in `require&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/rubygems_hook.rb:73:in `load_rdoc&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/rubygems_hook.rb:238:in `setup&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/rubygems_hook.rb:151:in `generate&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/rubygems_hook.rb:56:in `block in generation_hook&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/rubygems_hook.rb:55:in `each&#39;
+    from /usr/share/gems/gems/rdoc-4.0.1/lib/rdoc/rubygems_hook.rb:55:in `generation_hook&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/request_set.rb:178:in `call&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/request_set.rb:178:in `block in install&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/request_set.rb:177:in `each&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/request_set.rb:177:in `install&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/commands/install_command.rb:249:in `install_gem&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/commands/install_command.rb:291:in `block in install_gems&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/commands/install_command.rb:287:in `each&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/commands/install_command.rb:287:in `install_gems&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/commands/install_command.rb:202:in `execute&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/command.rb:307:in `invoke_with_build_args&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/command_manager.rb:167:in `process_args&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/command_manager.rb:137:in `run&#39;
+    from /usr/local/share/ruby/site_ruby/rubygems/gem_runner.rb:54:in `run&#39;
+    from /bin/gem:21:in `&lt;main&gt;&#39;
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>Try <code>gem install json</code> or <code>gem install json_pure</code>. I&#39;ve never seen this before.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/AJ-Acevedo">
+              AJ-Acevedo
+            </a>
+            <time>Saturday, July 05, 2014</time>
+          </div>
+          <div class="body"><p>What is the output of <code>ruby -v; gem -v</code> on the command line?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/oblakeerickson">
+              oblakeerickson
+            </a>
+            <time>Wednesday, July 16, 2014</time>
+          </div>
+          <div class="body"><p>@imkaywu looks like you got your <a href="https://github.com/imkaywu/imkaywu.github.io/commits?author=imkaywu">site</a> setup, just wanted to confirm that you got passed this error?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/oblakeerickson">
+              oblakeerickson
+            </a>
+            <time>Wednesday, July 16, 2014</time>
+          </div>
+          <div class="body"><p>If this is still an issue @imkaywu we can open it back up again.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

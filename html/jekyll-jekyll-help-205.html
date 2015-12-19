@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Post layout isn&#x27;t working</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#205</span>
+        </p>
+        <h1>Post layout isn&#x27;t working</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">PaulTuraew</a>
+            <time>Monday, December 01, 2014</time>
+          </div>
+          <div class="body">
+            <p>I followed all the directions on creating a .md post (e.g. 2011-12-31-new-years-eve-is-awesome.md), putting it in the _posts folder and included the YAML front matter and it still won&#39;t recognize the layout. I am currently running it on my local server. </p>
+<p>When I look in my &quot;site&quot; folder and actually see the HTML code for the post, Jekyll is putting the front matter in the content &lt;p&gt; elements. </p>
+<p>Any suggestions? Thank you!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Monday, December 01, 2014</time>
+          </div>
+          <div class="body"><p>Can you post a link to your repo?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/PaulTuraew">
+              PaulTuraew
+            </a>
+            <time>Monday, December 01, 2014</time>
+          </div>
+          <div class="body"><p>Hi Bud,</p>
+<p><a href="https://github.com/PaulTuraew/turaew_io_jekyll_blog">https://github.com/PaulTuraew/turaew_io_jekyll_blog</a></p>
+<p>Thanks in advance for the help!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, December 02, 2014</time>
+          </div>
+          <div class="body"><p>Hi Paul,
+So, a couple of things. You have empty lines at the top of your .md file, so Jekyll is not properly interpreting your front matter. </p>
+<p>Also, have a look at your layout files. Your post layout doesn&#39;t have everything it needs to render a page, yet isn&#39;t referencing a default layout that has that either. You are calling a CSS file at the top of the page that isn&#39;t doing anything because it&#39;s not in the &lt;head&gt;.  And it looks like you&#39;re using your header.html include the way you should be using a default template (because you have your closing body tags in their too).</p>
+<p>Here are some examples from  the templates that Jekyll installs for you when you make a new instance:</p>
+<p>This is the default layout that has a lot of the HTML for your page, but importantly a <code>{{ content }}</code> tag that allows other templates to inherit this template. </p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  {% include head.html %}
+  &lt;body&gt;
+    &lt;div class=&quot;page-content&quot;&gt;
+        {{ content }}
+    &lt;/div&gt;
+    {% include footer.html %}
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>And this is a post template. Everything in this template gets inserted by Jekyll into the <code>{{content}}</code> tag in the default template. Note that at the top of this template, it references the default template<code>layout: default</code></p>
+<pre><code>---
+layout: default
+---
+&lt;div class=&quot;post&quot;&gt;
+  &lt;header class=&quot;post-header&quot;&gt;
+    &lt;h1 class=&quot;post-title&quot;&gt;{{ page.title }}&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;article class=&quot;post-content&quot;&gt;
+    {{ content }}
+  &lt;/article&gt;
+&lt;/div&gt;
+</code></pre><p>I&#39;d suggest doing a fresh install of Jekyll, separate from your current site and having a look at the templates they use there. Hope that helps!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/PaulTuraew">
+              PaulTuraew
+            </a>
+            <time>Wednesday, December 03, 2014</time>
+          </div>
+          <div class="body"><p>Hi Bud,</p>
+<p>Thanks for the info, I looked into it, compared the templates and got the post layout to function correctly. Thank you again!</p>
+<p>Paul</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Wednesday, December 03, 2014</time>
+          </div>
+          <div class="body"><p>Glad to hear that!</p>
+<p>On Wed, Dec 3, 2014, 11:28 AM Paul <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x6e;&#x6f;&#x74;&#105;&#x66;&#105;&#x63;&#97;&#116;&#105;&#111;&#110;&#115;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#109;">&#x6e;&#x6f;&#x74;&#105;&#x66;&#105;&#x63;&#97;&#116;&#105;&#111;&#110;&#115;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#109;</a> wrote:</p>
+<blockquote>
+<p>Hi Bud,</p>
+<p>Thanks for the info, I looked into it, compared the templates and got the
+post layout to function correctly. Thank you again!</p>
+<p>Paul</p>
+<p>--
+Reply to this email directly or view it on GitHub
+<a href="https://github.com/jekyll/jekyll-help/issues/205#issuecomment-65439837">https://github.com/jekyll/jekyll-help/issues/205#issuecomment-65439837</a>.</p>
+</blockquote>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

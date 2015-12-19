@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>category_generator sort! error</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#204</span>
+        </p>
+        <h1>category_generator sort! error</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">AylwinA</a>
+            <time>Wednesday, November 26, 2014</time>
+          </div>
+          <div class="body">
+            <p>The jekyll build processes died tonight on categories.sort!.map { |c| category_link c } when processing the YAML head of templates for posts. I commented out the lines in plugins/category_generator.rb and the site generate process worked, but the YAML data was turned into p of text.</p>
+<p>I later updated bundler and was able to restore the template processing modules. The failure to process seems to have been caused by titles were not quoted. After fixing this, the posts at least were processed.</p>
+<p>Processed YAML head was turned into a single paragraph for one file, then two files, then all files. Very strange that not all went at once.</p>
+<p>It turns out the rake routine that builds posts adds a time zone number (-0800) to the end of the date. In my rake file for drafts-&gt;posts I included this, but instead of using z% I added the number it would generate, the -0800. When I deleted the time zone the processing of all YAML head material worked fine. Seems a little picky, eh?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sondr3">
+              sondr3
+            </a>
+            <time>Sunday, November 30, 2014</time>
+          </div>
+          <div class="body"><p>Anywhere to take a look at the source code? This kinda looks like there&#39;s some kind of formatting error or something like that in one of your layouts, I have had similar errors occasionally when I mess around with Jekyll too.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

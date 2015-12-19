@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Tumblr to Jekyll Migration, Images not downloading</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#61</span>
+        </p>
+        <h1>Tumblr to Jekyll Migration, Images not downloading</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">derrellwilliams</a>
+            <time>Saturday, May 31, 2014</time>
+          </div>
+          <div class="body">
+            <p>Using the migration code found here: <a href="http://import.jekyllrb.com/docs/tumblr/">http://import.jekyllrb.com/docs/tumblr/</a> </p>
+<pre><code>$ ruby -rubygems -e &#39;require &quot;jekyll-import&quot;;
+    JekyllImport::Importers::Tumblr.run({
+      &quot;url&quot;            =&gt; &quot;http://myblog.tumblr.com&quot;,
+      &quot;format&quot;         =&gt; &quot;html&quot;, # or &quot;md&quot;
+      &quot;grab_images&quot;    =&gt; true,  # whether to download images as well.
+      &quot;add_highlights&quot; =&gt; false,  # whether to wrap code blocks (indented 4 spaces) in a Liquid &quot;highlight&quot; tag
+      &quot;rewrite_urls&quot;   =&gt; false   # whether to write pages that redirect from the old Tumblr paths to the new Jekyll paths
+    })&#39;
+</code></pre><p>This is only downloading images from text posts, not any images from photo posts. </p>
+<p>(There is a decent chance I&#39;m missing something obvious, I&#39;m new to jekyll :smile:)</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, May 31, 2014</time>
+          </div>
+          <div class="body"><p>Yes! The current implementation is simple and limited (<a href="https://github.com/jekyll/jekyll-import/pull/134">https://github.com/jekyll/jekyll-import/pull/134</a>). If you have the time to expand it, I&#39;d love the help!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

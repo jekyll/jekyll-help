@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>jekyll vs bundle exec jekyll</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#225</span>
+        </p>
+        <h1>jekyll vs bundle exec jekyll</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">sr-murthy</a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi</p>
+<p>THis is more of a question rather an issue (I am using <code>bundle exec jekyll &lt;command&gt;</code> as per the GitHub pages instructions) but what does <code>bundler</code> do in relation to <code>jekyll</code>, and what is the difference between, say, <code>jekyll [build | serve]</code> vs <code>bundle exec jekyll [build | serve]</code>?</p>
+<p>Right now I am able to build and serve the site locally with <code>bundle exec jekyll [build | serve]</code>, but when I <code>jekyll [build | serve]</code> it throws the following error</p>
+<pre><code>/Library/Ruby/Gems/2.0.0/gems/safe_yaml-1.0.4/lib/safe_yaml/psych_resolver.rb:4:in `&lt;class:PsychResolver&gt;&#39;: uninitialized constant Psych::Nodes (NameError)
+from /Library/Ruby/Gems/2.0.0/gems/safe_yaml-1.0.4/lib/safe_yaml/psych_resolver.rb:2:in `&lt;module:SafeYAML&gt;&#39;
+from /Library/Ruby/Gems/2.0.0/gems/safe_yaml-1.0.4/lib/safe_yaml/psych_resolver.rb:1:in `&lt;top (required)&gt;&#39;
+from /Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:69:in `require&#39;
+from /Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:69:in `require&#39;
+from /Library/Ruby/Gems/2.0.0/gems/safe_yaml-1.0.4/lib/safe_yaml/load.rb:131:in `&lt;module:SafeYAML&gt;&#39;
+from /Library/Ruby/Gems/2.0.0/gems/safe_yaml-1.0.4/lib/safe_yaml/load.rb:26:in `&lt;top (required)&gt;&#39;
+from /Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:69:in `require&#39;
+from /Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:69:in `require&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.3/lib/jekyll.rb:26:in `&lt;top (required)&gt;&#39;
+from /Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:69:in `require&#39;
+from /Library/Ruby/Site/2.0.0/rubygems/core_ext/kernel_require.rb:69:in `require&#39;
+from /Library/Ruby/Gems/2.0.0/gems/jekyll-2.5.3/bin/jekyll:6:in `&lt;top (required)&gt;&#39;
+from /usr/bin/jekyll:23:in `load&#39;
+from /usr/bin/jekyll:23:in `&lt;main&gt;&#39;
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Tuesday, January 06, 2015</time>
+          </div>
+          <div class="body"><p><a href="http://bundler.io/rationale.html">Bundler&#39;s Purpose and Rationale</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/sr-murthy">
+              sr-murthy
+            </a>
+            <time>Tuesday, January 06, 2015</time>
+          </div>
+          <div class="body"><p>Thank you, this is very clear :)</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

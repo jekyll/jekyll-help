@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll + Docker = Awesome?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#141</span>
+        </p>
+        <h1>Jekyll + Docker = Awesome?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">troyswanson</a>
+            <time>Wednesday, August 27, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hey everyone,</p>
+<p>I just wanted to start a little discussion about using Jekyll in a Docker container. Has anyone done this? What kind of pitfalls should I expect? Should I use a dedicated web server? Which makes more sense: Nginx, or Apache? Will <code>jekyll serve</code> running WEBrick be good enough?</p>
+<p>I&#39;m approaching this as a guy who has never really run any Docker stuff in production, so any extra help on this would be awesome and will probably be helpful in the future. Thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/oblakeerickson">
+              oblakeerickson
+            </a>
+            <time>Friday, August 29, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m just getting started with docker myself, but I would be interested in this as well. I currently have a discourse server which uses Docker containers and then I have a completely separate server just for my jekyll blog (discourse is hosting the comments). It might be good to put them on the same server though and just put jekyll in its own container.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Friday, August 29, 2014</time>
+          </div>
+          <div class="body"><p>Here&#39;s how I see it working, but I don&#39;t know nearly enough about Docker&#39;s best practices to know if this makes sense or flies in the face of everything that is good and true about the system:</p>
+<ol>
+<li>Write a Dockerfile that:<ol>
+<li>Starts from a standard issue base image (like Ubuntu)</li>
+<li>Uses <code>apt-get</code> to update itself and install Nginx</li>
+<li>Configures Nginx to host a static site (cache control, etc)</li>
+<li>Installs Ruby and the necessary Gems</li>
+<li>Pulls down the source files for the Jekyll site</li>
+<li>Runs <code>jekyll build</code> on the source</li>
+<li>Copies the destination <code>_site</code> folder to the folder that Nginx expects</li>
+</ol>
+</li>
+<li>Commit the image</li>
+<li>Pull the updated image on whatever server it&#39;s running on</li>
+</ol>
+<p>The problems that I see with this have to do with networking. I don&#39;t really know how to link up port 80 on the host machine with whatever port Nginx would be running on. Also, I know nothing about DNS stuff, so I&#39;m kind of lost there, too.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/cpuguy83">
+              cpuguy83
+            </a>
+            <time>Friday, August 29, 2014</time>
+          </div>
+          <div class="body"><p>Please don&#39;t use webrick for anything, ever... it&#39;s horribly slow, single-threaded, not evented, etc. :)
+I&#39;d be happy to talk about docker-ish things in #docker on freenode.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 08, 2014</time>
+          </div>
+          <div class="body"><p>Well, this worked out really awesome. Here&#39;s some stuff that I made so far. Eventually, I&#39;ll write a blog post about how I got this stuff up and running. In the meantime, if anyone has any questions, feel free to hit me up.</p>
+<p><strong>Base Image</strong></p>
+<ul>
+<li><a href="https://registry.hub.docker.com/u/troyswanson/jekyll">https://registry.hub.docker.com/u/troyswanson/jekyll</a></li>
+<li><a href="https://github.com/troyswanson/docker-jekyll">https://github.com/troyswanson/docker-jekyll</a></li>
+</ul>
+<p><strong>Dockerfile for my Jekyll site</strong></p>
+<ul>
+<li><a href="https://github.com/troyswanson/troyswanson.github.io/blob/master/Dockerfile">https://github.com/troyswanson/troyswanson.github.io/blob/master/Dockerfile</a></li>
+</ul>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, September 22, 2014</time>
+          </div>
+          <div class="body"><p>I wrote a blog post about this topic last night. Will write a second one with even more info later!</p>
+<p>Check it out if you&#39;re interested: <a href="http://troy.im/2014/09/21/dockerizing-jekyll/">http://troy.im/2014/09/21/dockerizing-jekyll/</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jhabdas">
+              jhabdas
+            </a>
+            <time>Sunday, May 03, 2015</time>
+          </div>
+          <div class="body"><p>@troyswanson I think I&#39;ve got what you&#39;re looking for: <a href="http://habd.as/simple-websites-jekyll-docker">Simple websites with Jekyll and Docker</a>. In this post I explain how to use OS X or Windows to build a Jekyll-based docker site locally. Includes Dockerfile and instructions for deploying the image to a remote server via the command line.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

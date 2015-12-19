@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Variables in include variables</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#16</span>
+        </p>
+        <h1>Variables in include variables</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">mscharley</a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body">
+            <p>Is there any way to make something like this work?</p>
+<pre><code>{% include navigation/social_listing.html url=&quot;mailto:{{ site.author.email }}&quot; shortname=&quot;mail&quot; label=&quot;Email&quot; %}
+</code></pre>
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p><strong>_includes/navigation/social_listing.html</strong></p>
+<pre><code>&lt;li&gt;&lt;a href=&quot;{{ include.url }}&quot; class=&quot;{{ include.shortname }}&quot; onClick=&quot;_gaq.push([&#39;_trackEvent&#39;, &#39;Social Links&#39;, &#39;Click&#39;, &#39;{{ include.label }}&#39;]);&quot;&gt;
+  &lt;i class=&quot;fi-{% if include.shortname != &#39;mail&#39; %}social-{% endif %}{{ include.shortname }}&quot;&gt;&lt;/i&gt;
+  &lt;span&gt;{{ include.label }}&lt;/span&gt;
+&lt;/a&gt;&lt;/li&gt;
+</code></pre><p>Using the above <code>{% include %}</code> causes the href for the link to be the literal value in the string instead of interpolating the email address in.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>Try it without directly passing email address</p>
+<pre><code>{% assign email_address = {{site.author.email}} %}
+{% include social_listing.html shortname=&quot;mail&quot; label=&quot;Email&quot; %}
+</code></pre><pre><code>&lt;li&gt;&lt;a href=&quot;{{email_address}}&quot; class=&quot;{{ include.shortname }}&quot; onClick=&quot;_gaq.push([&#39;_trackEvent&#39;, &#39;Social Links&#39;, &#39;Click&#39;, &#39;{{ include.label }}&#39;]);&quot;&gt;
+  &lt;i class=&quot;fi-{% if include.shortname != &#39;mail&#39; %}social-{% endif %}{{ include.shortname }}&quot;&gt;&lt;/i&gt;
+  &lt;span&gt;{{ include.label }}&lt;/span&gt;
+&lt;/a&gt;&lt;/li&gt;
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>Hi Bud, that may work, but it won&#39;t help the issue. The reason it&#39;s an
+include with a variable in the first place is that the include is called a
+dozen times with different values.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>I just meant that whenever you call the include, you just put the value in a separate assign tag rather than in the include. Maybe it would have been more clear if I made it</p>
+<pre><code>instance 1
+ {% assign url = {{site.author.email}} %}
+{% include social_listing.html shortname=&quot;mail&quot; label=&quot;Email&quot; %}
+</code></pre><pre><code>instance2
+ {% assign url = someOtherURL %}
+{% include social_listing.html shortname=&quot;somethingelse&quot; label=&quot;twitter&quot; %}
+[edited]
+</code></pre><pre><code>&lt;li&gt;&lt;a href=&quot;{{url}}&quot; class=&quot;{{ include.shortname }}&quot; onClick=&quot;_gaq.push([&#39;_trackEvent&#39;, &#39;Social Links&#39;, &#39;Click&#39;, &#39;{{ include.label }}&#39;]);&quot;&gt;
+  &lt;i class=&quot;fi-{% if include.shortname != &#39;mail&#39; %}social-{% endif %}{{ include.shortname }}&quot;&gt;&lt;/i&gt;
+  &lt;span&gt;{{ include.label }}&lt;/span&gt;
+&lt;/a&gt;&lt;/li&gt;
+</code></pre><p>or, maybe I&#39;m just reading your intent wrong.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>Found an even better solution. I forgot that you actually <em>can</em> pass variables directly through <code>{% include %}</code>. Final solution:</p>
+<pre><code>{% capture author_email_link %}mailto:{{ site.author.email }}{% endcapture %}
+{% include navigation/social_listing.html url=author_email_link shortname=&quot;mail&quot; label=&quot;Email&quot; %}
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>You might be able to use <code>{% assign %}</code>, too. It would be cleaner, but I&#39;m not 100% sure it would work.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>From what I read in the Liquid docs, assign suffers the same problem as the
+original issue, namely it&#39;s for assigning static values, it won&#39;t do the
+interpolation. That&#39;s the reason capture exists.</p>
+<p><a href="http://docs.shopify.com/themes/liquid-basics/logic#assign">http://docs.shopify.com/themes/liquid-basics/logic#assign</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>I just tested something that would look like this for you:</p>
+<pre><code>{% assign author_email_link = &#39;mailto:&#39; | append: site.author.email %}
+</code></pre><p>And it worked! That might be cleaner and more maintainable for you. :smile: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mscharley">
+              mscharley
+            </a>
+            <time>Monday, April 14, 2014</time>
+          </div>
+          <div class="body"><p>Sure, why not. <a href="https://bitbucket.org/matthew-scharley/matt.scharley.me/src/24535323068d66d48f20a7f0966a6472573eaba0/src/_includes/navigation/social.html">https://bitbucket.org/matthew-scharley/matt.scharley.me/src/24535323068d66d48f20a7f0966a6472573eaba0/src/_includes/navigation/social.html</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

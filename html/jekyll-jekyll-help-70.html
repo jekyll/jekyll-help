@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>configuration documentation</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#70</span>
+        </p>
+        <h1>configuration documentation</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tompave</a>
+            <time>Sunday, June 08, 2014</time>
+          </div>
+          <div class="body">
+            <p>Where can I find a documented list of the configuration options?
+<a href="http://jekyllrb.com/docs/configuration/">The one on the main website</a> doesn&#39;t contain them all, and the explanations are not very clear.</p>
+<p>I&#39;ve got the feeling that some of those pages are not really up to date, e.g. the <a href="http://jekyllrb.com/docs/upgrading/">upgrade notes</a>, that talk about version <code>1.0</code>.</p>
+<p>At the moment I&#39;m trying to figure out what&#39;s the purpose of the <code>url</code> option, which doesn&#39;t seem to have any effect.
+Is it just some kind of meta-data to be referenced in the other pages?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, June 08, 2014</time>
+          </div>
+          <div class="body"><p>Yes, <code>url</code> has no meaning – it&#39;s just a piece of metadata. Sorry that wasn&#39;t clear!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tompave">
+              tompave
+            </a>
+            <time>Sunday, June 08, 2014</time>
+          </div>
+          <div class="body"><p>Thank you for confirming this!
+Does this mean that the main website is still the most <em>authoritative</em> source of documentation?  </p>
+<p>I&#39;m still in the process of understanding how the configuration options work.</p>
+<p>In the case of <code>url</code> is this a correct way to use it?</p>
+<pre><code class="lang-html">&lt;a href=&quot;{{ post.url | prepend: site.baseurl | prepend: site.url }}&quot;&gt;
+  {{ post.title }}
+&lt;/a&gt;
+</code></pre>
+<p>Os is there a more straightforward way to reference it?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, June 08, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Does this mean that the main website is still the most authoritative source of documentation?</p>
+</blockquote>
+<p>Yes yes yes! What the line you posted does is output the post URL, then prepend it with two metadata pieces: the baseurl (i.e. <code>/hi</code> in <code>http://example.org/hi</code>) and the site&#39;s URL, (i.e. <code>http://example.org</code> in <code>http://example.org/hi</code>). You can set these in the <code>_config.yml</code> file, but both are optional. They&#39;re there so that if your site requires a base url or the full URL, you don&#39;t have to change the templates, just the configuration file.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

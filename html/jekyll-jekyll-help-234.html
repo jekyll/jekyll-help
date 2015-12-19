@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Help... with errors</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#234</span>
+        </p>
+        <h1>Help... with errors</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">luckyluke007</a>
+            <time>Friday, January 09, 2015</time>
+          </div>
+          <div class="body">
+            <p>Tried build the site, and I got this errors..</p>
+<p>WARN: Unresolved specs during Gem::Specification.reset:
+      redcarpet (~&gt; 3.1)
+      jekyll-watch (~&gt; 1.1)
+      classifier-reborn (~&gt; 2.0)
+WARN: Clearing out unresolved specs.
+Please report a bug if this causes problems.
+/Users/name.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.5.3/bin/jekyll:21:in <code>block in &lt;top (required)&gt;&#39;: cannot load such file -- jekyll/version (LoadError)
+    from /Users/name.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/mercenary-0.3.5/lib/mercenary.rb:18:in</code>program&#39;
+    from /Users/name/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/jekyll-2.5.3/bin/jekyll:20:in <code>&lt;top (required)&gt;&#39;
+    from /Users/name/.rbenv/versions/2.1.2/bin/jekyll:23:in</code>load&#39;
+    from /Users/name/.rbenv/versions/2.1.2/bin/jekyll:23:in `&lt;main&gt;&#39;</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Friday, January 09, 2015</time>
+          </div>
+          <div class="body"><p>Not entirely sure, but maybe run <code>bundle update</code> and see if that helps.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/luckyluke007">
+              luckyluke007
+            </a>
+            <time>Friday, January 09, 2015</time>
+          </div>
+          <div class="body"><p>Ran the update, It started up and builded fine, but still get this warning. </p>
+<p>WARN: Unresolved specs during Gem::Specification.reset:
+      redcarpet (~&gt; 3.1)
+      jekyll-watch (~&gt; 1.1)
+      classifier-reborn (~&gt; 2.0)</p>
+<p>Ran &quot;bundle exec jekyll serve&quot; to eliminate the WARN..</p>
+<p>Server address is change to 127.0.0.1 instead 0.0.0.0: 4000.. Would VPN set up change the server address?</p>
+<p>Thanks...</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Friday, January 09, 2015</time>
+          </div>
+          <div class="body"><p>wonder if you have <code>github-pages</code> in your gemfile. I see you have the latest Jekyll, but but Github Pages is still on 2.4 <a href="https://pages.github.com/versions/">https://pages.github.com/versions/</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

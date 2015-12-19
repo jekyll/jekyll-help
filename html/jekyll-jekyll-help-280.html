@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How can I increase site regeneration time given 50 capture tags?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#280</span>
+        </p>
+        <h1>How can I increase site regeneration time given 50 capture tags?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Wednesday, March 04, 2015</time>
+          </div>
+          <div class="body">
+            <p>I have around 50 capture tags that I&#39;m using to populate tooltips on another site using the method I described here: <a href="http://tomjohnson1492.github.io/documentation-theme-jekyll/help_api/">Create a help API</a>. </p>
+<p>I also want to embed the tooltips inside my jekyll site. I have a page that looks like this: </p>
+<pre><code>{% for page in site.tooltips %}
+
+{% if page.id == &quot;sample1&quot; %} {% capture sample1 %} {{page.content}} {% endcapture %}{% endif %}
+{% if page.id == &quot;sample2&quot; %} {% capture sample2 %} {{page.content}} {% endcapture %}{% endif %}
+
+// repeat this about 50 times with different page.id&#39;s...
+
+{% endfor%}
+</code></pre><p>When I implemented this code, my site&#39;s regeneration time jumped from 1.5 seconds to 11 seconds. How can I assign all these capture tags more efficiently?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Friday, March 06, 2015</time>
+          </div>
+          <div class="body"><p>I realized that the for loops are requiring the long site build time. I moved everything into data files and now the site loads &lt; 2 seconds. </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

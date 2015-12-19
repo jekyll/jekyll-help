@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Do folders that hold pages really need index.html files? </title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#259</span>
+        </p>
+        <h1>Do folders that hold pages really need index.html files? </h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">tomjohnson1492</a>
+            <time>Thursday, January 29, 2015</time>
+          </div>
+          <div class="body">
+            <p>I saw this in the Jekyll docs <a href="http://jekyllrb.com/docs/pages/">here</a>:</p>
+<blockquote>
+<p>Where you put HTML files for pages depends on how you want the pages to work. There are two main ways of creating pages:
+Place named HTML files for each page in your site’s root folder.
+Create a folder in the site’s root for each page, and place an index.html file in each page folder.</p>
+</blockquote>
+<p>I have a folder in my directory called &quot;content.&quot; This directory includes lots of pages, but there is no index.html. The pages render just fine. Is this documentation outdated?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Thursday, January 29, 2015</time>
+          </div>
+          <div class="body"><p>Also, the section that follows (<a href="http://jekyllrb.com/docs/pages/#named-folders-containing-index-html-files">Named folders containing index HTML files</a>) also seems outdated. This section talks about &quot;clean&quot; pages. I&#39;m not implementing the technique, and my pages aren&#39;t muddled with file extensions. They are clean by default.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Thursday, January 29, 2015</time>
+          </div>
+          <div class="body"><p>There is a difference whether you have <code>/blablabla/mrfreeman.html</code> or <code>/blablabla/mrfreeman/index.html</code>. The last one can be accessed by navigating to <code>/blablabla/mrfreeman</code>, wheras the first needs the extension.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/tomjohnson1492">
+              tomjohnson1492
+            </a>
+            <time>Thursday, January 29, 2015</time>
+          </div>
+          <div class="body"><p>I have the former setup (sans index.html) and I can access by navigating to <code>/blablabla/mrfreeman</code>.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Thursday, January 29, 2015</time>
+          </div>
+          <div class="body"><p>Are you hosting on GitHub Pages or on something else? One can achieve extension-less permalinks via rewrite settings in a .htaccess file on the server for example.</p>
+<p>For static pages without any further settings, you will need the extension or a directory with a index.html inside.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Thursday, February 05, 2015</time>
+          </div>
+          <div class="body"><blockquote>
+<p>Is this documentation outdated?</p>
+</blockquote>
+<p>This documentation is opinionated. You are free to design your URLs as you want.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/penibelst">
+              penibelst
+            </a>
+            <time>Thursday, February 05, 2015</time>
+          </div>
+          <div class="body"><p>@tomjohnson1492 So you do <em>not</em> need <code>index.html</code> files to make Jekyll work.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

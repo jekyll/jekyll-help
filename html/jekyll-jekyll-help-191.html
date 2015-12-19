@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>One blank line in the code block when using highlight.js</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#191</span>
+        </p>
+        <h1>One blank line in the code block when using highlight.js</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">legatoo</a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body">
+            <p>I changed my syntax highlighter to highlight.js. It works, but there is always one blank line above the code . I can&#39;t find where to adjust it. highlight.js&#39;s CSS is:</p>
+<p>.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #23241f;
+  border-radius: 8px;
+  -webkit-text-size-adjust: none;
+  max-width:  600px;
+  font-size: 0.8em;
+}</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1506580/4967714/d311c514-6820-11e4-8920-91a7cf26d9c6.png" alt="blanklineissue"></p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p>What does the generated HTML look like?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/legatoo">
+              legatoo
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p>@mhulse it&#39;s here: <a href="http://legato.ninja">http://legato.ninja</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><p>Looks like you got a rogue <del><code>p</code> tag</del> line return in there. Check it:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/218624/4972314/6689dfc4-68a9-11e4-8bab-d9d4c5d46497.gif" alt="p-tag-pre"></p>
+<p>What does your raw post input look like?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Sunday, November 09, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>rogue <code>p</code> tag</p>
+</blockquote>
+<p>I meant, line return.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/legatoo">
+              legatoo
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><p>@mhulse Wow~It&#39;s very impressive to have animated solution, cool. I am not sure about what is <code>rouge p tag</code>. Here is my raw post input.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1506580/4973212/b71f02e4-68b7-11e4-838b-224fbf764119.png" alt="raw_post"></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><p>Thanks. Replying from my phone. </p>
+<p>Try moving the pre and code tags on same line as the code sample. This should take care of your space. It&#39;s not pretty looking, but would tighten up the visual gap. </p>
+<p>Check to see if highlight.js has a trim L/R feature.  But I think your best bet is to apply my suggested fix above.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/legatoo">
+              legatoo
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><p>@mhulse It seems I found a solution here, but still don&#39;t know why. Solution is to write the code snippet follows <code>&lt;code&gt;</code>tag without <code>new line</code></p>
+<p><img src="https://cloud.githubusercontent.com/assets/1506580/4973786/961189b6-6900-11e4-9fe7-c3b7a4633209.png" alt="solution"></p>
+<p>It fixes the problem, but makes raw post not readable in terms of code snippet.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/legatoo">
+              legatoo
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><p>@mhulse Thank you for your kind help. Yes, it(first solution) do fix this problem! I guess I need to search and learn what is <code>trim L/R feature</code>. :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><blockquote>
+<p>It seems I found a solution here, but still don&#39;t know why.</p>
+</blockquote>
+<p>Whitespace inside <code>&lt;pre&gt;</code> elements is always respected by the browser, and output as-is. A newline is treated the same as any other whitespace character.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><p>Glad to help. Trim is white space removal at beginning and end of strings. You can trim Right (trim R), Left (trim L), or both (trim) depending on Lang/function used. It&#39;s a long shot, but maybe highlight JS has an option for trimmin? Since your using JS anyway, you could prob write your own JS trim on the code/pre blocks.  OTOH, like has been mentioned, white space is respected, so I think your best bet is to cram the lines or use fenced code and the jekyll highlighter.  Personally, iirc, I&#39;ve always crammed lines when I&#39;ve run into this issue. Unfortunately it&#39;s been a while since I&#39;ve thought about this scenario, so take what I&#39;m saying with a grain of salt. :)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mhulse">
+              mhulse
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><p>This could work too (not tested):</p>
+<pre><code>&lt;pre&gt;&lt;code
+&gt;line of code
+Here and ...
+Here
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre><p>Not sure if that looks any better though. :D</p>
+<p>Sometimes I do similar technique as above to kill white space from inbetween inline block elements. ;)</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/legatoo">
+              legatoo
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><p>@mhulse Thank you for your help. I have a happy day.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/legatoo">
+              legatoo
+            </a>
+            <time>Monday, November 10, 2014</time>
+          </div>
+          <div class="body"><p>@nternetinspired Thank you! Now I know it.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Tuesday, November 18, 2014</time>
+          </div>
+          <div class="body"><p>Love the love! Thanks for jumping in, @mhulse!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/bryc">
+              bryc
+            </a>
+            <time>Thursday, April 02, 2015</time>
+          </div>
+          <div class="body"><pre><code class="lang-js">var y = document.querySelectorAll(&quot;pre code&quot;);
+for(var i = 0; i &lt; y.length; i++) {
+  y[i].innerHTML = y[i].innerHTML.replace(&quot;\n&quot;, &quot;&quot;);
+}
+</code></pre>
+<p>Removes the first newline from each code block.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

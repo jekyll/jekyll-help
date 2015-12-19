@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>How do I create back/next pages like on jekyllrb.com?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#12</span>
+        </p>
+        <h1>How do I create back/next pages like on jekyllrb.com?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">erlend-sh</a>
+            <time>Sunday, April 06, 2014</time>
+          </div>
+          <div class="body">
+            <p>I&#39;d like to guide our readers from start to finish through our docs, so I need Back/Next links for <strong>pages</strong>, much like how on jekyllrb.com you start at <a href="http://jekyllrb.com/docs/home/">Home</a> and you can &quot;Next&quot;-click all the way to <a href="http://jekyllrb.com/docs/history/">History</a>, where the page series ends.</p>
+<p>All the guides I&#39;ve found appear to be talking about pagination for posts, not <em>pages</em>. Could you give me some pointers?</p>
+<p>As an aside, this personal preference is probably plugin territory, but I would love it if I could define something like this in front matter:</p>
+<pre><code>series: guide
+order: 1
+</code></pre><p>or
+<code>guide-series: 1</code></p>
+<p>It would be in the same vein as using <a href="http://wordpress.org/plugins/series/">custom taxonomies to achieve series</a> in WordPress.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Monday, April 07, 2014</time>
+          </div>
+          <div class="body"><p>I don&#39;t really understand what you are trying to do, but have you looked into <a href="https://github.com/jekyll/jekyll/blob/gh-pages/_includes/section_nav.html">jekyllrb section_nav</a> and <a href="https://github.com/jekyll/jekyll/blob/gh-pages/docs/installation.md">the front-matter of a page</a>?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Monday, April 07, 2014</time>
+          </div>
+          <div class="body"><p>@erlend-sh There are several ways to do this, and they&#39;re all a bit involved. Check out @albertogg&#39;s links for how it is done on <a href="http://jekyllrb.com">Jekyll&#39;s site</a> (for now, at least). I made a PR (jekyll/jekyll#1953) a while ago that uses Jekyll&#39;s <a href="http://jekyllrb.com/docs/datafiles/">data feature</a> to define the order for the documentation.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/afeld">
+              afeld
+            </a>
+            <time>Saturday, October 04, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;m looking for the same functionality. It&#39;s a shame that, for the <a href="http://jekyllrb.com">http://jekyllrb.com</a> use case (at least), the order is essentially specified in three places:</p>
+<ul>
+<li><a href="https://github.com/jekyll/jekyll/blob/592cee9596475c3fd85ce334d1832ee5339d8360/site/_data/docs.yml">In the data file</a></li>
+<li>As the <code>prev_section</code> in the page metadata</li>
+<li>As the <code>next_section</code> in the page metadata</li>
+</ul>
+<p>Only using the data file would be nice because it has the ability to group the pages and you can see the order at a glance, but it would be messy to then create the <a href="https://github.com/jekyll/jekyll/blob/331247f96f1d885b1397c756dcd380caad76b5a7/_includes/section_nav.html"><code>section_nav</code></a> from the <code>site.data.docs</code>. <a href="https://github.com/jeffkole/jekyll-page-collections">jekyll-page-collections</a> seems like it solves this problem, but of course, no Pages support :wink: </p>
+<p>/cc @jeffkole</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/jeffkole">
+              jeffkole
+            </a>
+            <time>Monday, October 06, 2014</time>
+          </div>
+          <div class="body"><p>Have you looked into <a href="http://jekyllrb.com/docs/collections/">Collections</a> at all? I can&#39;t tell from the documentation if pagination is supported, but it might be a place to start.  When I was working on <a href="https://github.com/jeffkole/jekyll-page-collections">jekyll-page-collections</a>, pagination was hard-coded to be for posts only, but that was on Jekyll version 1.4.3.  It all may have changed since then.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Tuesday, October 07, 2014</time>
+          </div>
+          <div class="body"><p>Collections currently don&#39;t have pagination support afaik.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/mvaneijgen">
+              mvaneijgen
+            </a>
+            <time>Tuesday, December 09, 2014</time>
+          </div>
+          <div class="body"><p>Still not pagination for collections? </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/afeld">
+              afeld
+            </a>
+            <time>Tuesday, December 09, 2014</time>
+          </div>
+          <div class="body"><p>From @parkr&#39;s <a href="https://byparker.com/blog/2014/jekyll-3-the-road-ahead/">blog post</a> about the Jekyll 3 roadmap:</p>
+<blockquote>
+<p>I’d like to focus on...Simplifying the internals and the abstractions (posts will become a collection)</p>
+</blockquote>
+<p>Presumably this means that pagination would/could be easily rolled up to Collections.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, December 09, 2014</time>
+          </div>
+          <div class="body"><p>Realizing now this was originally posted quite some time ago, I have some Liquid markup that does what I think the original poster was looking for, that is, from a page in a collection automatically create a link to the previous and next page. A bit messy and hopefully this ability won&#39;t get changed, but here it is: <a href="https://gist.github.com/budparr/3e637e575471401d01ec">https://gist.github.com/budparr/3e637e575471401d01ec</a></p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

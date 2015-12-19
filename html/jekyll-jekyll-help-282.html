@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>After migration, how can I redirect old URLs to new ones?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#282</span>
+        </p>
+        <h1>After migration, how can I redirect old URLs to new ones?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">verlok</a>
+            <time>Sunday, March 08, 2015</time>
+          </div>
+          <div class="body">
+            <p>Hi,
+I&#39;m migrating my blog from Wordpress to Jekyll, but I&#39;m concerned about preserving old URLs from 404.</p>
+<p>The ideal would be to redirect old URLs, which are not many (about 20), to the new ones with a 304.
+How can I do this?</p>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Old URL: <a href="http://www.andreaverlicchi.eu/advanced-sprite-generation-using-compass-sass/">http://www.andreaverlicchi.eu/advanced-sprite-generation-using-compass-sass/</a></li>
+<li>New URL: <a href="http://www.andreaverlicchi.eu/development/2015/03/06/advanced-sprite-generation-using-compass-sass.html">http://www.andreaverlicchi.eu/development/2015/03/06/advanced-sprite-generation-using-compass-sass.html</a>
+...</li>
+</ul>
+<p>I don&#39;t expect to do the &quot;old URL - new URL&quot; association automatically... no problem to do it automatically, but I&#39;d like to know what is the best way to do the redirect.</p>
+<p><strong>Additional info:</strong>
+My site is hosted on a linux server supporting PHP.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/willnorris">
+              willnorris
+            </a>
+            <time>Sunday, March 08, 2015</time>
+          </div>
+          <div class="body"><p>It won&#39;t give you the <code>30x</code> response codes, but <a href="https://github.com/jekyll/jekyll-redirect-from">https://github.com/jekyll/jekyll-redirect-from</a> provides a pretty simple way to redirect from old URLs.  It does a client-side redirect, which I&#39;m fairly certain Google still treats like a 301 redirect, so you still get the SEO benefits.</p>
+<p>If you still really want the <code>30x</code> response code, you&#39;ll need to do it in your web server itself.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Thursday, March 12, 2015</time>
+          </div>
+          <div class="body"><p>Yes, +1 to @willnorris, this is may be easiest way to do it, you should give it a try and see if you like it or not... if you&#39;ll be hosting your own jekyll blog you can also use apache htaccess or nginx to do this. Hope this helps.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Sorting yaml front matter variable with heterogeneous data</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#295</span>
+        </p>
+        <h1>Sorting yaml front matter variable with heterogeneous data</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">DonnieWest</a>
+            <time>Tuesday, May 05, 2015</time>
+          </div>
+          <div class="body">
+            <p>I am creating a simple song site with Jekyll and my songs are represented as posts with the following front matter:</p>
+<pre><code>---
+layout: post
+title: &quot;My Song&quot;
+date: 2015-05-05T13:40:02-05:00
+song: 3
+---
+</code></pre><p>I am porting over old paper bound books to this site, and unfortunately the songs are ordered by both number and letters (The song above could be 3 or it could be &quot;A&quot;). My attempts to sorting them are failing.</p>
+<p>When doing this:
+<code>{% assign posts = site.posts | sort:&#39;song&#39; %}</code></p>
+<p>It throws this error:
+<code>Error: comparison of Jekyll::Post with Jekyll::Post failed</code></p>
+<p>Any way I can work around this?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/budparr">
+              budparr
+            </a>
+            <time>Tuesday, May 05, 2015</time>
+          </div>
+          <div class="body"><p>Try putting quote marks around the song value, like <code>song: &#39;3&#39;</code></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/DonnieWest">
+              DonnieWest
+            </a>
+            <time>Tuesday, May 05, 2015</time>
+          </div>
+          <div class="body"><p>Duh. Thank you!</p>
+<p>On Tue, May 5, 2015, 3:25 PM Bud Parr <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#110;&#x6f;&#116;&#105;&#102;&#x69;&#99;&#97;&#116;&#x69;&#x6f;&#110;&#x73;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;">&#110;&#x6f;&#116;&#105;&#102;&#x69;&#99;&#97;&#116;&#x69;&#x6f;&#110;&#x73;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#109;</a> wrote:</p>
+<blockquote>
+<p>Try putting quote marks around the song value, like song: &#39;3&#39;</p>
+<p>—
+Reply to this email directly or view it on GitHub.</p>
+</blockquote>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

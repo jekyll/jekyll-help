@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>type: &quot;posts&quot; in _config.yml default block seems not working</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#136</span>
+        </p>
+        <h1>type: &quot;posts&quot; in _config.yml default block seems not working</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">notyy</a>
+            <time>Thursday, August 21, 2014</time>
+          </div>
+          <div class="body">
+            <p>hi, I am trying to create blog site in github page. the site source is in <a href="https://github.com/notyy/notyy.github.io">https://github.com/notyy/notyy.github.io</a></p>
+<p>I specified default values in _config.yml</p>
+<pre><code class="lang-YAML">defaults:
+  -
+    scope:
+      path: &quot;&quot;
+      # type: &quot;posts&quot;
+    values:
+      layout: &quot;post&quot;
+      encoding: utf-8
+</code></pre>
+<p>if I uncomment the line of <code>type: &quot;posts&quot;</code> then, the layout and encoding is lost.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Thursday, August 21, 2014</time>
+          </div>
+          <div class="body"><p>That’s because version 2.3 is not released on GitHub Pages. It’s <code>type: post</code> with the current version.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/notyy">
+              notyy
+            </a>
+            <time>Thursday, August 21, 2014</time>
+          </div>
+          <div class="body"><p>Yeah! tried and true!  thank you very much.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

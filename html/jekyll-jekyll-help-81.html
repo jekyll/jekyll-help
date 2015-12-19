@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>is it possible to do post.image ? </title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#81</span>
+        </p>
+        <h1>is it possible to do post.image ? </h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">HarrisRobin</a>
+            <time>Saturday, June 21, 2014</time>
+          </div>
+          <div class="body">
+            <p>So I get how to add images to my content, however I would like to add an image in my index that is specific to every post. exactly like post.excerpt, but for images.</p>
+<p>How would I go about doing this ?</p>
+<p>Thanks,</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, June 21, 2014</time>
+          </div>
+          <div class="body"><p>Add it to your front-matter and use <code>page.image</code>:</p>
+<pre><code class="lang-html">---
+title: A page
+image: /path/to/my/image.png
+---
+
+&lt;img src=&quot;{{ page.image }}&quot; /&gt;
+</code></pre>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/HarrisRobin">
+              HarrisRobin
+            </a>
+            <time>Saturday, June 21, 2014</time>
+          </div>
+          <div class="body"><p>Ok that was way simpler than I thought. Thanks @parkr . Much appreciated. I now understand how to generate data i need in my posts.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

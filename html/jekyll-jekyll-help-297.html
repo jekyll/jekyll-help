@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Using config defaults for my than _posts</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#297</span>
+        </p>
+        <h1>Using config defaults for my than _posts</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ndarville</a>
+            <time>Wednesday, May 06, 2015</time>
+          </div>
+          <div class="body">
+            <p>For some reason, I can only get my Jekyll defaults to work, when <code>path: “”</code>; if I do anything else, it breaks cf. hafniatimes/issues#13. And by break, I mean that the defaults just don’t seem to apply. Currently, I have to either define the values explicitly in the front matter or hardcode the permalinks.</p>
+<p>The config file is <a href="https://github.com/hafniatimes/hafniatimes.github.io/blob/e33b5c492b4e2c16942a98fd214cc63310342282/_config.yml#L29-L54">here</a>, but here is the relevant part:</p>
+<pre><code class="lang-yaml">defaults:
+    -
+        scope:
+            path: “” # breaks if `path: _posts`
+            type: &quot;posts&quot;
+        values: &amp;en_defaults
+            layout: &quot;post&quot;
+            author: &quot;ndarville&quot;
+            lang: &quot;en&quot;
+            categories: &quot;articles&quot;
+    -
+        scope: # busted
+            path: &quot;_posts/da&quot;
+        values: &amp;da_defaults
+            lang: &quot;da&quot;
+            categories:
+                - &quot;da&quot;
+                - &quot;articles&quot;
+#   - # Redundant when top scope path is &quot;&quot;
+#       scope: # busted
+#           path: &quot;_drafts&quot;
+#       values: *en_defaults
+    -
+        scope: # busted
+            path: &quot;_drafts/da&quot;
+        values: *da_defaults
+</code></pre>
+<p>The top-most scope works—but breaks if I use <code>_posts</code> (or anything) instead of <code>””</code> as the path. Maybe I’m misunderstanding how the defaults work.</p>
+<p>The idea is to have two types of posts:</p>
+<ul>
+<li>English posts/drafts where <code>lang: en</code> and <code>categories: articles</code></li>
+<li>Danish posts/drafts where <code>lang: da</code> and <code>categories: [da, articles]</code></li>
+</ul>
+<p>Other example configs haven’t solved it for me either, so maybe someone here can figure out what’s up.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Wednesday, May 06, 2015</time>
+          </div>
+          <div class="body"><p>Have a look at my defaults: <a href="https://github.com/kleinfreund/kleinfreund.github.io/blob/master/_config.yml">https://github.com/kleinfreund/kleinfreund.github.io/blob/master/_config.yml</a></p>
+<p>I come back to you, when I&#39;m at home. </p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

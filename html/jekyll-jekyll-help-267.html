@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll Build site doesn&#x27;t seems to be right</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#267</span>
+        </p>
+        <h1>Jekyll Build site doesn&#x27;t seems to be right</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ppazos</a>
+            <time>Thursday, February 05, 2015</time>
+          </div>
+          <div class="body">
+            <p>I&#39;m testing Jekyll, created a site, it seems to have some sample content and it looks great when I run jekyll serve.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1278556/6069897/4851bfd0-ad6f-11e4-9dc9-dd624c1fae4e.png" alt="screen shot 2015-02-05 at 7 42 34 pm"></p>
+<p>Then, when I do jekyll build and I open _site/index.html, the site looks terrible this (no errors on build):</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1278556/6069904/4f79f3f4-ad6f-11e4-9883-1f573d28a2bc.png" alt="screen shot 2015-02-05 at 7 42 10 pm">
+<img src="https://cloud.githubusercontent.com/assets/1278556/6069906/524c8f1a-ad6f-11e4-88f5-b08937290caa.png" alt="screen shot 2015-02-05 at 7 42 51 pm"></p>
+<p>Any ideas why this is happening?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Friday, February 06, 2015</time>
+          </div>
+          <div class="body"><p>Yeah, check the URLs in the source. They are root relative, not file relative. Thus previewing the site template with the local files without a local server doesn&#39;t work. </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kyrsideris">
+              kyrsideris
+            </a>
+            <time>Thursday, April 02, 2015</time>
+          </div>
+          <div class="body"><p>I had exactly the same problem and <code>site.url</code> or <code>site.baseurl</code> inside <code>_config.yml</code> were looking sane. What I did to overcome the problem was, as @kleinfreund suggested, to <code>prepend: site.url</code> or/and <code>site.baseurl</code> whenever was missing.
+The main damage to your css comes from <code>_includes/head.html</code> which should be changed from:</p>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ &quot;/css/main.css&quot; | prepend: site.baseurl }}&quot;&gt;
+</code></pre>
+<p>to:</p>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;{{ &quot;/css/main.css&quot; | prepend: site.baseurl | prepend: site.url }}&quot;&gt;
+</code></pre>
+<p>Hope that helps!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

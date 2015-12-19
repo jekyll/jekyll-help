@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Searching</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge open">open</span>
+          <span class="url">jekyll/jekyll-help#143</span>
+        </p>
+        <h1>Searching</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">nausn97</a>
+            <time>Wednesday, September 03, 2014</time>
+          </div>
+          <div class="body">
+            <p>On my blog when I search for a particular string it wont return any result.
+second I want to implement sub string search for example : Blog Post are : &quot;Naushad is Here&quot;
+and in navigation bar I am searching for a content like : &quot;shad&quot; 
+it should return a result because &quot;shad&quot; is present in &quot;Naushad&quot; </p>
+<p>so can anyone help me how to implement this functionality on my blog. which plugin I should use and how to migrate this feature.</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/winghouchan">
+              winghouchan
+            </a>
+            <time>Monday, September 08, 2014</time>
+          </div>
+          <div class="body"><p>Hey @nausn97!</p>
+<p>I have a simple search script I wrote for my own blog! You can see the script here and I&#39;ve pointed you to the relevant line: <a href="https://github.com/winghouchan/winghouchan.github.io/blob/master/js/scripts.js#L102">https://github.com/winghouchan/winghouchan.github.io/blob/master/js/scripts.js#L102</a></p>
+<p>Need any help understanding it, post a comment and I&#39;ll be sure to reply.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

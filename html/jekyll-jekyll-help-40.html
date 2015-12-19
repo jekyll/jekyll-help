@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>{% raw %} {% endraw %} tags not being respected</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#40</span>
+        </p>
+        <h1>{% raw %} {% endraw %} tags not being respected</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">Daniel0524</a>
+            <time>Friday, May 09, 2014</time>
+          </div>
+          <div class="body">
+            <p>I can&#39;t figure this out - for some reason the stuff I put inside of {%raw%}{%endraw%} tags is still being parsed/evaluated by Liquid.</p>
+<p>So if I make a .md file with just this for content:</p>
+<pre><code>Start
+{% raw %}
+{{something}}
+{% endraw %}
+End
+</code></pre><p>My generated HTML just looks like:
+Start
+End</p>
+<p>Same goes for:</p>
+<pre><code>Start
+{% raw %}
+{% sometag %}
+{% endraw %}
+End
+</code></pre><p>If sometag is a real tag, then Liquid evaluates it and replaces it with whatever that tag gets replaced with, and if it&#39;s not then jekyll build tells me it doesn&#39;t know that the tag &#39;something&#39;</p>
+<p>Been stuck on this for a while and really can&#39;t figure it out.</p>
+<p><strong>_config.yml:</strong>
+encoding: utf-8
+markdown: redcarpet 
+highlighter: highlighter 
+redcarpet:
+  extensions: [&#39;highlight&#39;,&#39;strikethrough&#39;]
+...</p>
+<p><strong>relevant gem versions:</strong>
+jekyll 2.0.2
+liquid 2.5.5
+kramdown 1.3.3
+redcarpet 3.1.1</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/albertogg">
+              albertogg
+            </a>
+            <time>Friday, May 09, 2014</time>
+          </div>
+          <div class="body"><p>Hi @Daniel0524, was this happening in an earlier version of Jekyll? It seems weird because liquid hasn&#39;t been touched.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kleinfreund">
+              kleinfreund
+            </a>
+            <time>Sunday, May 11, 2014</time>
+          </div>
+          <div class="body"><p>Works on my end both with <em>kramdown</em> and <em>redcarpet</em> as mardown engine. Only difference in relevant gem versions would be Jekyll v2.0.3. Shouldn&#39;t be it.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/Daniel0524">
+              Daniel0524
+            </a>
+            <time>Monday, May 12, 2014</time>
+          </div>
+          <div class="body"><p>I&#39;ll make a new project later today and see if I&#39;m still running into the same problems.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

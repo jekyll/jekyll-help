@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Leading whitespace is stripped from Markdown highlight block</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#229</span>
+        </p>
+        <h1>Leading whitespace is stripped from Markdown highlight block</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">kevinushey</a>
+            <time>Tuesday, January 06, 2015</time>
+          </div>
+          <div class="body">
+            <p>Following from the <a href="https://github.com/poole/lanyon">lanyon</a> base Jekyll theme, I have Markdown in a file of the form (this being output from <code>R</code>):</p>
+<pre><code>{% highlight text %}
+      [,1] [,2]
+[1,] FALSE TRUE
+[2,] FALSE TRUE
+{% endhighlight %}
+</code></pre><p>which, after render (through whatever machinery runs in <code>jekyll serve</code>), gets generated HTML as:</p>
+<pre><code>&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;[,1]
+[1,]    0
+[2,]    1
+[3,]    2
+[4,]    2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</code></pre><p>with the leading whitespace in front of <code>[,1]</code> removed. </p>
+<p>Is there a way to ensure that leading whitespace is not stripped on render -- perhaps something I can specify in <code>_config.yml</code>, or otherwise? FWIW, I have:</p>
+<pre><code>markdown:            kramdown
+highlighter:         pygments
+</code></pre><p>in my <code>_config.yml</code>, alongside other (obstensibly) unrelated options.</p>
+<p>My understanding is that pygments is handling this translation, and <a href="http://pygments.org/docs/quickstart/">the documentation</a> here suggests that this might (?) be controlled through the <code>stripall</code> argument, but I am not sure how I would get access to that (if that is indeed what I need).</p>
+<p>Finally -- in the end, my Jekyll website is going to be served through GitHub pages, so the solution would preferably not involve post-processing the generated HTML.</p>
+<p>Thanks!</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><p>From the sounds of it, this may be a bug that you want to file in the actual Jekyll repo.</p>
+<p>For your particular issue, you might want to try using tables.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>[,1]</th>
+<th>[,2]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>[1,]</strong></td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td><strong>[2,]</strong></td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+</tbody>
+</table>
+<pre><code> | [,1] | [,2]
+--- | --- | ---
+**[1,]** | FALSE | TRUE
+**[2,]** | FALSE | TRUE
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/kevinushey">
+              kevinushey
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><p>Thanks -- I&#39;ll do that, although in general I do want to print generic, verbatim code output without any whitespace stripping.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><p>Fair enough. Open an issue in the actual Jekyll repo and see if they can look at it.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

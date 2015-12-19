@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Collection files don&#x27;t display without YAML front matter</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#223</span>
+        </p>
+        <h1>Collection files don&#x27;t display without YAML front matter</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">maban</a>
+            <time>Friday, January 02, 2015</time>
+          </div>
+          <div class="body">
+            <p>I&#39;ve been playing with collections since they first came out and I built this with it: <a href="http://style.maban.co.uk/">http://style.maban.co.uk/</a> (code here: <a href="https://github.com/maban/styleguide">https://github.com/maban/styleguide</a>) – each item on the page is pulled from a collection which is a series of pure HTML files that don&#39;t contain any front matter, and I generated it like this:</p>
+<pre><code>{% for pattern in site.patterns %}
+    {{ pattern.content }}
+{% endfor %}
+</code></pre><p>and in my config file I&#39;ve got</p>
+<pre><code>collections:
+    patterns:
+        output: true
+</code></pre><p>It was working great until recently, and I hadn&#39;t touched the code until someone said it wasn&#39;t working for them and I tried it out again locally. Now when I build the site, none of the files in the collection get generated on the page. The only way they&#39;ll display at all is if I insert an empty front matter to each file in the collection.</p>
+<p><a href="http://jekyllrb.com/docs/collections/">In the documentation</a> for the content variable of collections, it says &quot;If no YAML Front Matter is provided, this is the entirety of the file contents.&quot;, so it should still work, right?</p>
+<p>Has something changed in the codebase that basically says &quot;don&#39;t output this collection file if it&#39;s not got front matter&quot;? Or am I doing something wrong – is there a way to force it to generate it anyway?</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/troyswanson">
+              troyswanson
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>As far as I know, Jekyll will only process a file through it&#39;s generator system if it contains front-matter. I honestly don&#39;t know the history of that behavior, but I feel like it&#39;s been like that since Collections was introduced. Obviously there could be nuiances that I&#39;m not aware of, but the idea is generally: &quot;Add front-matter to files that you want Jekyll to process.&quot;</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/maban">
+              maban
+            </a>
+            <time>Sunday, January 04, 2015</time>
+          </div>
+          <div class="body"><p>It did used to work. If that&#39;s how it is now, would it be worth changing the wording of the documentation? This had me thinking it would process a file without front-matter:</p>
+<blockquote>
+<p>Create a corresponding folder (e.g. &lt;source&gt;/_my_collection) and add documents. YAML Front Matter is read in as data if it exists, if not, then everything is just stuck in the Document’s content attribute.
+<a href="http://jekyllrb.com/docs/collections/#step-2-add-your-content">http://jekyllrb.com/docs/collections/#step-2-add-your-content</a></p>
+</blockquote>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Monday, January 05, 2015</time>
+          </div>
+          <div class="body"><p>@maban That&#39;s a very inspirational use of Jekyll, I love it! </p>
+<p>:bow: </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/maban">
+              maban
+            </a>
+            <time>Monday, January 05, 2015</time>
+          </div>
+          <div class="body"><p>Thank you, @nternetinspired! I&#39;m also building a jekyll-based collaborative bookmarking tool. Here are my very early workings: <a href="https://github.com/maban/bookmarks">https://github.com/maban/bookmarks</a></p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Monday, January 05, 2015</time>
+          </div>
+          <div class="body"><p>Looks great @maban, I&#39;ll certainly keep an eye on that. I&#39;m really interested in how Jekyll can be used in new ways, like cutting production time of the less glamorous, but essential, parts of the web design process; and I think style guides are a really important part of that.</p>
+<p>I&#39;ve been dabbling with using Jekyll to replace traditional web design tools in rapidly creating things like element collages, style tiles, and type samples in addition to just wireframing: <a href="https://github.com/nternetinspired/jekyll-design">https://github.com/nternetinspired/jekyll-design</a> </p>
+<p>A fully fleshed out pattern library is next on my hit list… </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/maban">
+              maban
+            </a>
+            <time>Monday, January 05, 2015</time>
+          </div>
+          <div class="body"><p>Oooh, looks really cool!</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/paulrobertlloyd">
+              paulrobertlloyd
+            </a>
+            <time>Monday, January 05, 2015</time>
+          </div>
+          <div class="body"><p>Hey @nternetinspired, your project looks fantastic! I love what people are doing with Jekyll… next on my list is Jekyll-ising my Barebones project (<a href="https://github.com/paulrobertlloyd/barebones">https://github.com/paulrobertlloyd/barebones</a>).</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/nternetinspired">
+              nternetinspired
+            </a>
+            <time>Wednesday, January 07, 2015</time>
+          </div>
+          <div class="body"><p>Thanks for the kind words @paulrobertlloyd :blush: </p>
+<p>I really need to give it some more time and refine things a bit further because I&#39;m happy with how it works as a POC. I&#39;ll be keeping an eye on Barebones for inspiration ;) </p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/pmackay">
+              pmackay
+            </a>
+            <time>Thursday, January 08, 2015</time>
+          </div>
+          <div class="body"><p>I&#39;d agree here that the docs need a fix, or the behaviour needs changing so files without front matter are processed.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/maban">
+              maban
+            </a>
+            <time>Thursday, January 08, 2015</time>
+          </div>
+          <div class="body"><p>Oh, the docs are on GitHub! I&#39;ll try and write something that might help clarify things, and do a pull request after work.</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

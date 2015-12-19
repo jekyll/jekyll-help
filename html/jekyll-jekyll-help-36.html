@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>static_comments plugin no longer working with Jekyll v2. Why?</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#36</span>
+        </p>
+        <h1>static_comments plugin no longer working with Jekyll v2. Why?</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">paulrobertlloyd</a>
+            <time>Wednesday, May 07, 2014</time>
+          </div>
+          <div class="body">
+            <p>Hello,</p>
+<p>I’m currently rebuilding my site with Jekyll. I’ve retained the comments that were posted on my previous Movable Type-powered website (using the Movable Type import script) and the static_comments.rb plugin, found here: <a href="https://github.com/shigeya/jekyll-static-comments/">https://github.com/shigeya/jekyll-static-comments/</a></p>
+<p>This was working <em>perfectly</em> up until v1.5.1, but since the update to v2.0.x, I get the following error (using --trace): </p>
+<pre><code>Pinova:paulrobertlloyd.dev paulrobertlloyd$ jekyll build --trace
+Configuration file: /Users/paulrobertlloyd/Sites/paulrobertlloyd.dev/_config.yml
+            Source: /Users/paulrobertlloyd/Sites/paulrobertlloyd.dev
+       Destination: /Users/paulrobertlloyd/Sites/paulrobertlloyd.dev/_site
+      Generating... 
+  Liquid Exception: undefined local variable or method `relative_path&#39; for #&lt;StaticComments::StaticComment:0x007f877c1ee3c0&gt; in _includes/sections/comments.html, included in _layouts/post.html
+/Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/tags/include.rb:114:in `rescue in render&#39;: undefined local variable or method `relative_path&#39; for #&lt;StaticComments::StaticComment:0x007f877c1ee3c0&gt; (Jekyll::Tags::IncludeTagError)
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/tags/include.rb:106:in `render&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/block.rb:106:in `block in render_all&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/block.rb:93:in `each&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/block.rb:93:in `render_all&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/tags/if.rb:40:in `block (2 levels) in render&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/tags/if.rb:38:in `each&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/tags/if.rb:38:in `block in render&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/context.rb:105:in `stack&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/tags/if.rb:37:in `render&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/block.rb:106:in `block in render_all&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/block.rb:93:in `each&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/block.rb:93:in `render_all&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/block.rb:82:in `render&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/template.rb:124:in `render&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/liquid-2.5.5/lib/liquid/template.rb:132:in `render!&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/convertible.rb:96:in `render_liquid&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/convertible.rb:142:in `render_all_layouts&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/convertible.rb:176:in `do_layout&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/post.rb:266:in `render&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/site.rb:245:in `block in render&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/site.rb:244:in `each&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/site.rb:244:in `render&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/site.rb:43:in `process&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/command.rb:43:in `process_site&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/commands/build.rb:46:in `build&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/commands/build.rb:30:in `process&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/lib/jekyll/commands/build.rb:17:in `block (2 levels) in init_with_program&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `call&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `block in execute&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `each&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.3/lib/mercenary/command.rb:220:in `execute&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.3/lib/mercenary/program.rb:35:in `go&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/mercenary-0.3.3/lib/mercenary.rb:22:in `program&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/gems/jekyll-2.0.2/bin/jekyll:18:in `&lt;top (required)&gt;&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/bin/jekyll:23:in `load&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/bin/jekyll:23:in `&lt;main&gt;&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/bin/ruby_executable_hooks:15:in `eval&#39;
+    from /Users/paulrobertlloyd/.rvm/gems/ruby-2.1.0/bin/ruby_executable_hooks:15:in `&lt;main&gt;&#39;
+</code></pre><p>My source code is available here: <a href="https://github.com/paulrobertlloyd/paulrobertlloyd.com">https://github.com/paulrobertlloyd/paulrobertlloyd.com</a> </p>
+<p><em>(Note that comments are not available on my GitHub repo as they contain user’s email addresses. However, there is a folder called _comments in the root of the project, which contains a folder for each post with comments, and a .markdown file for each comment.)</em></p>
+<p>What has changed in v2.0 that would cause this issue?</p>
+<p>Thanks,</p>
+<p>Paul</p>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/shigeya">
+              shigeya
+            </a>
+            <time>Saturday, May 10, 2014</time>
+          </div>
+          <div class="body"><p>Hi, as I informed to @paulrobertlloyd, it&#39;s an incompatibility  of my patch ( <a href="https://github.com/shigeya/jekyll-static-comments/">the plugin</a> ) with Jekyll 2.0. it&#39;s fixed on the branch, <a href="https://github.com/shigeya/jekyll-static-comments/tree/mt_static_comments">https://github.com/shigeya/jekyll-static-comments/tree/mt_static_comments</a> . Please close this issue.</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Saturday, May 10, 2014</time>
+          </div>
+          <div class="body"><p>Thanks @shigeya!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>

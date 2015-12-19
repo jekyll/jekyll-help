@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="lib/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.emoji.js"></script>
+    <title>Jekyll Not Auto Generating while using “serve -w”</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <p>
+          <span class="badge closed">closed</span>
+          <span class="url">jekyll/jekyll-help#69</span>
+        </p>
+        <h1>Jekyll Not Auto Generating while using “serve -w”</h1>
+      </header>
+      <div class="comments">
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/">ericthor</a>
+            <time>Saturday, June 07, 2014</time>
+          </div>
+          <div class="body">
+            <p>I also posted about this issue at <a href="http://stackoverflow.com/questions/24101378/jekyll-not-auto-generating-while-using-serve-w">Stackoverflow</a>.</p>
+<p>I&#39;m able to run jekyll serve and jekyll serve -w without any output errors. It generates and serves the site fine. Though as I edit page the changes aren&#39;t automatically detected and are only output on to the development server after I run jekyll serve again.</p>
+<p>I was messing around trying to install Nokogiri and ended up reinstalling rvm recently I was wondering if that is playing a role?</p>
+<p>I&#39;ve tried Jekyll serve on a clean install and in a few different versions of Ruby. This is probably a quick fix, but the answer is way out of my realm of knowledge.</p>
+<p><strong>Using</strong></p>
+<ul>
+<li>Jekyll 2.0.3</li>
+<li>ruby 2.1.2p95 (2014-05-08 revision 45877) [x86_64-darwin13.0]</li>
+<li>OS X 10.9.3</li>
+</ul>
+
+          </div>
+        </div>
+
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, June 08, 2014</time>
+          </div>
+          <div class="body"><p>What are your <code>source</code> and <code>destination</code>?</p>
+</div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/ericthor">
+              ericthor
+            </a>
+            <time>Sunday, June 08, 2014</time>
+          </div>
+          <div class="body"><p>I was able to get it to work by moving it out of the default &quot;Sites&quot; folder in OSX. After I moved it out of that folder it worked fine. Its definitely an issue not with the Jekyll code. I resolved it as of now.</p>
+<pre><code>source: ./_source
+destination: ./_site
+</code></pre></div>
+        </div>
+        <div class="comment">
+          <div class="meta">
+            <a class="person" href="https://github.com/parkr">
+              parkr
+            </a>
+            <time>Sunday, June 08, 2014</time>
+          </div>
+          <div class="body"><p>Glad you got it resolved!</p>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.comment').each(function(i, d){
+          $(d).emoji()
+        })
+      })
+    </script>
+
+  </body>
+</html>
